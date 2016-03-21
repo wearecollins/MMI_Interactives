@@ -61,4 +61,4 @@
 		* Readme.md
 
 ###Prototypes
-* Prototypes for this and other exhibits are hosted (here)[https://github.com/wearecollins/MMI-Prototypes.git]
+* Prototypes for this and other exhibits are hosted [here](https://github.com/wearecollins/MMI-Prototypes.git)
