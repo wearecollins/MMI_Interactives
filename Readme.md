@@ -54,14 +54,14 @@
 		* Readme.md
 
 	* Camera/
-		* _Brief_: Separate test app for testing/working with cameras
+		* _Brief_: Separate test app for testing/working with cameras. Also includes ability to stream compressed Camera image via WebSockets. Saves out settings to camera.xml.
 		* *project files (Camera.xcodeproj, etc)*
 		* addons/
 			* ofxCocoaGLView/ (git submodule)
 			* ofxLibdc/ (git submodule)
 			* ofxTurboJpeg/
 			* websocketpp/
-		* data
+		* data/
 		* src/
 
 	* Utilities/
