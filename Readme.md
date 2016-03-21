@@ -53,6 +53,17 @@
 		* images/
 		* Readme.md
 
+	* Camera/
+		* _Brief_: Separate test app for testing/working with cameras
+		* *project files (Camera.xcodeproj, etc)*
+		* addons/
+			* ofxCocoaGLView/ (git submodule)
+			* ofxLibdc/ (git submodule)
+			* ofxTurboJpeg/
+			* websocketpp/
+		* data
+		* src/
+
 	* Utilities/
 		* Readme.md
 		* ???
