@@ -1,0 +1,597 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01F7EBA21CA050F900A0A9FC /* BlackFlyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F7EBA01CA050F900A0A9FC /* BlackFlyCamera.cpp */; };
+		599656BC0881AA3833034457 /* Grabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C29AB2A7D4E642ADEEB9FD7 /* Grabber.cpp */; };
+		96B2141B90682260BBE2C3F1 /* PointGrey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1623FFF19D70E657B9A15F3D /* PointGrey.cpp */; };
+		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
+		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
+		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
+		FB82943EE8E497BB94F66016 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3AA6D80CF295AC6A91039 /* Camera.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E4328147138ABC890047C5CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4B27C1510CBEB8E00536013;
+			remoteInfo = openFrameworks;
+		};
+		E4EEB9AB138B136A00A80321 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E4B27C1410CBEB8E00536013;
+			remoteInfo = openFrameworks;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E4C2427710CC5ABF004149E2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		005FB0E2C87C9CEBCDD4D2EB /* register.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = register.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/register.h; sourceTree = SOURCE_ROOT; };
+		01F7EBA01CA050F900A0A9FC /* BlackFlyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlackFlyCamera.cpp; path = src/BlackFlyCamera.cpp; sourceTree = SOURCE_ROOT; };
+		01F7EBA11CA050F900A0A9FC /* BlackFlyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlackFlyCamera.h; path = src/BlackFlyCamera.h; sourceTree = SOURCE_ROOT; };
+		05B4DB536CB03B3E51FE357F /* libusb.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = libusb.h; path = "../../../addons/ofxLibdc/libs/libusb/include/libusb-1.0/libusb.h"; sourceTree = SOURCE_ROOT; };
+		158B0BC3FB968E614EFA8676 /* pixelink.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = pixelink.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/vendor/pixelink.h; sourceTree = SOURCE_ROOT; };
+		159AC0FCE0D973AB7124C63A /* format7.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = format7.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/format7.h; sourceTree = SOURCE_ROOT; };
+		1623FFF19D70E657B9A15F3D /* PointGrey.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PointGrey.cpp; path = ../../../addons/ofxLibdc/src/PointGrey.cpp; sourceTree = SOURCE_ROOT; };
+		2C29AB2A7D4E642ADEEB9FD7 /* Grabber.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Grabber.cpp; path = ../../../addons/ofxLibdc/src/Grabber.cpp; sourceTree = SOURCE_ROOT; };
+		58D3ED99CCB2E5E4874B98C7 /* macosx.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = macosx.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/macosx.h; sourceTree = SOURCE_ROOT; };
+		5973FC3817C04482A196F9B5 /* iso.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = iso.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/iso.h; sourceTree = SOURCE_ROOT; };
+		5D2298E556F7AB3CE3F9D473 /* ofxLibdc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxLibdc.h; path = ../../../addons/ofxLibdc/src/ofxLibdc.h; sourceTree = SOURCE_ROOT; };
+		721D009989F4284098572E6C /* dc1394.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = dc1394.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/dc1394.h; sourceTree = SOURCE_ROOT; };
+		83AF43EDFC950BEB8078B361 /* basler_sff.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = basler_sff.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/vendor/basler_sff.h; sourceTree = SOURCE_ROOT; };
+		863FBCA288AF83FE1DC48ED4 /* PointGrey.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PointGrey.h; path = ../../../addons/ofxLibdc/src/PointGrey.h; sourceTree = SOURCE_ROOT; };
+		8BF12B3123F78BBEC4070477 /* types.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = types.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/types.h; sourceTree = SOURCE_ROOT; };
+		8CF3AA6D80CF295AC6A91039 /* Camera.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Camera.cpp; path = ../../../addons/ofxLibdc/src/Camera.cpp; sourceTree = SOURCE_ROOT; };
+		90AC8DCF981D6C5FEAAE1D25 /* utils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = utils.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/utils.h; sourceTree = SOURCE_ROOT; };
+		9DA9DEB4B0AEAB59920BEAB8 /* avt.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = avt.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/vendor/avt.h; sourceTree = SOURCE_ROOT; };
+		AE5835573C5EB90AC0ACE779 /* conversions.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = conversions.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/conversions.h; sourceTree = SOURCE_ROOT; };
+		B12CEBB3EFA0797C1F3547E8 /* Camera.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Camera.h; path = ../../../addons/ofxLibdc/src/Camera.h; sourceTree = SOURCE_ROOT; };
+		B1539A5BF1D0431AADE0679A /* control.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = control.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/control.h; sourceTree = SOURCE_ROOT; };
+		B47510CF5638977A7ED04CF1 /* basler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = basler.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/vendor/basler.h; sourceTree = SOURCE_ROOT; };
+		C0169A9B20FA0F8D41FC0CAE /* Grabber.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Grabber.h; path = ../../../addons/ofxLibdc/src/Grabber.h; sourceTree = SOURCE_ROOT; };
+		CA5FFBD32C13BB144F0027A6 /* camera.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = camera.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/camera.h; sourceTree = SOURCE_ROOT; };
+		CEB8CB055D922FA9A4AB1955 /* log.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = log.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/log.h; sourceTree = SOURCE_ROOT; };
+		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E4B69B5B0A3A1756003C02F2 /* CameraTestDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraTestDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
+		E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofApp.cpp; path = src/ofApp.cpp; sourceTree = SOURCE_ROOT; };
+		E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; };
+		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
+		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
+		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		F18BDF9B115279DE56D791ED /* video.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = video.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/video.h; sourceTree = SOURCE_ROOT; };
+		FF68434858ACA07E7CF57EC9 /* capture.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = capture.h; path = ../../../addons/ofxLibdc/libs/dc1394/include/dc1394/capture.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E4B69B590A3A1756003C02F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0180908E1C9C796300DCF92E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				01F7EBA01CA050F900A0A9FC /* BlackFlyCamera.cpp */,
+				01F7EBA11CA050F900A0A9FC /* BlackFlyCamera.h */,
+			);
+			name = Shared;
+			path = ../../Shared;
+			sourceTree = "<group>";
+		};
+		31C723E88EC9E7EBAE55ABD0 /* dc1394 */ = {
+			isa = PBXGroup;
+			children = (
+				E30487815282C0450FC322B6 /* include */,
+			);
+			name = dc1394;
+			sourceTree = "<group>";
+		};
+		57B059EB22BB3818EC869B1F /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				31C723E88EC9E7EBAE55ABD0 /* dc1394 */,
+				D78172637BCED60E56B7B25F /* libusb */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		67DEA56B918339AE7E134131 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C7872351797071915B54764F /* libusb-1.0 */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		6850C26D2034F17B2E69494A /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				9DA9DEB4B0AEAB59920BEAB8 /* avt.h */,
+				B47510CF5638977A7ED04CF1 /* basler.h */,
+				83AF43EDFC950BEB8078B361 /* basler_sff.h */,
+				158B0BC3FB968E614EFA8676 /* pixelink.h */,
+			);
+			name = vendor;
+			sourceTree = "<group>";
+		};
+		6948EE371B920CB800B5AC1A /* local_addons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = local_addons;
+			sourceTree = "<group>";
+		};
+		BB4B014C10F69532006C3DED /* addons */ = {
+			isa = PBXGroup;
+			children = (
+				F65A61FAE09BA65DAAEECEB5 /* ofxLibdc */,
+			);
+			name = addons;
+			sourceTree = "<group>";
+		};
+		C7872351797071915B54764F /* libusb-1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				05B4DB536CB03B3E51FE357F /* libusb.h */,
+			);
+			name = "libusb-1.0";
+			sourceTree = "<group>";
+		};
+		C9AD44AA278F92B90DBB9783 /* dc1394 */ = {
+			isa = PBXGroup;
+			children = (
+				CA5FFBD32C13BB144F0027A6 /* camera.h */,
+				FF68434858ACA07E7CF57EC9 /* capture.h */,
+				B1539A5BF1D0431AADE0679A /* control.h */,
+				AE5835573C5EB90AC0ACE779 /* conversions.h */,
+				721D009989F4284098572E6C /* dc1394.h */,
+				159AC0FCE0D973AB7124C63A /* format7.h */,
+				5973FC3817C04482A196F9B5 /* iso.h */,
+				CEB8CB055D922FA9A4AB1955 /* log.h */,
+				58D3ED99CCB2E5E4874B98C7 /* macosx.h */,
+				005FB0E2C87C9CEBCDD4D2EB /* register.h */,
+				8BF12B3123F78BBEC4070477 /* types.h */,
+				90AC8DCF981D6C5FEAAE1D25 /* utils.h */,
+				6850C26D2034F17B2E69494A /* vendor */,
+				F18BDF9B115279DE56D791ED /* video.h */,
+			);
+			name = dc1394;
+			sourceTree = "<group>";
+		};
+		D78172637BCED60E56B7B25F /* libusb */ = {
+			isa = PBXGroup;
+			children = (
+				67DEA56B918339AE7E134131 /* include */,
+			);
+			name = libusb;
+			sourceTree = "<group>";
+		};
+		E30487815282C0450FC322B6 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C9AD44AA278F92B90DBB9783 /* dc1394 */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		E4328144138ABC890047C5CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E4328148138ABC890047C5CB /* openFrameworksDebug.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E4B69B4A0A3A1720003C02F2 = {
+			isa = PBXGroup;
+			children = (
+				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
+				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
+				E4B69E1C0A3A1BDC003C02F2 /* src */,
+				E4EEC9E9138DF44700A80321 /* openFrameworks */,
+				BB4B014C10F69532006C3DED /* addons */,
+				6948EE371B920CB800B5AC1A /* local_addons */,
+				E4B69B5B0A3A1756003C02F2 /* CameraTestDebug.app */,
+			);
+			sourceTree = "<group>";
+		};
+		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0180908E1C9C796300DCF92E /* Shared */,
+				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
+				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
+				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+			);
+			path = src;
+			sourceTree = SOURCE_ROOT;
+		};
+		E4EEC9E9138DF44700A80321 /* openFrameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */,
+				E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */,
+			);
+			name = openFrameworks;
+			sourceTree = "<group>";
+		};
+		F65A61FAE09BA65DAAEECEB5 /* ofxLibdc */ = {
+			isa = PBXGroup;
+			children = (
+				FC7DA6E1DCE6DEF6EF01DA57 /* src */,
+				57B059EB22BB3818EC869B1F /* libs */,
+			);
+			name = ofxLibdc;
+			sourceTree = "<group>";
+		};
+		FC7DA6E1DCE6DEF6EF01DA57 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				8CF3AA6D80CF295AC6A91039 /* Camera.cpp */,
+				B12CEBB3EFA0797C1F3547E8 /* Camera.h */,
+				2C29AB2A7D4E642ADEEB9FD7 /* Grabber.cpp */,
+				C0169A9B20FA0F8D41FC0CAE /* Grabber.h */,
+				5D2298E556F7AB3CE3F9D473 /* ofxLibdc.h */,
+				1623FFF19D70E657B9A15F3D /* PointGrey.cpp */,
+				863FBCA288AF83FE1DC48ED4 /* PointGrey.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E4B69B5A0A3A1756003C02F2 /* CameraTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "CameraTest" */;
+			buildPhases = (
+				E4B69B580A3A1756003C02F2 /* Sources */,
+				E4B69B590A3A1756003C02F2 /* Frameworks */,
+				E4B6FFFD0C3F9AB9008CF71C /* ShellScript */,
+				E4C2427710CC5ABF004149E2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E4EEB9AC138B136A00A80321 /* PBXTargetDependency */,
+			);
+			name = CameraTest;
+			productName = myOFApp;
+			productReference = E4B69B5B0A3A1756003C02F2 /* CameraTestDebug.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E4B69B4C0A3A1720003C02F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+			};
+			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "CameraTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = E4B69B4A0A3A1720003C02F2;
+			productRefGroup = E4B69B4A0A3A1720003C02F2;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E4328144138ABC890047C5CB /* Products */;
+					ProjectRef = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E4B69B5A0A3A1756003C02F2 /* CameraTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E4328148138ABC890047C5CB /* openFrameworksDebug.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = openFrameworksDebug.a;
+			remoteRef = E4328147138ABC890047C5CB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E4B6FFFD0C3F9AB9008CF71C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy default icon file into App/Resources\nrsync -aved \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy libfmod and change install directory for fmod to run\nrsync -aved ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\";\ninstall_name_tool -change @executable_path/libfmodex.dylib @executable_path/../Frameworks/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n# Copy GLUT framework (must remove for AppStore submissions)\nrsync -aved ../../../libs/glut/lib/osx/GLUT.framework \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E4B69B580A3A1756003C02F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01F7EBA21CA050F900A0A9FC /* BlackFlyCamera.cpp in Sources */,
+				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				FB82943EE8E497BB94F66016 /* Camera.cpp in Sources */,
+				599656BC0881AA3833034457 /* Grabber.cpp in Sources */,
+				96B2141B90682260BBE2C3F1 /* PointGrey.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E4EEB9AC138B136A00A80321 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = openFrameworks;
+			targetProxy = E4EEB9AB138B136A00A80321 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E4B69B4E0A3A1720003C02F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					src,
+					../../../addons/ofxLibdc/libs,
+					../../../addons/ofxLibdc/libs/dc1394,
+					../../../addons/ofxLibdc/libs/dc1394/include,
+					../../../addons/ofxLibdc/libs/dc1394/include/dc1394,
+					../../../addons/ofxLibdc/libs/dc1394/include/dc1394/vendor,
+					../../../addons/ofxLibdc/libs/dc1394/lib,
+					../../../addons/ofxLibdc/libs/dc1394/lib/osx,
+					../../../addons/ofxLibdc/libs/libusb,
+					../../../addons/ofxLibdc/libs/libusb/include,
+					"../../../addons/ofxLibdc/libs/libusb/include/libusb-1.0",
+					../../../addons/ofxLibdc/libs/libusb/lib,
+					../../../addons/ofxLibdc/libs/libusb/lib/osx,
+					../../../addons/ofxLibdc/src,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D__MACOSX_CORE__",
+					"-mtune=native",
+				);
+				OTHER_LDFLAGS = (
+					"$(OF_CORE_FRAMEWORKS)",
+					"$(OF_CORE_LIBS)",
+					../../../addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
+					"../../../addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+				);
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E4B69B4F0A3A1720003C02F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					src,
+					../../../addons/ofxLibdc/libs,
+					../../../addons/ofxLibdc/libs/dc1394,
+					../../../addons/ofxLibdc/libs/dc1394/include,
+					../../../addons/ofxLibdc/libs/dc1394/include/dc1394,
+					../../../addons/ofxLibdc/libs/dc1394/include/dc1394/vendor,
+					../../../addons/ofxLibdc/libs/dc1394/lib,
+					../../../addons/ofxLibdc/libs/dc1394/lib/osx,
+					../../../addons/ofxLibdc/libs/libusb,
+					../../../addons/ofxLibdc/libs/libusb/include,
+					"../../../addons/ofxLibdc/libs/libusb/include/libusb-1.0",
+					../../../addons/ofxLibdc/libs/libusb/lib,
+					../../../addons/ofxLibdc/libs/libusb/lib/osx,
+					../../../addons/ofxLibdc/src,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D__MACOSX_CORE__",
+					"-mtune=native",
+				);
+				OTHER_LDFLAGS = (
+					"$(OF_CORE_FRAMEWORKS)",
+					"$(OF_CORE_LIBS)",
+					../../../addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
+					"../../../addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E4B69B600A3A1757003C02F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = NONE;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					src,
+					../../../addons/ofxLibdc/libs,
+					../../../addons/ofxLibdc/libs/dc1394,
+					../../../addons/ofxLibdc/libs/dc1394/include,
+					../../../addons/ofxLibdc/libs/dc1394/include/dc1394,
+					../../../addons/ofxLibdc/libs/dc1394/include/dc1394/vendor,
+					../../../addons/ofxLibdc/libs/dc1394/lib,
+					../../../addons/ofxLibdc/libs/dc1394/lib/osx,
+					../../../addons/ofxLibdc/libs/libusb,
+					../../../addons/ofxLibdc/libs/libusb/include,
+					"../../../addons/ofxLibdc/libs/libusb/include/libusb-1.0",
+					../../../addons/ofxLibdc/libs/libusb/lib,
+					../../../addons/ofxLibdc/libs/libusb/lib/osx,
+					../../../addons/ofxLibdc/src,
+				);
+				ICON = "$(ICON_NAME_DEBUG)";
+				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
+				INFOPLIST_FILE = "openFrameworks-Info.plist";
+				INSTALL_PATH = /Applications;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(OF_CORE_FRAMEWORKS)",
+					"$(OF_CORE_LIBS)",
+					../../../addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
+					"../../../addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)Debug";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E4B69B610A3A1757003C02F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = NONE;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					src,
+					../../../addons/ofxLibdc/libs,
+					../../../addons/ofxLibdc/libs/dc1394,
+					../../../addons/ofxLibdc/libs/dc1394/include,
+					../../../addons/ofxLibdc/libs/dc1394/include/dc1394,
+					../../../addons/ofxLibdc/libs/dc1394/include/dc1394/vendor,
+					../../../addons/ofxLibdc/libs/dc1394/lib,
+					../../../addons/ofxLibdc/libs/dc1394/lib/osx,
+					../../../addons/ofxLibdc/libs/libusb,
+					../../../addons/ofxLibdc/libs/libusb/include,
+					"../../../addons/ofxLibdc/libs/libusb/include/libusb-1.0",
+					../../../addons/ofxLibdc/libs/libusb/lib,
+					../../../addons/ofxLibdc/libs/libusb/lib/osx,
+					../../../addons/ofxLibdc/src,
+				);
+				ICON = "$(ICON_NAME_RELEASE)";
+				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
+				INFOPLIST_FILE = "openFrameworks-Info.plist";
+				INSTALL_PATH = /Applications;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(OF_CORE_FRAMEWORKS)",
+					"$(OF_CORE_LIBS)",
+					../../../addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
+					"../../../addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+				baseConfigurationReference = E4EB6923138AFD0F00A09F29;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "CameraTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4B69B4E0A3A1720003C02F2 /* Debug */,
+				E4B69B4F0A3A1720003C02F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "CameraTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4B69B600A3A1757003C02F2 /* Debug */,
+				E4B69B610A3A1757003C02F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E4B69B4C0A3A1720003C02F2 /* Project object */;
+}
