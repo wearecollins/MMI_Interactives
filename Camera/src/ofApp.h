@@ -1,7 +1,14 @@
 #pragma once
 
 #include "ofMain.h"
-#include "BlackFlyCamera.h"
+#include "CameraManager.h"
+#include "ImageStreamer.h"
+
+enum Mode {
+    MODE_GENERAL = 0,
+    MODE_CAMERAS,
+    MODE_NONE
+};
 
 class ofApp : public ofBaseApp{
 
@@ -22,5 +29,8 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-        mmi::BlackFlyCamera cameraOne, cameraTwo;
+        Mode currentMode;
+        ofxPanel gui;
+        mmi::CameraManager cameraMgr;
+        vector<mmi::ImageStreamer *> streamers;
 };

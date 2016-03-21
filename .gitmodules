@@ -1,0 +1,9 @@
+[submodule "Camera/addons/ofxLibdc"]
+	path = Camera/addons/ofxLibdc
+	url = https://github.com/robotconscience/ofxLibdc.git
+[submodule "Camera/addons/ofxLibwebsockets"]
+	path = Camera/addons/ofxLibwebsockets
+	url = https://github.com/labatrockwell/ofxLibwebsockets.git
+[submodule "Camera/addons/ofxTurboJpeg"]
+	path = Camera/addons/ofxTurboJpeg
+	url = https://github.com/robotconscience/ofxTurboJpeg.git
