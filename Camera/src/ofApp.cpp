@@ -3,13 +3,18 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
+    gui.add(cameraTop.set("Which camera top", 0, 0, 1));
+    
     cameraMgr.setup();
+    recordMgr.setup();
     
     for ( int i=0; i<cameraMgr.getNumCameras(); i++){
         streamers.push_back( new mmi::ImageStreamer);
         streamers.back()->setup();
         gui.add( streamers.back()->params );
     }
+    
+    gui.add(recordMgr.params);
     
     gui.setup("Settings");
     ofSetLogLevel(OF_LOG_ERROR);
@@ -25,6 +30,19 @@ void ofApp::update(){
         if ( c != nullptr ){
             streamers[i]->stream(c->getImage());
         }
+    }
+    
+    if ( cameraMgr.getNumCameras() > 1 ){
+        
+        int t = cameraTop.get() == 0 ? 0 : 1;
+        int b = cameraTop.get() == 0 ? 1 : 0;
+        
+        auto & img1 = cameraMgr.getCamera(t)->getImage();
+        auto & img2 = cameraMgr.getCamera(b)->getImage();
+        
+        if ( !img1.isAllocated() || !img2.isAllocated() ) return;
+        
+        recordMgr.update(img1.getPixels(), img2.getPixels());
     }
 }
 

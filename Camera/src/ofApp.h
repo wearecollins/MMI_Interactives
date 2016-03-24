@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "CameraManager.h"
 #include "ImageStreamer.h"
+#include "RecordManager.h"
 
 enum Mode {
     MODE_GENERAL = 0,
@@ -31,6 +32,9 @@ class ofApp : public ofBaseApp{
 		
         Mode currentMode;
         ofxPanel gui;
+        ofParameter<int> cameraTop;
+    
         mmi::CameraManager cameraMgr;
+        mmi::RecordManager recordMgr;
         vector<mmi::ImageStreamer *> streamers;
 };
