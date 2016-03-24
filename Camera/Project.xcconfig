@@ -13,16 +13,5 @@ ICON_FILE_PATH = $(OF_PATH)/libs/openFrameworksCompiled/project/osx/
 //IF YOU WANT AN APP TO HAVE A CUSTOM ICON - PUT THEM IN YOUR DATA FOLDER AND CHANGE ICON_FILE_PATH to:
 //ICON_FILE_PATH = bin/data/
 
-LIBDC_HEADERS = addons/ofxLibdc/libs/dc1394 addons/ofxLibdc/libs/dc1394/include addons/ofxLibdc/libs/dc1394/include/dc1394 addons/ofxLibdc/libs/dc1394/include/dc1394/vendor addons/ofxLibdc/libs/dc1394/lib addons/ofxLibdc/libs/dc1394/lib/osx addons/ofxLibdc/libs/libusb addons/ofxLibdc/libs/libusb/include "addons/ofxLibdc/libs/libusb/include/libusb-1.0" addons/ofxLibdc/libs/libusb/lib addons/ofxLibdc/libs/libusb/lib/osx "addons/ofxLibdc/src" addons/ofxLibdc/libs
-
-LIBDC_LIBS = "addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a" "addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a"
-
-LWS                 = addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a
-LWS_INC             = addons/ofxLibwebsockets/libs/libwebsockets/include
-OFX_LWS_INCLUDE     = addons/ofxLibwebsockets/libs/ofxLibwebsockets/include
-OFX_LWS_LIBS        = $(LWS)
-OFX_LWS_INCLUDES    = $(OFX_LWS_INCLUDE) $(LWS_INC)
-
-
-OTHER_LDFLAGS = $(OF_CORE_LIBS) $(OF_CORE_FRAMEWORKS) $(LIBDC_LIBS) $(OFX_LWS_LIBS)
-HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS) src $(LIBDC_HEADERS) $(OFX_LWS_INCLUDES)
+OTHER_LDFLAGS = $(OF_CORE_LIBS) $(OF_CORE_FRAMEWORKS)
+HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS)

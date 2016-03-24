@@ -1,1 +1,5 @@
 ofxGui
+addons/ofxVideoRecorder
+addons/ofxLibdc
+addons/ofxLibwebsockets
+addons/ofxTurboJpeg

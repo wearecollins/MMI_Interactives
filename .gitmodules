@@ -7,3 +7,6 @@
 [submodule "Camera/addons/ofxTurboJpeg"]
 	path = Camera/addons/ofxTurboJpeg
 	url = https://github.com/robotconscience/ofxTurboJpeg.git
+[submodule "Camera/addons/ofxVideoRecorder"]
+	path = Camera/addons/ofxVideoRecorder
+	url = https://github.com/timscaffidi/ofxVideoRecorder.git
