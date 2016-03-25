@@ -10,3 +10,6 @@
 [submodule "Camera/addons/ofxVideoRecorder"]
 	path = Camera/addons/ofxVideoRecorder
 	url = https://github.com/timscaffidi/ofxVideoRecorder.git
+[submodule "Frontend/addons/ofxCocoaGLView"]
+	path = Frontend/addons/ofxCocoaGLView
+	url = https://github.com/robotconscience/ofxCocoaGLView.git

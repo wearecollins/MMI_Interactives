@@ -43,7 +43,7 @@ namespace mmi {
         static int bfCamIdx = 0;
         bfCamIdx++;
         
-        if ( isSetup() || true ){
+        if ( isSetup() ){
             // setup GUI
             this->params.setName("Camera " + ofToString( bfCamIdx ) + " settings");
             this->params.add(this->guid.set("Guid", guid));
