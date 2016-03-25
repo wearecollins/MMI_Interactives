@@ -9,13 +9,21 @@
 #include "CameraApp.h"
 
 //--------------------------------------------------------------
-void CameraApp::setup(){
+void CameraApp::setup( bool bDoStream ){
+    this->bStreaming = bDoStream;
+    
     ofSetLogLevel(OF_LOG_VERBOSE);
     gui.add(cameraTop.set("Which camera top", 0, 0, 1));
     
     cameraMgr.setup();
     recordMgr.setup();
-    streamMgr.setup("", 9091);
+    
+    //todo: does stream manager still own the ws:// connection?
+    if ( this->bStreaming ){
+        streamMgr.setup("", 9091);
+    } else {
+        
+    }
     messageHdlr.setup();
     
     // connect stream message to message parser
@@ -32,23 +40,28 @@ void CameraApp::setup(){
     
     ofSetLogLevel(OF_LOG_ERROR);
     
-    currentMode = MODE_GENERAL;
+    currentMode = MODE_NONE;
     
     ofAddListener(ofEvents().keyPressed, this, &CameraApp::keyPressed);
 }
 
 //--------------------------------------------------------------
 void CameraApp::update(){
-    // try to stream all the time, image streamer will handle by framerate
     auto * camera = cameraMgr.getCamera( whichStream.get());
-    if ( camera != nullptr ){
-#ifndef DEBUG_CAMERA
-        streamMgr.stream( camera->getImage() );
-#else
-        streamMgr.stream( *camera );
-#endif
+    
+    if ( this->bStreaming ){
+        // try to stream all the time, image streamer will handle by framerate
+        
+        if ( camera != nullptr ){
+    #ifndef DEBUG_CAMERA
+            streamMgr.stream( camera->getImage() );
+    #else
+            streamMgr.stream( *camera );
+    #endif
+        }
     }
     
+    // update recording, if 2x camera app
     if ( cameraMgr.getNumCameras() > 1 ){
         
         int t = cameraTop.get() == 0 ? 0 : 1;
@@ -87,22 +100,28 @@ void CameraApp::update(){
 
 //--------------------------------------------------------------
 void CameraApp::draw(){
+    
     ofPushMatrix();
 #ifndef DEBUG_CAMERA
+    //todo: dynamic!
     ofScale(.5, .5);
 #endif
-    cameraMgr.drawDebug(0, 0);
+    if ( currentMode != MODE_NONE ){
+        cameraMgr.drawDebug(0, 0);
+    } else {
+        cameraMgr.draw(0, 0);
+    }
     ofPopMatrix();
-    
-    ofDrawBitmapStringHighlight( "Press 'm' to switch configure modes", 20, ofGetHeight()-40, ofColor::yellow, ofColor::black);
     
     switch (currentMode){
         case MODE_GENERAL:
             gui.draw();
+            ofDrawBitmapStringHighlight( "Press 'm' to switch configure modes", 20, ofGetHeight()-40, ofColor::yellow, ofColor::black);
             break;
             
         case MODE_CAMERAS:
             cameraMgr.drawGui();
+            ofDrawBitmapStringHighlight( "Press 'm' to switch configure modes", 20, ofGetHeight()-40, ofColor::yellow, ofColor::black);
             break;
             
         case MODE_NONE:

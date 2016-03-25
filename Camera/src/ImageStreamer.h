@@ -11,7 +11,10 @@
 
 #include "ofxLibwebsockets.h"
 
+#ifndef NO_TURBO
 #define USE_TURBO
+#endif
+
 #ifdef USE_TURBO
 #include "ofxTurboJpeg.h"
 #endif

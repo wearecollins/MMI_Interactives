@@ -23,7 +23,7 @@ enum Mode {
 class CameraApp
 {
 public:
-    void setup();
+    void setup( bool bDoStream = true );
     void update();
     void draw();
     
@@ -40,6 +40,8 @@ public:
     ofParameter<int> cameraTop;
     ofParameter<int> whichStream;
     
+protected:
     
+    bool bStreaming;
 };
 

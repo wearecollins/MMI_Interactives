@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0112C6E61CA5F17E00972C53 /* ImageStreamer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0112C6E41CA5F17E00972C53 /* ImageStreamer.cpp */; };
 		01793FE11CA59E8E00D8DA83 /* ofApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE01CA59E8E00D8DA83 /* ofApp.mm */; };
 		01793FE91CA59F1E00D8DA83 /* BlackFlyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */; };
 		01793FEA1CA59F1E00D8DA83 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE51CA59F1E00D8DA83 /* CameraManager.cpp */; };
 		01793FEB1CA59F1E00D8DA83 /* RecordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE71CA59F1E00D8DA83 /* RecordManager.cpp */; };
 		01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01793FED1CA59F9B00D8DA83 /* MainMenu.xib */; };
 		01793FF21CA5BBAB00D8DA83 /* web in Resources */ = {isa = PBXBuildFile; fileRef = 01793FF11CA5BBA500D8DA83 /* web */; };
+		01F10D071CA5EBBD006937FA /* CameraApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D031CA5EBBD006937FA /* CameraApp.cpp */; };
+		01F10D081CA5EBBD006937FA /* MessageHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D051CA5EBBD006937FA /* MessageHandler.cpp */; };
+		01F10D221CA5ECC7006937FA /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D1B1CA5ECC7006937FA /* Client.cpp */; };
+		01F10D231CA5ECC7006937FA /* Connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D1C1CA5ECC7006937FA /* Connection.cpp */; };
+		01F10D241CA5ECC7006937FA /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D1D1CA5ECC7006937FA /* Events.cpp */; };
+		01F10D251CA5ECC7006937FA /* Protocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D1E1CA5ECC7006937FA /* Protocol.cpp */; };
+		01F10D261CA5ECC7006937FA /* Reactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D1F1CA5ECC7006937FA /* Reactor.cpp */; };
+		01F10D271CA5ECC7006937FA /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D201CA5ECC7006937FA /* Server.cpp */; };
+		01F10D281CA5ECC7006937FA /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D211CA5ECC7006937FA /* Util.cpp */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		5039C0C54BD5189DAAD33A9A /* ofxCocoaGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9317C7C01D7880E4E996E041 /* ofxCocoaGLView.mm */; };
@@ -62,6 +72,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0112C6E41CA5F17E00972C53 /* ImageStreamer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageStreamer.cpp; path = ../Camera/src/ImageStreamer.cpp; sourceTree = "<group>"; };
+		0112C6E51CA5F17E00972C53 /* ImageStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageStreamer.h; path = ../Camera/src/ImageStreamer.h; sourceTree = "<group>"; };
 		01793FE01CA59E8E00D8DA83 /* ofApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofApp.mm; sourceTree = "<group>"; };
 		01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlackFlyCamera.cpp; path = ../Camera/src/BlackFlyCamera.cpp; sourceTree = "<group>"; };
 		01793FE41CA59F1E00D8DA83 /* BlackFlyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlackFlyCamera.h; path = ../Camera/src/BlackFlyCamera.h; sourceTree = "<group>"; };
@@ -72,6 +84,27 @@
 		01793FED1CA59F9B00D8DA83 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = src/MainMenu.xib; sourceTree = "<group>"; };
 		01793FF01CA5BA7400D8DA83 /* SysCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SysCommand.h; sourceTree = "<group>"; };
 		01793FF11CA5BBA500D8DA83 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = Resources/web; sourceTree = "<group>"; };
+		01F10D031CA5EBBD006937FA /* CameraApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraApp.cpp; path = ../Camera/src/CameraApp.cpp; sourceTree = "<group>"; };
+		01F10D041CA5EBBD006937FA /* CameraApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraApp.h; path = ../Camera/src/CameraApp.h; sourceTree = "<group>"; };
+		01F10D051CA5EBBD006937FA /* MessageHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageHandler.cpp; path = ../Camera/src/MessageHandler.cpp; sourceTree = "<group>"; };
+		01F10D061CA5EBBD006937FA /* MessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageHandler.h; path = ../Camera/src/MessageHandler.h; sourceTree = "<group>"; };
+		01F10D0D1CA5ECB8006937FA /* ofxLibwebsockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLibwebsockets.h; sourceTree = "<group>"; };
+		01F10D131CA5ECC7006937FA /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		01F10D141CA5ECC7006937FA /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		01F10D151CA5ECC7006937FA /* Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Events.h; sourceTree = "<group>"; };
+		01F10D161CA5ECC7006937FA /* Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocol.h; sourceTree = "<group>"; };
+		01F10D171CA5ECC7006937FA /* Reactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reactor.h; sourceTree = "<group>"; };
+		01F10D181CA5ECC7006937FA /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		01F10D191CA5ECC7006937FA /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		01F10D1B1CA5ECC7006937FA /* Client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Client.cpp; sourceTree = "<group>"; };
+		01F10D1C1CA5ECC7006937FA /* Connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Connection.cpp; sourceTree = "<group>"; };
+		01F10D1D1CA5ECC7006937FA /* Events.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Events.cpp; sourceTree = "<group>"; };
+		01F10D1E1CA5ECC7006937FA /* Protocol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Protocol.cpp; sourceTree = "<group>"; };
+		01F10D1F1CA5ECC7006937FA /* Reactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Reactor.cpp; sourceTree = "<group>"; };
+		01F10D201CA5ECC7006937FA /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
+		01F10D211CA5ECC7006937FA /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
+		01F10D2A1CA5ECCD006937FA /* libwebsockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libwebsockets.h; sourceTree = "<group>"; };
+		01F10D2B1CA5ECCD006937FA /* lws_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lws_config.h; sourceTree = "<group>"; };
 		02127A1385C21C8F6CE77C4F /* iso.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = iso.h; path = ../Camera/addons/ofxLibdc/libs/dc1394/include/dc1394/iso.h; sourceTree = SOURCE_ROOT; };
 		02F7A4AD6B6185E33C243C88 /* Grabber.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Grabber.cpp; path = ../Camera/addons/ofxLibdc/src/Grabber.cpp; sourceTree = SOURCE_ROOT; };
 		096132C9BF18029D3EBE6D1B /* libusb.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = libusb.h; path = "../Camera/addons/ofxLibdc/libs/libusb/include/libusb-1.0/libusb.h"; sourceTree = SOURCE_ROOT; };
@@ -149,8 +182,14 @@
 			children = (
 				01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */,
 				01793FE41CA59F1E00D8DA83 /* BlackFlyCamera.h */,
+				01F10D031CA5EBBD006937FA /* CameraApp.cpp */,
+				01F10D041CA5EBBD006937FA /* CameraApp.h */,
 				01793FE51CA59F1E00D8DA83 /* CameraManager.cpp */,
 				01793FE61CA59F1E00D8DA83 /* CameraManager.h */,
+				0112C6E41CA5F17E00972C53 /* ImageStreamer.cpp */,
+				0112C6E51CA5F17E00972C53 /* ImageStreamer.h */,
+				01F10D051CA5EBBD006937FA /* MessageHandler.cpp */,
+				01F10D061CA5EBBD006937FA /* MessageHandler.h */,
 				01793FE71CA59F1E00D8DA83 /* RecordManager.cpp */,
 				01793FE81CA59F1E00D8DA83 /* RecordManager.h */,
 			);
@@ -164,6 +203,106 @@
 				01793FED1CA59F9B00D8DA83 /* MainMenu.xib */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		01F10D091CA5ECA7006937FA /* ofxLibwebsockets */ = {
+			isa = PBXGroup;
+			children = (
+				01F10D0E1CA5ECBB006937FA /* libs */,
+				01F10D0C1CA5ECB8006937FA /* src */,
+			);
+			name = ofxLibwebsockets;
+			sourceTree = "<group>";
+		};
+		01F10D0C1CA5ECB8006937FA /* src */ = {
+			isa = PBXGroup;
+			children = (
+				01F10D0D1CA5ECB8006937FA /* ofxLibwebsockets.h */,
+			);
+			name = src;
+			path = ../Camera/addons/ofxLibwebsockets/src;
+			sourceTree = "<group>";
+		};
+		01F10D0E1CA5ECBB006937FA /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				01F10D101CA5ECC7006937FA /* ofxLibwebsockets */,
+				01F10D0F1CA5ECBE006937FA /* libwebsockets */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		01F10D0F1CA5ECBE006937FA /* libwebsockets */ = {
+			isa = PBXGroup;
+			children = (
+				01F10D2C1CA5ECD3006937FA /* osx */,
+				01F10D291CA5ECCD006937FA /* include */,
+			);
+			name = libwebsockets;
+			sourceTree = "<group>";
+		};
+		01F10D101CA5ECC7006937FA /* ofxLibwebsockets */ = {
+			isa = PBXGroup;
+			children = (
+				01F10D111CA5ECC7006937FA /* include */,
+				01F10D1A1CA5ECC7006937FA /* src */,
+			);
+			name = ofxLibwebsockets;
+			path = ../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets;
+			sourceTree = "<group>";
+		};
+		01F10D111CA5ECC7006937FA /* include */ = {
+			isa = PBXGroup;
+			children = (
+				01F10D121CA5ECC7006937FA /* ofxLibwebsockets */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		01F10D121CA5ECC7006937FA /* ofxLibwebsockets */ = {
+			isa = PBXGroup;
+			children = (
+				01F10D131CA5ECC7006937FA /* Client.h */,
+				01F10D141CA5ECC7006937FA /* Connection.h */,
+				01F10D151CA5ECC7006937FA /* Events.h */,
+				01F10D161CA5ECC7006937FA /* Protocol.h */,
+				01F10D171CA5ECC7006937FA /* Reactor.h */,
+				01F10D181CA5ECC7006937FA /* Server.h */,
+				01F10D191CA5ECC7006937FA /* Util.h */,
+			);
+			path = ofxLibwebsockets;
+			sourceTree = "<group>";
+		};
+		01F10D1A1CA5ECC7006937FA /* src */ = {
+			isa = PBXGroup;
+			children = (
+				01F10D1B1CA5ECC7006937FA /* Client.cpp */,
+				01F10D1C1CA5ECC7006937FA /* Connection.cpp */,
+				01F10D1D1CA5ECC7006937FA /* Events.cpp */,
+				01F10D1E1CA5ECC7006937FA /* Protocol.cpp */,
+				01F10D1F1CA5ECC7006937FA /* Reactor.cpp */,
+				01F10D201CA5ECC7006937FA /* Server.cpp */,
+				01F10D211CA5ECC7006937FA /* Util.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		01F10D291CA5ECCD006937FA /* include */ = {
+			isa = PBXGroup;
+			children = (
+				01F10D2A1CA5ECCD006937FA /* libwebsockets.h */,
+				01F10D2B1CA5ECCD006937FA /* lws_config.h */,
+			);
+			name = include;
+			path = ../Camera/addons/ofxLibwebsockets/libs/libwebsockets/include;
+			sourceTree = "<group>";
+		};
+		01F10D2C1CA5ECD3006937FA /* osx */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = osx;
+			path = ../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx;
 			sourceTree = "<group>";
 		};
 		3E5FF14091943815A875388E /* libs */ = {
@@ -194,6 +333,7 @@
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
+				01F10D091CA5ECA7006937FA /* ofxLibwebsockets */,
 				884ED7B2810CEF825D7C13DE /* ofxCocoaGLView */,
 				8048739552F53EBF03ECB65E /* ofxVideoRecorder */,
 				6D16D13427A54E3B69840DD2 /* ofxLibdc */,
@@ -518,8 +658,11 @@
 			files = (
 				01793FE91CA59F1E00D8DA83 /* BlackFlyCamera.cpp in Sources */,
 				E9091509AEBEDEE1BA1C6285 /* AppDelegate.m in Sources */,
+				0112C6E61CA5F17E00972C53 /* ImageStreamer.cpp in Sources */,
+				01F10D271CA5ECC7006937FA /* Server.cpp in Sources */,
 				5841DDD6B5D9E3D03AACEFCF /* main.m in Sources */,
 				E19DAB93D6A2B3D0BB1F30D2 /* WKDelegate.m in Sources */,
+				01F10D071CA5EBBD006937FA /* CameraApp.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
 				01793FE11CA59E8E00D8DA83 /* ofApp.mm in Sources */,
@@ -527,13 +670,20 @@
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
+				01F10D081CA5EBBD006937FA /* MessageHandler.cpp in Sources */,
+				01F10D241CA5ECC7006937FA /* Events.cpp in Sources */,
+				01F10D281CA5ECC7006937FA /* Util.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
+				01F10D231CA5ECC7006937FA /* Connection.cpp in Sources */,
 				01793FEA1CA59F1E00D8DA83 /* CameraManager.cpp in Sources */,
 				5039C0C54BD5189DAAD33A9A /* ofxCocoaGLView.mm in Sources */,
 				9171B1893BA59D28B507E6A7 /* ofxVideoRecorder.cpp in Sources */,
 				01793FEB1CA59F1E00D8DA83 /* RecordManager.cpp in Sources */,
+				01F10D251CA5ECC7006937FA /* Protocol.cpp in Sources */,
+				01F10D221CA5ECC7006937FA /* Client.cpp in Sources */,
 				F141C1D157E23190F96F509D /* Camera.cpp in Sources */,
+				01F10D261CA5ECC7006937FA /* Reactor.cpp in Sources */,
 				880207F50813C4DEE88C1D32 /* Grabber.cpp in Sources */,
 				EF7F3FAD19AB5E3F6EA8E2FF /* PointGrey.cpp in Sources */,
 			);
@@ -562,6 +712,7 @@
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_TURBO;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISTRIBUTION=1";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_UNROLL_LOOPS = YES;
@@ -590,6 +741,11 @@
 					../Camera/addons/ofxLibdc/libs/libusb/lib,
 					../Camera/addons/ofxLibdc/libs/libusb/lib/osx,
 					../Camera/addons/ofxLibdc/src,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/include,
+					../Camera/addons/ofxLibwebsockets/libs/,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/src,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/include,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx,
 				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -603,6 +759,7 @@
 					"$(OF_CORE_LIBS)",
 					../Camera/addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
 					"../Camera/addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
 					"-framework",
 					WebKit,
 				);
@@ -623,6 +780,7 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_TURBO;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "APPSTORE=1";
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
@@ -643,6 +801,11 @@
 					../Camera/addons/ofxLibdc/libs/libusb/lib,
 					../Camera/addons/ofxLibdc/libs/libusb/lib/osx,
 					../Camera/addons/ofxLibdc/src,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/,
+					../Camera/addons/ofxLibwebsockets/src/,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/,
+					../Cameraaddons/ofxLibwebsockets/libs/libwebsockets/include/,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -655,6 +818,7 @@
 					"$(OF_CORE_LIBS)",
 					../Camera/addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
 					"../Camera/addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
 					"-framework",
 					WebKit,
 				);
@@ -676,6 +840,7 @@
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_TURBO;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
@@ -702,6 +867,11 @@
 					../Camera/addons/ofxLibdc/libs/libusb/lib,
 					../Camera/addons/ofxLibdc/libs/libusb/lib/osx,
 					../Camera/addons/ofxLibdc/src,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/include,
+					../Camera/addons/ofxLibwebsockets/libs/,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/src,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/include,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx,
 				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -715,6 +885,7 @@
 					"$(OF_CORE_LIBS)",
 					../Camera/addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
 					"../Camera/addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
 					"-framework",
 					WebKit,
 				);
@@ -734,6 +905,7 @@
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_TURBO;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_UNROLL_LOOPS = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
@@ -761,6 +933,11 @@
 					../Camera/addons/ofxLibdc/libs/libusb/lib,
 					../Camera/addons/ofxLibdc/libs/libusb/lib/osx,
 					../Camera/addons/ofxLibdc/src,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/include,
+					../Camera/addons/ofxLibwebsockets/libs/,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/src,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/include,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx,
 				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -773,6 +950,7 @@
 					"$(OF_CORE_LIBS)",
 					../Camera/addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
 					"../Camera/addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
 					"-framework",
 					WebKit,
 				);
@@ -794,6 +972,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_TURBO;
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
 					src,
@@ -813,6 +992,11 @@
 					../Camera/addons/ofxLibdc/libs/libusb/lib,
 					../Camera/addons/ofxLibdc/libs/libusb/lib/osx,
 					../Camera/addons/ofxLibdc/src,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/,
+					../Camera/addons/ofxLibwebsockets/src/,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/,
+					../Cameraaddons/ofxLibwebsockets/libs/libwebsockets/include/,
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -825,6 +1009,7 @@
 					"$(OF_CORE_LIBS)",
 					../Camera/addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
 					"../Camera/addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
 					"-framework",
 					WebKit,
 				);
@@ -846,6 +1031,7 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_TURBO;
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
 					src,
@@ -865,6 +1051,11 @@
 					../Camera/addons/ofxLibdc/libs/libusb/lib,
 					../Camera/addons/ofxLibdc/libs/libusb/lib/osx,
 					../Camera/addons/ofxLibdc/src,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/,
+					../Camera/addons/ofxLibwebsockets/src/,
+					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/,
+					../Cameraaddons/ofxLibwebsockets/libs/libwebsockets/include/,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -877,6 +1068,7 @@
 					"$(OF_CORE_LIBS)",
 					../Camera/addons/ofxLibdc/libs/dc1394/lib/osx/libdc1394.a,
 					"../Camera/addons/ofxLibdc/libs/libusb/lib/osx/libusb-1.0.a",
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
 					"-framework",
 					WebKit,
 				);

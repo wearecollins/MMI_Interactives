@@ -70,9 +70,7 @@
          Open camera(s)
      *************************************/
     
-    // TODO: work with Camera app
-    
-    camera.setup("b09d0100eefbf3");
+    cameraApp.setup(false);
 }
 
 - (void)update
@@ -102,6 +100,8 @@
             }
         }
     }
+    
+    cameraApp.update();
 }
 
 - (void)draw
@@ -112,6 +112,8 @@
     ofRotateZ(sin(ofGetElapsedTimef())*180);
     ofDrawRectangle(0, 0, 640, 480);
 //    camera.draw(0,0);
+    
+    cameraApp.draw();
 }
 
 - (void)exit
