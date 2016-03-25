@@ -15,7 +15,9 @@ namespace mmi {
     class MessageHandler
     {
     public:
+        void setup();
         
+        ofEvent<int> onSwitchCamera;
         void onMessage( ofxLibwebsockets::Event & m );
     };
     

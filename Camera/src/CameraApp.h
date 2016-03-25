@@ -33,6 +33,7 @@ public:
     mmi::CameraManager cameraMgr;
     mmi::RecordManager recordMgr;
     mmi::ImageStreamer streamMgr;
+    mmi::MessageHandler messageHdlr;
     
     Mode currentMode;
     ofxPanel gui;

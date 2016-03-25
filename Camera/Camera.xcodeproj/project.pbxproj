@@ -174,10 +174,10 @@
 				04210C02D4BBE52ADCFE4272 /* CameraManager.h */,
 				E03FE5DDEAAC759916ECFCBA /* ImageStreamer.cpp */,
 				5E9196A06EEDB0BC35C2DC8F /* ImageStreamer.h */,
-				01CCA63C1CA4A001008D7F94 /* RecordManager.h */,
-				01CCA63D1CA4A015008D7F94 /* RecordManager.cpp */,
 				01793FF51CA5D61900D8DA83 /* MessageHandler.cpp */,
 				01793FF61CA5D61900D8DA83 /* MessageHandler.h */,
+				01CCA63D1CA4A015008D7F94 /* RecordManager.cpp */,
+				01CCA63C1CA4A001008D7F94 /* RecordManager.h */,
 			);
 			name = Camera;
 			sourceTree = "<group>";

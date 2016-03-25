@@ -8,3 +8,31 @@
 
 #include "MessageHandler.h"
 
+namespace mmi {
+    //--------------------------------------------------------------
+    void MessageHandler::setup(){
+        
+    };
+    
+    //--------------------------------------------------------------
+    void MessageHandler::onMessage( ofxLibwebsockets::Event & e ){
+        if ( !e.json.is_null() ){
+            
+            if ( e.json["type"] == "event" ){
+                int whichCamera = e.json["data"];
+                ofNotifyEvent( onSwitchCamera, whichCamera );
+            }
+        }
+        //setStreamCamera
+    }
+    
+    /*
+     
+     {
+     "type":"",
+     "data":"" or Number or ???
+     }
+     
+     */
+    
+}

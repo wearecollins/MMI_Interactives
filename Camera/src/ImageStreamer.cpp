@@ -50,32 +50,6 @@ namespace mmi {
     }
     
     //--------------------------------------------------------------
-    void ImageStreamer::stream( ofImage & img ){
-        if ( bSetup ){
-            if ( bShouldStream ){
-    #ifdef USE_TURBO
-                static ofBuffer out;
-                static size_t size;
-                
-                size = 0;
-                out.clear();
-                
-                auto * data = turbo.compress(img, jpegQuality.get(), &size);
-                out.set(reinterpret_cast<char*>(data), size);
-                wsServer.sendBinary(out);
-    #else
-                wsServer.sendBinary(img);
-    #endif
-                bShouldStream = false;
-            } else {
-                ofLogVerbose()<<"[ImageStreamer] Trying to stream to soon.";
-            }
-        } else {
-            ofLogError()<<"[ImageStreamer] Not connected!";
-        }
-    }
-    
-    //--------------------------------------------------------------
     void ImageStreamer::onConnect( ofxLibwebsockets::Event & e ){
         
     }
@@ -98,6 +72,6 @@ namespace mmi {
     
     //--------------------------------------------------------------
     void ImageStreamer::onMessage( ofxLibwebsockets::Event & e ){
-        
+        ofNotifyEvent(onWsMessage, e);
     }
 }

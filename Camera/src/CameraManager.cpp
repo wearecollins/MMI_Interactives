@@ -25,11 +25,19 @@ namespace mmi {
                 Camera * camera = new Camera();
                 string guid = settings.getValue("guid");
                 ofLogVerbose()<<"[CameraManager] Setting up camera "<<guid;
+#ifndef DEBUG_CAMERA
                 auto bOpen = camera->setup(guid);
-                if ( bOpen || true ){
+                if ( bOpen ){
                     cameras.push_back(camera);
                     gui.add(camera->params);
                 }
+#else
+                camera->setDeviceID(2); // just for brett's machine
+                auto bOpen = camera->setup(640, 480);
+                if ( bOpen ){
+                    cameras.push_back(camera);
+                }
+#endif
                 settings.setToParent();
                 
             }
@@ -38,10 +46,18 @@ namespace mmi {
         } else {
             ofLogError()<<"[CameraManager] No settings file loaded. Trying to open 1 camera";
             Camera * camera = new Camera();
+#ifndef DEBUG_CAMERA
             auto bOpen = camera->setup();
             if ( bOpen ){
                 cameras.push_back(camera);
+                gui.add(camera->params);
             }
+#else
+            auto bOpen = camera->setup(640,480);
+            if ( bOpen ){
+                cameras.push_back(camera);
+            }
+#endif
             
             saveSettings();
         }
@@ -54,16 +70,29 @@ namespace mmi {
         // todo: should this have a target width? scale/resize?
         for ( auto * c : cameras ){
             c->draw(x, y);
+#ifndef DEBUG_CAMERA
             x += c->getImage().getWidth();
+#else
+            x += c->getWidth();
+#endif
         }
     }
     
     //--------------------------------------------------------------
     void CameraManager::drawDebug( int x, int y ){
+        ofPushStyle();
+        ofSetColor(255);
+        
         for ( auto * c : cameras ){
+#ifndef DEBUG_CAMERA
             c->drawDebug(x, y);
             x += c->getImage().getWidth();
+#else
+            c->draw(x, y);
+            x += c->getWidth();
+#endif
         }
+        ofPopStyle();
     }
     
     //--------------------------------------------------------------
@@ -80,7 +109,9 @@ namespace mmi {
             for ( auto * c : cameras ){
                 xml.addChild("camera");
                 xml.setTo("camera["+ofToString(idx)+"]");
+#ifndef DEBUG_CAMERA
                 xml.addValue("guid", c->getGuid());
+#endif
                 idx++;
                 xml.setToParent();
             }
@@ -90,9 +121,10 @@ namespace mmi {
     
     //--------------------------------------------------------------
     Camera * CameraManager::getCamera( int which ){
-        if ( cameras.size() < which ){
+        if ( getNumCameras() > which ){
             return cameras[ which ];
         } else {
+            ofLogError()<<"[CameraManager] Asking for camera "<<which<<" which does not exist";
             return nullptr;
         }
     }
