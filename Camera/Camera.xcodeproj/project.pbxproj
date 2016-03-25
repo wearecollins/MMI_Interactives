@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01793FF71CA5D61900D8DA83 /* MessageHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FF51CA5D61900D8DA83 /* MessageHandler.cpp */; };
+		01793FFB1CA5D6E400D8DA83 /* CameraApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FF91CA5D6E400D8DA83 /* CameraApp.cpp */; };
 		01CCA63E1CA4A015008D7F94 /* RecordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01CCA63D1CA4A015008D7F94 /* RecordManager.cpp */; };
 		071782FE59F668E0759F9050 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5EC7D3D3208820AFFEAED5 /* Server.cpp */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
@@ -66,6 +68,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01793FF51CA5D61900D8DA83 /* MessageHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageHandler.cpp; sourceTree = "<group>"; };
+		01793FF61CA5D61900D8DA83 /* MessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHandler.h; sourceTree = "<group>"; };
+		01793FF91CA5D6E400D8DA83 /* CameraApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraApp.cpp; sourceTree = "<group>"; };
+		01793FFA1CA5D6E400D8DA83 /* CameraApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraApp.h; sourceTree = "<group>"; };
 		01CCA63C1CA4A001008D7F94 /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordManager.h; sourceTree = "<group>"; };
 		01CCA63D1CA4A015008D7F94 /* RecordManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RecordManager.cpp; sourceTree = "<group>"; };
 		021225C92E1EEDF754E178F8 /* Grabber.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Grabber.cpp; path = addons/ofxLibdc/src/Grabber.cpp; sourceTree = SOURCE_ROOT; };
@@ -159,6 +165,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01793FFC1CA5D80000D8DA83 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				453F0401E5095CDE6796CDB3 /* BlackFlyCamera.cpp */,
+				B4601F9819B6D476DF147ECE /* BlackFlyCamera.h */,
+				8509C9463C78960FFA8B852A /* CameraManager.cpp */,
+				04210C02D4BBE52ADCFE4272 /* CameraManager.h */,
+				E03FE5DDEAAC759916ECFCBA /* ImageStreamer.cpp */,
+				5E9196A06EEDB0BC35C2DC8F /* ImageStreamer.h */,
+				01CCA63C1CA4A001008D7F94 /* RecordManager.h */,
+				01CCA63D1CA4A015008D7F94 /* RecordManager.cpp */,
+				01793FF51CA5D61900D8DA83 /* MessageHandler.cpp */,
+				01793FF61CA5D61900D8DA83 /* MessageHandler.h */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
 		3E5FF14091943815A875388E /* libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,17 +459,12 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				01793FFC1CA5D80000D8DA83 /* Camera */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				453F0401E5095CDE6796CDB3 /* BlackFlyCamera.cpp */,
-				B4601F9819B6D476DF147ECE /* BlackFlyCamera.h */,
-				8509C9463C78960FFA8B852A /* CameraManager.cpp */,
-				04210C02D4BBE52ADCFE4272 /* CameraManager.h */,
-				E03FE5DDEAAC759916ECFCBA /* ImageStreamer.cpp */,
-				5E9196A06EEDB0BC35C2DC8F /* ImageStreamer.h */,
-				01CCA63C1CA4A001008D7F94 /* RecordManager.h */,
-				01CCA63D1CA4A015008D7F94 /* RecordManager.cpp */,
+				01793FF91CA5D6E400D8DA83 /* CameraApp.cpp */,
+				01793FFA1CA5D6E400D8DA83 /* CameraApp.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -589,11 +607,13 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				77BDB6A21B60A01BFF0FFC75 /* BlackFlyCamera.cpp in Sources */,
 				8032B08950A24F980638184D /* CameraManager.cpp in Sources */,
+				01793FFB1CA5D6E400D8DA83 /* CameraApp.cpp in Sources */,
 				76B39B9ECD968A8DB680106F /* ImageStreamer.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
 				01CCA63E1CA4A015008D7F94 /* RecordManager.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
+				01793FF71CA5D61900D8DA83 /* MessageHandler.cpp in Sources */,
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
