@@ -15,7 +15,7 @@ namespace mmi {
         gui = new ofxPanel();
         gui->setup();
         
-        gui->add(drawMode.set("Mode", (int) MODE_FILL, (int) MODE_FILL, (int) MODE_ACTUAL));
+        gui->add(drawMode.set("Mode", (int) MODE_FILL_MAX, (int) MODE_FILL_MAX, (int) MODE_ACTUAL));
         
         ofXml settings;
         if (settings.load(settingsFile)){
@@ -75,22 +75,31 @@ namespace mmi {
         }
         auto * c = cameras[which];
         
+        auto w = c->getWidth();
+        auto h = c->getHeight();
+        
         switch ((DrawMode) drawMode.get()) {
-            case MODE_FILL:
+            case MODE_FILL_MAX:
             {
-                float scale = fmin(ofGetWidth()/c->getWidth(), ofGetHeight()/c->getHeight());
+                float scale = MAX(ofGetWidth()/c->getWidth(), ofGetHeight()/c->getHeight());
                 
-                auto w = c->getWidth() * scale;
-                auto h = c->getHeight() * scale;
-                
-                c->draw(x, y, w, h);
+                w *= scale;
+                h *= scale;
             }
                 break;
                 
+            case MODE_FILL_MIN:
+            {
+                float scale = MIN(ofGetWidth()/c->getWidth(), ofGetHeight()/c->getHeight());
+                
+                w *= scale;
+                h *= scale;
+            }
+                break;
             case MODE_ACTUAL:
-                c->draw(x, y);
                 break;
         }
+        c->draw(x, y, w, h);
     }
     
     //--------------------------------------------------------------

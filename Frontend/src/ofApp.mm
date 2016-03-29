@@ -164,7 +164,7 @@ static void setupEventHelper(ofApp *app)
 - (void)keyReleased:(int)key
 {
     if ( key =='r'){
-        [webView reload:nil];
+//        [webView reload:nil];
     } else if ( key == 'm' ){
         if ( cameraApp.currentMode == MODE_NONE ){
             [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];

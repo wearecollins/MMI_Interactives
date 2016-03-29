@@ -25,6 +25,7 @@
 		01F10D271CA5ECC7006937FA /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D201CA5ECC7006937FA /* Server.cpp */; };
 		01F10D281CA5ECC7006937FA /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D211CA5ECC7006937FA /* Util.cpp */; };
 		01F8BD501CAAD9C50011B550 /* cameras.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01F8BD4F1CAAD9C50011B550 /* cameras.xml */; };
+		01F8BD531CAAE3790011B550 /* clips in Resources */ = {isa = PBXBuildFile; fileRef = 01F8BD521CAAE3790011B550 /* clips */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		5039C0C54BD5189DAAD33A9A /* ofxCocoaGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9317C7C01D7880E4E996E041 /* ofxCocoaGLView.mm */; };
@@ -109,6 +110,7 @@
 		01F10D2A1CA5ECCD006937FA /* libwebsockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libwebsockets.h; sourceTree = "<group>"; };
 		01F10D2B1CA5ECCD006937FA /* lws_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lws_config.h; sourceTree = "<group>"; };
 		01F8BD4F1CAAD9C50011B550 /* cameras.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = cameras.xml; path = Resources/cameras.xml; sourceTree = "<group>"; };
+		01F8BD521CAAE3790011B550 /* clips */ = {isa = PBXFileReference; lastKnownFileType = folder; name = clips; path = Resources/clips; sourceTree = "<group>"; };
 		02127A1385C21C8F6CE77C4F /* iso.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = iso.h; path = ../Camera/addons/ofxLibdc/libs/dc1394/include/dc1394/iso.h; sourceTree = SOURCE_ROOT; };
 		02F7A4AD6B6185E33C243C88 /* Grabber.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Grabber.cpp; path = ../Camera/addons/ofxLibdc/src/Grabber.cpp; sourceTree = SOURCE_ROOT; };
 		096132C9BF18029D3EBE6D1B /* libusb.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = libusb.h; path = "../Camera/addons/ofxLibdc/libs/libusb/include/libusb-1.0/libusb.h"; sourceTree = SOURCE_ROOT; };
@@ -205,6 +207,7 @@
 		01793FEC1CA59F8300D8DA83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				01F8BD521CAAE3790011B550 /* clips */,
 				01F8BD4F1CAAD9C50011B550 /* cameras.xml */,
 				01793FF11CA5BBA500D8DA83 /* web */,
 				01793FED1CA59F9B00D8DA83 /* MainMenu.xib */,
@@ -634,6 +637,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F8BD531CAAE3790011B550 /* clips in Resources */,
 				01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */,
 				01F8BD501CAAD9C50011B550 /* cameras.xml in Resources */,
 				01793FF21CA5BBAB00D8DA83 /* web in Resources */,

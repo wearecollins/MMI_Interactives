@@ -20,6 +20,7 @@ namespace mmi {
         void setup();
         void update( const ofPixels & cameraOne, const ofPixels & cameraTwo );
         
+        void startRecordingEvt( string & backgroundClip );
         void startRecording( string backgroundClip = "");
         void stopRecording();
         void close();

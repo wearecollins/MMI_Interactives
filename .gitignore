@@ -1,4 +1,6 @@
 # Custom
+*.mov
+*.mp4
 
 # Defaults
 .DS_Store

@@ -14,6 +14,9 @@
 #include "RecordManager.h"
 #include "MessageHandler.h"
 
+// comment out to turn off keyboard debugging!
+#define DEBUG_ZONE
+
 enum Mode {
     MODE_GENERAL = 0,
     MODE_CAMERAS,

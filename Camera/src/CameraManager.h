@@ -27,7 +27,8 @@ namespace mmi {
 #endif
     
     enum DrawMode {
-        MODE_FILL = 0,
+        MODE_FILL_MAX = 0,
+        MODE_FILL_MIN,
         MODE_ACTUAL
     };
     

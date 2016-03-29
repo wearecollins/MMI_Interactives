@@ -17,13 +17,11 @@ namespace mmi {
     //--------------------------------------------------------------
     void MessageHandler::onMessage( ofxLibwebsockets::Event & e ){
         if ( !e.json.is_null() ){
-            
             if ( e.json["type"] == "event" ){
                 int whichCamera = e.json["data"];
                 ofNotifyEvent( onSwitchCamera, whichCamera );
             }
         }
-        //setStreamCamera
     }
     
     /*

@@ -18,7 +18,8 @@ void RecordManager::setup(){
     vidRecorder.setVideoBitrate("800k");
     vidRecorder.setAudioCodec("mp3");
     vidRecorder.setAudioBitrate("192k");
-    vidRecorder.setPixelFormat("rgba");
+    
+    vidRecorder.setPixelFormat("rgb24");
     
     fileName = "mmi_performance_";
     fileExt = ".mp4";
@@ -71,6 +72,10 @@ void RecordManager::update( const ofPixels & cameraOne, const ofPixels & cameraT
 }
 
 //--------------------------------------------------------------
+void RecordManager::startRecordingEvt( string & backgroundClip ){
+    this->startRecording(backgroundClip);
+}
+//--------------------------------------------------------------
 void RecordManager::startRecording( string backgroundClip ){
     
     if ( bRecording ){
@@ -96,12 +101,12 @@ void RecordManager::stopRecording(){
     vidRecorder.close();
     
     // this is stupid!
-    sleep(2);
+    ofSleepMillis(1000);
     
     // after that, copy in the audio
     if ( currentBgClip != "" ){
         string lastCmd = "bash --login -c 'ffmpeg -i " + ofToDataPath(currentFileName, true);
-        lastCmd +=" -i "+ ofToDataPath(currentBgClip + fileExt.get(), true) +" -c copy -map 0:v:0 -map 1:a:0 -shortest "+ofToDataPath(currentFileName +"_final"+fileExt.get(), true)+"'";
+        lastCmd +=" -i "+ ofToDataPath("clips/" + currentBgClip + fileExt.get(), true) +" -c copy -map 0:v:0 -map 1:a:0 -shortest "+ofToDataPath(currentFileName +"_final"+fileExt.get(), true)+"'";
         
         system( lastCmd.c_str() );
         currentFileName = currentFileName + "_final"+fileExt.get();

@@ -33,6 +33,7 @@ void CameraApp::setup( bool bDoStream ){
     
     // listen to events from message parser
     ofAddListener(messageHdlr.onSwitchCamera, this, &CameraApp::setStreamCamera);
+    ofAddListener(messageHdlr.onStartRecording, &recordMgr, &mmi::RecordManager::startRecordingEvt);
     
     gui->setup("Settings");
     
@@ -83,7 +84,7 @@ void CameraApp::update(){
 #else
         
         auto * img1 = cameraMgr.getCamera(t);
-        auto * img2 = cameraMgr.getCamera(t);
+        auto * img2 = cameraMgr.getCamera(b);
         
         static int bEverNewA = false;
         static int bEverNewB = false;
@@ -144,6 +145,17 @@ void CameraApp::keyPressed(ofKeyEventArgs & e ){
             currentMode = MODE_GENERAL;
         }
     }
+    
+    // Debugging
+#ifdef DEBUG_ZONE
+    if ( e.key == 's' ){
+        int whichCamera = whichStream.get() == 0 ? 1 : 0;
+        messageHdlr.onSwitchCamera.notify(whichCamera);
+    } else if ( e.key == 'r' ){
+        string whichVideo = "black_magic";
+        messageHdlr.onStartRecording.notify(whichVideo);
+    }
+#endif
 }
 
 //--------------------------------------------------------------
