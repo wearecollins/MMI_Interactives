@@ -60,15 +60,6 @@ static void setupEventHelper(ofApp *app)
     CFRelease(bundleURL_);
     
     /**************************************
-        Start Webserver
-     *************************************/
-    
-    string cmd = "bash --login -c 'cd " + ofToDataPath("web", true) + " && node index.js'";
-    webserver.callCommand(cmd);
-    
-    ofSleepMillis(1000);
-    
-    /**************************************
         Build WKWebView
      *************************************/
     
@@ -147,13 +138,6 @@ static void setupEventHelper(ofApp *app)
 
 - (void)exit
 {
-    StringOutputCommand sys;
-    string cmd = "\"node index.js\"";
-    string killCmd = "ps aux | grep " + cmd +" | grep -v grep | awk '{print $ 2}'";
-    
-    string output = sys.execOutput( (char *) killCmd.c_str() );
-    string die = "kill "+output ;
-    system( (char *) die.c_str() );
 }
 
 - (void)keyPressed:(int)key
@@ -163,8 +147,8 @@ static void setupEventHelper(ofApp *app)
 
 - (void)keyReleased:(int)key
 {
-    if ( key =='r'){
-//        [webView reload:nil];
+    if ( key =='R'){
+        [webView reload:nil];
     } else if ( key == 'm' ){
         if ( cameraApp.currentMode == MODE_NONE ){
             [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];

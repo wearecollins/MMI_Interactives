@@ -14,7 +14,6 @@
 		01793FEA1CA59F1E00D8DA83 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE51CA59F1E00D8DA83 /* CameraManager.cpp */; };
 		01793FEB1CA59F1E00D8DA83 /* RecordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE71CA59F1E00D8DA83 /* RecordManager.cpp */; };
 		01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01793FED1CA59F9B00D8DA83 /* MainMenu.xib */; };
-		01793FF21CA5BBAB00D8DA83 /* web in Resources */ = {isa = PBXBuildFile; fileRef = 01793FF11CA5BBA500D8DA83 /* web */; };
 		01F10D071CA5EBBD006937FA /* CameraApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D031CA5EBBD006937FA /* CameraApp.cpp */; };
 		01F10D081CA5EBBD006937FA /* MessageHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D051CA5EBBD006937FA /* MessageHandler.cpp */; };
 		01F10D221CA5ECC7006937FA /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D1B1CA5ECC7006937FA /* Client.cpp */; };
@@ -87,7 +86,6 @@
 		01793FE81CA59F1E00D8DA83 /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordManager.h; path = ../Camera/src/RecordManager.h; sourceTree = "<group>"; };
 		01793FED1CA59F9B00D8DA83 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = src/MainMenu.xib; sourceTree = "<group>"; };
 		01793FF01CA5BA7400D8DA83 /* SysCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SysCommand.h; sourceTree = "<group>"; };
-		01793FF11CA5BBA500D8DA83 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = Resources/web; sourceTree = "<group>"; };
 		01F10D031CA5EBBD006937FA /* CameraApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraApp.cpp; path = ../Camera/src/CameraApp.cpp; sourceTree = "<group>"; };
 		01F10D041CA5EBBD006937FA /* CameraApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraApp.h; path = ../Camera/src/CameraApp.h; sourceTree = "<group>"; };
 		01F10D051CA5EBBD006937FA /* MessageHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageHandler.cpp; path = ../Camera/src/MessageHandler.cpp; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 			children = (
 				01F8BD521CAAE3790011B550 /* clips */,
 				01F8BD4F1CAAD9C50011B550 /* cameras.xml */,
-				01793FF11CA5BBA500D8DA83 /* web */,
 				01793FED1CA59F9B00D8DA83 /* MainMenu.xib */,
 			);
 			name = Resources;
@@ -640,7 +637,6 @@
 				01F8BD531CAAE3790011B550 /* clips in Resources */,
 				01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */,
 				01F8BD501CAAD9C50011B550 /* cameras.xml in Resources */,
-				01793FF21CA5BBAB00D8DA83 /* web in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

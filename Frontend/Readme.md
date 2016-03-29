@@ -2,6 +2,12 @@
 * _Brief_: This application wraps a WebKit frontend, a light webserver, and native code (via openFrameworks) to merge a web-based GUI with advanced functionality such as speaking to industrial cameras and creating videos.
 
 ##Setting up
+* Download and install FFMPEG
+	* Easiest is via homebrew
+	```
+	$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	$ brew install ffmpeg
+	```
 * Download [openFrameworks 0.9.3](http://openframeworks.cc/versions/v0.9.3/of_v0.9.3_osx_release.zip)
 * Clone this repository into openFrameworks/apps (including all submodules)
 	* ```git clone --recursive https://github.com/wearecollins/MMI_Interactives.git```

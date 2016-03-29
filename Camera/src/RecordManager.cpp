@@ -27,8 +27,8 @@ void RecordManager::setup(){
     params.setName("Recording params");
     params.add(recordInterval.set("Camera switch interval", 5000, 0, 15000));
     params.add(recordLength.set("Recording length", 15000, 1, 60000));
-    params.add(camWidth.set("Video width", 320, 1, 640) );
-    params.add(camHeight.set("Video height", 240, 1, 480) );
+    params.add(camWidth.set("Video width", 640, 1, 640) );
+    params.add(camHeight.set("Video height", 480, 1, 480) );
     
     bRecording = false;
     currentBgClip = "";

@@ -1,0 +1,266 @@
+/* Overall */
+
+@font-face {
+    font-family: CooperLight;
+    src:url("../fonts/CooperBT-Light.otf");
+}
+
+html, body {
+    font-family: CooperLight;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+    font-size: 70px;
+    background: rgba(0,0,0,0);
+    line-height: 1.1rem;
+    color: white;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+  html, body {
+    font-size: 30px;
+  }
+}
+@media (max-width: 500px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+
+.border {
+    border:3px solid white;
+}
+
+.titleBottom {
+    min-width: 33%;
+    margin-bottom: 1rem; 
+}
+
+.button {
+    min-width: 33%;
+    padding: .5rem;
+    cursor: pointer;
+    font-size: .8rem;
+    line-height: .88rem;
+    /* should this be elsewhere? */
+    margin-bottom: 1rem; 
+}
+
+@media (max-width: 700px) {
+    .border {
+        border:2px solid white;
+    }
+}
+@media (max-width: 500px) {
+    .border {
+        border:1px solid white;
+    }
+}
+
+/* Utilities */
+
+.fill {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.fillAbs {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+
+.fillContainer {
+    width: 100%;
+}
+
+.centeredContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.columnCenteredContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.bottomCenteredContainer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.yellowBg {
+    background: #E2BD47;
+}
+
+.greenBg {
+    background-color:#53B063;
+}
+
+.redBg {
+    background-color: #DF6252;
+}
+
+/* Specific states */
+#scriptPage img {
+    height: 100%;
+}
+
+#scriptInfoContainer{
+    background: rgba(112,181,159,.9 );
+    font-size: .6rem;
+    line-height: .88rem;
+}
+
+#scriptTextContainer {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+#promptContainer {
+    height: 100%;
+}
+#promptOpenDrawers {
+    background-color:#523A55;
+}
+
+#promptArrow  {
+    height: 65%;
+    margin-bottom: 1rem; 
+}
+
+#promptSpin {
+    max-height: 50%;
+    width: 80%;
+    margin-bottom: 2rem; 
+}
+#promptSpinPuppet {
+    background-color:#EE7773;
+}
+
+/* Share capture */
+
+#sharePuppetCapture img {
+    width: 100%;
+    /* FPO */
+    height: 100%;
+}
+
+#captureTake, #captureCancel {
+    float: left;
+    width: 50%;
+    margin-bottom: 0;
+}
+
+#shareInfo {
+    margin:.5rem;
+}
+
+#shareLeft, #shareRight {
+    width: 50%;
+    text-align: left;
+    font-size: .6rem;
+    line-height: .66rem;
+}
+
+#shareRight {
+    font-size: .3rem;
+    line-height: .33rem;
+    padding: .5rem;
+}
+
+#postButton {
+    margin:0;
+    margin-top:.3rem;
+}
+
+#shareCaptureButtonContainer {
+    width: 100%;
+}
+
+/* Share end screen */
+
+#shareRow {
+    height: 50%;
+    width: 100%;
+    background: wheat;
+}
+
+#shareImageRight, #shareImageLeft {
+    width: 50%;
+    /* temp */
+    height: 100%; 
+    float: left;
+    display: flex;
+    flex-direction: column;
+    font-size:.4rem;
+    line-height: .44rem;
+}
+
+#shareImageRight img {
+    width: 100%;
+    /* temp */
+    height: 100%; 
+}
+ #shareImageLeft img {
+    width: 50%;
+    /* temp */
+    height: 100%; 
+
+ }
+
+#shareFinalAbout {
+    background: #553C58;
+    color: white;
+    font-size:.3rem;
+    line-height: .33rem;
+    padding: .6rem;
+}
+
+.cdNumber {
+    height: 33%;
+}
+
+.share {
+    font-size:.5rem;
+    line-height: .55rem;
+    background: rgba(245, 246, 246,.75);
+    color: black;
+}
+
+.share .button {
+    color: white;
+    font-size:.6rem;
+    line-height: .66rem;
+    margin: .6rem;
+    padding: .25rem;
+    min-width: 25%;
+}
+
+#shareThanks {
+    margin:2rem;
+}
+
+#shareStartOverButton {
+}
+
+#shareStartOverRow {
+    width: 100%;
+}

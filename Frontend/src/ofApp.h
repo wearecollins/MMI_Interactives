@@ -12,8 +12,6 @@
     Webview * webView;
     CameraApp cameraApp;
     bool isLoaded;
-    
-    StringOutputCommand webserver;
 }
 
 - (void)setup;
