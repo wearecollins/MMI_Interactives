@@ -62,6 +62,12 @@ void CameraApp::update(){
         }
     }
     
+#ifdef DEBUG_CAMERA 
+    for ( auto * c : cameraMgr.getCameras()){
+        c->update();
+    }
+#endif
+    
     // update recording, if 2x camera app
     if ( cameraMgr.getNumCameras() > 1 ){
         
@@ -75,9 +81,6 @@ void CameraApp::update(){
         recordMgr.update(img1.getPixels(), img2.getPixels());
     }
 #else
-        for ( auto * c : cameraMgr.getCameras()){
-            c->update();
-        }
         
         auto * img1 = cameraMgr.getCamera(t);
         auto * img2 = cameraMgr.getCamera(t);
@@ -110,7 +113,7 @@ void CameraApp::draw(){
     if ( currentMode != MODE_NONE ){
         cameraMgr.drawDebug(0, 0);
     } else {
-        cameraMgr.draw(0, 0);
+        cameraMgr.draw(0, 0, whichStream);
     }
     ofPopMatrix();
     

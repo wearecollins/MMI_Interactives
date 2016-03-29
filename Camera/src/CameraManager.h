@@ -26,12 +26,17 @@ namespace mmi {
     
 #endif
     
+    enum DrawMode {
+        MODE_FILL = 0,
+        MODE_ACTUAL
+    };
+    
     class CameraManager
     {
     public:
         
         void setup( string settingsFile = "cameras.xml" );
-        void draw(int x, int y );
+        void draw(int x, int y, int which = 0 );
         void drawDebug( int x, int y );
         void drawGui();
         
@@ -42,6 +47,8 @@ namespace mmi {
     protected:
         ofxPanel * gui;
         ofParameter<string> settingsFile;
+        
+        ofParameter<int> drawMode;
         
         vector<Camera *> cameras;
         void saveSettings();

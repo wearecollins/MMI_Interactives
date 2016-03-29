@@ -87,7 +87,6 @@ static void setupEventHelper(ofApp *app)
     [self setTranslucent:YES];
     [webView setValue:@YES forKey:@"drawsTransparentBackground"];
     
-//    [[self superview] addSubview:self positioned:NSWindowAbove relativeTo:nil];
     [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
     
     /**************************************
@@ -142,6 +141,7 @@ static void setupEventHelper(ofApp *app)
 
 - (void)draw
 {
+    ofSetColor(255);
     cameraApp.draw();
 }
 
@@ -152,7 +152,6 @@ static void setupEventHelper(ofApp *app)
     string killCmd = "ps aux | grep " + cmd +" | grep -v grep | awk '{print $ 2}'";
     
     string output = sys.execOutput( (char *) killCmd.c_str() );
-    cout << output << endl;
     string die = "kill "+output ;
     system( (char *) die.c_str() );
 }

@@ -15,6 +15,8 @@ namespace mmi {
         gui = new ofxPanel();
         gui->setup();
         
+        gui->add(drawMode.set("Mode", (int) MODE_FILL, (int) MODE_FILL, (int) MODE_ACTUAL));
+        
         ofXml settings;
         if (settings.load(settingsFile)){
             
@@ -67,15 +69,27 @@ namespace mmi {
     }
     
     //--------------------------------------------------------------
-    void CameraManager::draw(int x, int y ){
-        // todo: should this have a target width? scale/resize?
-        for ( auto * c : cameras ){
-            c->draw(x, y);
-#ifndef DEBUG_CAMERA
-            x += c->getImage().getWidth();
-#else
-            x += c->getWidth();
-#endif
+    void CameraManager::draw(int x, int y, int which ){
+        if ( which >= cameras.size() ){
+            return;
+        }
+        auto * c = cameras[which];
+        
+        switch ((DrawMode) drawMode.get()) {
+            case MODE_FILL:
+            {
+                float scale = fmin(ofGetWidth()/c->getWidth(), ofGetHeight()/c->getHeight());
+                
+                auto w = c->getWidth() * scale;
+                auto h = c->getHeight() * scale;
+                
+                c->draw(x, y, w, h);
+            }
+                break;
+                
+            case MODE_ACTUAL:
+                c->draw(x, y);
+                break;
         }
     }
     
