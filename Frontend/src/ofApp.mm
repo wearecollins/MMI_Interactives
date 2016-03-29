@@ -1,6 +1,9 @@
 #import "ofApp.h"
 #import "Poco/Format.h"
 
+/**
+    Wrapper class to allow us to hook into OF events.
+ */
 class EventHelper {
 public:
     
@@ -10,9 +13,9 @@ public:
     
     ofApp * appPtr;
     
-    void keyPressed( ofKeyEventArgs & e ){
+    void keyReleased( ofKeyEventArgs & e ){
         if ( appPtr == nullptr) return;
-        [appPtr keyPressed:e.key];
+        [appPtr keyReleased:e.key];
     }
 };
 
@@ -24,13 +27,17 @@ static void setupEventHelper(ofApp *app)
     eventHelper = ofPtr<EventHelper>(new EventHelper(app));
 }
 
-
 @implementation ofApp
 
 - (void)setup
 {
+    // attach OF event helper
     setupEventHelper(self);
-    ofAddListener(ofEvents().keyPressed, eventHelper.get(), &EventHelper::keyPressed);
+    ofAddListener(ofEvents().keyReleased, eventHelper.get(), &EventHelper::keyReleased);
+    
+    auto globalKey = [NSEvent addGlobalMonitorForEventsMatchingMask:NSKeyUpMask handler:^(NSEvent *e) {
+        [self keyUp:e];
+    }];
     
     /**************************************
         SET GL
@@ -152,7 +159,7 @@ static void setupEventHelper(ofApp *app)
     } else if ( key == 'm' ){
         if ( cameraApp.currentMode == MODE_NONE ){
             [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
-        } else if ( cameraApp.currentMode == MODE_GENERAL ){
+        } else if ( cameraApp.currentMode >= MODE_GENERAL ){
             [webView removeFromSuperview];
         }
     }

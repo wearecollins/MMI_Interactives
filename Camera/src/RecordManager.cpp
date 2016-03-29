@@ -18,7 +18,6 @@ void RecordManager::setup(){
     vidRecorder.setVideoBitrate("800k");
     vidRecorder.setAudioCodec("mp3");
     vidRecorder.setAudioBitrate("192k");
-    
     vidRecorder.setPixelFormat("rgb24");
     
     fileName = "mmi_performance_";
@@ -30,6 +29,16 @@ void RecordManager::setup(){
     params.add(camWidth.set("Video width", 640, 1, 640) );
     params.add(camHeight.set("Video height", 480, 1, 480) );
     
+    advancedParams.setName("Advanced params");
+    advancedParams.add(folderDest.set("Output Folder","../../../data"));
+    advancedParams.add(fileName.set("File name",""));
+    advancedParams.add(fileExt.set("File extension",".mp4"));
+    advancedParams.add(pixFmt.set("Pixel Format","rgb24"));
+    advancedParams.add(codec.set("Video codec","mpeg4"));
+    advancedParams.add(bitrate.set("Bitrate",800, 1, 10000));
+    
+    params.add(advancedParams);
+
     bRecording = false;
     currentBgClip = "";
     
@@ -82,6 +91,13 @@ void RecordManager::startRecording( string backgroundClip ){
         ofLogWarning()<<"Already recording, try again in "<<((ofGetElapsedTimeMillis()-startTime)/1000.)<<" seconds";
         return;
     }
+    
+    // update params
+    
+    vidRecorder.setVideoCodec(codec);
+    vidRecorder.setVideoBitrate(ofToString(bitrate)+"k");
+    vidRecorder.setPixelFormat(pixFmt);
+    
     startTime = lastTime = ofGetElapsedTimeMillis();
     bRecording = true;
     whichCamera = 0;
@@ -107,9 +123,17 @@ void RecordManager::stopRecording(){
     if ( currentBgClip != "" ){
         string lastCmd = "bash --login -c 'ffmpeg -i " + ofToDataPath(currentFileName, true);
         lastCmd +=" -i "+ ofToDataPath("clips/" + currentBgClip + fileExt.get(), true) +" -c copy -map 0:v:0 -map 1:a:0 -shortest "+ofToDataPath(currentFileName +"_final"+fileExt.get(), true)+"'";
-        
         system( lastCmd.c_str() );
+        
+        auto f = ofFile();
+        if (f.open(ofToDataPath(currentFileName, true), ofFile::ReadWrite)){
+            f.remove();
+        }
         currentFileName = currentFileName + "_final"+fileExt.get();
+        
+        if (f.open(ofToDataPath(currentFileName, true), ofFile::ReadWrite)){
+            f.moveTo( ofToDataPath( folderDest.get()) );
+        }
     } else {
     }
     ofNotifyEvent(onFinishedRecording, currentFileName, this);

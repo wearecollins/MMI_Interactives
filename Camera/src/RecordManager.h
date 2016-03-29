@@ -31,12 +31,18 @@ namespace mmi {
         
     protected:
         
-        ofParameter<string> fileName;
-        ofParameter<string> fileExt;
-        ofParameter<uint64_t> recordInterval;
-        ofParameter<uint64_t> recordLength;
-        ofParameter<int>    camWidth;
-        ofParameter<int>    camHeight;
+        ofParameterGroup        advancedParams;
+        ofParameter<string>     folderDest;
+        ofParameter<string>     fileName;
+        ofParameter<string>     fileExt;
+        ofParameter<string>     pixFmt;
+        ofParameter<string>     codec;
+        ofParameter<int>        bitrate;
+        
+        ofParameter<uint64_t>   recordInterval;
+        ofParameter<uint64_t>   recordLength;
+        ofParameter<int>        camWidth;
+        ofParameter<int>        camHeight;
         
         string currentFileName, currentBgClip;
         

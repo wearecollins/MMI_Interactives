@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		01055C811CA9A7B800DAD4CC /* Webview.mm in Sources */ = {isa = PBXBuildFile; fileRef = 01055C801CA9A7B800DAD4CC /* Webview.mm */; };
 		0112C6E61CA5F17E00972C53 /* ImageStreamer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0112C6E41CA5F17E00972C53 /* ImageStreamer.cpp */; };
+		014712591CAB2E290091E0DB /* settings.xml in Resources */ = {isa = PBXBuildFile; fileRef = 014712581CAB2E290091E0DB /* settings.xml */; };
 		01793FE11CA59E8E00D8DA83 /* ofApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE01CA59E8E00D8DA83 /* ofApp.mm */; };
 		01793FE91CA59F1E00D8DA83 /* BlackFlyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */; };
 		01793FEA1CA59F1E00D8DA83 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE51CA59F1E00D8DA83 /* CameraManager.cpp */; };
@@ -77,6 +78,7 @@
 		01055C801CA9A7B800DAD4CC /* Webview.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Webview.mm; sourceTree = "<group>"; };
 		0112C6E41CA5F17E00972C53 /* ImageStreamer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageStreamer.cpp; path = ../Camera/src/ImageStreamer.cpp; sourceTree = "<group>"; };
 		0112C6E51CA5F17E00972C53 /* ImageStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageStreamer.h; path = ../Camera/src/ImageStreamer.h; sourceTree = "<group>"; };
+		014712581CAB2E290091E0DB /* settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = settings.xml; path = Resources/settings.xml; sourceTree = "<group>"; };
 		01793FE01CA59E8E00D8DA83 /* ofApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofApp.mm; sourceTree = "<group>"; };
 		01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlackFlyCamera.cpp; path = ../Camera/src/BlackFlyCamera.cpp; sourceTree = "<group>"; };
 		01793FE41CA59F1E00D8DA83 /* BlackFlyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlackFlyCamera.h; path = ../Camera/src/BlackFlyCamera.h; sourceTree = "<group>"; };
@@ -192,8 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				01F8BD511CAADBB20011B550 /* Camera */,
-				0112C6E41CA5F17E00972C53 /* ImageStreamer.cpp */,
-				0112C6E51CA5F17E00972C53 /* ImageStreamer.h */,
 				01F10D051CA5EBBD006937FA /* MessageHandler.cpp */,
 				01F10D061CA5EBBD006937FA /* MessageHandler.h */,
 				01793FE71CA59F1E00D8DA83 /* RecordManager.cpp */,
@@ -205,6 +205,7 @@
 		01793FEC1CA59F8300D8DA83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				014712581CAB2E290091E0DB /* settings.xml */,
 				01F8BD521CAAE3790011B550 /* clips */,
 				01F8BD4F1CAAD9C50011B550 /* cameras.xml */,
 				01793FED1CA59F9B00D8DA83 /* MainMenu.xib */,
@@ -315,6 +316,8 @@
 		01F8BD511CAADBB20011B550 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				0112C6E41CA5F17E00972C53 /* ImageStreamer.cpp */,
+				0112C6E51CA5F17E00972C53 /* ImageStreamer.h */,
 				01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */,
 				01793FE41CA59F1E00D8DA83 /* BlackFlyCamera.h */,
 				01F10D031CA5EBBD006937FA /* CameraApp.cpp */,
@@ -634,6 +637,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				014712591CAB2E290091E0DB /* settings.xml in Resources */,
 				01F8BD531CAAE3790011B550 /* clips in Resources */,
 				01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */,
 				01F8BD501CAAD9C50011B550 /* cameras.xml in Resources */,

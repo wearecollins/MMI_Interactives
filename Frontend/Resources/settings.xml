@@ -1,0 +1,17 @@
+<group>
+	<Recording_params>
+		<Camera_switch_interval>5000</Camera_switch_interval>
+		<Recording_length>15000</Recording_length>
+		<Video_width>640</Video_width>
+		<Video_height>480</Video_height>
+	<Advanced_params>
+			<File_name/>
+			<File_extension>.mp4</File_extension>
+			<Pixel_Format>rgb24</Pixel_Format>
+			<Video_codec>mpeg4</Video_codec>
+			<Bitrate>1000</Bitrate>
+		</Advanced_params>
+	</Recording_params>
+	<Stream_which_camera>0</Stream_which_camera>
+<group/>
+</group>

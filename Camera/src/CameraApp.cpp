@@ -151,7 +151,7 @@ void CameraApp::keyPressed(ofKeyEventArgs & e ){
     if ( e.key == 's' ){
         int whichCamera = whichStream.get() == 0 ? 1 : 0;
         messageHdlr.onSwitchCamera.notify(whichCamera);
-    } else if ( e.key == 'r' ){
+    } else if ( e.key == 'H' ){
         string whichVideo = "black_magic";
         messageHdlr.onStartRecording.notify(whichVideo);
     }

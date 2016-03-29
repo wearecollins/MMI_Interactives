@@ -262,6 +262,8 @@ static int conv_button_number(int n)
     
     [self beginWindowEvent];
     
+    NSLog(@"KEY RELEASD");
+    
     ofEvents().notifyKeyReleased(key);
     
     [self endWindowEvent];
