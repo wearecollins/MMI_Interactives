@@ -1,14 +1,44 @@
 #import "ofApp.h"
 #import "Poco/Format.h"
 
-@implementation ofApp
+class EventHelper {
+public:
+    
+    EventHelper(ofApp * app){
+        this->appPtr = app;
+    }
+    
+    ofApp * appPtr;
+    
+    void keyPressed( ofKeyEventArgs & e ){
+        if ( appPtr == nullptr) return;
+        [appPtr keyPressed:e.key];
+    }
+};
 
-@synthesize delegate;
+static ofPtr<EventHelper> eventHelper;
+
+static void setupEventHelper(ofApp *app)
+{
+    if (eventHelper) return;
+    eventHelper = ofPtr<EventHelper>(new EventHelper(app));
+}
+
+
+@implementation ofApp
 
 - (void)setup
 {
+    setupEventHelper(self);
+    ofAddListener(ofEvents().keyPressed, eventHelper.get(), &EventHelper::keyPressed);
+    
+    /**************************************
+        SET GL
+     *************************************/
     ofSetFrameRate(60);
     ofBackground(ofColor(255,255,255,0));
+    
+    ofGetGLRenderer()->setOrientation(OF_ORIENTATION_DEFAULT, true);
     
     /**************************************
         Serve/load from Resources
@@ -42,28 +72,22 @@
         Build WKWebView
      *************************************/
     
-    webView = [[WKWebView alloc] initWithFrame:[self frame]];//] configuration:config];
+    webView = [[Webview alloc] initWithFrame:[self frame]];//] configuration:config];
     
     string urlText = "http://localhost:8000";
     NSString * url = [NSString stringWithUTF8String:urlText.c_str()];
     
-    self.delegate = [[WKDelegate alloc] init];
-    
-    // this is silly
-    self.delegate.isLoaded = &self->isLoaded;
-    
-    [webView setNavigationDelegate:self.delegate];
+    [webView setNavigationDelegate:self];
     
     self->isLoaded = false;
     
     [webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]]];
     
-    [self setWantsLayer:YES];
     [webView setWantsLayer:YES];
     [self setTranslucent:YES];
     [webView setValue:@YES forKey:@"drawsTransparentBackground"];
     
-    [[self superview] addSubview:self positioned:NSWindowAbove relativeTo:nil];
+//    [[self superview] addSubview:self positioned:NSWindowAbove relativeTo:nil];
     [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
     
     /**************************************
@@ -73,46 +97,51 @@
     cameraApp.setup(false);
 }
 
-- (void)update
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
 {
-    if ( self->isLoaded ){
-        self->isLoaded = false;
-        
-        // this is custom full screen stuff
-        // as some of the view ordering things
-        // screw up default ofxCocaoView things
-        NSPoint center;
-        NSRect rect = [self.window frame];
-        
-        center.x = rect.origin.x + rect.size.width / 2;
-        center.y = rect.origin.y + rect.size.height / 2;
-        
-        NSMutableDictionary *opts = [NSMutableDictionary dictionary];
-        
-        NSEnumerator *screenEnum = [[NSScreen screens] objectEnumerator];
-        NSScreen *screen;
-        while (screen = [screenEnum nextObject])
+    if ( self->isLoaded) return;
+    self->isLoaded = true;
+    [self goFullscreen];
+}
+
+- (void) goFullscreen
+{
+    [[self window] toggleFullScreen:nil];
+    return;
+    // this is custom full screen stuff
+    // as some of the view ordering things
+    // screw up default ofxCocaoView things
+    NSPoint center;
+    NSRect rect = [self.window frame];
+    
+    center.x = rect.origin.x + rect.size.width / 2;
+    center.y = rect.origin.y + rect.size.height / 2;
+    
+    NSMutableDictionary *opts = [NSMutableDictionary dictionary];
+    
+    NSEnumerator *screenEnum = [[NSScreen screens] objectEnumerator];
+    NSScreen *screen;
+    while (screen = [screenEnum nextObject])
+    {
+        if (NSPointInRect(center, [screen frame]))
         {
-            if (NSPointInRect(center, [screen frame]))
-            {
-                [[self superview] enterFullScreenMode:screen withOptions:opts];
-                break;
-            }
+            [[self superview] enterFullScreenMode:screen withOptions:opts];
+            break;
         }
     }
     
+    auto frame = [[self superview] frame];
+    
+    [self setBounds:frame];
+}
+
+- (void)update
+{
     cameraApp.update();
 }
 
 - (void)draw
 {
-    ofSetColor(100);
-    ofSetRectMode(OF_RECTMODE_CENTER);
-    ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0);
-    ofRotateZ(sin(ofGetElapsedTimef())*180);
-    ofDrawRectangle(0, 0, 640, 480);
-//    camera.draw(0,0);
-    
     cameraApp.draw();
 }
 
@@ -137,6 +166,12 @@
 {
     if ( key =='r'){
         [webView reload:nil];
+    } else if ( key == 'm' ){
+        if ( cameraApp.currentMode == MODE_NONE ){
+            [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
+        } else if ( cameraApp.currentMode == MODE_GENERAL ){
+            [webView removeFromSuperview];
+        }
     }
 }
 

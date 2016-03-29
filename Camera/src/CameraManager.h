@@ -40,7 +40,7 @@ namespace mmi {
         vector<Camera *> & getCameras();
         
     protected:
-        ofxPanel gui;
+        ofxPanel * gui;
         ofParameter<string> settingsFile;
         
         vector<Camera *> cameras;

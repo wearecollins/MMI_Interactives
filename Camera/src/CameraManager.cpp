@@ -12,7 +12,8 @@ namespace mmi {
     //--------------------------------------------------------------
     void CameraManager::setup( string settingsFile ){
         this->settingsFile.set("Settings file", settingsFile);
-        gui.setup();
+        gui = new ofxPanel();
+        gui->setup();
         
         ofXml settings;
         if (settings.load(settingsFile)){
@@ -29,7 +30,7 @@ namespace mmi {
                 auto bOpen = camera->setup(guid);
                 if ( bOpen ){
                     cameras.push_back(camera);
-                    gui.add(camera->params);
+                    gui->add(camera->params);
                 }
 #else
                 camera->setDeviceID(2); // just for brett's machine
@@ -50,7 +51,7 @@ namespace mmi {
             auto bOpen = camera->setup();
             if ( bOpen ){
                 cameras.push_back(camera);
-                gui.add(camera->params);
+                gui->add(camera->params);
             }
 #else
             auto bOpen = camera->setup(640,480);
@@ -62,7 +63,7 @@ namespace mmi {
             saveSettings();
         }
         
-        gui.loadFromFile("settings.xml");
+        gui->loadFromFile("settings.xml");
     }
     
     //--------------------------------------------------------------
@@ -97,7 +98,7 @@ namespace mmi {
     
     //--------------------------------------------------------------
     void CameraManager::drawGui(){
-        gui.draw();
+        gui->draw();
     }
     
     //--------------------------------------------------------------

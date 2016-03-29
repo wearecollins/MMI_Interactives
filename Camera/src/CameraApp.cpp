@@ -3,7 +3,6 @@
 //  Camera
 //
 //  Created by Brett Renfer on 3/25/16.
-//  Copyright (c) 2016 __MyCompanyName__. All rights reserved.
 //
 
 #include "CameraApp.h"
@@ -13,7 +12,9 @@ void CameraApp::setup( bool bDoStream ){
     this->bStreaming = bDoStream;
     
     ofSetLogLevel(OF_LOG_VERBOSE);
-    gui.add(cameraTop.set("Which camera top", 0, 0, 1));
+    gui = new ofxPanel();
+    gui->registerMouseEvents();
+    gui->add(cameraTop.set("Which camera top", 0, 0, 1));
     
     cameraMgr.setup();
     recordMgr.setup();
@@ -21,22 +22,22 @@ void CameraApp::setup( bool bDoStream ){
     //todo: does stream manager still own the ws:// connection?
     if ( this->bStreaming ){
         streamMgr.setup("", 9091);
+        // connect stream message to message parser
+        ofAddListener(streamMgr.onWsMessage, &messageHdlr, &mmi::MessageHandler::onMessage);
+        gui->add( streamMgr.params );
     } else {
         
     }
     messageHdlr.setup();
     
-    // connect stream message to message parser
-    ofAddListener(streamMgr.onWsMessage, &messageHdlr, &mmi::MessageHandler::onMessage);
     
     // listen to events from message parser
     ofAddListener(messageHdlr.onSwitchCamera, this, &CameraApp::setStreamCamera);
     
-    gui.setup("Settings");
+    gui->setup("Settings");
     
-    gui.add( streamMgr.params );
-    gui.add( recordMgr.params);
-    gui.add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
+    gui->add( recordMgr.params);
+    gui->add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
     
     ofSetLogLevel(OF_LOG_ERROR);
     
@@ -115,7 +116,7 @@ void CameraApp::draw(){
     
     switch (currentMode){
         case MODE_GENERAL:
-            gui.draw();
+            gui->draw();
             ofDrawBitmapStringHighlight( "Press 'm' to switch configure modes", 20, ofGetHeight()-40, ofColor::yellow, ofColor::black);
             break;
             

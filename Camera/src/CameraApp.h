@@ -36,7 +36,7 @@ public:
     mmi::MessageHandler messageHdlr;
     
     Mode currentMode;
-    ofxPanel gui;
+    ofxPanel * gui;
     ofParameter<int> cameraTop;
     ofParameter<int> whichStream;
     

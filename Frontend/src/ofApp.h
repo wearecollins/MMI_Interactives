@@ -4,15 +4,13 @@
 
 #include "CameraApp.h"
 #include "ofxCocoaGLView.h"
-#include "WKDelegate.h"
-#import <WebKit/WebKit.h>
+#include "Webview.h"
 
 #include "SysCommand.h"
 
-@interface ofApp : ofxCocoaGLView {
-    WKWebView * webView;
+@interface ofApp : ofxCocoaGLView <WKNavigationDelegate> {
+    Webview * webView;
     CameraApp cameraApp;
-    WKDelegate * delegate;
     bool isLoaded;
     
     StringOutputCommand webserver;
@@ -23,6 +21,8 @@
 - (void)draw;
 - (void)exit;
 
+- (void) goFullscreen;
+
 - (void)keyPressed:(int)key;
 - (void)keyReleased:(int)key;
 - (void)mouseMoved:(NSPoint)p;
@@ -30,9 +30,6 @@
 - (void)mousePressed:(NSPoint)p button:(int)button;
 - (void)mouseReleased:(NSPoint)p button:(int)button;
 - (void)windowResized:(NSSize)size;
-
-
-@property (nonatomic, retain) WKDelegate *delegate;
 
 
 @end
