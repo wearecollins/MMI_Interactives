@@ -29,16 +29,21 @@ namespace mmi {
             camera.setBayerMode(DC1394_COLOR_FILTER_RGGB);
         }
         
-        camera.setMaxFramerate();
+        camera.set1394b(true);
         camera.setFormat7(true, 0);
+        camera.setSize(2080,1552);
+        camera.setFrameRate(60);
         
+        ofSetLogLevel(OF_LOG_VERBOSE);
         if ( guid == "" ){
             bSetup = camera.setup();
-            camera.getTextureReference().allocate(width, height, GL_RGB);
+//            camera.getTextureReference().allocate(width, height, GL_RGB);
         } else {
             bSetup = camera.setup(guid);
-            camera.getTextureReference().allocate(width, height, GL_LUMINANCE);
+//            camera.getTextureReference().allocate(width, height, GL_LUMINANCE);
         }
+//        camera.setMaxFramerate();
+        ofSetLogLevel(OF_LOG_ERROR);
         
         static int bfCamIdx = 0;
         bfCamIdx++;
@@ -62,8 +67,6 @@ namespace mmi {
             this->shutter.addListener(this, &BlackFlyCamera::onShutterUpdated);
             this->roi.addListener(this, &BlackFlyCamera::onRoiUpdated);
             
-            ofAddListener( ofEvents().update, this, &BlackFlyCamera::update);
-            
             return true;
         }
         
@@ -72,13 +75,13 @@ namespace mmi {
     }
 
     //--------------------------------------------------------------
-    void BlackFlyCamera::update( ofEventArgs & args ){
+    void BlackFlyCamera::update(){
         camera.update();
         auto v = camera.isFrameNew();
     }
 
     //--------------------------------------------------------------
-    void BlackFlyCamera::draw( int x, int y){
+    void BlackFlyCamera::draw( int x, int y, int w, int h){
         camera.draw(x,y);
     }
 
@@ -95,14 +98,22 @@ namespace mmi {
     void BlackFlyCamera::close(){
         //todo: camera close?
         
-        ofRemoveListener( ofEvents().update, this, &BlackFlyCamera::update);
-        
         this->brightness.removeListener(this, &BlackFlyCamera::onBrightnessUpdated);
         this->gamma.removeListener(this, &BlackFlyCamera::onGammaUpdated);
         this->gain.removeListener(this, &BlackFlyCamera::onGainUpdated);
         this->exposure.removeListener(this, &BlackFlyCamera::onExposureUpdated);
         this->shutter.removeListener(this, &BlackFlyCamera::onShutterUpdated);
         this->roi.removeListener(this, &BlackFlyCamera::onRoiUpdated);
+    }
+    
+    //--------------------------------------------------------------
+    int BlackFlyCamera::getWidth() {
+        return camera.getWidth();
+    }
+    
+    //--------------------------------------------------------------
+    int BlackFlyCamera::getHeight() {
+        return camera.getHeight();
     }
     
 #pragma mark events

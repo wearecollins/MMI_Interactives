@@ -49,25 +49,23 @@ void CameraApp::setup( bool bDoStream ){
 
 //--------------------------------------------------------------
 void CameraApp::update(){
-    auto * camera = cameraMgr.getCamera( whichStream.get());
     
-    if ( this->bStreaming ){
-        // try to stream all the time, image streamer will handle by framerate
-        
-        if ( camera != nullptr ){
-    #ifndef DEBUG_CAMERA
-            streamMgr.stream( camera->getImage() );
-    #else
-            streamMgr.stream( *camera );
-    #endif
-        }
-    }
-    
-#ifdef DEBUG_CAMERA 
     for ( auto * c : cameraMgr.getCameras()){
         c->update();
     }
+    
+    auto * camera = cameraMgr.getCamera( whichStream.get());
+    if ( this->bStreaming ){
+        // try to stream all the time, image streamer will handle by framerate
+        
+        if ( camera != nullptr && camera->getImage().isAllocated() ){
+#ifndef DEBUG_CAMERA
+            streamMgr.stream( camera->getImage() );
+#else
+            streamMgr.stream( *camera );
 #endif
+        }
+    }
     
     // update recording, if 2x camera app
     if ( cameraMgr.getNumCameras() > 1 ){
@@ -105,6 +103,7 @@ void CameraApp::update(){
 
 //--------------------------------------------------------------
 void CameraApp::draw(){
+    ofSetColor(255);
     
     ofPushMatrix();
 #ifndef DEBUG_CAMERA

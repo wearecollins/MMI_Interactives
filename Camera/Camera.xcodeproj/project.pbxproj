@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012651E71CAC828D00CE6183 /* libturbojpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 012651E61CAC828D00CE6183 /* libturbojpeg.dylib */; };
+		012651E81CAC829300CE6183 /* libturbojpeg.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 012651E61CAC828D00CE6183 /* libturbojpeg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		01793FF71CA5D61900D8DA83 /* MessageHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FF51CA5D61900D8DA83 /* MessageHandler.cpp */; };
 		01793FFB1CA5D6E400D8DA83 /* CameraApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FF91CA5D6E400D8DA83 /* CameraApp.cpp */; };
 		01CCA63E1CA4A015008D7F94 /* RecordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01CCA63D1CA4A015008D7F94 /* RecordManager.cpp */; };
@@ -62,12 +64,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				012651E81CAC829300CE6183 /* libturbojpeg.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		012651E61CAC828D00CE6183 /* libturbojpeg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.dylib; path = "addons/ofxTurboJpeg/libs/turbo-jpeg/lib/osx/libturbojpeg.dylib"; sourceTree = "<group>"; };
 		01793FF51CA5D61900D8DA83 /* MessageHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageHandler.cpp; sourceTree = "<group>"; };
 		01793FF61CA5D61900D8DA83 /* MessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHandler.h; sourceTree = "<group>"; };
 		01793FF91CA5D6E400D8DA83 /* CameraApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraApp.cpp; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
+				012651E71CAC828D00CE6183 /* libturbojpeg.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +494,7 @@
 		F5BD7AA6B377543CDE3A7289 /* ofxTurboJpeg */ = {
 			isa = PBXGroup;
 			children = (
+				012651E61CAC828D00CE6183 /* libturbojpeg.dylib */,
 				DB6E8C787F11E332759537AD /* src */,
 			);
 			name = ofxTurboJpeg;
@@ -757,7 +763,10 @@
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/addons/ofxTurboJpeg/libs/turbo-jpeg/lib/osx",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_FRAMEWORKS)",
@@ -949,7 +958,10 @@
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/addons/ofxTurboJpeg/libs/turbo-jpeg/lib/osx",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_FRAMEWORKS)",
@@ -1009,7 +1021,10 @@
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/addons/ofxTurboJpeg/libs/turbo-jpeg/lib/osx",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_FRAMEWORKS)",

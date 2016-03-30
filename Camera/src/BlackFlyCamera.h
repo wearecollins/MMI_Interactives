@@ -18,14 +18,18 @@ public:
     
     ~BlackFlyCamera();
     
-    bool setup( string guid = "", int width = 960, int height = 600, bool bColor = true);
-    void update( ofEventArgs & args );
-    void draw( int x, int y);
+    bool setup( string guid = "", int width = 960, int height = 600, bool bColor = true );
+    void update();
+    void draw( int x, int y, int w = -1, int h=-1);
     void drawDebug( int x, int y );
     void close();
     
     bool isSetup() const;
+    bool isAllocated();
     ofImage & getImage();
+    
+    int getWidth();
+    int getHeight();
     
     ofParameterGroup params;
     
