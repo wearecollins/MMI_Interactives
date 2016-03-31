@@ -75,13 +75,17 @@ namespace mmi {
         }
         auto * c = cameras[which];
         
-        auto w = c->getWidth();
-        auto h = c->getHeight();
+        float w = c->getWidth();
+        float h = c->getHeight();
         
         switch ((DrawMode) drawMode.get()) {
             case MODE_FILL_MAX:
             {
-                float scale = MAX(ofGetWidth()/c->getWidth(), ofGetHeight()/c->getHeight());
+                float scale = MAX((float) ofGetWidth()/c->getWidth(), (float) ofGetHeight()/c->getHeight());
+                
+                if ( scale > 1 ){
+                    scale = MAX(c->getWidth() / (float) ofGetWidth(), c->getHeight() /(float)  ofGetHeight());
+                }
                 
                 w *= scale;
                 h *= scale;
@@ -91,6 +95,10 @@ namespace mmi {
             case MODE_FILL_MIN:
             {
                 float scale = MIN(ofGetWidth()/c->getWidth(), ofGetHeight()/c->getHeight());
+                
+                if ( scale > 1 ){
+                    scale = MIN(c->getWidth() / ofGetWidth(), c->getHeight() / ofGetHeight());
+                }
                 
                 w *= scale;
                 h *= scale;
@@ -106,16 +114,19 @@ namespace mmi {
     void CameraManager::drawDebug( int x, int y ){
         ofPushStyle();
         ofSetColor(255);
+        ofPushMatrix();
+        ofScale(.5, .5);
         
         for ( auto * c : cameras ){
 #ifndef DEBUG_CAMERA
-            c->drawDebug(x, y);
+            c->drawDebug(x, y, c->getWidth(), c->getHeight());
             x += c->getImage().getWidth();
 #else
-            c->draw(x, y);
+            c->draw(x, y, c->getImage().getWidth(), c->getImage().getHeight());
             x += c->getWidth();
 #endif
         }
+        ofPopMatrix();
         ofPopStyle();
     }
     

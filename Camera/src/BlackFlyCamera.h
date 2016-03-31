@@ -18,10 +18,10 @@ public:
     
     ~BlackFlyCamera();
     
-    bool setup( string guid = "", int width = 960, int height = 600, bool bColor = true );
+    bool setup( string guid = "", int width = 2080, int height = 1552, bool bColor = true );
     void update();
-    void draw( int x, int y, int w = -1, int h=-1);
-    void drawDebug( int x, int y );
+    void draw( float x, float y, float w = -1, float h=-1);
+    void drawDebug( int x, int y, float w, float h );
     void close();
     
     bool isSetup() const;
@@ -36,8 +36,10 @@ public:
     const string getGuid();
     
 protected:
-    ofxLibdc::PointGrey camera;
+    ofxLibdc::Camera camera;
     bool bSetup;
+    
+    ofImage buffer;
     
     ofParameter<string>         guid;
     ofParameter<float>          brightness;

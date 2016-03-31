@@ -26,8 +26,8 @@ void RecordManager::setup(){
     params.setName("Recording params");
     params.add(recordInterval.set("Camera switch interval", 5000, 0, 15000));
     params.add(recordLength.set("Recording length", 15000, 1, 60000));
-    params.add(camWidth.set("Video width", 640, 1, 640) );
-    params.add(camHeight.set("Video height", 480, 1, 480) );
+    params.add(camWidth.set("Video width", 1040, 1, 2080) );
+    params.add(camHeight.set("Video height", 776, 1, 1552) );
     
     advancedParams.setName("Advanced params");
     advancedParams.add(folderDest.set("Output Folder","../../../data"));

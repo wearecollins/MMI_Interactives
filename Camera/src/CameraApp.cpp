@@ -107,8 +107,6 @@ void CameraApp::draw(){
     
     ofPushMatrix();
 #ifndef DEBUG_CAMERA
-    //todo: dynamic!
-    ofScale(.5, .5);
 #endif
     if ( currentMode != MODE_NONE ){
         cameraMgr.drawDebug(0, 0);
