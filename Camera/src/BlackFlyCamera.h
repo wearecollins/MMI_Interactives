@@ -18,7 +18,7 @@ public:
     
     ~BlackFlyCamera();
     
-    bool setup( string guid = "", int width = 2080, int height = 1552, bool bColor = true );
+    bool setup( string guid = "", int width = 2080, int height = 1552 );
     void update();
     void draw( float x, float y, float w = -1, float h=-1);
     void drawDebug( int x, int y, float w, float h );
@@ -35,19 +35,27 @@ public:
     
     const string getGuid();
     
+    void reloadShader();
+    
 protected:
     ofxLibdc::Camera camera;
     bool bSetup;
     
     ofImage buffer;
+    ofFbo   drawer;
+    ofShader bayerShader;
     
     ofParameter<string>         guid;
+    ofParameter<int>            gpuBayer;
+    ofParameter<bool>           imageColor;
     ofParameter<float>          brightness;
     ofParameter<float>          gamma;
     ofParameter<float>          gain;
     ofParameter<float>          exposure;
     ofParameter<float>          shutter;
     ofParameter<ofVec4f>        roi;
+    
+    int width, height;
     
     // event listeners
     void onBrightnessUpdated( float & v );

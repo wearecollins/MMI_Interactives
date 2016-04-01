@@ -72,6 +72,9 @@
 
 /* Begin PBXFileReference section */
 		012651E61CAC828D00CE6183 /* libturbojpeg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.dylib; path = "addons/ofxTurboJpeg/libs/turbo-jpeg/lib/osx/libturbojpeg.dylib"; sourceTree = "<group>"; };
+		012A4FD91CAEE58E00A74858 /* cameras.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = cameras.xml; path = bin/data/cameras.xml; sourceTree = "<group>"; };
+		012A4FDA1CAF02E500A74858 /* bayer.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = bayer.frag; path = bin/data/bayer.frag; sourceTree = "<group>"; };
+		012A4FDB1CAF035500A74858 /* bayer.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = bayer.vert; path = bin/data/bayer.vert; sourceTree = "<group>"; };
 		01793FF51CA5D61900D8DA83 /* MessageHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageHandler.cpp; sourceTree = "<group>"; };
 		01793FF61CA5D61900D8DA83 /* MessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHandler.h; sourceTree = "<group>"; };
 		01793FF91CA5D6E400D8DA83 /* CameraApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraApp.cpp; sourceTree = "<group>"; };
@@ -453,6 +456,9 @@
 			children = (
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
+				012A4FD91CAEE58E00A74858 /* cameras.xml */,
+				012A4FDA1CAF02E500A74858 /* bayer.frag */,
+				012A4FDB1CAF035500A74858 /* bayer.vert */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,

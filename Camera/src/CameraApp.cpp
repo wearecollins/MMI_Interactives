@@ -151,6 +151,10 @@ void CameraApp::keyPressed(ofKeyEventArgs & e ){
     } else if ( e.key == 'H' ){
         string whichVideo = "black_magic";
         messageHdlr.onStartRecording.notify(whichVideo);
+    } else if ( e.key == 'R'){
+        for (auto * c : cameraMgr.getCameras() ){
+            c->reloadShader();
+        }
     }
 #endif
 }

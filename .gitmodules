@@ -13,3 +13,6 @@
 [submodule "Frontend/addons/ofxCocoaGLView"]
 	path = Frontend/addons/ofxCocoaGLView
 	url = https://github.com/robotconscience/ofxCocoaGLView.git
+[submodule "Camera/addons/ofxCv"]
+	path = Camera/addons/ofxCv
+	url = https://github.com/kylemcdonald/ofxCv.git
