@@ -59,6 +59,7 @@ namespace mmi {
         camera.setSize(this->width,this->height);
 //        camera.setFrameRate(60);
         
+        
         ofSetLogLevel(OF_LOG_VERBOSE);
         if ( guid == "" ){
             bSetup = camera.setup();
@@ -72,7 +73,14 @@ namespace mmi {
             } else {
                 buffer.allocate(this->width, this->height, OF_IMAGE_GRAYSCALE);
             }
-            drawer.allocate(this->width, this->height);
+            
+//            buffer.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+            
+            pingPong[0].allocate(this->width, this->height);
+            pingPong[1].allocate(this->width, this->height);
+            
+            src = &pingPong[0];
+            dst = &pingPong[1];
             
         }
 //        camera.setMaxFramerate();
@@ -150,10 +158,10 @@ namespace mmi {
             if ( v ){
                 buffer.update();
             }
-        } else if ( gpuBayer == 1 ){
         } else {
             if (buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
                 buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
+//                buffer.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
             }
             
 //
@@ -198,23 +206,34 @@ namespace mmi {
                     memcpy(dst, src, width * height);
                     
                     dc1394_capture_enqueue(c, frame);
-                    buffer.update();
                     remaining = true;
+                    i++;
                 } else {
                     // silencio
                     remaining = false;
                 }
 
-                i++;
             } while (remaining);
+            
+            if ( i > 0 ){
+                if ( gpuBayer.get() == 1 ){
+                    if (!cvBuffer.isAllocated()){
+                        cvBuffer.allocate(this->width, this->height, OF_IMAGE_COLOR);
+                    }
+                    ofxCv::convertColor(buffer,cvBuffer, CV_BayerRG2BGR);
+                    cvBuffer.update();
+                } else {
+                    buffer.update();
+                }
+            }
         }
     }
 
     //--------------------------------------------------------------
     void BlackFlyCamera::draw( float x, float y, float w, float h){
-        drawer.begin();
+        src->begin();
 //        ofClear(0);
-        if ( gpuBayer.get() == 1 ){
+        if ( gpuBayer.get() == 0 ){
             bayerShader.begin();
             bayerShader.setUniformTexture("source", buffer.getTexture(), 1);
             bayerShader.setUniform4f("sourceSize", buffer.getWidth(), buffer.getHeight(), 1./buffer.getWidth(), 1./buffer.getHeight());
@@ -225,17 +244,19 @@ namespace mmi {
 //            plane.draw();
             
             buffer.draw(0,0);
-            
         } else {
-            buffer.draw(0,0);
+            if ( gpuBayer == 1 ){
+                cvBuffer.draw(0,0);
+            } else {
+                buffer.draw(0,0);
+            }
         }
-        if (gpuBayer.get() == 1){
+        if (gpuBayer.get() == 0){
             bayerShader.end();
         }
-        drawer.end();
-        drawer.draw(x,y,w,h);
-        
-        cout << w <<":"<<this->width<<endl;
+        src->end();
+        dst->draw(x,y,w,h);
+        swap(src, dst);
     }
 
     //--------------------------------------------------------------

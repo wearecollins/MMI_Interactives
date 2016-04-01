@@ -9,6 +9,7 @@
 #pragma once
 
 #include "ofxLibdc.h"
+#include "ofxCv.h"
 
 namespace mmi {
 
@@ -41,8 +42,10 @@ protected:
     ofxLibdc::Camera camera;
     bool bSetup;
     
-    ofImage buffer;
-    ofFbo   drawer;
+    ofImage buffer, cvBuffer;
+    ofFbo   pingPong[2];
+    ofFbo * src;
+    ofFbo * dst;
     ofShader bayerShader;
     
     ofParameter<string>         guid;
