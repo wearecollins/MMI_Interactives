@@ -1,25 +1,31 @@
 /* Overall */
 
 @font-face {
-    font-family: CooperLight;
-    src:url("../fonts/CooperBT-Light.otf");
+    font-family: SouvenirLight;
+    src:url("../fonts/ITCSouvenirLight.ttf");
+}
+
+@font-face {
+    font-family: SouvenirLight;
+    font-weight: bold;
+    src:url("../fonts/ITCSouvenirMedium.ttf");
 }
 
 html, body {
-    font-family: CooperLight;
+    font-family: SouvenirLight;
     width: 100%;
     height: 100%;
     /* overflow: hidden; */
-    font-size: 70px;
+    font-size: 140px;
     background: rgba(0,0,0,0);
     line-height: 1.1rem;
     color: white;
     text-align: center;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   html, body {
-    font-size: 30px;
+    font-size: 100px;
   }
 }
 @media (max-width: 500px) {
@@ -28,34 +34,102 @@ html, body {
   }
 }
 
-.border {
-    border:3px solid white;
+/* New */
+
+.container {
+    padding:3vh;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.titleBottom {
-    min-width: 33%;
-    margin-bottom: 1rem; 
+.button_sm {
+    width: 23vw;
+    height: 23vw;
 }
 
-.button {
-    min-width: 33%;
-    padding: .5rem;
-    cursor: pointer;
-    font-size: .8rem;
-    line-height: .88rem;
-    /* should this be elsewhere? */
-    margin-bottom: 1rem; 
+.button_lg {
+    width: 75vw;
+    height: 75vw;
 }
 
-@media (max-width: 700px) {
-    .border {
-        border:2px solid white;
-    }
+.padding_sm {
+    padding-bottom: 3vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
 }
-@media (max-width: 500px) {
-    .border {
-        border:1px solid white;
-    }
+
+.padding_med {
+    padding-bottom: 3vh;
+}
+
+.title {
+    padding-bottom: 30vh;
+}
+
+.spacer_intro {
+    width: 100%;
+    height: 33%;
+}
+
+/* 1080 x 1920 */
+
+.type_sm {
+    font-size: .30rem;
+    line-height: .38rem;
+}
+
+.type_med {
+    font-size: .45rem;
+    line-height: .54rem;
+}
+
+.type_lg {
+    font-size: .80rem;
+    line-height: .96rem;
+}
+
+/* 800 x 1280 */
+
+@media (max-width: 800px) {
+
+}
+
+.column_23 {
+    width: 80%;
+}
+
+/* Page 3: Script */
+
+#scriptPage img {
+    height: 100%;
+}
+
+#scriptTextContainer {
+    padding:8vh;
+    text-align: left;
+}
+
+#scriptInfoContainer{
+    background: rgba(112,181,159,.9 );
+}
+
+/* Page 4: Open; */
+
+/* Page 6: Share */
+#shareCopy {
+    text-align: left;
+}
+
+#shareContInternal {
+    /* variation of parchment, semi-opaque */
+    background: rgba(247,244,239,.7);
+}
+
+.shareCopyBlock {
+    min-height:20vh;
+    width:50%;
+    padding: 3vw;
 }
 
 /* Utilities */
@@ -83,17 +157,20 @@ html, body {
     justify-content: center;
 }
 
-.columnCenteredContainer {
+.topCenteredContainer {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .bottomCenteredContainer {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+}
+
+.column {
+    flex-direction: column;
 }
 
 .noselect {
@@ -106,93 +183,30 @@ html, body {
                                   not supported by any browser */
 }
 
+/* Fills */
+
+.parchBg {
+    background: #f7f4ef;
+}
+
 .yellowBg {
     background: #E2BD47;
 }
 
+.fillGreen {
+    color:#56b79e;
+}
+
+.fillGrey {
+    color:rgb(100,100,100);
+}
+
 .greenBg {
-    background-color:#53B063;
+    background-color:#56b79e;
 }
 
 .redBg {
     background-color: #DF6252;
-}
-
-/* Specific states */
-#scriptPage img {
-    height: 100%;
-}
-
-#scriptInfoContainer{
-    background: rgba(112,181,159,.9 );
-    font-size: .6rem;
-    line-height: .88rem;
-}
-
-#scriptTextContainer {
-    padding: 1rem;
-    margin-bottom: 1rem;
-}
-
-#promptContainer {
-    height: 100%;
-}
-#promptOpenDrawers {
-    background-color:#523A55;
-}
-
-#promptArrow  {
-    height: 65%;
-    margin-bottom: 1rem; 
-}
-
-#promptSpin {
-    max-height: 50%;
-    width: 80%;
-    margin-bottom: 2rem; 
-}
-#promptSpinPuppet {
-    background-color:#EE7773;
-}
-
-/* Share capture */
-
-#sharePuppetCapture img {
-    width: 100%;
-    /* FPO */
-    height: 100%;
-}
-
-#captureTake, #captureCancel {
-    float: left;
-    width: 50%;
-    margin-bottom: 0;
-}
-
-#shareInfo {
-    margin:.5rem;
-}
-
-#shareLeft, #shareRight {
-    width: 50%;
-    text-align: left;
-    font-size: .6rem;
-    line-height: .66rem;
-}
-
-#shareRight {
-    font-size: .3rem;
-    line-height: .33rem;
-    padding: .5rem;
-}
-
-#postButton {
-    margin:0;
-    margin-top:.3rem;
-}
-
-#shareCaptureButtonContainer {
-    width: 100%;
 }
 
 /* Share end screen */

@@ -152,6 +152,13 @@ namespace mmi {
         if ( gpuBayer == 2){
             if (imageColor.get() && buffer.getImageType() != OF_IMAGE_COLOR ){
                 buffer.allocate(width, height, OF_IMAGE_COLOR);
+                camera.setBayerMode(DC1394_COLOR_FILTER_RGGB, DC1394_BAYER_METHOD_NEAREST);
+                camera.setImageType(OF_IMAGE_COLOR);
+            } else if ( !imageColor.get() && buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
+                buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
+                camera.setImageType(OF_IMAGE_GRAYSCALE);
+                camera.disableBayer();
+                cout << "GREY"<<endl;
             }
             
             auto v = camera.grabVideo(buffer);
@@ -300,7 +307,12 @@ namespace mmi {
     
     //--------------------------------------------------------------
     ofImage & BlackFlyCamera::getImage(){
-        return buffer;
+//        return buffer;
+        if (gpuBayer.get() == 0) {
+            return buffer;
+        } else {
+            return cvBuffer;
+        }
     }
     
     

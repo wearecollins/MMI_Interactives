@@ -26,7 +26,7 @@ enum Mode {
 class CameraApp
 {
 public:
-    void setup( bool bDoStream = false );
+    void setup( bool bDoStream = true );
     void update();
     void draw();
     

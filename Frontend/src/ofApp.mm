@@ -72,7 +72,7 @@ static void setupEventHelper(ofApp *app)
     
     webView = [[Webview alloc] initWithFrame:[self frame]];//] configuration:config];
     
-    string urlText = "http://localhost:8000";
+    string urlText = "http://127.0.0.1:8080";
     NSString * url = [NSString stringWithUTF8String:urlText.c_str()];
     
     [webView setNavigationDelegate:self];
@@ -99,6 +99,9 @@ static void setupEventHelper(ofApp *app)
     if ( self->isLoaded) return;
     self->isLoaded = true;
     [self goFullscreen];
+    
+    cout << "FINISHED" <<endl;
+    NSLog(@"%@", webView.URL);
 }
 
 - (void) goFullscreen
@@ -156,6 +159,7 @@ static void setupEventHelper(ofApp *app)
 {
     if ( key =='R'){
         [webView reload:nil];
+        cout << "RELOAD"<<endl;
     } else if ( key == 'm' ){
         if ( cameraApp.currentMode == MODE_NONE ){
             [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];

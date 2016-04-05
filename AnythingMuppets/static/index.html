@@ -12,14 +12,33 @@
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <div id="startPage" class=" fill">
+        <div id="startPage" class="fill">
             <div id="video" class="fillAbs" style="z-index:0">
                 <video class="fillContainer" autoplay loop>
                     <source src="video/fpo_eyes.mp4" type="video/mp4">
                 </video>
             </div>
-            <div id="startBtnContainer" class="fillAbs bottomCenteredContainer" style="z-index:1">
-                <div class="button border noselect">Get Started</div>
+            <div id="titleContainer" class="container fillAbs centeredContainer column" style="z-index:1">
+                <div class="type_lg title">Design an<br />Anything Muppet</div>
+            </div>
+            <div id="startBtnContainer" class="container fillAbs bottomCenteredContainer" style="z-index:1">
+                <div id="sbContInternal" class="column">
+                    <img src="svg/__get_started.svg" class="button_sm padding_sm" />
+                    <div class="type_med padding_sm">Get Started</div>
+                </div>
+            </div>
+        </div>
+        <div id="rolliePage" class="fill">
+            <div id="video" class="fillAbs" style="z-index:0">
+                <video class="fillContainer" autoplay loop>
+                    <source src="video/fpo_eyes.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div id="skipBtnContainer" class="container fillAbs bottomCenteredContainer" style="z-index:1">
+                <div id="sbContInternal" class="column">
+                    <img src="svg/__get_started.svg" class="button_sm padding_sm" />
+                    <div class="type_med padding_sm">Next</div>
+                </div>
             </div>
         </div>
         <div id="scriptPage" class=" fill">
@@ -27,117 +46,168 @@
                 <img src="img/script.jpg" />
             </div>
             <div id="scriptInfoContainer" class="fillAbs centeredContainer" style="z-index:1">
-                <div id="scriptTextContainer">
-                    <strong>Salesman:</strong><br><em>An AM Man enters dressed as a salesman, carrying his briefcase. The AM Man is in his thirties, has brown hair, a pointy nose, a friendly face, and speaks with a kind of nasal, slightly annoying voice.</em>
-                    <br><br><strong>Salesman:</strong><br>“Hello there. I’m your friendly neighborhood vacuum cleaner salesman.”
+                <div id="scriptTextContainer" class="fill type_sm container">
+                    <div id="scriptColumn" class="column_23">
+                        <span class="type_med"><u>The Salesman</u></span>
+                        <br>Episode 27—Sesame Street, 1970
+                        <br><br>
+                        <strong>Salesman:</strong><br>An AM Man enters dressed as a salesman, carrying his briefcase. The AM Man is in his thirties, has brown hair, a pointy nose, a friendly face, and speaks with a kind of nasal, slightly annoying voice.
+                        <br><br><strong>Salesman:</strong><br>“Hello there. I’m your friendly neighborhood vacuum cleaner salesman.”
+                    </div>
                 </div>
             </div>
-            <div id="scriptButtonContainer" class="fillAbs bottomCenteredContainer" style="z-index:2">
-                <div id="scriptGSButton" class="button border noselect">Start Building</div>
+            <div id="scriptBtnContainer" class="container fillAbs bottomCenteredContainer" style="z-index:1">
+                <div id="sbContInternal" class="column">
+                    <img src="svg/__get_started.svg" class="button_sm padding_sm" />
+                    <div class="type_med padding_sm">start building</div>
+                </div>
             </div>
         </div>
-        <div id="promptOpenDrawers" class="bottomCenteredContainer fill">
-            <div id="promptContainer" class="columnCenteredContainer fill">
-                <img src="svg/arrow.svg" id="promptArrow" />
-                <div class="titleBottom noselect">Open the drawers <br>and start building</div>
+        <div id="promptOpenDrawers" class="parchBg bottomCenteredContainer fill">
+            <div id="promptContainer" class="centeredContainer column fill">
+                <img src="svg/__open_drawers.svg" class="button_lg padding_sm" />
+                <div class="fillGreen type_med padding_sm">open the drawers <br>and start building</div>
             </div>
-
         </div>
+        <!-- NOTE: WILL JUST BE STATE OF SCRIPT -->
         <div id="scriptPage" class=" fill">
             <div id="script" class="fillAbs centeredContainer" style="z-index:0">
                 <img src="img/script.jpg" />
             </div>
             <div id="scriptInfoContainer" class="fillAbs centeredContainer" style="z-index:1">
-                <div id="scriptTextContainer">
-                    <strong>Salesman:</strong><br><em>An AM Man enters dressed as a salesman, carrying his briefcase. The AM Man is in his thirties, has brown hair, a pointy nose, a friendly face, and speaks with a kind of nasal, slightly annoying voice.</em>
-                    <br><br><strong>Salesman:</strong><br>“Hello there. I’m your friendly neighborhood vacuum cleaner salesman.”
+                <div id="scriptTextContainer" class="fill type_sm container">
+                    <div id="scriptColumn" class="column_23">
+                        <span class="type_med"><u>The Salesman</u></span>
+                        <br>Episode 27—Sesame Street, 1970
+                        <br><br>
+                        <strong>Salesman:</strong><br>An AM Man enters dressed as a salesman, carrying his briefcase. The AM Man is in his thirties, has brown hair, a pointy nose, a friendly face, and speaks with a kind of nasal, slightly annoying voice.
+                        <br><br><strong>Salesman:</strong><br>“Hello there. I’m your friendly neighborhood vacuum cleaner salesman.”
+                    </div>
                 </div>
             </div>
-            <div id="scriptButtonContainer" class="fillAbs bottomCenteredContainer" style="z-index:2">
-                <div id="scriptGSButton" class="button border noselect">Done Building</div>
+            <div id="scriptBtnContainer" class="container fillAbs bottomCenteredContainer" style="z-index:1">
+                <div id="sbContInternal" class="column">
+                    <img src="svg/__done_building.svg" class="button_sm padding_sm" />
+                    <div class="type_med padding_sm">done building</div>
+                </div>
             </div>
         </div>
-        <div id="promptSpinPuppet" class="bottomCenteredContainer fill">
-            <div id="promptSpinContainer" class="columnCenteredContainer fill">
-                <img src="svg/spin.svg" id="promptSpin" />
-                <div class="titleBottom noselect">Spin the Puppet <br>to test on camera</div>
+        <div id="promptSpinPuppet" class="parchBg bottomCenteredContainer fill">
+            <div id="promptSpinContainer" class="centeredContainer column fill">
+                <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" />
+                <div class="fillGreen type_med padding_sm">Spin the Puppet <br>to test on camera</div>
             </div>
         </div>
         <!-- These will all be in one 'share' container -->
+
         <div id="sharePuppetCapture" class="fill">
-            <div id="liveCaptureContainer" class="fillAbs centeredContainer" style="z-index:0">
-                <img src="" id="liveCamera" />
+            <div id="video" class="fillAbs" style="z-index:0">
+                <video class="fill" style="background-color:grey">
+                <!-- Live cam -->
+                </video>
             </div>
-            <div id="captureButtonContainer" class="fillAbs bottomCenteredContainer" style="z-index:1">
-                <div id="captureTake" class="button noselect greenBg">Take a photo</div>
-                <div id="captureCancel" class="button noselect redBg">Start Over</div>
+            <div id="captureContainer" class="container fillAbs bottomCenteredContainer" style="z-index:1">
+                <div id="cContInternal" class="column">
+                    <img src="svg/__select.svg" class="button_sm padding_sm" />
+                    <div class="type_med padding_sm">take a photo</div>
+                </div>
+                <div id="dContInternal" class="column">
+                    <img src="svg/__done.svg" class="button_sm padding_sm" />
+                    <div class="type_med padding_sm">done</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- States! -->
+        <div id="countDownThree" class="fill">
+            <div id="video" class="fillAbs" style="z-index:0">
+                <video class="fill" style="background-color:grey">
+                <!-- Live cam -->
+                </video>
+            </div>
+            <div id="countContainer" class="container fillAbs centeredContainer" style="z-index:1">
+                <img src="svg/__count_3.svg" class="button_lg padding_sm" />
             </div>
         </div>
         <div id="countDownTwo" class="fill">
-            <div id="liveCaptureContainer" class="fillAbs centeredContainer" style="z-index:0">
-                <img src="" id="liveCamera" />
+            <div id="video" class="fillAbs" style="z-index:0">
+                <video class="fill" style="background-color:grey">
+                <!-- Live cam -->
+                </video>
             </div>
-            <div id="captureButtonContainer" class="fillAbs centeredContainer" style="z-index:1">
-                <img src="svg/three.svg" class="cdNumber" />
-            </div>
-        </div>
-        <div id="countDownTwo" class="fill">
-            <div id="liveCaptureContainer" class="fillAbs centeredContainer" style="z-index:0">
-                <img src="" id="liveCamera" />
-            </div>
-            <div id="captureButtonContainer" class="fillAbs centeredContainer" style="z-index:1">
-                <img src="svg/two.svg" class="cdNumber" />
+            <div id="countContainer" class="container fillAbs centeredContainer" style="z-index:1">
+                <img src="svg/__count_2.svg" class="button_lg padding_sm" />
             </div>
         </div>
         <div id="countDownOne" class="fill">
-            <div id="liveCaptureContainer" class="fillAbs centeredContainer" style="z-index:0">
-                <img src="" id="liveCamera" />
+            <div id="video" class="fillAbs" style="z-index:0">
+                <video class="fill" style="background-color:grey">
+                <!-- Live cam -->
+                </video>
             </div>
-            <div id="captureButtonContainer" class="fillAbs centeredContainer" style="z-index:1">
-                <img src="svg/one.svg" class="cdNumber" />
+            <div id="countContainer" class="container fillAbs centeredContainer" style="z-index:1">
+                <img src="svg/__count_1.svg" class="button_lg padding_sm" />
             </div>
         </div>
-        <div id="sharePuppetShare" class="fill">
-            <div id="liveCaptureContainer" class="fillAbs centeredContainer" style="z-index:0">
-                <img src="" id="liveCamera" />
+        <div id="retakeOrNot" class="fill">
+            <div id="video" class="fillAbs" style="z-index:0">
+                <video class="fill" style="background-color:grey">
+                <!-- Live cam -->
+                </video>
             </div>
-            <div id="shareContainer" class="fillAbs columnCenteredContainer" style="z-index:1">
-                <div id="shareInfoContainer" class="share">
-                    <div id="shareInfo" class="centeredContainer">
-                        <div id="shareLeft">
-                        Download and Share at the Museum Shop.<br><br>
-                        Your unique name is AM 25
-                        </div>
-                        <div id="shareRight">
-                            <div>
-                                Optionally, share your creation with the world on the <strong>Museum's Facebook and Tumblr</strong><br>
-                                @movingimagenyc
-                            </div>
-                            <div id="postButton" class="button noselect greenBg">Post</div>
-                        </div>
-                    </div>
+            <div id="retakeContainer" class="container fillAbs bottomCenteredContainer" style="z-index:1">
+                <div id="cContInternal" class="column">
+                    <img src="svg/__select.svg" class="button_sm padding_sm" />
+                    <div class="type_med padding_sm">continue</div>
                 </div>
-                <div id="shareCaptureButtonContainer" class="bottomCenteredContainer">
-                    <div id="captureTake" class="button noselect yellowBg">Retake</div>
-                    <div id="captureCancel" class="button noselect redBg">Start Over</div>
+                <div id="dContInternal" class="column">
+                    <img src="svg/__done.svg" class="button_sm padding_sm" />
+                    <div class="type_med padding_sm">retake</div>
                 </div>
             </div>
         </div>
-        <div id="sharePuppet" class="bottomCenteredContainer fill share">
-            <div id="sharePuppetContainer" class="columnCenteredContainer fill">
-                <div id="shareRow">
-                    <img id="shareImageLeft" />
-                    <div id="shareImageRight">
-                        <img class="" />
-                        <div id="shareFinalAbout"> ORIGINAL AM BOY<br>–<br>Sesame Street Episode 200,<br>“Max the Magniﬁcent”
+
+        <!-- SHARE -->
+        <div id="sharePage" class="fill">
+            <div id="image" class="fillAbs" style="z-index:0">
+                <!-- Captured Image -->
+                <img class="fill" style="background-color:grey" />
+            </div>
+            <div id="shareBtnContainer" class="fillAbs bottomCenteredContainer" style="z-index:1">
+                <div id="shareContInternal" class="centeredContainer column container fillContainer fillGrey">
+                    <div class="type_lg">Share</div>
+                    <div id="shareCopy" class="topCenteredContainer type_sm">
+                        <div class="shareCopyBlock">
+                            <strong>Download and share</strong><br>at the Museum Shop Your unique name: AM 202
+                        </div>
+                        <div class="shareCopyBlock">
+                            <strong>Post your video</strong><br>Optionally share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.
+                        </div>
+                    </div>
+                    <div class="bottomCenteredContainer">
+                        <div>
+                            <img src="svg/__select.svg" class="button_sm padding_sm" />
+                            <div class="type_med">share</div>
+                        </div>
+                        <div>
+                            <img src="svg/__done.svg" class="button_sm padding_sm" />
+                            <div class="type_med">done</div>
                         </div>
                     </div>
                 </div>
-                <div id="shareThanks">
-                THANKS FOR SHARING!<br>–<br>Please Turn Puppet Around and <br>Return Features to Drawers
-                </div>
-                <div id="shareStartOverRow" class="redBg columnCenteredContainer">
-                    <div id="shareStartOverButton" class="button border">Start Over</div>
+            </div>
+        </div>
+
+        <div id="thankYou" class="fill">
+            <div id="image" class="fillAbs" style="z-index:0">
+                <!-- Captured Image -->
+                <img class="fill" style="background-color:grey" />
+            </div>
+            <div id="titleContainer" class="container fillAbs centeredContainer column" style="z-index:1">
+                <div class="type_lg padding_sm">Thanks<br />for sharing</div>
+                <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" />
+                <div class="type_med">
+                <strong>please spin the puppet around</strong><br> and return features to drawers<br> to start over
                 </div>
             </div>
         </div>
