@@ -18,16 +18,23 @@ namespace mmi {
     public:
         
         void setup();
+        // update for video-based app(s)
         void update( const ofPixels & cameraOne, const ofPixels & cameraTwo );
+        
+        // update for image-based app(s)
+        void update( const ofPixels & cameraOne );
         
         void startRecordingEvt( string & backgroundClip );
         void startRecording( string backgroundClip = "");
         void stopRecording();
         void close();
         
+        void takePhotoEvt();
+        
         ofParameterGroup params;
         
         ofEvent<string> onFinishedRecording;
+        ofEvent<string> onFinishedCapture;
         
     protected:
         
@@ -35,6 +42,7 @@ namespace mmi {
         ofParameter<string>     folderDest;
         ofParameter<string>     fileName;
         ofParameter<string>     fileExt;
+        ofParameter<string>     fileExtImage;
         ofParameter<string>     pixFmt;
         ofParameter<string>     codec;
         ofParameter<int>        bitrate;
@@ -55,5 +63,8 @@ namespace mmi {
         
         float frameRate;
         uint64_t lastFrameAdded;
+        
+        // image capture
+        ofImage lastImage;
     };
 }

@@ -15,7 +15,8 @@ namespace mmi {
     class MessageHandler
     {
     public:
-        void setup();
+        void setup( string address = "localhost", int port = 8080 );
+        void update();
         
         /**
          Switch which camera we are showing/streaming
@@ -29,7 +30,40 @@ namespace mmi {
          */
         ofEvent<string>    onStartRecording;
         
+        /**
+         Take a photo!
+         */
+        ofEvent<void>    onCaptureImage;
+        
+        /**
+         Incoming events: finished recording a video,
+         or finished capturing a photo
+         */
+        void onVideoRecorded( string & file );
+        void onImageCaptured( string & file );
+        
+        //websocket listeners
+        
         void onMessage( ofxLibwebsockets::Event & m );
+        
+        void onConnect( ofxLibwebsockets::Event& args );
+        void onOpen( ofxLibwebsockets::Event& args );
+        void onClose( ofxLibwebsockets::Event& args );
+        void onIdle( ofxLibwebsockets::Event& args );
+        
+    protected:
+        
+        // we listen to ws stuff directly from frontend
+        ofxLibwebsockets::Client * wsClient;
+        string host;
+        int port;
+        
+        void connect();
+        
+        // auto reconnect to our websocket server
+        bool        bConnected;
+        uint64_t    lastTimeTriedConnect;
+        uint64_t    reconnectInterval;
     };
     
 }

@@ -25,15 +25,18 @@ void CameraApp::setup( bool bDoStream ){
         // connect stream message to message parser
         ofAddListener(streamMgr.onWsMessage, &messageHdlr, &mmi::MessageHandler::onMessage);
         gui->add( streamMgr.params );
-    } else {
         
+        messageHdlr.setup();
+    } else {
+        messageHdlr.setup();
     }
-    messageHdlr.setup();
-    
     
     // listen to events from message parser
     ofAddListener(messageHdlr.onSwitchCamera, this, &CameraApp::setStreamCamera);
     ofAddListener(messageHdlr.onStartRecording, &recordMgr, &mmi::RecordManager::startRecordingEvt);
+    ofAddListener(messageHdlr.onCaptureImage, &recordMgr, &mmi::RecordManager::takePhotoEvt);
+    ofAddListener(recordMgr.onFinishedRecording, &messageHdlr, &mmi::MessageHandler::onVideoRecorded);
+    ofAddListener(recordMgr.onFinishedCapture, &messageHdlr, &mmi::MessageHandler::onImageCaptured);
     
     gui->setup("Settings");
     
@@ -49,6 +52,8 @@ void CameraApp::setup( bool bDoStream ){
 
 //--------------------------------------------------------------
 void CameraApp::update(){
+    // update managers
+    messageHdlr.update();
     
     for ( auto * c : cameraMgr.getCameras()){
         c->update();
@@ -78,6 +83,9 @@ void CameraApp::update(){
         auto & img2 = cameraMgr.getCamera(b)->getImage();
         if ( !img1.isAllocated() || !img2.isAllocated() ) return;
         recordMgr.update(img1.getPixels(), img2.getPixels());
+    } else {
+        auto & img1 = cameraMgr.getCamera(0)->getImage();
+        recordMgr.update(img1.getPixels());
     }
 #else
         
