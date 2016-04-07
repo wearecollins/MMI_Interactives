@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <link rel='stylesheet' type='text/css' href='css/normalize.css'>
+    <!-- TODO: COMBINE STYLE AND MAIN -->
+  <link rel='stylesheet' type='text/css' href='css/style.css'>
+  <link rel='stylesheet' type='text/css' href='css/main.css'>
+  <script type='text/javascript' src='js/vendor/handlebars.min-v4.0.5.js'>
+  </script>
+  <script type='text/javascript' src='js/Transitions.js'></script>
+  <script type='text/javascript' src='js/Loader.js'></script>
+  <script type='text/javascript' src='js/main.js'></script>
+  <script type='text/javascript'>
+
+    // Build array of pages
+    var pages = [
+      'anythingmuppets/freeplay',
+      'anythingmuppets/attract',
+      'anythingmuppets/intro',
+      'anythingmuppets/script',
+      'anythingmuppets/share',
+      'anythingmuppets/thanks',
+      'anythingmuppets/admin'
+    ];
+
+    var customTransitions = new Transitions();
+
+    var defaultMode = customTransitions.getDefaultMode();
+    defaultMode.addGlobalTransition('cancel', 'anythingmuppets/attract');
+    
+    //we don't want the last state to go to freeplay.
+    defaultMode.addTransition('anythingmuppets/thanks', 'next', 'anythingmuppets/attract');
+
+    var continuousMode = customTransitions.createMode('continuous');
+    continuousMode.addGlobalTransition('cancel', 'anythingmuppets/freeplay');
+
+    var manager = new Manager(pages, customTransitions);
+  </script>
+</head>
+<body style='overflow:hidden; margin:0; padding:0;'>
+</body>
+</html>

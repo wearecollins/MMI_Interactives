@@ -1,0 +1,10 @@
+{
+  "libs": [
+    "browser",
+    "chai",
+    "ecma6"
+  ],
+  "loadEagerly": [
+    "*.js"
+  ]
+}

@@ -1,0 +1,38 @@
+{{!--
+ it is assumed that each page has one div wrapping it 
+ with an id that matches the pages name.
+--}}
+<div id='{{name}}' class='page'>
+  {{!--
+   the background and container divs are designed to layer
+   on top of one another
+  --}}
+  <div class='background'>
+    {{!-- 
+     use this space (or style the parent div) 
+     for customizing a full-screen background
+    --}}
+  </div>
+  <div class='container'>
+    {{!-- 
+     the content and buttons divs are used to balance the amount of space
+     given to the buttons
+    --}}
+    <div class='content'>
+      {{!-- any custom content should go in here --}}
+      This page intentionally left blank
+    </div>
+    <div class='buttons'>
+      {{!--
+       generally buttons are defined in the JSON 
+       and automatically populated and styled for a consistent UI
+      --}}
+      {{#each buttons}}
+      <div class='{{type}}' 
+           onclick="window.dispatchEvent(new Event('{{type}}'));">
+        {{text}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

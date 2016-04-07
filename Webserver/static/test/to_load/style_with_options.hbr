@@ -1,0 +1,1 @@
+#custom{background-color:{{color}};background-image:url({{@path}}/bg.jpg);}

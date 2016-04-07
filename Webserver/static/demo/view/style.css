@@ -1,0 +1,70 @@
+#{{name}} .background{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#{{name}} .container .content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+#{{name}} .container .content .numbers{
+  white-space:nowrap;
+  font-size:100px;
+  color:white;
+  font-weight:bold;
+  font-family:sans-serif;
+}
+
+#{{name}} .container .content .numbers div{
+  opacity:0;
+  position:absolute;
+}
+
+@keyframes animateCount{
+  to {opacity:1;}
+}
+
+@keyframes animateOff{
+  to {margin-top:-100vh;}
+}
+
+@keyframes animateOn{
+  to {margin-top:0px;}
+}
+
+#{{name}}.countdown .container .content .numbers div{
+  animation-timing-function:ease;
+  animation-name: animateCount;
+  animation-duration: .5s;
+  animation-iteration-count: 2;
+  animation-direction:alternate;
+}
+  
+#{{name}}.countdown .container .content .numbers div:nth-of-type(2){
+  animation-delay:1s;
+}
+
+#{{name}}.countdown .container .content .numbers div:nth-of-type(3){
+  animation-delay:2s;
+}
+
+#{{name}}.disabled .container .content div{
+  animation-iteration-count: 1;
+}
+
+#{{name}}.disabled{
+  display:inline;
+  animation-name: animateOff;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+}
+
+#{{name}}{
+  animation-name: animateOn;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+}

@@ -1,0 +1,7 @@
+{
+	"name":"attract",
+  	"buttons":[
+  		{"type":"next","text":"Get Started"}
+  	],
+  	"video":"fpo_eyes.mp4"
+}

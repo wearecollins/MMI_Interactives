@@ -1,0 +1,28 @@
+{
+  "name": "mmi_frontend_structure",
+  "version": "1.0.0",
+  "description": "This is a work-in-progress proof-of-concept for how to structure the frontend apps in a way that will be easy to define and manage.",
+  "main": "server.js",
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "jsdoc": "^3.4.0"
+  },
+  "scripts": {
+    "lint": "./node_modules/eslint/bin/eslint.js .",
+    "doc": "./node_modules/jsdoc/jsdoc.js -c ./jsdoc_conf.json",
+    "doc_client":"./node_modules/jsdoc/jsdoc.js -c ./static/jsdoc_conf.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "log4js": "^0.6.33",
+    "rwlock": "^5.0.0",
+    "ws": "^1.0.1"
+  },
+  "optionalDependencies":{
+    "utf-8-validate": "^1.2.1",
+    "bufferutil": "^1.2.1"
+  }
+}

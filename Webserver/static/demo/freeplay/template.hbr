@@ -1,0 +1,22 @@
+<div id='{{name}}' class='page'>
+  <div class='background'>
+    <img></img>
+  </div>
+  <div class='container'>
+    <div class='content'>
+      <div class='numbers'>
+        <div class='number'>3</div>
+        <div class='number'>2</div>
+        <div class='number'>1</div>
+      </div>
+    </div>
+    <div class='buttons'>
+      {{#each buttons}}
+      <div class='{{type}}' 
+           onclick="window.dispatchEvent(new Event('{{type}}'));">
+        {{text}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

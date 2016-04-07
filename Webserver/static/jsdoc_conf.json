@@ -1,0 +1,9 @@
+{
+  "source":{
+    "include":["./static/js"],
+    "excludePattern":""
+  },
+  "opts":{
+    "destination":"./static/out/"
+  }
+}

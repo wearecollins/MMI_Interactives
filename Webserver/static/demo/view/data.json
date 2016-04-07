@@ -1,0 +1,4 @@
+{"name":"view",
+ "showStream":true,
+ "buttons":[{"type":"cancel","text":"NEVERmind (ugh)"},
+            {"type":"next","text":"snap a pic"}]}

@@ -1,0 +1,25 @@
+<div id='{{name}}' class='page'>
+  {{!-- 
+    Container for background video
+    * Edit "video" in data.json to change what's loaded below
+  --}}
+  <div class='background' style="z-index:0">
+      <video class="fillContainer" autoplay loop>
+          <source src="anythingmuppets/{{name}}/{{video}}" type="video/mp4">
+      </video>
+  </div>
+  <div class='container fillAbs centeredContainer column' style="z-index:1">
+    <div class="type_lg title">Design an<br />Anything Muppet</div>
+  </div>
+  {{!-- 
+    Edit "text" in "buttons" to change text below button icon
+  --}}
+  <div class="container fillAbs bottomCenteredContainer" style="z-index:1">
+    {{#each buttons}}
+    <div id="sbContInternal" class="column" onclick="window.dispatchEvent(new Event('{{type}}'));">
+        <img src="svg/__get_started.svg" class="button_sm padding_sm" />
+        <div class="type_med padding_sm">{{text}}</div>
+    </div>
+    {{/each}}
+  </div>
+</div>

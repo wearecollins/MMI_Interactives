@@ -1,0 +1,19 @@
+{
+  "appenders": [
+    {
+      "type":"console"
+    },
+    {
+      "type":"file",
+      "filename":"log/out.log",
+      "maxLogSize":20971520,
+      "backups":3
+    }
+  ],
+  "levels": {
+    "[all]":"ALL",
+    "remote":"ALL",
+    "server":"ALL",
+    "websocket":"ALL"
+  }
+}

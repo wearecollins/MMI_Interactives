@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <link rel='stylesheet' type='text/css' href='style.css'>
+  <script type='text/javascript' src='js/vendor/handlebars.min-v4.0.5.js'>
+  </script>
+  <script type='text/javascript' src='js/Transitions.js'></script>
+  <script type='text/javascript' src='js/Loader.js'></script>
+  <script type='text/javascript' src='js/main.js'></script>
+  <script type='text/javascript'>
+    var pages = ['demo/freeplay','demo/attract','demo/intro','demo/view',
+                 'demo/countdown',/*'demo/capture','demo/review',*/
+                 'demo/admin'];
+    var customTransitions = new Transitions();
+
+    var defaultMode = customTransitions.getDefaultMode();
+    defaultMode.addGlobalTransition('cancel', 'demo/attract');
+    //we don't want the last state to go to freeplay
+    defaultMode.addTransition('demo/countdown', 'next', 'demo/attract');
+
+    var continuousMode = customTransitions.createMode('continuous');
+    continuousMode.addGlobalTransition('cancel', 'demo/freeplay');
+
+    var manager = new Manager(pages, customTransitions);
+  </script>
+</head>
+<body style='overflow:hidden; margin:0; padding:0;'>
+</body>
+</html>

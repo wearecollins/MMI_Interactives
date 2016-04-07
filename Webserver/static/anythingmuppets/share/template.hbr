@@ -1,0 +1,31 @@
+<div id='{{name}}' class='page'>
+  {{!-- this should be clear for image underneath --}}
+  {{!-- TODO: can we look for a param from HBR in case we want to stream? --}}
+  <div class='background'>
+  </div>
+
+  <div class="fillAbs bottomCenteredContainer" style="z-index:1">
+    <div class="centeredContainer column container fillContainer fillGrey">
+        <div class="type_lg">Share</div>
+        <div class="topCenteredContainer type_sm">
+            <div class="shareCopyBlock">
+                <strong>Download and share</strong><br>at the Museum Shop Your unique name:
+                <div id="uniqueName"></div>
+            </div>
+            <div class="shareCopyBlock">
+                <strong>Post your video</strong><br>Optionally share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.
+            </div>
+        </div>
+        <div class="bottomCenteredContainer">
+            <div onclick="window.dispatchEvent(new Event('share'));">
+                <img src="svg/__select.svg" class="button_sm padding_sm" />
+                <div class="type_med">share</div>
+            </div>
+            <div onclick="window.dispatchEvent(new Event('next'));">
+                <img src="svg/__done.svg" class="button_sm padding_sm"  />
+                <div class="type_med">done</div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

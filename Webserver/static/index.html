@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <link rel='stylesheet' type='text/css' href='style.css'>
+  <script type='text/javascript' src='js/vendor/handlebars.min-v4.0.5.js'>
+  </script>
+  <script type='text/javascript' src='js/Loader.js'></script>
+  <script type='text/javascript' src='js/main.js'></script>
+  <script type='text/javascript'>
+    var SUD = {};
+    /**
+     * get string from url. e.g. www.SUD.com/index.html?sandwich=turkey returns 'turkey'
+     * @param  {String} key      Query param (not including ? or &)
+     * @param  {String} default_ (Optional) what to return if param not found
+     * @return {String}          Returns value of key or default
+     */
+    SUD.getQueryString = function(key, default_)
+    {
+      if (default_==null) default_=""; 
+      key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+      var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+      var qs = regex.exec(window.location.href);
+      if(qs == null)
+        return default_;
+      else
+        return qs[1];
+    }
+
+    var pageList = ['blank'];
+    var pageOfInterest = SUD.getQueryString('page');
+    var stateTransitions;
+    if (pageOfInterest){
+      pageList.splice(0, 0, pageOfInterest);
+      stateTransitions = {};
+      stateTransitions[pageList[0]] = {next:pageList[1],
+                                       prev:pageList[1]};
+    }
+    var manager = new Manager(pageList, stateTransitions);
+  </script>
+</head>
+<body style='overflow:hidden; margin:0; padding:0;'>
+</body>
+</html>

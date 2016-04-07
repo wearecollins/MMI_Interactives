@@ -1,0 +1,4 @@
+{"name":"intro",
+ "video":"make.mp4",
+ "disableTimeout":true,
+ "buttons":[{"type":"next","text":"Get Started"}]}

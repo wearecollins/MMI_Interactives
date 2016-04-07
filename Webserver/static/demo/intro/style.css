@@ -1,0 +1,84 @@
+#{{name}} .background{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#{{name}}.disabled{
+  display:inline;
+}
+
+#{{name}} .container .content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+#{{name}} .container .content div{
+  white-space:nowrap;
+  font-size:100px;
+  color:lightpink;
+  font-weight:bold;
+  font-family:sans-serif;
+  margin-left:-2000px;
+}
+
+@keyframes animateAcross{
+  to {margin-left:2000px;}
+}
+
+@keyframes animateOffTop{
+  to {margin-top:-100vh;}
+}
+
+@keyframes animateOffBottom{
+  to {margin-top:100vh;}
+}
+
+@keyframes animateOffRight{
+  to {margin-left:100vw;}
+}
+
+@keyframes animateOn{
+  to {margin:0px;}
+}
+
+#{{name}} .container .content div{
+  animation-timing-function:cubic-bezier(.3, 1, .7, 0);
+  animation-name: animateAcross;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+  
+#{{name}} .container .content div:nth-of-type(2){
+  animation-delay:.2s;
+}
+
+#{{name}} .container .content div:nth-of-type(3){
+  animation-delay:.4s;
+}
+
+#{{name}}.disabled .container .content div{
+  animation:0;
+  transition:all 1s;
+  margin-left:200vw;
+}
+
+#{{name}}.disabled .background{
+  animation-name: animateOffTop;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+}
+
+#{{name}}.disabled .container{
+  animation-name: animateOffBottom;
+  animation-duration:1s;
+  animation-delay:1s;
+  animation-fill-mode:forwards;
+}
+
+#{{name}} .background{
+  animation-name: animateOn;
+  animation-duration: 1s;
+}

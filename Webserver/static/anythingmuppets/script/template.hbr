@@ -1,0 +1,54 @@
+<div id='{{name}}' class='page'>
+  <div class="background">
+  </div>
+
+  {{!-- This is the main scripts container --}}
+  <div id="scipts" class='fillAbs'>
+  {{!-- 
+    This loops through each 'script' in the data.json, and creates a div for it
+  --}}
+    {{#each scripts}}
+    <div id="{{name_clean}}" class="fillAbs scriptContainer">
+          <div class="fillAbs centeredContainer" style="z-index:0">
+            <img src="anythingmuppets/script/{{img}}" />
+          </div>
+          <div id="scriptInfoContainer" class="fillAbs centeredContainer" style="z-index:1">
+            <div class="scriptTextContainer fill type_sm container">
+                <div class="column_23">
+                    <span class="type_med"><u>{{title}}</u></span>
+                    <br>{{episode}}
+                    <br><br>
+                    {{{text}}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{/each}}
+
+    <div class='container fillAbs bottomCenteredContainer' style="z-index:2">
+    {{#each buttons}}
+      <div id="{{type}}" class="column" onclick="window.dispatchEvent(new Event('{{type}}'));">
+          <img src="svg/__get_started.svg" class="button_sm padding_sm" />
+          <div class="type_med padding_sm">{{text}}</div>
+      </div>
+    {{/each}}
+    </div>
+
+{{!-- This is the 'drawer overlay' container --}}
+    <div id="promptOpenDrawers" class="parchBg bottomCenteredContainer fillAbs" style="z-index:3" onclick="window.dispatchEvent(new Event('openDone'));">
+        <div class="centeredContainer column fill">
+            <img src="svg/__open_drawers.svg" class="button_lg padding_sm" />
+            <div class="fillGreen type_med padding_sm">{{{prompt_open}}}</div>
+        </div>
+    </div>
+
+{{!-- This is the 'spin overlay' container --}}
+    <div id="promptSpinPuppet" class="parchBg bottomCenteredContainer fillAbs" style="z-index:3">
+        <div class="centeredContainer column fill">
+            <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" />
+            <div class="fillGreen type_med padding_sm">{{{prompt_spin}}}</div>
+        </div>
+    </div>
+  </div>
+</div>

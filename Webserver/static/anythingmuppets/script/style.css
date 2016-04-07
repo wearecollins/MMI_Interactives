@@ -1,0 +1,25 @@
+.scriptContainer {
+	visibility: hidden;
+	display: none;
+}
+
+.scriptContainer img {
+	height: 100%;
+}
+
+.scriptTextContainer {
+    padding:8vh;
+    text-align: left;
+}
+
+#promptOpenDrawers, #promptSpinPuppet {
+	visibility: hidden;
+	display: none;
+	top: 0px;
+	left: 0px;
+}
+
+#done {
+	visibility: hidden;
+	display: none;
+}

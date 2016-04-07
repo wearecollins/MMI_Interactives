@@ -1,0 +1,28 @@
+<div id='{{name}}' class='page'>
+  <div class='background'></div>
+  <div class='container'>
+    <div class='content'>
+      {{#each configs}}
+        <div class='config'>
+          <label for='config_{{key}}'>{{key}}</label>
+          {{#switch type}}
+            {{#case 'number'}}
+              <input type='number' id='config_{{key}}'></input>
+            {{/case}}
+            {{#case 'boolean'}}
+              <input type='checkbox' id='config_{{key}}'></input>
+            {{/case}}
+          {{/switch}}
+        </div>
+      {{/each}}
+    </div>
+    <div class='buttons'>
+      {{#each buttons}}
+      <div class='{{type}}' 
+           onclick="window.dispatchEvent(new Event('{{type}}'));">
+        {{text}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
