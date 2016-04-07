@@ -1,6 +1,7 @@
 # Custom
 *.mov
 *.mp4
+*/node_modules
 
 # Defaults
 .DS_Store
