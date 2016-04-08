@@ -2,6 +2,7 @@
 *.mov
 *.mp4
 */node_modules
+Webserver/static/output
 
 # Defaults
 .DS_Store
