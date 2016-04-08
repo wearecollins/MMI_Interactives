@@ -5,7 +5,7 @@
   </div>
 
   <!-- Take a picture, why don't ya? -->
-  <div id="captureContainer" class="container fillAbs bottomCenteredContainer" style="z-index:1">
+  <div id="captureContainer" class="container fillAbs bottomCenteredContainer" style="z-index:2">
         <div class="column" onclick="window.dispatchEvent(new Event('capture'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">take a photo</div>
@@ -17,7 +17,7 @@
   </div>
 
   <!-- Countdown -->
-  <div id="countdownContainer" class="fillAbs" style="z-index:1">
+  <div id="countdownContainer" class="fillAbs" style="z-index:2">
       <div id="c_three" class="container fillAbs centeredContainer">
           <img src="svg/__count_3.svg" class="button_lg padding_sm" />
       </div>
@@ -30,7 +30,7 @@
   </div>
 
   <!-- Retake -->
-  <div id="retakeContainer" class="container fillAbs bottomCenteredContainer" style="z-index:1">
+  <div id="retakeContainer" class="container fillAbs bottomCenteredContainer" style="z-index:2">
         <div class="column" onclick="window.dispatchEvent(new Event('share'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">continue</div>
@@ -42,7 +42,7 @@
   </div>
 
   <!-- Sharing -->
-  <div id="shareContainer" class="fillAbs bottomCenteredContainer" style="z-index:1">
+  <div id="shareContainer" class="fillAbs bottomCenteredContainer" style="z-index:2">
     <div class="centeredContainer column container fillContainer fillGrey">
         <div class="type_lg">Share</div>
         <div class="topCenteredContainer type_sm">

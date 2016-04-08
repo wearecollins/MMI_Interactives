@@ -19,17 +19,16 @@ void CameraApp::setup( bool bDoStream ){
     cameraMgr.setup();
     recordMgr.setup();
     
-    //todo: does stream manager still own the ws:// connection?
     if ( this->bStreaming ){
         streamMgr.setup("", 9091);
         // connect stream message to message parser
         ofAddListener(streamMgr.onWsMessage, &messageHdlr, &mmi::MessageHandler::onMessage);
         gui->add( streamMgr.params );
         
-        messageHdlr.setup();
-    } else {
-        messageHdlr.setup();
     }
+    
+    // setup message handler, which opens its own ws:// client
+    messageHdlr.setup();
     
     // listen to events from message parser
     ofAddListener(messageHdlr.onSwitchCamera, this, &CameraApp::setStreamCamera);
@@ -42,6 +41,8 @@ void CameraApp::setup( bool bDoStream ){
     
     gui->add( recordMgr.params);
     gui->add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
+    
+    gui->loadFromFile("settings.xml");
     
     ofSetLogLevel(OF_LOG_ERROR);
     

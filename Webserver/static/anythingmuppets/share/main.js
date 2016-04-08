@@ -4,7 +4,7 @@ var share = function(/*manager*/){
 
   this.enter = function(/*evt*/){
 
-  this.nRetakes = 0;
+    this.nRetakes = 0;
 
   	window.addEventListener("capture", startCountdown.bind(this));
   	window.addEventListener("skipToThanks", skipToThanks.bind(this));
@@ -39,11 +39,9 @@ var share = function(/*manager*/){
       countdownInterval = setTimeout(function(){
         hide(document.getElementById("c_two"), "flex");
         show(document.getElementById("c_one"), "flex");
+
         countdownInterval = setTimeout(function(){
           hide(document.getElementById("c_one"), "flex");
-          
-          var f = skipToRetake.bind(this)();
-
           // this tells OF to capture
           window.dispatchEvent(new Event('take_photo'));
 
@@ -72,12 +70,12 @@ var share = function(/*manager*/){
   }
 
   function setImage(e){
-    console.log(e);
-
     var bg = document.getElementById("debugBg");
     var im = document.createElement("img");
-    im.src = e.detail;
+    im.src = "output/" + e.detail;
     bg.appendChild(im);
+
+    skipToRetake.bind(this)();
   }
 
   function retake(){
@@ -99,5 +97,13 @@ var share = function(/*manager*/){
     window.removeEventListener("share", share.bind(this));
     window.removeEventListener("retake", retake.bind(this));
     window.removeEventListener("imageCapture", setImage.bind(this));
+
+    var bg = document.getElementById("debugBg");
+    bg.innerHTML = "";
+
+
+    show(document.getElementById("captureContainer"), "flex");
+    hide(document.getElementById("retakeContainer"));
+    hide(document.getElementById("shareContainer"));
   };
 };

@@ -49,8 +49,8 @@ namespace mmi {
             } else if ( !e.json["event"].is_null() ){
                 auto n = e.json["event"]["name"];
                 if ( n == "take_photo" ){
-                    ofNotifyEvent( onCaptureImage );
                     cout << "TAKING PHOTO"<<endl;
+                    ofNotifyEvent( onCaptureImage );
                 }
             }
             
@@ -79,8 +79,6 @@ namespace mmi {
         json["event"] = ofJson::object();
         json["event"]["name"] = "imageCapture";
         json["event"]["detail"] = file;
-        
-        cout << file << endl;
         
         wsClient->send( json.dump() );
     }

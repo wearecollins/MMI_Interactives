@@ -207,6 +207,7 @@ body,
     height: 100%;
     overflow: hidden;
     position: absolute;
+    z-index:1;
 }
 
 .fillContainer {

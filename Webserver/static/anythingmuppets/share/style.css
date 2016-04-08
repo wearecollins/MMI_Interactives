@@ -1,6 +1,6 @@
 /* for debuggin */
 #debugBg {
-	background-color:rgba(0,0,0,.5);
+	/* background-color:rgba(0,0,0,.5); */
 }
 #shareContainer, #retakeContainer, #countdownContainer {
 	visibility: hidden;

@@ -157,9 +157,10 @@ namespace mmi {
     void RecordManager::takePhotoEvt(){
         currentFileName = (fileName.get() +ofGetTimestampString()+fileExtImage.get() );
         auto outputName = ofToDataPath(folderDest.get() + "/" + currentFileName, true );
-        
-        ofSaveImage(lastImage, outputName);
-        ofNotifyEvent(onFinishedCapture, outputName, this);
+        cout << "saving" <<endl;
+        lastImage.save(outputName);
+        cout << "saved" <<endl;
+        ofNotifyEvent(onFinishedCapture, currentFileName, this);
     }
     
 }
