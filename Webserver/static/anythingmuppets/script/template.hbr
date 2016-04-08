@@ -15,7 +15,7 @@
           <div id="scriptInfoContainer" class="fillAbs centeredContainer" style="z-index:1">
             <div class="scriptTextContainer fill type_sm container">
                 <div class="column_23">
-                    <span class="type_med"><u>{{title}}</u></span>
+                    <span class="type_med"><u>{{name}}</u></span>
                     <br>{{episode}}
                     <br><br>
                     {{{text}}}

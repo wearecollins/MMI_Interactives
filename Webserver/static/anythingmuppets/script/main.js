@@ -62,5 +62,10 @@ var script = function(/*manager*/){
 		currentScript.style.visibility = "hidden";
 		currentScript.style.display = "none";
 		hideSpinPrompt();
+
+		//cleanup
+		window.removeEventListener("start", showOpenPrompt.bind(this));
+		window.removeEventListener("openDone", hideOpenPrompt.bind(this));
+		window.removeEventListener("done", showSpinPrompt.bind(this));
 	};
 };
