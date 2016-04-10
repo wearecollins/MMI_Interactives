@@ -1,15 +1,5 @@
-/* for debuggin */
-#debugBg {
-	/* background-color:rgba(0,0,0,.5); */
-}
-#shareContainer, #retakeContainer, #countdownContainer {
-	visibility: hidden;
-	display: none;
-}
-
-#c_three, #c_two, #c_one {
-	visibility: hidden;
-	display: none;
+#{{name}} .background{
+	background-color: rgba(0,0,0,50);
 }
 
 #{{name}}.disabled{
@@ -23,7 +13,7 @@
 
 
 #{{name}}{
-  animation-name: animateIn;
+  animation-name: animateUp;
   animation-duration: 1s;
   animation-fill-mode:forwards;
   z-index: 0;

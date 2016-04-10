@@ -40,6 +40,7 @@
 
 .page.disabled{
   display:none;
+  z-index: 0;
 }
 
 .page .container .buttons div{

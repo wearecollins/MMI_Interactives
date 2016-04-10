@@ -37,7 +37,7 @@
 
 {{!-- This is the 'drawer overlay' container --}}
     <div id="promptOpenDrawers" class="parchBg bottomCenteredContainer fillAbs" style="z-index:4" onclick="window.dispatchEvent(new Event('openDone'));">
-        <div class="centeredContainer column fill">
+        <div class="centeredContainer column fillAbs" style="left:0px">
             <img src="svg/__open_drawers.svg" class="button_lg padding_sm" />
             <div class="fillGreen type_med padding_sm">{{{prompt_open}}}</div>
         </div>
@@ -45,7 +45,7 @@
 
 {{!-- This is the 'spin overlay' container --}}
     <div id="promptSpinPuppet" class="parchBg bottomCenteredContainer fillAbs" style="z-index:4">
-        <div class="centeredContainer column fill">
+        <div class="centeredContainer column fillAbs" style="left:0px">
             <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" />
             <div class="fillGreen type_med padding_sm">{{{prompt_spin}}}</div>
         </div>

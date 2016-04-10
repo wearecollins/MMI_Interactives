@@ -13,13 +13,43 @@
 }
 
 #promptOpenDrawers, #promptSpinPuppet {
-	visibility: hidden;
-	display: none;
+/* 	visibility: hidden;
+	display: none; */
 	top: 0px;
 	left: 0px;
+	height: 0vh;
+}
+
+#promptOpenDrawers.visible, #promptSpinPuppet.visible {
+	animation-name: animateIn;
+  	animation-duration: 1s;
+  	animation-fill-mode:forwards;
+}
+
+#promptOpenDrawers.hideMe, #promptSpinPuppet.hideMe {
+	animation-name: animateOff;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
 }
 
 #done {
 	visibility: hidden;
 	display: none;
+}
+
+#{{name}}.disabled{
+  display:flex;
+  /* animation-name: {{name}}animateOff; */
+  animation-name: hide;
+  animation-delay: 1s;
+  animation-duration:0s;
+  animation-fill-mode:forwards;
+}
+
+
+#{{name}}{
+  animation-name: animateIn;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+  z-index: 0;
 }

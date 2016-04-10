@@ -5,9 +5,9 @@
   --}}
 
   <div class='background'>
-    <video class="fillContainer" autoplay loop>
+<!--     <video class="fillContainer" autoplay loop>
         <source src="anythingmuppets/{{name}}/{{video}}" type="video/mp4">
-    </video>
+    </video> -->
   </div>
   <div class='container fillAbs bottomCenteredContainer' style="z-index:2">
     {{#each buttons}}

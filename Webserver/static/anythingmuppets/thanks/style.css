@@ -1,17 +1,3 @@
-/* for debuggin */
-#debugBg {
-	/* background-color:rgba(0,0,0,.5); */
-}
-#shareContainer, #retakeContainer, #countdownContainer {
-	visibility: hidden;
-	display: none;
-}
-
-#c_three, #c_two, #c_one {
-	visibility: hidden;
-	display: none;
-}
-
 #{{name}}.disabled{
   display:flex;
   /* animation-name: {{name}}animateOff; */
