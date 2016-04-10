@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 
-//#define DEBUG_CAMERA
+#define DEBUG_CAMERA
 
 #ifndef DEBUG_CAMERA
 #include "BlackFlyCamera.h"

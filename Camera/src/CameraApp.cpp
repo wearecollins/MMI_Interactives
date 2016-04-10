@@ -64,10 +64,11 @@ void CameraApp::update(){
     if ( this->bStreaming ){
         // try to stream all the time, image streamer will handle by framerate
         
-        if ( camera != nullptr && camera->getImage().isAllocated() ){
 #ifndef DEBUG_CAMERA
+        if ( camera != nullptr && camera->getImage().isAllocated() ){
             streamMgr.stream( camera->getImage() );
 #else
+        if ( camera != nullptr ){
             streamMgr.stream( *camera );
 #endif
         }
@@ -84,7 +85,7 @@ void CameraApp::update(){
         auto & img2 = cameraMgr.getCamera(b)->getImage();
         if ( !img1.isAllocated() || !img2.isAllocated() ) return;
         recordMgr.update(img1.getPixels(), img2.getPixels());
-    } else {
+    } else if ( cameraMgr.getNumCameras() > 0 ) {
         auto & img1 = cameraMgr.getCamera(0)->getImage();
         recordMgr.update(img1.getPixels());
     }
@@ -162,7 +163,9 @@ void CameraApp::keyPressed(ofKeyEventArgs & e ){
         messageHdlr.onStartRecording.notify(whichVideo);
     } else if ( e.key == 'R'){
         for (auto * c : cameraMgr.getCameras() ){
+#ifndef DEBUG_CAMERA
             c->reloadShader();
+#endif
         }
     }
 #endif

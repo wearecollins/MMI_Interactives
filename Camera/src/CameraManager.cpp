@@ -122,7 +122,7 @@ namespace mmi {
             c->drawDebug(x, y, c->getWidth(), c->getHeight());
             x += c->getImage().getWidth();
 #else
-            c->draw(x, y, c->getImage().getWidth(), c->getImage().getHeight());
+            c->draw(x, y, c->getWidth(), c->getHeight());
             x += c->getWidth();
 #endif
         }
