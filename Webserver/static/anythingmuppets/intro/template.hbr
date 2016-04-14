@@ -4,12 +4,12 @@
     * Edit "video" in data.json to change what's loaded below
   --}}
 
-  <div class='background'>
-<!--     <video class="fillContainer" autoplay loop>
+  <div class='background topL'>
+    <video id="video" class="fillContainer intoVideo">
         <source src="anythingmuppets/{{name}}/{{video}}" type="video/mp4">
-    </video> -->
+    </video>
   </div>
-  <div class='container fillAbs bottomCenteredContainer' style="z-index:2">
+  <div class='container fillAbs bottomCenteredContainer topL' style="z-index:2">
     {{#each buttons}}
     <div class="column" onclick="window.dispatchEvent(new Event('{{type}}'));">
         <img src="svg/__get_started.svg" class="button_sm padding_sm" />

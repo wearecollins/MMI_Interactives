@@ -4,7 +4,7 @@
     * Edit "video" in data.json to change what's loaded below
   --}}
   <div class='background'>
-      <video class="fillContainer" autoplay loop>
+      <video class="fillContainer attractVideo" autoplay loop muted>
           <source src="anythingmuppets/{{name}}/{{video}}" type="video/mp4">
       </video>
   </div>
@@ -15,11 +15,9 @@
     Edit "text" in "buttons" to change text below button icon
   --}}
   <div class="container fillAbs bottomCenteredContainer" style="z-index:2">
-    {{#each buttons}}
-    <div id="sbContInternal" class="column" onclick="window.dispatchEvent(new Event('{{type}}'));">
+    <div id="sbContInternal" class="column" onclick="window.dispatchEvent(new Event('next'));">
         <img src="svg/__get_started.svg" class="button_sm padding_sm" />
-        <div class="type_med padding_sm">{{text}}</div>
+        <div class="type_med padding_sm">Get Started</div>
     </div>
-    {{/each}}
   </div>
 </div>

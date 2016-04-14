@@ -45,8 +45,11 @@
 
 {{!-- This is the 'spin overlay' container --}}
     <div id="promptSpinPuppet" class="parchBg bottomCenteredContainer fillAbs" style="z-index:4">
-        <div class="centeredContainer column fillAbs" style="left:0px">
-            <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" />
+        <div class="centeredContainer column fillAbs" style="left:0px"><!-- 
+            <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" /> -->
+            <video class="button_lg padding_sm" autoplay loop>
+              <source src="video/arrow.mp4" type="video/mp4">
+            </video>
             <div class="fillGreen type_med padding_sm">{{{prompt_spin}}}</div>
         </div>
     </div>

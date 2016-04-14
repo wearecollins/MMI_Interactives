@@ -70,7 +70,7 @@ var share = function(/*manager*/){
   }
 
   function setImage(e){
-    var bg = document.getElementById("debugBg");
+    var bg = document.getElementById("captureBgContainer");
     var im = document.createElement("img");
     im.src = "output/" + e.detail;
     bg.appendChild(im);
@@ -98,12 +98,14 @@ var share = function(/*manager*/){
     window.removeEventListener("retake", retake.bind(this));
     window.removeEventListener("imageCapture", setImage.bind(this));
 
-    var bg = document.getElementById("debugBg");
-    bg.innerHTML = "";
+    var bg = document.getElementById("captureBgContainer");
+    function cleanUp(){
+      bg.innerHTML = "";
+      show(document.getElementById("captureContainer"), "flex");
+      hide(document.getElementById("retakeContainer"));
+      hide(document.getElementById("shareContainer"));
+    }
 
-
-    show(document.getElementById("captureContainer"), "flex");
-    hide(document.getElementById("retakeContainer"));
-    hide(document.getElementById("shareContainer"));
+    setTimeout(cleanUp, 1000);
   };
 };

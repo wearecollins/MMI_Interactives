@@ -39,10 +39,10 @@
 
 #{{name}}.disabled{
   display:flex;
-  /* animation-name: {{name}}animateOff; */
-  animation-name: hide;
-  animation-delay: 1s;
-  animation-duration:0s;
+  animation-name: animateOff;
+  /* animation-name: hide; */
+  /* animation-delay: 1s; */
+  animation-duration:1s;
   animation-fill-mode:forwards;
 }
 

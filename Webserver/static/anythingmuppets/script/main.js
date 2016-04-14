@@ -78,8 +78,10 @@ var script = function(/*manager*/){
 	this.exit = function(/*evt*/){
 		currentScript.style.visibility = "hidden";
 		currentScript.style.display = "none";
-		hideSpinPrompt();
-		hideOpenPrompt();
+		setTimeout( function(){
+			hideSpinPrompt();
+			hideOpenPrompt();
+		}, 1000);
 
 		//cleanup
 		window.removeEventListener("start", showOpenPrompt.bind(this));

@@ -12,5 +12,5 @@
 	animation-name: animateIn;
   	animation-duration: 1s;
   	animation-fill-mode:forwards;
-  	z-index: 0;
+  	z-index: 1;
 }

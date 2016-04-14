@@ -1,6 +1,6 @@
 /* for debuggin */
-#debugBg {
-	/* background-color:rgba(0,0,0,.5); */
+#captureBgContainer {
+	background-color:rgba(0,0,0,.5);
 }
 #shareContainer, #retakeContainer, #countdownContainer {
 	visibility: hidden;
@@ -13,6 +13,7 @@
 }
 
 #{{name}}.disabled{
+  height: 100vh;
   display:flex;
   /* animation-name: {{name}}animateOff; */
   animation-name: hide;
@@ -23,8 +24,10 @@
 
 
 #{{name}}{
+  height: 0vh;
   animation-name: animateIn;
   animation-duration: 1s;
+  animation-delay: 1s;
   animation-fill-mode:forwards;
   z-index: 0;
 }

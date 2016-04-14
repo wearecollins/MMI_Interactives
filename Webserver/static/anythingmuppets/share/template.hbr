@@ -1,7 +1,7 @@
 <div id='{{name}}' class='page'>
   {{!-- this should be clear for image underneath --}}
   {{!-- TODO: can we look for a param from HBR in case we want to stream? --}}
-  <div class='background' id="debugBg">
+  <div class='background' id="captureBgContainer">
   </div>
 
   <!-- Take a picture, why don't ya? -->
