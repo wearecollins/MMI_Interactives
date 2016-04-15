@@ -51,6 +51,15 @@ namespace mmi {
                 if ( n == "take_photo" ){
                     cout << "TAKING PHOTO"<<endl;
                     ofNotifyEvent( onCaptureImage );
+                } else if (n == "camera_front"){
+                    int whichCamera = 0;
+                    ofNotifyEvent( onSwitchCamera, whichCamera );
+                } else if (n == "camera_side"){
+                    int whichCamera = 1;
+                    ofNotifyEvent( onSwitchCamera, whichCamera );
+                } else if (n == "record_video"){
+                    string v = e.json["event"]["detail"];
+                    ofNotifyEvent( onStartRecording, v );
                 }
             }
             
@@ -68,7 +77,7 @@ namespace mmi {
         ofJson json;
         json["event"] = ofJson::object();
         json["event"]["name"] = "videoRecorded";
-        json["event"]["data"] = file;
+        json["event"]["detail"] = file;
         
         wsClient->send( json.dump() );
     }

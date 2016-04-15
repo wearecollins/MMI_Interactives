@@ -82,7 +82,7 @@ static void setupEventHelper(ofApp *app)
     [webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]]];
     
     [webView setWantsLayer:YES];
-    [self setTranslucent:YES];
+//    [self setTranslucent:YES];
     [webView setValue:@YES forKey:@"drawsTransparentBackground"];
     
     [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
