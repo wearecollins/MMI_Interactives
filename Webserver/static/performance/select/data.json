@@ -1,0 +1,17 @@
+{
+	"name":"select",
+	"videos":[
+		{
+			"name":"cest_ci_bon",
+			"src":"video/cest_ci_bon.mp4"
+		},
+		{
+			"name":"black_magic",
+			"src":"video/black_magic.mp4"
+		},
+		{
+			"name":"horse_named_bill",
+			"src":"video/horse_named_bill.mp4"
+		}
+	]
+}

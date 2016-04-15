@@ -1,0 +1,4 @@
+{"name":"blank",
+  "buttons":[{"type":"cancel","text":"cancel"},
+             {"type":"prev","text":"prev"},
+             {"type":"next","text":"next"}]}

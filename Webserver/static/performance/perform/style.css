@@ -1,0 +1,9 @@
+#{{name}} .countDown, #{{name}} #counter {
+	visibility: hidden;
+	z-index: 2;
+}
+
+#hiddenVideos {
+	visibility: hidden;
+	display: none;
+}

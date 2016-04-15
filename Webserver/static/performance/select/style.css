@@ -1,0 +1,21 @@
+#{{name}} video {
+    height: 80%;
+    margin: .5%;
+}
+
+#select_clips {
+	visibility: hidden;
+	display: none;
+}
+
+#{{name}} .centerButtons {
+	height: 100%;
+	display: flex;
+	align-items: flex-end;
+}
+
+#{{name}} .button {
+	height:20vh;
+	display: flex;
+	align-items: flex-start;
+}

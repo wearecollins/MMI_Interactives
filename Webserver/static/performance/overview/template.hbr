@@ -1,0 +1,7 @@
+<div id='{{name}}' class='page'>
+  <div class='background'>
+    <!-- This will show the live camera -->
+  </div>
+  <audio src="vo/Pv02.mp3" id="camera_front"></audio>
+  <audio src="vo/Pv03.mp3" id="camera_side"></audio>
+</div>

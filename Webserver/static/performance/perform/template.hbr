@@ -1,0 +1,39 @@
+<div id='{{name}}' class='page'>
+  <div class='background'>
+    <!-- This will show the live camera -->
+  </div>
+
+  <!-- State I -->
+  <div id="performReady" class="fillAbs">
+      <div class="fillAbs centeredContainer column" style="z-index:2">
+          <div class="type_lg noselect">Get Ready!</div>
+      </div>
+  </div>
+
+
+  <div id="hiddenVideos">
+    {{#each videos}}
+    <video id="perf_{{name}}">
+        <source src="{{src}}" type="video/mp4">
+    </video>
+  {{/each}}
+  </div>
+
+  <!-- Countdown -->
+  <div id="countdownContainer" class="fillAbs">
+    <div id="c_three" class="fillAbs centeredContainer countDown">
+        <img src="svg/__count_3.svg" class="cdNumber" />
+    </div>
+    <div id="c_two" class="fillAbs centeredContainer countDown">
+        <img src="svg/__count_2.svg" class="cdNumber" />
+    </div>
+    <div id="c_one" class="fillAbs centeredContainer countDown">
+        <img src="svg/__count_1.svg" class="cdNumber" />
+    </div>
+  </div>
+
+  <!-- Counter -->
+  <div id="counter" class="fillAbs trContainer container" style="z-index:1">
+      <img src="svg/__counter.svg" class="button_sm" />
+  </div>
+</div>
