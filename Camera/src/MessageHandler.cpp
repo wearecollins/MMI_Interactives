@@ -59,7 +59,7 @@ namespace mmi {
                 ofNotifyEvent( onSwitchCamera, whichCamera );
             }
         }
-        cout << e.message << endl;
+        cout <<"Recieved message: "<< e.message << endl;
     }
     
     

@@ -16,7 +16,7 @@ void CameraApp::setup( bool bDoStream ){
     gui->registerMouseEvents();
     gui->add(cameraTop.set("Which camera top", 0, 0, 1));
     
-    cameraMgr.setup();
+    cameraMgr.setup(this->bStreaming);
     recordMgr.setup();
     
     if ( this->bStreaming ){

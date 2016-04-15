@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 
-#define DEBUG_CAMERA
+//#define DEBUG_CAMERA
 
 #ifndef DEBUG_CAMERA
 #include "BlackFlyCamera.h"
@@ -36,7 +36,7 @@ namespace mmi {
     {
     public:
         
-        void setup( string settingsFile = "cameras.xml" );
+        void setup( bool bSmall = false, string settingsFile = "cameras.xml" );
         void draw(int x, int y, int which = 0 );
         void drawDebug( int x, int y );
         void drawGui();

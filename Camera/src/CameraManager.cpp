@@ -10,7 +10,7 @@
 namespace mmi {
     
     //--------------------------------------------------------------
-    void CameraManager::setup( string settingsFile ){
+    void CameraManager::setup( bool bSmall, string settingsFile ){
         this->settingsFile.set("Settings file", settingsFile);
         gui = new ofxPanel();
         gui->setup();
@@ -29,7 +29,7 @@ namespace mmi {
                 string guid = settings.getValue("guid");
                 ofLogVerbose()<<"[CameraManager] Setting up camera "<<guid;
 #ifndef DEBUG_CAMERA
-                auto bOpen = camera->setup(guid);
+                auto bOpen = camera->setup(guid, bSmall ? 1040 : 2080 );
                 if ( bOpen ){
                     cameras.push_back(camera);
                     gui->add(camera->params);

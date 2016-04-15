@@ -31,6 +31,10 @@ namespace mmi {
         this->width = width;
         this->height = height;
         
+        if ( this->width < 2080 ){
+            fmt7Mode = 4;
+        }
+        
         bSetup = false;
         
         // setup stuff
@@ -56,6 +60,9 @@ namespace mmi {
         camera.setFormat7(true, fmt7Mode);
         this->width = 2080 * (fmt7Mode == 0 ? 1 : .5);
         this->height = 1552 * (fmt7Mode == 0 ? 1 : .5);
+        
+        ofLogVerbose()<<"[PointGrey Camera] Setting up at "<<this->width<<","<<this->height;
+        
         camera.setSize(this->width,this->height);
 //        camera.setFrameRate(60);
         

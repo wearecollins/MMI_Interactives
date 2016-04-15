@@ -32,7 +32,7 @@ namespace mmi {
         numImageStreamers++;
         
         params.setName("ImageStreamer "+ofToString(numImageStreamers));
-        params.add(jpegQuality.set("JPEQ quality", 70, 1, 100));
+        params.add(jpegQuality.set("JPEQ quality", 20, 1, 100));
         params.add(frameRate.set("Stream framerate", 60, 1, 120.));
         
         ofAddListener( ofEvents().update, this, &ImageStreamer::update );
