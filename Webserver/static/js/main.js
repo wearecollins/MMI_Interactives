@@ -1,3 +1,22 @@
+var SUD = {};
+/**
+ * get string from url. e.g. www.SUD.com/index.html?sandwich=turkey returns 'turkey'
+ * @param  {String} key      Query param (not including ? or &)
+ * @param  {String} default_ (Optional) what to return if param not found
+ * @return {String}          Returns value of key or default
+ */
+SUD.getQueryString = function(key, default_)
+{
+  if (default_==null) default_=""; 
+  key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+  var qs = regex.exec(window.location.href);
+  if(qs == null)
+    return default_;
+  else
+    return qs[1];
+}
+
 /*global Handlebars, log4javascript, Loader, 
  *       Page, StreamHandler, StateHandler, 
  *       WebsocketHandler, EventHandler,
@@ -187,4 +206,9 @@ function Manager(states, transitions){
                                then(res));
   };
 */
+
+  // global getters
+  this.getStreamHandler = function(){
+    return streamHandler;
+  }
 }

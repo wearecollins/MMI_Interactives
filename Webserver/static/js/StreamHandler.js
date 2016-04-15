@@ -28,10 +28,34 @@ function StreamHandler(){
       var url = window.URL.createObjectURL(blob);
       newURL(url);
     }
-  };
+  };      
+
+  // this sucks!
+  var imageWidth = 1040;
+  var imageHeight = 776;
+  var lastScale   = 0;
+  var autoSize = true;
 
   function newURL(url){
     domElem.src = url;
+    if ( autoSize ){
+        try {
+          // this sucks!
+          var s = window.innerHeight/imageHeight;
+          if ( s != lastScale ){ 
+            var w = imageWidth * s;
+            var h = window.innerHeight;
+            domElem.style.width = w +"px";
+            domElem.style.height = h +"px";
+            domElem.style.left = window.innerWidth/2. - w/2. +"px";
+            domElem.style.top = window.innerHeight/2. - h/2. +"px";
+          }
+          lastScale = s;
+        } catch(e){
+
+        }
+    }
+
     if (prevURL){
       window.URL.revokeObjectURL(prevURL);
     }

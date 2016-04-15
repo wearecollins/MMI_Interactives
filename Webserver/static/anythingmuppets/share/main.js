@@ -2,15 +2,36 @@ var share = function(/*manager*/){
 
   this.nRetakes = 0;
 
+  // hack for multi image problem
+  var didSetImage = false;
+
+  // bind() creates new function refs
+  // so we need to create shared variables for adding/removing
+  // event listeners!
+  var startRef, skipRef, shareRef, retakeRef, setImageRef;
+
   this.enter = function(/*evt*/){
 
     this.nRetakes = 0;
 
-  	window.addEventListener("capture", startCountdown.bind(this));
-  	window.addEventListener("skipToThanks", skipToThanks.bind(this));
-    window.addEventListener("share", share.bind(this));
-    window.addEventListener("retake", retake.bind(this));
-    window.addEventListener("imageCapture", setImage.bind(this));
+    startRef = startCountdown.bind(this);
+    skipRef = skipToThanks.bind(this);
+    shareRef = share.bind(this);
+    retakeRef = retake.bind(this);
+    setImageRef = setImage.bind(this);
+
+  	window.addEventListener("capture", startRef);
+  	window.addEventListener("skipToThanks", skipRef);
+    window.addEventListener("share", shareRef);
+    window.addEventListener("retake", retakeRef);
+    window.addEventListener("imageCapture", setImageRef);
+    
+    didSetImage = false;
+
+    var doStream = SUD.getQueryString("stream", false);
+    if (doStream == "true" ){
+        manager.getStreamHandler().showStream();
+    }
   };
 
   function show( div, display ){
@@ -26,6 +47,7 @@ var share = function(/*manager*/){
   var countdownInterval = null;
 
   function startCountdown(){
+    console.log("START COUNTDOWN");
     // hide buttons
     hide(document.getElementById("captureContainer"));
     show(document.getElementById("countdownContainer"), "flex");
@@ -41,6 +63,7 @@ var share = function(/*manager*/){
         show(document.getElementById("c_one"), "flex");
 
         countdownInterval = setTimeout(function(){
+          console.log("DISPATCH EVEBT");
           hide(document.getElementById("c_one"), "flex");
           // this tells OF to capture
           window.dispatchEvent(new Event('take_photo'));
@@ -67,15 +90,26 @@ var share = function(/*manager*/){
     hide(document.getElementById("countdownContainer"));
     hide(document.getElementById("retakeContainer"));
     show(document.getElementById("shareContainer"), "flex");
+
+    manager.getStreamHandler().hideStream();
   }
 
   function setImage(e){
+    if ( didSetImage ) return;
+
     var bg = document.getElementById("captureBgContainer");
     var im = document.createElement("img");
+    im.onload = function(){
+      var s = window.innerHeight / this.height;
+      var w = this.width * s;
+      bg.style.left = window.innerWidth / 2.0 - w/2.0;
+    }
     im.src = "output/" + e.detail;
+
     bg.appendChild(im);
 
     skipToRetake.bind(this)();
+    didSetImage = true;
   }
 
   function retake(){
@@ -92,11 +126,13 @@ var share = function(/*manager*/){
   }
 
   this.exit = function(/*evt*/){
-  	window.removeEventListener("capture", startCountdown.bind(this));
-  	window.removeEventListener("skipToThanks", skipToThanks.bind(this));
-    window.removeEventListener("share", share.bind(this));
-    window.removeEventListener("retake", retake.bind(this));
-    window.removeEventListener("imageCapture", setImage.bind(this));
+    clearTimeout(countdownInterval);
+    
+    window.removeEventListener("capture", startRef);
+    window.removeEventListener("skipToThanks", skipRef);
+    window.removeEventListener("share", shareRef);
+    window.removeEventListener("retake", retakeRef);
+    window.removeEventListener("imageCapture", setImageRef);
 
     var bg = document.getElementById("captureBgContainer");
     function cleanUp(){
@@ -104,6 +140,8 @@ var share = function(/*manager*/){
       show(document.getElementById("captureContainer"), "flex");
       hide(document.getElementById("retakeContainer"));
       hide(document.getElementById("shareContainer"));
+      
+      manager.getStreamHandler().hideStream();
     }
 
     setTimeout(cleanUp, 1000);

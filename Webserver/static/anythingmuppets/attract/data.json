@@ -1,4 +1,5 @@
 {
 	"name":"attract",
-  	"video":"sm_cut.mp4"
+  	"video":"sm_cut.mp4",
+	"disableTimeout":true
 }

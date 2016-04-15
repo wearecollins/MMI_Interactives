@@ -1,7 +1,12 @@
 /* for debuggin */
 #captureBgContainer {
-	background-color:rgba(0,0,0,.5);
+	/* background-color:rgba(0,0,0,.5); */
 }
+
+#captureBgContainer img {
+  height: 100%;
+}
+
 #shareContainer, #retakeContainer, #countdownContainer {
 	visibility: hidden;
 	display: none;
