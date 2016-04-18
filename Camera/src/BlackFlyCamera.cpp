@@ -70,26 +70,13 @@ namespace mmi {
         ofSetLogLevel(OF_LOG_VERBOSE);
         if ( guid == "" ){
             bSetup = camera.setup();
-//            camera.getTextureReference().allocate(width, height, GL_RGB);
         } else {
+            // reset bus
+            camera.resetBus(guid);
+            
             bSetup = camera.setup(guid);
-//            camera.getTextureReference().allocate(width, height, GL_LUMINANCE);
-            
-            if ( imageColor.get() && gpuBayer.get() == 2 ){
-                buffer.allocate(this->width, this->height, OF_IMAGE_COLOR);
-            } else {
-                buffer.allocate(this->width, this->height, OF_IMAGE_GRAYSCALE);
-            }
-            
-//            buffer.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
-            
-            pingPong[0].allocate(this->width, this->height);
-            pingPong[1].allocate(this->width, this->height);
-            
-            src = &pingPong[0];
-            dst = &pingPong[1];
-            
         }
+        
 //        camera.setMaxFramerate();
         ofSetLogLevel(OF_LOG_ERROR);
         
@@ -97,6 +84,22 @@ namespace mmi {
         bfCamIdx++;
         
         if ( isSetup() ){
+            
+            // setup buffers
+            if ( imageColor.get() && gpuBayer.get() == 2 ){
+                buffer.allocate(this->width, this->height, OF_IMAGE_COLOR);
+            } else {
+                buffer.allocate(this->width, this->height, OF_IMAGE_GRAYSCALE);
+            }
+            
+            //            buffer.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+            
+            pingPong[0].allocate(this->width, this->height);
+            pingPong[1].allocate(this->width, this->height);
+            
+            src = &pingPong[0];
+            dst = &pingPong[1];
+            
             // setup GUI
             this->params.setName("Camera " + ofToString( bfCamIdx ) + " settings");
             this->params.add(this->guid.set("Guid", guid));
