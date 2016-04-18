@@ -3,6 +3,7 @@
 *.mp4
 */node_modules
 Webserver/static/output
+Webserver/static/vo
 
 # Defaults
 .DS_Store

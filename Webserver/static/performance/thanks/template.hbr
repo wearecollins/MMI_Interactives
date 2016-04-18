@@ -1,0 +1,16 @@
+<div id='{{name}}' class='page parchBg fillGrey'>
+  <div class='background'>
+  </div>
+  <div class="fillContainer">
+    <div class="container fillAbs centeredContainer column" style="z-index:1">
+        <div class="type_lg title">Thanks<br />for sharing</div>
+    </div>
+
+    <div class="container fillAbs bottomCenteredContainer" style="z-index:1">
+        <div onclick="window.dispatchEvent(new Event('next'));" class="column">
+            <img src="svg/__start_over.svg" class="button_sm padding_sm" />
+            <div class="type_med padding_sm">start over</div>
+        </div>
+    </div>
+  </div>
+</div>

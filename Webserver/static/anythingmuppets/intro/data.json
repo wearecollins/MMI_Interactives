@@ -3,6 +3,5 @@
   	"buttons":[
   		{"type":"next","text":"Skip"}
   	],
-  	"video":"cut_1.mp4",
 	"disableTimeout":true
 }

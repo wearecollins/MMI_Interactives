@@ -5,6 +5,9 @@
 
 .scriptContainer img {
 	height: 100%;
+  position: absolute;
+  left: -10%;
+  /* Just a try */
 }
 
 .scriptTextContainer {

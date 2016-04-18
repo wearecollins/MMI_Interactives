@@ -1,12 +1,7 @@
 <div id='{{name}}' class='page'>
-  {{!-- 
-    Container for background video
-    * Edit "video" in data.json to change what's loaded below
-  --}}
-
   <div class='background topL'>
     <video id="video" class="fillContainer intoVideo">
-        <source src="anythingmuppets/{{name}}/{{video}}" type="video/mp4">
+        <source src="video/am_intro.mp4" type="video/mp4">
     </video>
   </div>
   <div class='container fillAbs bottomCenteredContainer topL' style="z-index:2">

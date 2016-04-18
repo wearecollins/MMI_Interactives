@@ -24,6 +24,7 @@
       'performance/select',
       'performance/perform',
       'performance/share',
+      'performance/thanks',
       'performance/admin'
     ];
 
@@ -33,7 +34,7 @@
     defaultMode.addGlobalTransition('cancel', 'performance/attract');
     
     //we don't want the last state to go to freeplay
-    defaultMode.addTransition('performance/share', 'next', 'performance/attract');
+    defaultMode.addTransition('performance/thanks', 'next', 'performance/attract');
 
     var continuousMode = customTransitions.createMode('continuous');
     continuousMode.addGlobalTransition('cancel', 'performance/freeplay');
