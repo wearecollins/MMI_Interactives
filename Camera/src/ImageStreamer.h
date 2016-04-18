@@ -46,9 +46,9 @@ namespace mmi {
                     
                     auto * data = turbo.compress(img, jpegQuality.get(), &size);
                     out.set(reinterpret_cast<char*>(data), size);
+                    wsServer.clearBinaryMessageQueue();
                     wsServer.sendBinary(out);
-                    delete data;
-                    
+                    free(data);
 #else
                     wsServer.sendBinary(img);
 #endif

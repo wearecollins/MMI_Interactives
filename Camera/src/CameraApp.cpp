@@ -61,7 +61,7 @@ void CameraApp::update(){
     }
     
     auto * camera = cameraMgr.getCamera( whichStream.get());
-    if ( this->bStreaming ){
+    if ( this->bStreaming && camera != nullptr ){
         // try to stream all the time, image streamer will handle by framerate
         
 #ifndef DEBUG_CAMERA

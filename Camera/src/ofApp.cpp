@@ -3,8 +3,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetVerticalSync(false);
-    ofSetFrameRate(60);
-    cameraApp.setup(true);
+    ofSetFrameRate(120);
+    cameraApp.setup();
 }
 
 //--------------------------------------------------------------

@@ -9,12 +9,47 @@
 #include "BlackFlyCamera.h"
 
 namespace mmi {
+    // from ofxLibdc::PointGrey
+    #define readBits(x, pos, len) ((x >> (pos - len)) & ((1 << len) - 1))
     
     // mode 4 = 1/2 res, mode 0 = full res
     int fmt7Mode = 0;
     bool lastBayer = false;
     bool lastColor = true;
-
+    
+    //--------------------------------------------------------------
+    BlackFlyCamera::BlackFlyCamera() :
+    bSetup(false){
+        
+        static int bfCamIdx = 0;
+        bfCamIdx++;
+        
+        // setup GUI
+        this->params.setName("Camera " + ofToString( bfCamIdx ) + " settings");
+        this->params.add(this->guid.set("Guid", guid));
+        this->params.add(this->resMode.set( "Hi-res/lo-res", 1, 0, 1 ));
+        this->params.add(this->gpuBayer.set("Bayer GPU on/cv/off", 1,0,2));
+        this->params.add(this->brightness.set("Brightness", .5, 0., 1.0));
+        this->params.add(this->gamma.set("gamma", .5, 0., 1.0));
+        this->params.add(this->gain.set("gain", .5, 0., 1.0));
+        this->params.add(this->exposure.set("exposure", .5, 0., 1.0));
+        this->params.add(this->shutter.set("shutter", .5, 0., 1.0));
+        this->params.add(this->doReset.set( "Reset camera", false ));
+        this->params.add(this->imageColor.set("Color/BW", true));
+        
+        // unclear if this is a good idea yet
+        this->params.add(this->roi.set("roi", ofVec4f(0,0,this->width,this->height), ofVec4f(0,0,0,0), ofVec4f(0,0,this->width,this->height)));
+        
+        this->brightness.addListener(this, &BlackFlyCamera::onBrightnessUpdated);
+        this->gamma.addListener(this, &BlackFlyCamera::onGammaUpdated);
+        this->gain.addListener(this, &BlackFlyCamera::onGainUpdated);
+        this->exposure.addListener(this, &BlackFlyCamera::onExposureUpdated);
+        this->shutter.addListener(this, &BlackFlyCamera::onShutterUpdated);
+        this->roi.addListener(this, &BlackFlyCamera::onRoiUpdated);
+        
+        reloadShader();
+    }
+    
     //--------------------------------------------------------------
     BlackFlyCamera::~BlackFlyCamera(){
         if ( bSetup ){
@@ -33,14 +68,40 @@ namespace mmi {
         
         if ( this->width < 2080 ){
             fmt7Mode = 4;
+        } else {
+            fmt7Mode = 0;
         }
         
         bSetup = false;
         
         // setup stuff
-        imageColor.set("Color/BW", true);
+        this->guid.set(guid);
         
-        if ( imageColor.get() ){
+        openCamera();
+        
+        if ( isSetup() ){
+            ofLogVerbose()<<"Camera "<<this->guid.get()<<" setup";
+            return true;
+        } else {
+            ofLogVerbose()<<"Camera "<<this->guid.get()<<" failed to open";
+        }
+        
+        
+        // something went wrong :(
+        return false;
+    }
+
+    //--------------------------------------------------------------
+    bool BlackFlyCamera::openCamera(){
+        bSetup = false;
+        
+        fmt7Mode = this->resMode.get() == 0 ? 0 : 4;
+        
+        // reset bus
+        camera.resetBus(guid);
+        
+        if ( imageColor.get() && gpuBayer.get() == 2 ){
+            cout << "set bayer?" <<endl;
             /*
              DC1394_BAYER_METHOD_NEAREST=0,
              DC1394_BAYER_METHOD_SIMPLE,
@@ -56,7 +117,6 @@ namespace mmi {
             //todo: query BAYER_TILE_MAPPING (register 0x1040)
         }
         
-//        camera.set1394b(true);
         camera.setFormat7(true, fmt7Mode);
         this->width = 2080 * (fmt7Mode == 0 ? 1 : .5);
         this->height = 1552 * (fmt7Mode == 0 ? 1 : .5);
@@ -64,91 +124,66 @@ namespace mmi {
         ofLogVerbose()<<"[PointGrey Camera] Setting up at "<<this->width<<","<<this->height;
         
         camera.setSize(this->width,this->height);
-//        camera.setFrameRate(60);
+        //        camera.setFrameRate(60);
         
         
-        ofSetLogLevel(OF_LOG_VERBOSE);
-        if ( guid == "" ){
+//        ofSetLogLevel(OF_LOG_VERBOSE);
+        if ( guid.get() == "" ){
             bSetup = camera.setup();
         } else {
-            // reset bus
-            camera.resetBus(guid);
-            
             bSetup = camera.setup(guid);
         }
         
-//        camera.setMaxFramerate();
-        ofSetLogLevel(OF_LOG_ERROR);
-        
-        static int bfCamIdx = 0;
-        bfCamIdx++;
-        
-        if ( isSetup() ){
-            
+        if ( bSetup ){
             // setup buffers
             if ( imageColor.get() && gpuBayer.get() == 2 ){
+                buffer.clear();
                 buffer.allocate(this->width, this->height, OF_IMAGE_COLOR);
             } else {
+                buffer.clear();
                 buffer.allocate(this->width, this->height, OF_IMAGE_GRAYSCALE);
             }
             
-            //            buffer.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
-            
+            pingPong[0].clear();
+            pingPong[1].clear();
             pingPong[0].allocate(this->width, this->height);
             pingPong[1].allocate(this->width, this->height);
             
             src = &pingPong[0];
             dst = &pingPong[1];
             
-            // setup GUI
-            this->params.setName("Camera " + ofToString( bfCamIdx ) + " settings");
-            this->params.add(this->guid.set("Guid", guid));
-            this->params.add(this->gpuBayer.set("Bayer GPU on/cv/off", 1,0,2));
-            this->params.add(this->brightness.set("Brightness", .5, 0., 1.0));
-            this->params.add(this->gamma.set("gamma", .5, 0., 1.0));
-            this->params.add(this->gain.set("gain", .5, 0., 1.0));
-            this->params.add(this->exposure.set("exposure", .5, 0., 1.0));
-            this->params.add(this->shutter.set("shutter", .5, 0., 1.0));
-            this->params.add(this->imageColor);
-            
-            // unclear if this is a good idea yet
-            this->params.add(this->roi.set("roi", ofVec4f(0,0,this->width,this->height), ofVec4f(0,0,0,0), ofVec4f(0,0,this->width,this->height)));
-            
-            this->brightness.addListener(this, &BlackFlyCamera::onBrightnessUpdated);
-            this->gamma.addListener(this, &BlackFlyCamera::onGammaUpdated);
-            this->gain.addListener(this, &BlackFlyCamera::onGainUpdated);
-            this->exposure.addListener(this, &BlackFlyCamera::onExposureUpdated);
-            this->shutter.addListener(this, &BlackFlyCamera::onShutterUpdated);
-            this->roi.addListener(this, &BlackFlyCamera::onRoiUpdated);
-            
-//            bayerShader.load("","bayer.frag");
-            reloadShader();
-            
             // yolo
             auto * c = camera.getLibdcCamera();
             dc1394video_mode_t vm = (dc1394video_mode_t) ((int) DC1394_VIDEO_MODE_FORMAT7_0 + fmt7Mode);
             
+            // set maximum framerate
+            unsigned int framerateInq;
+            dc1394_get_control_register(c, PTGREY_FRAME_RATE_INQ, &framerateInq);
+            unsigned int minValue = readBits(framerateInq, 24, 12);
+            minValue |= 0x82000000;
+            dc1394_set_control_register(c, PTGREY_FRAME_RATE, minValue);
+            
             // more chill features
+            
+            //            camera.setFeatureAbs( DC1394_FEATURE_TRIGGER_DELAY, 0.);
             
             // unclear if this really does anything yet
             /*auto err = dc1394_feature_set_power(c,DC1394_FEATURE_TRIGGER,DC1394_ON);
-            DC1394_ERR_RTN(err, "Could not set trigger on.");
-            err = dc1394_feature_set_power(c,DC1394_FEATURE_TRIGGER_DELAY,DC1394_OFF);
-            DC1394_ERR_RTN(err, "Could not set trigger delay off.");
-            err=dc1394_external_trigger_set_mode(c, DC1394_TRIGGER_MODE_3);
-            DC1394_ERR_RTN(err, "Could not set trigger mode.");
-            err=dc1394_external_trigger_set_source(c, DC1394_TRIGGER_SOURCE_SOFTWARE);
-            DC1394_ERR_RTN(err, "Could not set trigger source.");*/
+             DC1394_ERR_RTN(err, "Could not set trigger on.");
+             err = dc1394_feature_set_power(c,DC1394_FEATURE_TRIGGER_DELAY,DC1394_OFF);
+             DC1394_ERR_RTN(err, "Could not set trigger delay off.");
+             err=dc1394_external_trigger_set_mode(c, DC1394_TRIGGER_MODE_3);
+             DC1394_ERR_RTN(err, "Could not set trigger mode.");
+             err=dc1394_external_trigger_set_source(c, DC1394_TRIGGER_SOURCE_SOFTWARE);
+             DC1394_ERR_RTN(err, "Could not set trigger source.");*/
             
             return true;
+        } else {
+            return false;
         }
-        
-        
-        // something went wrong :(
-        return false;
     }
-
     
+    //--------------------------------------------------------------
     void BlackFlyCamera::reloadShader(){
         bayerShader.load("bayer");
     }
@@ -159,8 +194,17 @@ namespace mmi {
             return;
         }
         
+        // need to reset camera
+        if ( doReset.get() ||
+            ( fmt7Mode == 4 && resMode.get() == 0) ){
+            camera.close();
+            openCamera();
+            doReset.set(false);
+        }
+        
         if ( gpuBayer == 2){
             if (imageColor.get() && buffer.getImageType() != OF_IMAGE_COLOR ){
+                cout << "set bayer>"<<endl;
                 buffer.allocate(width, height, OF_IMAGE_COLOR);
                 camera.setBayerMode(DC1394_COLOR_FILTER_RGGB, DC1394_BAYER_METHOD_NEAREST);
                 camera.setImageType(OF_IMAGE_COLOR);
@@ -168,7 +212,6 @@ namespace mmi {
                 buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
                 camera.setImageType(OF_IMAGE_GRAYSCALE);
                 camera.disableBayer();
-                cout << "GREY"<<endl;
             }
             
             auto v = camera.grabVideo(buffer);
@@ -178,6 +221,7 @@ namespace mmi {
         } else {
             if (buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
                 buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
+                camera.setImageType(OF_IMAGE_GRAYSCALE);
 //                buffer.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
             }
             
@@ -318,10 +362,10 @@ namespace mmi {
     //--------------------------------------------------------------
     ofImage & BlackFlyCamera::getImage(){
 //        return buffer;
-        if (gpuBayer.get() == 0) {
-            return buffer;
-        } else {
+        if (gpuBayer.get() == 1) {
             return cvBuffer;
+        } else {
+            return buffer;
         }
     }
     

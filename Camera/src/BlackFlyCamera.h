@@ -17,6 +17,7 @@ class BlackFlyCamera
 {
 public:
     
+    BlackFlyCamera();
     ~BlackFlyCamera();
     
     bool setup( string guid = "", int width = 2080, int height = 1552 );
@@ -42,6 +43,8 @@ protected:
     ofxLibdc::Camera camera;
     bool bSetup;
     
+    bool openCamera();
+    
     ofImage buffer, cvBuffer;
     ofFbo   pingPong[2];
     ofFbo * src;
@@ -50,6 +53,7 @@ protected:
     
     ofParameter<string>         guid;
     ofParameter<int>            gpuBayer;
+    ofParameter<int>            resMode;    // 0 = hi-res, 1 = lo-res
     ofParameter<bool>           imageColor;
     ofParameter<float>          brightness;
     ofParameter<float>          gamma;
@@ -57,6 +61,7 @@ protected:
     ofParameter<float>          exposure;
     ofParameter<float>          shutter;
     ofParameter<ofVec4f>        roi;
+    ofParameter<bool>           doReset;
     
     int width, height;
     

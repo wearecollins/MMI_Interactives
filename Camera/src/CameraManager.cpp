@@ -83,7 +83,7 @@ namespace mmi {
             {
                 float scale = MAX((float) ofGetWidth()/c->getWidth(), (float) ofGetHeight()/c->getHeight());
                 
-                if ( scale > 1 ){
+                if ( scale < 1 ){
                     scale = MAX(c->getWidth() / (float) ofGetWidth(), c->getHeight() /(float)  ofGetHeight());
                 }
                 
