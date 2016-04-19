@@ -1,7 +1,4 @@
 {
 	"name":"intro",
-  	"buttons":[
-  		{"type":"next","text":"Skip"}
-  	],
 	"disableTimeout":true
 }

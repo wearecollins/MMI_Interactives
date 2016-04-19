@@ -39,22 +39,22 @@ var share = function(/*manager*/){
   function startCountdown(){
     console.log("START COUNTDOWN");
     // hide buttons
-    MMI.hide(document.getElementById("captureContainer"));
-    MMI.show(document.getElementById("countdownContainer"), "flex");
+    MMI.hide(("captureContainer"));
+    MMI.show(("countdownContainer"), "flex");
 
-    MMI.show(document.getElementById("c_three"), "flex");
+    MMI.show(("c_three"), "flex");
 
     countdownInterval = setTimeout(function(){
-      MMI.hide(document.getElementById("c_three"), "flex");
-      MMI.show(document.getElementById("c_two"), "flex");
+      MMI.hide(("c_three"), "flex");
+      MMI.show(("c_two"), "flex");
 
       countdownInterval = setTimeout(function(){
-        MMI.hide(document.getElementById("c_two"), "flex");
-        MMI.show(document.getElementById("c_one"), "flex");
+        MMI.hide(("c_two"), "flex");
+        MMI.show(("c_one"), "flex");
 
         countdownInterval = setTimeout(function(){
           console.log("DISPATCH EVEBT");
-          MMI.hide(document.getElementById("c_one"), "flex");
+          MMI.hide(("c_one"), "flex");
           // this tells OF to capture
           window.dispatchEvent(new Event('take_photo'));
 
@@ -70,16 +70,16 @@ var share = function(/*manager*/){
       share();
     } else {
       clearTimeout(countdownInterval);
-      MMI.hide(document.getElementById("countdownContainer"));
-      MMI.show(document.getElementById("retakeContainer"), "flex");
+      MMI.hide(("countdownContainer"));
+      MMI.show(("retakeContainer"), "flex");
     }
   }
 
   function share(){
     clearTimeout(countdownInterval);
-    MMI.hide(document.getElementById("countdownContainer"));
-    MMI.hide(document.getElementById("retakeContainer"));
-    MMI.show(document.getElementById("shareContainer"), "flex");
+    MMI.hide(("countdownContainer"));
+    MMI.hide(("retakeContainer"));
+    MMI.show(("shareContainer"), "flex");
 
     manager.getStreamHandler().hideStream();
   }
@@ -87,7 +87,7 @@ var share = function(/*manager*/){
   function setImage(e){
     if ( didSetImage ) return;
 
-    var bg = document.getElementById("captureBgContainer");
+    var bg = ("captureBgContainer");
     var im = document.createElement("img");
     im.onload = function(){
       var s = window.innerHeight / this.height;
@@ -106,7 +106,7 @@ var share = function(/*manager*/){
     this.nRetakes++;
 
     clearTimeout(countdownInterval);
-    MMI.hide(document.getElementById("retakeContainer"));
+    MMI.hide(("retakeContainer"));
     startCountdown.bind(this)();
   }
 
@@ -124,12 +124,12 @@ var share = function(/*manager*/){
     window.removeEventListener("retake", retakeRef);
     window.removeEventListener("imageCapture", setImageRef);
 
-    var bg = document.getElementById("captureBgContainer");
+    var bg = ("captureBgContainer");
     function cleanUp(){
       bg.innerHTML = "";
-      MMI.show(document.getElementById("captureContainer"), "flex");
-      MMI.hide(document.getElementById("retakeContainer"));
-      MMI.hide(document.getElementById("shareContainer"));
+      MMI.show(("captureContainer"), "flex");
+      MMI.hide(("retakeContainer"));
+      MMI.hide(("shareContainer"));
       
       manager.getStreamHandler().hideStream();
     }

@@ -9,6 +9,8 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
+
 #include "CameraManager.h"
 #include "ImageStreamer.h"
 #include "RecordManager.h"

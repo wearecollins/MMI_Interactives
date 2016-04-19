@@ -1,9 +1,7 @@
 <div id='{{name}}' class='page'>
-{{!-- this should be clear for image underneath --}}
-{{!-- TODO: can we look for a param from HBR in case we want to stream? --}}
   <div class="background parchBg">
   </div>
-  <div id="titleContainer" class="container fillAbs centeredContainer column" style="z-index:2">
+  <div id="titleContainer" class="container fillAbs centeredContainer column fillGrey" style="z-index:2">
       <div class="type_lg padding_sm">{{{thankyou}}}</div>
       <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" />
       <div class="type_med">

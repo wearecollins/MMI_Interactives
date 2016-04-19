@@ -7,7 +7,6 @@
   animation-fill-mode:forwards;
 }
 
-
 #{{name}}{
   animation-name: animateIn;
   animation-duration: 1s;

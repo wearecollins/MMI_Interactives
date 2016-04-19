@@ -6,13 +6,44 @@
 .scriptContainer img {
 	height: 100%;
   position: absolute;
-  left: -10%;
+  left: -35%;
   /* Just a try */
+}
+
+#scriptButtonContainer.disabled, #scriptButtonDoneContainer.disabled {
+  animation-name: animateOffBotton;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+}
+
+#scriptButtonContainer.enabled, #scriptButtonDoneContainer.enabled {
+  animation-name: animateUpScreen;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
 }
 
 .scriptTextContainer {
     padding:8vh;
     text-align: left;
+}
+
+.scriptInfoContainer {
+    background: rgba(112,181,159,.9 );
+    height: 0vh;
+}
+
+.scriptInfoContainer.disabled{
+  animation-name: animateOff;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+}
+
+
+.scriptInfoContainer.enabled{
+  animation-name: animateIn;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+  z-index: 0;
 }
 
 #promptOpenDrawers, #promptSpinPuppet {
@@ -35,10 +66,10 @@
   animation-fill-mode:forwards;
 }
 
-#done {
+/* #done {
 	visibility: hidden;
 	display: none;
-}
+} */
 
 #{{name}}.disabled{
   display:flex;

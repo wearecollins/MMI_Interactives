@@ -16,3 +16,15 @@
   animation-duration: 1s;
   animation-fill-mode:forwards;
 }
+
+#{{name}}Buttons.disabled {
+  animation-name: animateOffBotton;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+}
+
+#{{name}}Buttons.enabled {
+  animation-name: animateUpScreen;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+}

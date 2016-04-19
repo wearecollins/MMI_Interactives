@@ -39,7 +39,7 @@ void CameraApp::setup( bool bDoStream ){
     
     gui->setup("Settings");
     
-    gui->add( recordMgr.params);
+    gui->add( recordMgr.params );
     gui->add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
     
     gui->loadFromFile("settings.xml");

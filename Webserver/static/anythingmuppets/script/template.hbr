@@ -12,13 +12,15 @@
           <div class="fillAbs centeredContainer" style="z-index:2">
             <img src="anythingmuppets/script/{{img}}" />
           </div>
-          <div id="scriptInfoContainer" class="fillAbs centeredContainer" style="z-index:3">
+          <div class="fillAbs centeredContainer scriptInfoContainer" style="z-index:3">
             <div class="scriptTextContainer fill type_sm container">
                 <div class="column_23">
                     <span class="type_med"><u>{{name}}</u></span>
                     <br>{{episode}}
                     <br><br>
-                    {{{text}}}
+                    <div class="scriptText"></div>
+                    <!-- Uncomment this to smash in text from template -->
+                    <!-- {{{ text }}} -->
                 </div>
             </div>
         </div>
@@ -26,13 +28,18 @@
 
     {{/each}}
 
-    <div class='container fillAbs bottomCenteredContainer' style="z-index:3">
-    {{#each buttons}}
-      <div id="{{type}}" class="column" onclick="window.dispatchEvent(new Event('{{type}}'));">
+    <div id="scriptButtonContainer" class='container fillAbs bottomCenteredContainer disabled' style="z-index:3">
+      <div id="start" class="column" onclick="window.dispatchEvent(new Event('start'));">
           <img src="svg/__get_started.svg" class="button_sm padding_sm" />
-          <div class="type_med padding_sm">{{text}}</div>
+          <div class="type_med padding_sm">start building</div>
       </div>
-    {{/each}}
+    </div>
+
+    <div id="scriptButtonDoneContainer" class='container fillAbs bottomCenteredContainer disabled' style="z-index:3">
+      <div id="done" class="column" onclick="window.dispatchEvent(new Event('done'));">
+          <img src="svg/__get_started.svg" class="button_sm padding_sm" />
+          <div class="type_med padding_sm">done building</div>
+      </div>
     </div>
 
 {{!-- This is the 'drawer overlay' container --}}
