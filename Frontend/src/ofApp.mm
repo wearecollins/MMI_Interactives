@@ -14,7 +14,10 @@ public:
     ofApp * appPtr;
     
     void keyReleased( ofKeyEventArgs & e ){
-        if ( appPtr == nullptr) return;
+        if ( appPtr == nullptr){
+            ofLogError()<<"App ptr is null";
+            return;
+        }
         [appPtr keyReleased:e.key];
     }
 };
@@ -33,9 +36,9 @@ static void setupEventHelper(ofApp *app)
 {
     // attach OF event helper
     setupEventHelper(self);
-    ofAddListener(ofEvents().keyReleased, eventHelper.get(), &EventHelper::keyReleased);
+    ofAddListener(ofEvents().keyPressed, eventHelper.get(), &EventHelper::keyReleased);
     
-    auto globalKey = [NSEvent addGlobalMonitorForEventsMatchingMask:NSKeyUpMask handler:^(NSEvent *e) {
+    id globalKey = [NSEvent addGlobalMonitorForEventsMatchingMask:NSKeyUpMask handler:^(NSEvent *e) {
         [self keyUp:e];
     }];
     
@@ -78,6 +81,7 @@ static void setupEventHelper(ofApp *app)
     [webView setNavigationDelegate:self];
     
     self->isLoaded = false;
+    self->isFullscreen = false;
     
     [webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]]];
     
@@ -99,13 +103,12 @@ static void setupEventHelper(ofApp *app)
     if ( self->isLoaded) return;
     self->isLoaded = true;
     [self goFullscreen];
-    
-    cout << "FINISHED" <<endl;
-    NSLog(@"%@", webView.URL);
 }
 
 - (void) goFullscreen
 {
+    if ( (([[self window] styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask) ) return;
+    
     [[self window] toggleFullScreen:nil];
     return;
     // this is custom full screen stuff

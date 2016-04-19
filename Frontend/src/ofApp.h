@@ -12,6 +12,7 @@
     Webview * webView;
     CameraApp cameraApp;
     bool isLoaded;
+    bool isFullscreen;
 }
 
 - (void)setup;
