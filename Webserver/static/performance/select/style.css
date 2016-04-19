@@ -1,3 +1,19 @@
+#{{name}}.disabled{
+  display:flex;
+  animation-name: animateOff;
+  /* animation-name: hide; */
+  /* animation-delay: 1s; */
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+}
+
+#{{name}}{
+  animation-name: animateIn;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+  z-index: 0;
+}
+
 #{{name}} video {
     height: 80%;
     margin: .5%;

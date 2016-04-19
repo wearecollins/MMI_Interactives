@@ -3,20 +3,23 @@ function StreamHandler(){
   var domElem;
   var prevURL;
   var active = false;
+  var domDestination = null;
 
-  this.init = function init(domDestination){
+  this.init = function init(_domDestination){
     domElem = document.createElement('img');
+    domDestination = _domDestination;
     domDestination.appendChild(domElem);
   };
 
   this.showStream = function showStream(){
     active = true;
+    MMI.show( domDestination );
   };
 
   this.hideStream = function hideStream(){
     active = false;
     newURL('');
-    log.warn('TODO: hide stream!');
+    MMI.hide( domDestination );
   };
 
   //images come as binary from the server

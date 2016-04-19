@@ -17,6 +17,25 @@ SUD.getQueryString = function(key, default_)
     return qs[1];
 }
 
+var MMI = {};
+
+MMI.show = function( divId, displayType ){
+  var t = displayType === null ? "block" : displayType;
+  var d = document.getElementById( divId );
+  if ( d ){
+    d.style.visibility = "visible";
+    d.style.display = t;
+  }
+}
+
+MMI.hide = function( divId ){
+  var d = document.getElementById( divId );
+  if ( d ){
+    d.style.visibility = "hidden";
+    d.style.display = "none";
+  }
+}
+
 /*global Handlebars, log4javascript, Loader, 
  *       Page, StreamHandler, StateHandler, 
  *       WebsocketHandler, EventHandler,

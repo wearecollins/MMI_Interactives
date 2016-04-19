@@ -31,7 +31,8 @@ var perform = function(data){
 		window.dispatchEvent(new Event('camera_front'));
 
 		// timeout 1 - "get ready" -> countdown
-		setTimeout( function(){ startCountdown(false); }, 500);
+    // extra 1000 = placeholder for global transition duration 
+		setTimeout( function(){ startCountdown(false); }, 1000 + 500);
 
     	var videoDiv = document.getElementById("perf_"+currentClip.name);
     	videoDiv.onended = function(){

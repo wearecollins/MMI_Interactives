@@ -1,7 +1,7 @@
 <div id='{{name}}' class='page'>
   <div class='background fill blueBg'>
   </div>
-  <div class="container fillAbs centeredContainer column container" style="z-index:2">
+  <div class="container fillAbs centeredContainer column container" style="">
     <div id="sbContInternal" class="column" onclick="window.dispatchEvent(new Event('next'));">
         <img src="svg/__select_a_puppet.svg" class="button_lg padding_sm" />
         <div class="type_med padding_sm">Grab a Puppet</div>

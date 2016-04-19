@@ -34,37 +34,27 @@ var share = function(/*manager*/){
     }
   };
 
-  function show( div, display ){
-    div.style.visibility = "visible";
-    div.style.display = display;
-  }
-
-  function hide( div ){
-    div.style.visibility = "hidden";
-    div.style.display = "none";
-  }
-
   var countdownInterval = null;
 
   function startCountdown(){
     console.log("START COUNTDOWN");
     // hide buttons
-    hide(document.getElementById("captureContainer"));
-    show(document.getElementById("countdownContainer"), "flex");
+    MMI.hide(document.getElementById("captureContainer"));
+    MMI.show(document.getElementById("countdownContainer"), "flex");
 
-    show(document.getElementById("c_three"), "flex");
+    MMI.show(document.getElementById("c_three"), "flex");
 
     countdownInterval = setTimeout(function(){
-      hide(document.getElementById("c_three"), "flex");
-      show(document.getElementById("c_two"), "flex");
+      MMI.hide(document.getElementById("c_three"), "flex");
+      MMI.show(document.getElementById("c_two"), "flex");
 
       countdownInterval = setTimeout(function(){
-        hide(document.getElementById("c_two"), "flex");
-        show(document.getElementById("c_one"), "flex");
+        MMI.hide(document.getElementById("c_two"), "flex");
+        MMI.show(document.getElementById("c_one"), "flex");
 
         countdownInterval = setTimeout(function(){
           console.log("DISPATCH EVEBT");
-          hide(document.getElementById("c_one"), "flex");
+          MMI.hide(document.getElementById("c_one"), "flex");
           // this tells OF to capture
           window.dispatchEvent(new Event('take_photo'));
 
@@ -80,16 +70,16 @@ var share = function(/*manager*/){
       share();
     } else {
       clearTimeout(countdownInterval);
-      hide(document.getElementById("countdownContainer"));
-      show(document.getElementById("retakeContainer"), "flex");
+      MMI.hide(document.getElementById("countdownContainer"));
+      MMI.show(document.getElementById("retakeContainer"), "flex");
     }
   }
 
   function share(){
     clearTimeout(countdownInterval);
-    hide(document.getElementById("countdownContainer"));
-    hide(document.getElementById("retakeContainer"));
-    show(document.getElementById("shareContainer"), "flex");
+    MMI.hide(document.getElementById("countdownContainer"));
+    MMI.hide(document.getElementById("retakeContainer"));
+    MMI.show(document.getElementById("shareContainer"), "flex");
 
     manager.getStreamHandler().hideStream();
   }
@@ -116,7 +106,7 @@ var share = function(/*manager*/){
     this.nRetakes++;
 
     clearTimeout(countdownInterval);
-    hide(document.getElementById("retakeContainer"));
+    MMI.hide(document.getElementById("retakeContainer"));
     startCountdown.bind(this)();
   }
 
@@ -137,9 +127,9 @@ var share = function(/*manager*/){
     var bg = document.getElementById("captureBgContainer");
     function cleanUp(){
       bg.innerHTML = "";
-      show(document.getElementById("captureContainer"), "flex");
-      hide(document.getElementById("retakeContainer"));
-      hide(document.getElementById("shareContainer"));
+      MMI.show(document.getElementById("captureContainer"), "flex");
+      MMI.hide(document.getElementById("retakeContainer"));
+      MMI.hide(document.getElementById("shareContainer"));
       
       manager.getStreamHandler().hideStream();
     }

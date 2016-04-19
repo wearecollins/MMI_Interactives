@@ -12,6 +12,10 @@
 	display: none;
 }
 
+#shareContainer {
+  background: rgba(255,255,255,.5);
+}
+
 #c_three, #c_two, #c_one {
 	visibility: hidden;
 	display: none;
