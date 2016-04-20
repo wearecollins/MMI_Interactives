@@ -28,7 +28,7 @@ var share = function(/*manager*/){
     
     didSetImage = false;
 
-    var doStream = SUD.getQueryString("stream", false);
+    var doStream = MMI.getQueryString("stream", false);
     if (doStream == "true" ){
         manager.getStreamHandler().showStream();
     }

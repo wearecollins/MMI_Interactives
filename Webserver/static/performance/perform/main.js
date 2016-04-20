@@ -22,7 +22,7 @@ var perform = function(data){
 		state = 0;
 
 		// show camera if streaming
-		var doStream = SUD.getQueryString("stream", false);
+		var doStream = MMI.getQueryString("stream", false);
 		if (doStream == "true" ){
 		    manager.getStreamHandler().showStream();
 		}

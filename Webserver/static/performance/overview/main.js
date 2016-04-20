@@ -2,7 +2,7 @@ var overview = function(/*manager*/){
   this.enter = function(/*evt*/){
 
   	// show camera if streaming
-    var doStream = SUD.getQueryString("stream", false);
+    var doStream = MMI.getQueryString("stream", false);
     if (doStream == "true" ){
         manager.getStreamHandler().showStream();
     }

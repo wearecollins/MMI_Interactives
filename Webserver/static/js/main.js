@@ -1,11 +1,11 @@
-var SUD = {};
+var MMI = {};
 /**
  * get string from url. e.g. www.SUD.com/index.html?sandwich=turkey returns 'turkey'
  * @param  {String} key      Query param (not including ? or &)
  * @param  {String} default_ (Optional) what to return if param not found
  * @return {String}          Returns value of key or default
  */
-SUD.getQueryString = function(key, default_)
+MMI.getQueryString = function(key, default_)
 {
   if (default_==null) default_=""; 
   key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -17,7 +17,7 @@ SUD.getQueryString = function(key, default_)
     return qs[1];
 }
 
-var MMI = {};
+
 
 MMI.show = function( divId, displayType ){
   var t = displayType === null ? "block" : displayType;
@@ -209,7 +209,12 @@ function Manager(states, transitions){
   
   function connectWebsockets(){
     ws.connect('ws://'+window.location.host, 'node');
-    ws.connect('ws://localhost:9091', 'oF');
+
+    // perhaps this is a global setting?
+    var doStream = MMI.getQueryString("stream", false);
+    if (doStream == "true" ){
+      ws.connect('ws://localhost:9091', 'oF');
+    }
   }
   
 /*

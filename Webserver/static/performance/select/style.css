@@ -24,6 +24,10 @@
 	display: none;
 }
 
+#videoContainer {
+    height: 250%;
+}
+
 #{{name}} .centerButtons {
 	height: 100%;
 	display: flex;
