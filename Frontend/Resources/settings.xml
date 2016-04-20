@@ -10,7 +10,7 @@
 			<Pixel_Format>rgb24</Pixel_Format>
 			<Video_codec>mpeg4</Video_codec>
 			<Bitrate>800</Bitrate>
-		<Output_Folder>../../../../../Webserver/static/output</Output_Folder>
+            <Output_Folder>../../../../../Webserver/static/output/anythingmuppets</Output_Folder>
 			<File_extension_image>.jpg</File_extension_image>
 		</Advanced_params>
 	</Recording_params>
