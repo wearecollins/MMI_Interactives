@@ -1,0 +1,5 @@
+<div id='{{name}}' class='page'>
+  <div class="fillAbs centeredContainer blackBg">
+    <div class="type_med">Thank You for Sharing</div>
+  </div>
+</div>

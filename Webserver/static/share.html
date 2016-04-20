@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <link rel='stylesheet' type='text/css' href='css/normalize.css'>
+  <link rel='stylesheet' type='text/css' href='css/style.css'>
+  <script type='text/javascript' src='js/vendor/handlebars.min-v4.0.5.js'>
+  </script>
+  <script type='text/javascript' src='js/Transitions.js'></script>
+  <script type='text/javascript' src='js/Loader.js'></script>
+  <script type='text/javascript' src='js/main.js'></script>
+  <script type='text/javascript'>
+
+    // Build array of pages
+    var pages = [
+      'share/attract',
+      'share/share_perf',
+      'share/share_am',
+      'share/thanks'
+    ];
+
+    var customTransitions = new Transitions();
+    var defaultMode = customTransitions.getDefaultMode();
+    defaultMode.addGlobalTransition('cancel', 'share/attract');
+    // @Quin this is a lame hack!
+    defaultMode.addTransition('share/attract', 'next', 'share/share_perf');
+    defaultMode.addTransition('share/attract', 'cancel', 'share/share_am');
+    
+    defaultMode.addTransition('share/share_perf', 'next', 'share/thanks');
+    defaultMode.addTransition('share/share_am', 'next', 'share/thanks');
+    
+    var manager = new Manager(pages, customTransitions);
+  </script>
+</head>
+<body style='overflow:hidden; margin:0; padding:0;'>
+</body>
+</html>

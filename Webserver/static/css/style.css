@@ -196,6 +196,11 @@ body,
     height: 23vw;
 }
 
+.button_med {
+    width: 30vw;
+    height: 30vw;
+}
+
 .button_lg {
     width: 75vw;
     height: 75vw;
@@ -261,20 +266,17 @@ body,
 /* Specific sections */
 
 /*******************************************************
-    PERFORMANCE
+    Share
 *******************************************************/
 
-#videoContainer {
-    height: 250%;
+.header {
+  height: 15vh;
 }
 
 /*******************************************************
-    AMS
+    Common sections
 *******************************************************/
 
-/* Page 4: Open; */
-
-/* Page 6: Share */
 #shareCopy {
     text-align: left;
 }
@@ -293,7 +295,10 @@ body,
         padding: 1vw;
     }
 }
-/* Utilities */
+
+/*******************************************************
+    Utilities
+*******************************************************/
 
 .topL {
     top: 0vw;
@@ -322,6 +327,14 @@ body,
     z-index:1;
 }
 
+.fillHalfW {
+    width: 50vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    z-index:1;
+}
+
 .fillContainer {
     width: 100vw;
 }
@@ -330,6 +343,13 @@ body,
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
+    flex-direction: row;
+}
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     flex-direction: row;
 }
 
@@ -369,6 +389,7 @@ body,
 
 .blackBg {
     background: black;
+    color: white;
 }
 
 .parchBg {
@@ -417,16 +438,6 @@ body,
 
 /* Performance */
 
-#selectPage video {
-    height: 80%;
-    margin: .5%;
-}
-
-#selectPage .button {
-    margin-bottom: 3rem;
-}
-
-
 #admin {
     color: black;
     font-size: .75rem;
@@ -466,10 +477,6 @@ body,
 }
 
 #endText {
-}
-
-#introVideo video {
-    height: 100vh;
 }
 
 .adminButtons {

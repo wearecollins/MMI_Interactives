@@ -1,0 +1,31 @@
+<div id='{{name}}' class='page'>
+  <div class="container header leftContainer blackBg">
+    <div style="padding-right:6vh">
+      <img src="svg/__mmi_logo.svg" class="button_mini" />
+    </div>
+    <div class="type_med">Share your creations</div>
+  </div>
+  <div class='fillAbs centeredContainer column'>
+    <div id="sharePerf" class='fillHalfW'>
+      <div id="sharePerfBg" class="fillHalfW">
+      </div>
+      <div class="fillHalfW centeredContainer">
+        <div class="column" onclick="window.dispatchEvent(new Event('next'));">
+            <img src="svg/__share_lg.svg" class="button_med padding_sm" />
+            <div class="type_sm padding_sm">share your<br> performance</div>
+        </div>
+      </div>
+    </div>
+    <div id="shareAm" class="fillHalfW">
+      <div id="shareAmBg" class="fillHalfW">
+      </div>
+
+      <div class="fillHalfW centeredContainer">
+        <div class="column" onclick="window.dispatchEvent(new Event('cancel'));">
+              <img src="svg/__share_lg.svg" class="button_med padding_sm" />
+              <div class="type_sm padding_sm">share your <br>anything muppet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

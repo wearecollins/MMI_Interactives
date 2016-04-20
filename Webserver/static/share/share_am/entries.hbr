@@ -1,0 +1,5 @@
+{{#each images}}
+<div id="" onclick="window.dispatchEvent( new CustomEvent('select', {detail:'{{image}}' }))">
+	<img src="{{image}}" />
+</div>
+{{/each}}
