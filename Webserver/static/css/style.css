@@ -76,6 +76,41 @@ body,
     }
 }
 
+@keyframes animateInLeft {
+    from {
+        left:100vw;
+    }
+    to {
+        left:0vh;
+    }
+}
+
+@keyframes animateInRight {
+    from {
+        left:-100vw;
+    }
+    to {
+        left:0vh;
+    }
+}
+
+@keyframes animateOffRight {
+    from {
+        left:0vh;
+    }
+    to {
+        left:-100vw;
+    }
+}
+@keyframes animateOffLeft {
+    from {
+        left:0vh;
+    }
+    to {
+        left:100vw;
+    }
+}
+
 @keyframes animateUpScreen {
     from {
         top:100vh;
@@ -105,7 +140,6 @@ body,
 }
 
 /* Top-level pages */
-
 
 #liveView{
   display:block;
@@ -393,6 +427,11 @@ body,
   -ms-user-select: none;       /* IE/Edge */
   user-select: none;           /* non-prefixed version, currently
                                   not supported by any browser */
+}
+
+.hidden {
+  visibility: hidden;
+  display: none;
 }
 
 /* Fills */

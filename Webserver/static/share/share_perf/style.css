@@ -1,20 +1,43 @@
 #{{name}}.disabled{
 	display:block;
 	  /* animation-name: {{name}}animateOff; */
-    animation-name: hide;
-    animation-delay: 1s;
-	animation-duration:0s;
+    animation-name: animateOffRight;
+    /* animation-delay: 1s; */
+	animation-duration:1s;
 	animation-fill-mode:forwards;
 }
 
+#{{name}}.canceled{
+	display:block;
+	  /* animation-name: {{name}}animateOff; */
+    animation-name: animateOffLeft;
+    /* animation-delay: 1s; */
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
 
-#{{name}}{
-	animation-name: animateIn;
+#{{name}}.fromPrev{
+	animation-name: animateInRight;
   	animation-duration: 1s;
   	animation-fill-mode:forwards;
   	z-index: 1;
 }
 
+#{{name}}{
+	animation-name: animateInLeft;
+  	animation-duration: 1s;
+  	animation-fill-mode:forwards;
+  	z-index: 1;
+}
+
+#{{name}} {
+	color: black;
+}
+
 #{{name}}.fillAbs, #{{name}}.fillHalfW {
 	height: 85vh;
+}
+
+#perfContainer {
+	overflow: scroll;
 }

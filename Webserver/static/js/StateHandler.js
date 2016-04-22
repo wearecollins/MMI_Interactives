@@ -112,11 +112,21 @@ function StateHandler(){
       var targetStateName = pages[targetStateI].getName();
       log.info(activeStateName,'->',targetStateName);
 
-      pages[activeStateI].exit(evt);
+      if (action == 'prev'){
+        pages[activeStateI].exitPrev(evt);
+      } else {
+        pages[activeStateI].exit(evt);
+      }
       notifyTransition(activeStateI, targetStateI);
       manageStream(activeStateI, targetStateI);
       activeStateI = targetStateI;
-      pages[targetStateI].enter(evt);
+
+      // there is certainly a more graceful way to do this?
+      if ( action == 'prev'){
+        pages[targetStateI].enterPrev(evt);
+      } else {
+        pages[targetStateI].enter(evt);
+      }
     }
   };
 

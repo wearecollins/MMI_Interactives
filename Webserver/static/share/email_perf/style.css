@@ -1,15 +1,31 @@
 #{{name}}.disabled{
 	display:block;
 	  /* animation-name: {{name}}animateOff; */
-    animation-name: hide;
-    animation-delay: 1s;
-	animation-duration:0s;
+    animation-name: animateOffRight;
+    /* animation-delay: 1s; */
+	animation-duration:1s;
 	animation-fill-mode:forwards;
 }
 
-
 #{{name}}{
-	animation-name: animateIn;
+	animation-name: animateInLeft;
+  	animation-duration: 1s;
+  	animation-fill-mode:forwards;
+  	z-index: 1;
+  	color: black;
+}
+
+#{{name}}.canceled{
+	display:block;
+	  /* animation-name: {{name}}animateOff; */
+    animation-name: animateOffLeft;
+    /* animation-delay: 1s; */
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+#{{name}}.fromPrev{
+	animation-name: animateInRight;
   	animation-duration: 1s;
   	animation-fill-mode:forwards;
   	z-index: 1;
@@ -17,4 +33,56 @@
 
 #{{name}} .fillAbs, #{{name}} .fillHalfW {
 	height: 85vh;
+	overflow: scroll;
+}
+
+#{{name}} input {
+    width: 94%;
+    border: 0px;
+    border-bottom: 1px solid #56b79e;
+}
+
+#pEmShare {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+    z-index: 0;
+}
+
+#pEmShare video {
+	height: 100%;
+}
+
+#pEmInfo div {
+	flex-shrink: 0;
+	width: 100%;
+}
+
+#pEmInfo {
+    top: 15vh;
+	height: 100%;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	justify-content: flex-start;
+	text-align: left;
+	line-height: 0;
+	z-index: 1;
+}
+
+#pEmInfo > #spacer {
+	flex-shrink: 0;
+    width: 100%;
+    height: 60vh;
+}
+
+#pEmEm {
+	justify-content: flex-start;
+    flex-direction: row;
+    display: flex;
+}
+
+#pEmEm div, #pEmSh div {
+	flex-shrink: 1;
+	width: auto;
 }

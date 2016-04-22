@@ -109,7 +109,7 @@ function EventHandler(){
     var key = evt.keyCode || evt.which;
     var keychar = String.fromCharCode(key);
     if (keychar === 'a' || keychar === 'A') {
-      window.dispatchEvent(new Event('admin'));
+      // window.dispatchEvent(new Event('admin'));
     }
     // DEBUG
     if ( keychar == 'N' ){

@@ -1,30 +1,46 @@
 <div id='{{name}}' class='page'>
   <div class="container header leftContainer blackBg">
     <div style="padding-right:6vh" onclick="window.dispatchEvent(new Event('prev'));">
-      <img src="svg/__back.svg" class="button_mini" />
+      <img src="svg/__back_white.svg" class="button_mini" />
     </div>
-    <div class="type_med">Share your creations</div>
+    <div class="type_med">Share your Performance</div>
   </div>
-  <div class='fillAbs centeredContainer column'>
-    <div id="sharePerf" class='fillHalfW'>
-      <div id="sharePerfBg" class="fillHalfW">
+
+  <div id="pEmShare" class="container">
+    <video autoplay loop muted>
+      <source id="pEmImg" src="" type="video/mp4">
+    </video>
+  </div>
+  <div id="pEmInfo" class="leftContainer fillAbs">
+    <div id="spacer"></div>
+    <div class="greyBg container">
+      <span class="type_mini"><u>Your Performance Name</u></span><br>
+      <span id="pEmName" class="type_med">Performance 1</span>
+    </div>
+    <div id="pEmEm" class="whiteBg container">
+      <div onclick="document.getElementById('pEmEmail').focus();">
+        <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
+        <input class="type_med" placeholder="you@domain.com" type="email" id="pEmEmail" />
+        <span id="pEmError" class="hidden type_sm">Invalid email. Please try again!</span>
       </div>
-      <div class="fillHalfW centeredContainer">
-        <div class="column" onclick="window.dispatchEvent(new Event('next'));">
-            <img src="svg/__share_lg.svg" class="button_med padding_sm" />
-            <div class="type_sm padding_sm">share your<br> performance</div>
-        </div>
+      <div class="rightContainer" style="align-items:center; width:30%" onclick="window.dispatchEvent(new Event('sharepEmail'));">
+        <img src="svg/__select.svg" class="button_mini" />
       </div>
     </div>
-    <div id="shareAm" class="fillHalfW">
-      <div id="shareAmBg" class="fillHalfW">
-      </div>
-
-      <div class="fillHalfW centeredContainer">
-        <div class="column" onclick="window.dispatchEvent(new Event('cancel'));">
-              <img src="svg/__share_lg.svg" class="button_med padding_sm" />
-              <div class="type_sm padding_sm">share your <br>anything muppet</div>
+    <div id="pEmSh" class="greyBg container leftContainer">
+      <div style="flex-shrink:1">
+        <span class="type_mini"><u>Share on MMI Tumblr</u></span><br>
+        <span class="type_sm">mmi-jh.tumblr.com</span><br>
+        <span class="type_mini"><u>Share on MMI Facebook</u></span><br>
+        <span class="type_sm">fb-me/mmi-henson</span><br><br>
+        <div class="type_mini">
+          Optionally, share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.<br>
+          <div class="type_micro">
+          Legal terms etc. ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend massa quis fringilla iaculis. Quisque euismod, dolor id fermentum euismod, nisl nibh eleifend orci, mattis aliquam est nibh vitae lectus. Donec ac libero porta, tristique ligula in, congue</div>
         </div>
+      </div>
+      <div class="topCenteredContainer" style="padding-left: 4vw; height:19vh;" onclick="window.dispatchEvent(new Event('shareAmMMI'));">
+        <img src="svg/__share.svg" class="button_mini" />
       </div>
     </div>
   </div>

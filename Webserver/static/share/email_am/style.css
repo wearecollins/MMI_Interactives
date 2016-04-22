@@ -1,19 +1,35 @@
 #{{name}}.disabled{
 	display:block;
 	  /* animation-name: {{name}}animateOff; */
-    animation-name: hide;
-    animation-delay: 1s;
-	animation-duration:0s;
+    animation-name: animateOffRight;
+    /* animation-delay: 1s; */
+	animation-duration:1s;
 	animation-fill-mode:forwards;
 }
 
 
 #{{name}}{
-	animation-name: animateIn;
+	animation-name: animateInLeft;
   	animation-duration: 1s;
   	animation-fill-mode:forwards;
   	z-index: 1;
   	color: black;
+}
+
+#{{name}}.canceled{
+	display:block;
+	  /* animation-name: {{name}}animateOff; */
+    animation-name: animateOffLeft;
+    /* animation-delay: 1s; */
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+#{{name}}.fromPrev{
+	animation-name: animateInRight;
+  	animation-duration: 1s;
+  	animation-fill-mode:forwards;
+  	z-index: 1;
 }
 
 #{{name}} .fillAbs, #{{name}} .fillHalfW {
@@ -38,6 +54,7 @@
 
 #amEmInfo div {
 	flex-shrink: 0;
+	width: 100%;
 }
 
 #amEmInfo {
@@ -57,6 +74,7 @@
     display: flex;
 }
 
-#amEmEm div {
+#amEmEm div, #amEmSh div {
 	flex-shrink: 1;
+	width: auto;
 }

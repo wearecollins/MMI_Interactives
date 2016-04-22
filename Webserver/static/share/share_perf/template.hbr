@@ -1,9 +1,9 @@
 <div id='{{name}}' class='page'>
   <div class="container header leftContainer blackBg">
-    <div style="padding-right:6vh">
-      <img src="svg/__mmi_logo.svg" class="button_mini" />
+    <div style="padding-right:6vh" onclick="window.dispatchEvent(new Event('prev'));">
+      <img src="svg/__back_white.svg" class="button_mini" />
     </div>
-    <div class="type_med">Share Your Performance</div>
+    <div class="type_med">Share your Performance</div>
   </div>
   <div id="perfContainer" class='fillAbs column'>
   </div>

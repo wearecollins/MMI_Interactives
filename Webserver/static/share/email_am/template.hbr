@@ -1,12 +1,12 @@
 <div id='{{name}}' class='page'>
   <div class="container header leftContainer blackBg">
     <div style="padding-right:6vh" onclick="window.dispatchEvent(new Event('prev'));">
-      <img src="svg/__back.svg" class="button_mini" />
+      <img src="svg/__back_white.svg" class="button_mini" />
     </div>
     <div class="type_med">Share your Anything Muppet</div>
   </div>
-  <div class="leftContainer fillAbs container greyBg">
-    <div id="amEmShare">
+  <div class="leftContainer fillAbs greyBg">
+    <div id="amEmShare" class="container">
       <img id="amEmImg" />
     </div>
     <div id="amEmInfo">
@@ -15,15 +15,16 @@
         <span id="amEmName" class="type_med">Anything Muppet 1</span>
       </div>
       <div id="amEmEm" class="whiteBg container">
-        <div>
+        <div onclick="document.getElementById('anEmEmail').focus();">
           <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
           <input class="type_med" placeholder="you@domain.com" type="email" id="anEmEmail" />
+          <span id="amEmError" class="hidden type_sm">Invalid email. Please try again!</span>
         </div>
-        <div class="centeredContainer" onclick="window.dispatchEvent(new Event('shareAmEmail'));">
+        <div class="rightContainer" style="align-items:center; width:30%" onclick="window.dispatchEvent(new Event('shareAmEmail'));">
           <img src="svg/__select.svg" class="button_mini" />
         </div>
       </div>
-      <div class="greyBg container leftContainer">
+      <div id="amEmSh" class="greyBg container leftContainer">
         <div style="flex-shrink:1">
           <span class="type_mini"><u>Share on MMI Tumblr</u></span><br>
           <span class="type_sm">mmi-jh.tumblr.com</span><br>

@@ -13,27 +13,39 @@ var email_am = function(/*manager*/){
 	};
 
 	this.exit = function(/*evt*/){
-
+		setTimeout( function() {
+			var input = document.getElementById("anEmEmail");
+			input.value = "";
+		}, 1000);
 	};
 
-	//ty internets http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
-	function validateEmail(email) {
-	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	    return re.test(email);
-	}
+	var setupListener = false;
+	var inError = false;
 
 	function checkEmail() {
 		var input = document.getElementById("anEmEmail");
+		if (!setupListener){
+			input.addEventListener('change', function () {
+				if (inError ){
+					inError = false;
+					document.getElementById("amEmError").classList.add("hidden");
+				}
+			});
+
+		}
 		var email = input.value;
-		if ( validateEmail(email) ){
-			console.log("VALID?");
+		if ( MMI.validateEmail(email) ){
 			// grey out?
-			window.dispatchEvent( new CustomEvent("sendEmail", {detail:{"data":currentAM, "email":email}}));
+			window.dispatchEvent( new CustomEvent("sendEmail", {detail:{"data":currentAM, "email":email, "type":"performance"}}));
 			window.dispatchEvent(new Event("next"));
+
 		} else {
 			//do something
+			document.getElementById("amEmError").classList.remove("hidden");
+			inError = true;
 		}
 	}
 
 	window.addEventListener("shareAmEmail", checkEmail);
+
 }

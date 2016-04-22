@@ -90,6 +90,22 @@ function Page(){
   this.enter = function enter(){
     if(domElem){
       domElem.classList.remove('disabled');
+      domElem.classList.remove('canceled');
+      domElem.classList.remove('fromPrev');
+    }
+    if (instance){
+      instance.enter();
+    }
+  };
+
+  /**
+   * tell this Page to become active on the screen
+   */
+  this.enterPrev = function enterPrev(){
+    if(domElem){
+      domElem.classList.remove('disabled');
+      domElem.classList.remove('canceled');
+      domElem.classList.add('fromPrev');
     }
     if (instance){
       instance.enter();
@@ -101,7 +117,22 @@ function Page(){
    */
   this.exit = function exit(){
     if(domElem){
+      domElem.classList.remove('fromPrev');
       domElem.classList.add('disabled');
+    }
+    if (instance){
+      instance.exit();
+    }
+  };
+
+  /**
+   * tell this Page to disappear from the screen
+   */
+  this.exitPrev = function exitPrev(){
+    if(domElem){
+      domElem.classList.add('disabled');
+      domElem.classList.add('canceled');
+      domElem.classList.remove('fromPrev');
     }
     if (instance){
       instance.exit();

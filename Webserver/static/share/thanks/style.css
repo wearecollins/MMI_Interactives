@@ -1,15 +1,30 @@
 #{{name}}.disabled{
 	display:block;
 	  /* animation-name: {{name}}animateOff; */
-    animation-name: hide;
-    animation-delay: 1s;
-	animation-duration:0s;
+    animation-name: animateOffRight;
+    /* animation-delay: 1s; */
+	animation-duration:1s;
 	animation-fill-mode:forwards;
 }
 
+#{{name}}.canceled{
+	display:block;
+	  /* animation-name: {{name}}animateOff; */
+    animation-name: animateOffLeft;
+    /* animation-delay: 1s; */
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+#{{name}}.fromPrev{
+	animation-name: animateInRight;
+  	animation-duration: 1s;
+  	animation-fill-mode:forwards;
+  	z-index: 1;
+}
 
 #{{name}}{
-	animation-name: animateIn;
+	animation-name: animateInLeft;
   	animation-duration: 1s;
   	animation-fill-mode:forwards;
   	z-index: 1;

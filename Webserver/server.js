@@ -63,4 +63,4 @@ var wss = new WebSocket(server, config, Logger.getLogger('websocket'));
 /*eslint-enable*/
 
 // listen to connections on the given port/interface
-server.listen(8080, '127.0.0.1');
+server.listen(8080);//, '127.0.0.1');

@@ -33,15 +33,17 @@
     defaultMode.addTransition('share/attract', 'cancel', 'share/share_am');
     
     // setup transitions between individual/different templates
+    defaultMode.addTransition('share/share_perf', 'prev', 'share/attract');
     defaultMode.addTransition('share/share_perf', 'next', 'share/email_perf');
     defaultMode.addTransition('share/email_perf', 'prev', 'share/share_perf');
-    defaultMode.addTransition('share/share_perf', 'prev', 'share/attract');
     defaultMode.addTransition('share/email_perf', 'next', 'share/thanks');
-
+    
     defaultMode.addTransition('share/share_am', 'next', 'share/email_am');
     defaultMode.addTransition('share/email_am', 'prev', 'share/share_am');
     defaultMode.addTransition('share/share_am', 'prev', 'share/attract');
     defaultMode.addTransition('share/email_am', 'next', 'share/thanks');
+    
+    defaultMode.addTransition('share/thanks', 'next', 'share/attract');
     
     var manager = new Manager(pages, customTransitions);
   </script>
