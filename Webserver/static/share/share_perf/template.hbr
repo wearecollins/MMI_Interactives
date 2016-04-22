@@ -5,6 +5,6 @@
     </div>
     <div class="type_med">Share Your Performance</div>
   </div>
-  <div id="perfContainer" class='fillAbs centeredContainer column'>
+  <div id="perfContainer" class='fillAbs column'>
   </div>
 </div>

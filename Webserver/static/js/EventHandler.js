@@ -113,7 +113,7 @@ function EventHandler(){
     }
     // DEBUG
     if ( keychar == 'N' ){
-      window.dispatchEvent(new Event('next'));
+      // window.dispatchEvent(new Event('next'));
 
     }
   }

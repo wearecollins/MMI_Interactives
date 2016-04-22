@@ -1,5 +1,5 @@
 #{{name}}.disabled{
-	display:flex;
+	display:block;
 	  /* animation-name: {{name}}animateOff; */
     animation-name: hide;
     animation-delay: 1s;

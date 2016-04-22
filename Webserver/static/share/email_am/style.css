@@ -1,0 +1,62 @@
+#{{name}}.disabled{
+	display:block;
+	  /* animation-name: {{name}}animateOff; */
+    animation-name: hide;
+    animation-delay: 1s;
+	animation-duration:0s;
+	animation-fill-mode:forwards;
+}
+
+
+#{{name}}{
+	animation-name: animateIn;
+  	animation-duration: 1s;
+  	animation-fill-mode:forwards;
+  	z-index: 1;
+  	color: black;
+}
+
+#{{name}} .fillAbs, #{{name}} .fillHalfW {
+	height: 85vh;
+}
+
+#{{name}} input {
+    width: 94%;
+    border: 0px;
+    border-bottom: 1px solid #56b79e;
+}
+
+#amEmShare {
+	width: 33%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#amEmShare img {
+	height: 100%;
+}
+
+#amEmInfo div {
+	flex-shrink: 0;
+}
+
+#amEmInfo {
+	width: 67%;
+	height: 100%;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	justify-content: flex-start;
+	text-align: left;
+	line-height: 0;
+}
+
+#amEmEm {
+	justify-content: flex-start;
+    flex-direction: row;
+    display: flex;
+}
+
+#amEmEm div {
+	flex-shrink: 1;
+}

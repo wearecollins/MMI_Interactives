@@ -1,5 +1,5 @@
 #{{name}}.disabled{
-	display:flex;
+	display:block;
 	  /* animation-name: {{name}}animateOff; */
     animation-name: hide;
     animation-delay: 1s;
@@ -7,6 +7,9 @@
 	animation-fill-mode:forwards;
 }
 
+#{{name}} {
+	color: black;
+}
 
 #{{name}}{
 	animation-name: animateIn;
@@ -15,6 +18,36 @@
   	z-index: 1;
 }
 
-#{{name}}.fillAbs, #{{name}}.fillHalfW {
+#{{name}} .fillAbs, #{{name}} .fillHalfW {
 	height: 85vh;
+}
+
+#amContainer {
+	overflow: scroll;
+}
+
+.shareRow {
+	background: #E5E5E5;
+	height: 25vh;
+	width: 100vw;
+}
+
+.srImage {
+	height: 100%;
+}
+
+.evenRow {
+	background: #FFFFFF;
+}
+
+.srType {
+	width: 60%;
+	text-align: left;
+}
+
+.srButton {
+	width: 20%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
 }

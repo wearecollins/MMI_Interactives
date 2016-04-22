@@ -1,0 +1,44 @@
+<div id='{{name}}' class='page'>
+  <div class="container header leftContainer blackBg">
+    <div style="padding-right:6vh" onclick="window.dispatchEvent(new Event('prev'));">
+      <img src="svg/__back.svg" class="button_mini" />
+    </div>
+    <div class="type_med">Share your Anything Muppet</div>
+  </div>
+  <div class="leftContainer fillAbs container greyBg">
+    <div id="amEmShare">
+      <img id="amEmImg" />
+    </div>
+    <div id="amEmInfo">
+      <div class="greyBg container">
+        <span class="type_mini"><u>Your Puppet Name</u></span><br>
+        <span id="amEmName" class="type_med">Anything Muppet 1</span>
+      </div>
+      <div id="amEmEm" class="whiteBg container">
+        <div>
+          <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
+          <input class="type_med" placeholder="you@domain.com" type="email" id="anEmEmail" />
+        </div>
+        <div class="centeredContainer" onclick="window.dispatchEvent(new Event('shareAmEmail'));">
+          <img src="svg/__select.svg" class="button_mini" />
+        </div>
+      </div>
+      <div class="greyBg container leftContainer">
+        <div style="flex-shrink:1">
+          <span class="type_mini"><u>Share on MMI Tumblr</u></span><br>
+          <span class="type_sm">mmi-jh.tumblr.com</span><br>
+          <span class="type_mini"><u>Share on MMI Facebook</u></span><br>
+          <span class="type_sm">fb-me/mmi-henson</span><br><br>
+          <div class="type_mini">
+            Optionally, share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.<br>
+            <div class="type_micro">
+            Legal terms etc. ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend massa quis fringilla iaculis. Quisque euismod, dolor id fermentum euismod, nisl nibh eleifend orci, mattis aliquam est nibh vitae lectus. Donec ac libero porta, tristique ligula in, congue</div>
+          </div>
+        </div>
+        <div class="topCenteredContainer" style="padding-left: 4vw; height:19vh;" onclick="window.dispatchEvent(new Event('shareAmMMI'));">
+          <img src="svg/__share.svg" class="button_mini" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

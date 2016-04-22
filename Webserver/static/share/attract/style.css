@@ -1,5 +1,5 @@
 #{{name}}.disabled{
-	display:flex;
+	display:block;
 	  /* animation-name: {{name}}animateOff; */
     animation-name: hide;
     animation-delay: 1s;
@@ -15,7 +15,7 @@
   	z-index: 1;
 }
 
-#{{name}}.fillAbs, #{{name}}.fillHalfW {
+#{{name}} .fillAbs, #{{name}} .fillHalfW {
 	height: 85vh;
 }
 

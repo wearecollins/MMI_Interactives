@@ -3,6 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
   <meta content="utf-8" http-equiv="encoding">
   <link rel='stylesheet' type='text/css' href='css/normalize.css'>
@@ -19,6 +20,8 @@
       'share/attract',
       'share/share_perf',
       'share/share_am',
+      'share/email_perf',
+      'share/email_am',
       'share/thanks'
     ];
 
@@ -29,8 +32,16 @@
     defaultMode.addTransition('share/attract', 'next', 'share/share_perf');
     defaultMode.addTransition('share/attract', 'cancel', 'share/share_am');
     
-    defaultMode.addTransition('share/share_perf', 'next', 'share/thanks');
-    defaultMode.addTransition('share/share_am', 'next', 'share/thanks');
+    // setup transitions between individual/different templates
+    defaultMode.addTransition('share/share_perf', 'next', 'share/email_perf');
+    defaultMode.addTransition('share/email_perf', 'prev', 'share/share_perf');
+    defaultMode.addTransition('share/share_perf', 'prev', 'share/attract');
+    defaultMode.addTransition('share/email_perf', 'next', 'share/thanks');
+
+    defaultMode.addTransition('share/share_am', 'next', 'share/email_am');
+    defaultMode.addTransition('share/email_am', 'prev', 'share/share_am');
+    defaultMode.addTransition('share/share_am', 'prev', 'share/attract');
+    defaultMode.addTransition('share/email_am', 'next', 'share/thanks');
     
     var manager = new Manager(pages, customTransitions);
   </script>

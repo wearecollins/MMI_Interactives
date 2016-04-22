@@ -18,7 +18,6 @@ MMI.getQueryString = function(key, default_)
 }
 
 
-
 MMI.show = function( divId, displayType ){
   var t = displayType === null ? "block" : displayType;
   var d = document.getElementById( divId );
@@ -35,6 +34,14 @@ MMI.hide = function( divId ){
     d.style.display = "none";
   }
 }
+
+Handlebars.registerHelper('if_even', function(conditional, options) {
+  if((conditional % 2) == 0) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});
 
 /*global Handlebars, log4javascript, Loader, 
  *       Page, StreamHandler, StateHandler, 

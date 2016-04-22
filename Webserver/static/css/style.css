@@ -238,6 +238,16 @@ body,
 
 /* 1080 x 1920 */
 
+.type_micro {
+    font-size: .1rem;
+    line-height: .13rem;
+}
+
+.type_mini {
+    font-size: .15rem;
+    line-height: .24rem;
+}
+
 .type_sm {
     font-size: .35rem;
     line-height: .44rem;

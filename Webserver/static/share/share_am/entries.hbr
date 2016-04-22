@@ -1,5 +1,14 @@
 {{#each images}}
-<div id="" onclick="window.dispatchEvent( new CustomEvent('select', {detail:'{{image}}' }))">
-	<img src="{{image}}" />
+<div class="leftContainer container shareRow {{#if_even @index}}evenRow{{/if_even}}" onclick="window.dispatchEvent( new CustomEvent('selectAM', {detail:{'timestamp':'{{{timestamp}}}','image':'{{{image}}}' } }));">
+	<img class="srImage" src="{{image}}" />
+	<div class="srType type_med" style="padding-left:2vw">
+		<span style="text-decoration: underline;
+" class="type_mini">{{timestamp}}</span>
+		<br>
+		Anything Muppet 01
+	</div>
+	<div class="srButton">
+		<img class="button_mini" src="svg/__share.svg"  />
+	</div>
 </div>
 {{/each}}
