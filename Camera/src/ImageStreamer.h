@@ -44,11 +44,13 @@ namespace mmi {
                     size = 0;
                     out.clear();
                     
-                    auto * data = turbo.compress(img, jpegQuality.get(), &size);
-                    out.set(reinterpret_cast<char*>(data), size);
+                    bool success = turbo.compress(img, jpegQuality.get(), out);
+                    if ( success ){
+//                    out.set(reinterpret_cast<char*>(data), size);
                     //wsServer.clearBinaryMessageQueue();
-                    wsServer.sendBinary(out);
-                    free(data);
+                        wsServer.sendBinary(out);
+                    }
+//                    free(data);
 #else
                     wsServer.sendBinary(img);
 #endif

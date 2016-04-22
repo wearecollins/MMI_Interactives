@@ -36,22 +36,27 @@ namespace mmi {
     {
     public:
         
-        void setup( bool bSmall = false, string settingsFile = "cameras.xml" );
+        void setup( bool bSmall = false, string settingsFile = "anythingmuppets.xml" );
+        
+        void clearCameras();
+        void setupCameras();
+        
         void draw(int x, int y, int which = 0 );
         void drawDebug( int x, int y );
         void drawGui();
         
-        Camera * getCamera( int which = 0 );
+        shared_ptr<Camera> getCamera( int which = 0 );
         int getNumCameras();
-        vector<Camera *> & getCameras();
+        vector<shared_ptr<Camera> > & getCameras();
+        
+        ofParameter<string> settingsFile;
         
     protected:
         ofxPanel * gui;
-        ofParameter<string> settingsFile;
-        
+        ofParameter<bool> lowRes;
         ofParameter<int> drawMode;
         
-        vector<Camera *> cameras;
+        vector<shared_ptr<Camera> > cameras;
         void saveSettings();
     };
 

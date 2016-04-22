@@ -43,6 +43,8 @@ public:
     Mode currentMode;
     ofxPanel * gui;
     ofParameter<int> cameraTop;
+    ofParameter<int> whichSetup;
+    ofParameter<bool> reloadCameras;
     ofParameter<int> whichStream;
     
 protected:

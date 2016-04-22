@@ -73,6 +73,9 @@ protected:
     void onShutterUpdated( float & v );
     void onRoiUpdated( ofVec4f & v );
     
+    // utils from PointGrey libdc stuff
+    unsigned int getEmbeddedInfo(unsigned char* pixels, int embeddedInfo);
+    unsigned int getEmbeddedInfoOffset(int embeddedInfo);
 };
 
 }

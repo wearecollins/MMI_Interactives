@@ -11,9 +11,29 @@ namespace mmi {
     
     //--------------------------------------------------------------
     void CameraManager::setup( bool bSmall, string settingsFile ){
-        this->settingsFile.set("Settings file", settingsFile);
         gui = new ofxPanel();
-        gui->setup();
+        gui->setup("Camera Settings", "camera_settings.xml");
+        
+        this->settingsFile.set("Settings file", settingsFile);
+        this->lowRes.set("Lo-res/hi-res", bSmall);
+        
+        setupCameras();
+    }
+    
+    //--------------------------------------------------------------
+    void CameraManager::clearCameras(){
+        
+        for ( auto & c : cameras ){
+            c.get()->close();
+        }
+        gui->clear();
+        
+        cameras.clear();
+    }
+    
+    //--------------------------------------------------------------
+    void CameraManager::setupCameras(){
+        clearCameras();
         
         gui->add(drawMode.set("Mode", (int) MODE_FILL_MAX, (int) MODE_FILL_MAX, (int) MODE_ACTUAL));
         
@@ -25,20 +45,20 @@ namespace mmi {
             for ( auto i =0; i<n; i++ ){
                 settings.setToChild(i);
                 
-                Camera * camera = new Camera();
+                shared_ptr<Camera> camera = make_shared<Camera>();
                 string guid = settings.getValue("guid");
                 ofLogVerbose()<<"[CameraManager] Setting up camera "<<guid;
 #ifndef DEBUG_CAMERA
-                auto bOpen = camera->setup(guid, bSmall ? 1040 : 2080 );
+                auto bOpen = camera->setup(guid, this->lowRes.get() ? 1040 : 2080 );
                 if ( bOpen ){
-                    cameras.push_back(camera);
                     gui->add(camera->params);
+                    cameras.push_back(std::move( camera ) );
                 }
 #else
                 camera->setDeviceID(2); // just for brett's machine
                 auto bOpen = camera->setup(640, 480);
                 if ( bOpen ){
-                    cameras.push_back(camera);
+                    cameras.push_back(std::move( camera ) );
                 }
 #endif
                 settings.setToParent();
@@ -48,24 +68,24 @@ namespace mmi {
             
         } else {
             ofLogError()<<"[CameraManager] No settings file loaded. Trying to open 1 camera";
-            Camera * camera = new Camera();
+            shared_ptr<Camera> camera = make_shared<Camera>();
+            
 #ifndef DEBUG_CAMERA
             auto bOpen = camera->setup();
             if ( bOpen ){
-                cameras.push_back(camera);
+                cameras.push_back(std::move( camera ) );
                 gui->add(camera->params);
             }
 #else
             auto bOpen = camera->setup(640,480);
             if ( bOpen ){
-                cameras.push_back(camera);
+                cameras.push_back(std::move( camera ) );
             }
 #endif
             
             saveSettings();
         }
-        
-        gui->loadFromFile("settings.xml");
+        gui->loadFromFile("camera_settings.xml");
     }
     
     //--------------------------------------------------------------
@@ -73,7 +93,7 @@ namespace mmi {
         if ( which >= cameras.size() ){
             return;
         }
-        auto * c = cameras[which];
+        auto & c = cameras[which];
         
         float w = c->getWidth();
         float h = c->getHeight();
@@ -117,7 +137,7 @@ namespace mmi {
         ofPushMatrix();
         ofScale(.5, .5);
         
-        for ( auto * c : cameras ){
+        for ( auto & c : cameras ){
 #ifndef DEBUG_CAMERA
             c->drawDebug(x, y, c->getWidth(), c->getHeight());
             x += c->getImage().getWidth();
@@ -141,7 +161,7 @@ namespace mmi {
         xml.addChild("settings");
         xml.setTo("settings");{
             int idx = 0;
-            for ( auto * c : cameras ){
+            for ( auto & c : cameras ){
                 xml.addChild("camera");
                 xml.setTo("camera["+ofToString(idx)+"]");
 #ifndef DEBUG_CAMERA
@@ -155,7 +175,7 @@ namespace mmi {
     }
     
     //--------------------------------------------------------------
-    Camera * CameraManager::getCamera( int which ){
+    shared_ptr<Camera> CameraManager::getCamera( int which ){
         if ( getNumCameras() > which ){
             return cameras[ which ];
         } else {
@@ -170,7 +190,7 @@ namespace mmi {
     }
     
     //--------------------------------------------------------------
-    vector<Camera *> & CameraManager::getCameras(){
+    vector<shared_ptr<Camera> > & CameraManager::getCameras(){
         return cameras;
     }
 }

@@ -38,7 +38,7 @@ namespace mmi {
         this->params.add(this->imageColor.set("Color/BW", true));
         
         // unclear if this is a good idea yet
-        this->params.add(this->roi.set("roi", ofVec4f(0,0,this->width,this->height), ofVec4f(0,0,0,0), ofVec4f(0,0,this->width,this->height)));
+//        this->params.add(this->roi.set("roi", ofVec4f(0,0,this->width,this->height), ofVec4f(0,0,0,0), ofVec4f(0,0,this->width,this->height)));
         
         this->brightness.addListener(this, &BlackFlyCamera::onBrightnessUpdated);
         this->gamma.addListener(this, &BlackFlyCamera::onGammaUpdated);
@@ -115,6 +115,9 @@ namespace mmi {
             camera.setBayerMode(DC1394_COLOR_FILTER_RGGB, DC1394_BAYER_METHOD_NEAREST);
             
             //todo: query BAYER_TILE_MAPPING (register 0x1040)
+        } else {
+            camera.setImageType(OF_IMAGE_GRAYSCALE);
+            camera.disableBayer();
         }
         
         camera.setFormat7(true, fmt7Mode);
@@ -206,16 +209,22 @@ namespace mmi {
             if (imageColor.get() && buffer.getImageType() != OF_IMAGE_COLOR ){
                 cout << "set bayer>"<<endl;
                 buffer.allocate(width, height, OF_IMAGE_COLOR);
+                buffer.getPixels().setColor(ofColor::black);
                 camera.setBayerMode(DC1394_COLOR_FILTER_RGGB, DC1394_BAYER_METHOD_NEAREST);
                 camera.setImageType(OF_IMAGE_COLOR);
             } else if ( !imageColor.get() && buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
+                cout << "set gray" << endl;
                 buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
+                buffer.getPixels().setColor(ofColor::black);
                 camera.setImageType(OF_IMAGE_GRAYSCALE);
                 camera.disableBayer();
+                buffer.update();
             }
             
             auto v = camera.grabVideo(buffer);
             if ( v ){
+                cout << buffer.getWidth()<<":"<<buffer.getHeight()<<":"<<buffer.getPixels().getNumChannels()<<endl;
+                cout << buffer.getImageType() << endl;
                 buffer.update();
             }
         } else {
@@ -413,4 +422,29 @@ namespace mmi {
         }
     }
     
+    //--------------------------------------------------------------
+    unsigned int BlackFlyCamera::getEmbeddedInfoOffset(int embeddedInfo) {
+        if(isSetup() ) {
+            auto * c = camera.getLibdcCamera();
+            unsigned int reg;
+            dc1394_get_control_register(c, PTGREY_FRAME_INFO, &reg);
+            int total = 0;
+            for(int i = 0; i < embeddedInfo; i++)
+                if(reg & (1 << i))
+                    total++;
+            return total;
+        } else {
+            return 0;
+        }
+    }
+    
+    //--------------------------------------------------------------
+    unsigned int BlackFlyCamera::getEmbeddedInfo(unsigned char* pixels, int embeddedInfo) {
+        if(isSetup() ) {
+            unsigned int offset = getEmbeddedInfoOffset(embeddedInfo);
+            return ((unsigned int*) pixels)[offset];
+        } else {
+            return 0;
+        }
+    }
 }

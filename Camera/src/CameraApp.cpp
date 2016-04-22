@@ -13,7 +13,11 @@ void CameraApp::setup( bool bDoStream ){
     
     ofSetLogLevel(OF_LOG_VERBOSE);
     gui = new ofxPanel();
+    gui->setup("Settings");
+    
     gui->registerMouseEvents();
+    gui->add(whichSetup.set("Performance / AM ", 0, 0, 1 ));
+    gui->add(reloadCameras.set("Reload cameras?", false));
     gui->add(cameraTop.set("Which camera top", 0, 0, 1));
     
     cameraMgr.setup(this->bStreaming);
@@ -24,7 +28,6 @@ void CameraApp::setup( bool bDoStream ){
         // connect stream message to message parser
         ofAddListener(streamMgr.onWsMessage, &messageHdlr, &mmi::MessageHandler::onMessage);
         gui->add( streamMgr.params );
-        
     }
     
     // setup message handler, which opens its own ws:// client
@@ -37,7 +40,6 @@ void CameraApp::setup( bool bDoStream ){
     ofAddListener(recordMgr.onFinishedRecording, &messageHdlr, &mmi::MessageHandler::onVideoRecorded);
     ofAddListener(recordMgr.onFinishedCapture, &messageHdlr, &mmi::MessageHandler::onImageCaptured);
     
-    gui->setup("Settings");
     
     gui->add( recordMgr.params );
     gui->add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
@@ -56,11 +58,20 @@ void CameraApp::update(){
     // update managers
     messageHdlr.update();
     
-    for ( auto * c : cameraMgr.getCameras()){
+    // switch camera setup?
+    if (reloadCameras.get()){
+        reloadCameras.set(false);
+        
+        string settings = whichSetup.get() == 0 ? "performance.xml" : "anythingmuppets.xml";
+        cameraMgr.settingsFile.set(ofToDataPath(settings));
+        cameraMgr.setupCameras();
+    }
+    
+    for ( auto & c : cameraMgr.getCameras()){
         c->update();
     }
     
-    auto * camera = cameraMgr.getCamera( whichStream.get());
+    shared_ptr<mmi::Camera> camera = cameraMgr.getCamera( whichStream.get() );
     if ( this->bStreaming && camera != nullptr ){
         // try to stream all the time, image streamer will handle by framerate
         
@@ -162,7 +173,7 @@ void CameraApp::keyPressed(ofKeyEventArgs & e ){
         string whichVideo = "black_magic";
         messageHdlr.onStartRecording.notify(whichVideo);
     } else if ( e.key == 'R'){
-        for (auto * c : cameraMgr.getCameras() ){
+        for (auto & c : cameraMgr.getCameras() ){
 #ifndef DEBUG_CAMERA
             c->reloadShader();
 #endif
