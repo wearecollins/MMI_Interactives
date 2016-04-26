@@ -45,7 +45,7 @@ protected:
     
     bool openCamera();
     
-    ofImage buffer, cvBuffer;
+    ofImage buffer, cvBuffer, cropped;
     ofFbo   pingPong[2];
     ofFbo * src;
     ofFbo * dst;
@@ -60,7 +60,8 @@ protected:
     ofParameter<float>          gain;
     ofParameter<float>          exposure;
     ofParameter<float>          shutter;
-    ofParameter<ofVec4f>        roi;
+    ofParameter<int>            aspect_x;
+    ofParameter<int>            aspect_y;
     ofParameter<bool>           doReset;
     
     int width, height;
@@ -74,8 +75,18 @@ protected:
     void onRoiUpdated( ofVec4f & v );
     
     // utils from PointGrey libdc stuff
+    void setMaxFramerate();
     unsigned int getEmbeddedInfo(unsigned char* pixels, int embeddedInfo);
     unsigned int getEmbeddedInfoOffset(int embeddedInfo);
+    void clearEmbeddedInfo();
+    void setEmbeddedInfo(int embeddedInfo, bool enable = true);
+    
+    // software triggering (experimental, mostly unused)
+    void sendSoftwareTrigger( dc1394camera_t* camera );
+    
+    // pointgrey-specific
+    void getShutterValue();
+    void getTriggerMode();
 };
 
 }

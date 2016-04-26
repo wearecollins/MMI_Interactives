@@ -16,6 +16,8 @@ namespace mmi {
     int fmt7Mode = 0;
     bool lastBayer = false;
     bool lastColor = true;
+    bool softwareTrigger = false;
+    bool isFirstFrame = true;
     
     //--------------------------------------------------------------
     BlackFlyCamera::BlackFlyCamera() :
@@ -38,14 +40,15 @@ namespace mmi {
         this->params.add(this->imageColor.set("Color/BW", true));
         
         // unclear if this is a good idea yet
-//        this->params.add(this->roi.set("roi", ofVec4f(0,0,this->width,this->height), ofVec4f(0,0,0,0), ofVec4f(0,0,this->width,this->height)));
+        this->params.add(this->aspect_x.set("Aspect x", 0, 0, 16 ));
+        this->params.add(this->aspect_y.set("Aspect y", 0, 0, 16 ));
         
         this->brightness.addListener(this, &BlackFlyCamera::onBrightnessUpdated);
         this->gamma.addListener(this, &BlackFlyCamera::onGammaUpdated);
         this->gain.addListener(this, &BlackFlyCamera::onGainUpdated);
         this->exposure.addListener(this, &BlackFlyCamera::onExposureUpdated);
         this->shutter.addListener(this, &BlackFlyCamera::onShutterUpdated);
-        this->roi.addListener(this, &BlackFlyCamera::onRoiUpdated);
+//        this->roi.addListener(this, &BlackFlyCamera::onRoiUpdated);
         
         reloadShader();
     }
@@ -76,6 +79,7 @@ namespace mmi {
         
         // setup stuff
         this->guid.set(guid);
+        this->params.setName("Camera " + ofToString( guid ));
         
         openCamera();
         
@@ -94,6 +98,7 @@ namespace mmi {
     //--------------------------------------------------------------
     bool BlackFlyCamera::openCamera(){
         bSetup = false;
+        isFirstFrame = true;
         
         fmt7Mode = this->resMode.get() == 0 ? 0 : 4;
         
@@ -159,26 +164,31 @@ namespace mmi {
             auto * c = camera.getLibdcCamera();
             dc1394video_mode_t vm = (dc1394video_mode_t) ((int) DC1394_VIDEO_MODE_FORMAT7_0 + fmt7Mode);
             
-            // set maximum framerate
-            unsigned int framerateInq;
-            dc1394_get_control_register(c, PTGREY_FRAME_RATE_INQ, &framerateInq);
-            unsigned int minValue = readBits(framerateInq, 24, 12);
-            minValue |= 0x82000000;
-            dc1394_set_control_register(c, PTGREY_FRAME_RATE, minValue);
+//            dc1394_camera_reset(c);
+            setMaxFramerate();
+//            getTriggerMode();
             
-            // more chill features
+            // more features
             
-            //            camera.setFeatureAbs( DC1394_FEATURE_TRIGGER_DELAY, 0.);
+//            camera.setFeatureAbs( DC1394_FEATURE_TRIGGER_DELAY, 0.);
             
             // unclear if this really does anything yet
-            /*auto err = dc1394_feature_set_power(c,DC1394_FEATURE_TRIGGER,DC1394_ON);
-             DC1394_ERR_RTN(err, "Could not set trigger on.");
-             err = dc1394_feature_set_power(c,DC1394_FEATURE_TRIGGER_DELAY,DC1394_OFF);
-             DC1394_ERR_RTN(err, "Could not set trigger delay off.");
-             err=dc1394_external_trigger_set_mode(c, DC1394_TRIGGER_MODE_3);
-             DC1394_ERR_RTN(err, "Could not set trigger mode.");
-             err=dc1394_external_trigger_set_source(c, DC1394_TRIGGER_SOURCE_SOFTWARE);
-             DC1394_ERR_RTN(err, "Could not set trigger source.");*/
+            if ( softwareTrigger ){
+                auto err = dc1394_feature_set_power(c,DC1394_FEATURE_TRIGGER,DC1394_ON);
+                
+                DC1394_ERR_RTN(err, "Could not set trigger on.");
+                err = dc1394_feature_set_power(c,DC1394_FEATURE_TRIGGER_DELAY,DC1394_OFF);
+                DC1394_ERR_RTN(err, "Could not set trigger delay off.");
+                err=dc1394_external_trigger_set_mode(c, softwareTrigger ? DC1394_TRIGGER_MODE_0 : DC1394_TRIGGER_MODE_3);
+                DC1394_ERR_RTN(err, "Could not set trigger mode.");
+                if ( softwareTrigger ){
+                    err=dc1394_external_trigger_set_source(c, DC1394_TRIGGER_SOURCE_SOFTWARE);
+                    DC1394_ERR_RTN(err, "Could not set trigger source.");
+                } else {
+                    err=dc1394_external_trigger_set_source(c, DC1394_TRIGGER_SOURCE_0);
+                    DC1394_ERR_RTN(err, "Could not set trigger source.");
+                }
+            }
             
             return true;
         } else {
@@ -189,6 +199,16 @@ namespace mmi {
     //--------------------------------------------------------------
     void BlackFlyCamera::reloadShader(){
         bayerShader.load("bayer");
+    }
+    
+    //--------------------------------------------------------------
+    void BlackFlyCamera::sendSoftwareTrigger( dc1394camera_t* c ){
+        auto err = dc1394_software_trigger_set_power(c,DC1394_ON);
+        auto power = DC1394_OFF;
+        while( power == DC1394_OFF){
+            err = dc1394_software_trigger_get_power(c, &power);
+        }
+        err = dc1394_software_trigger_set_power(c, DC1394_OFF);
     }
     
     //--------------------------------------------------------------
@@ -223,21 +243,13 @@ namespace mmi {
             
             auto v = camera.grabVideo(buffer);
             if ( v ){
-                cout << buffer.getWidth()<<":"<<buffer.getHeight()<<":"<<buffer.getPixels().getNumChannels()<<endl;
-                cout << buffer.getImageType() << endl;
                 buffer.update();
             }
         } else {
             if (buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
                 buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
                 camera.setImageType(OF_IMAGE_GRAYSCALE);
-//                buffer.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
             }
-            
-//
-//        return;
-        
-            //todo: custom capture method + bayer in a shader!
             
             bool remaining;
             int i = 0;
@@ -245,6 +257,16 @@ namespace mmi {
             auto * c = camera.getLibdcCamera();
             dc1394video_mode_t vm = (dc1394video_mode_t) ((int) DC1394_VIDEO_MODE_FORMAT7_0 + fmt7Mode);
             auto capturePolicy = DC1394_CAPTURE_POLICY_POLL; //non-blocking
+            
+            if ( imageColor.get() ){
+                dc1394_format7_set_color_coding(c, vm, DC1394_COLOR_CODING_RAW8);
+            } else {
+                dc1394_format7_set_color_coding(c, vm, DC1394_COLOR_CODING_MONO8);
+            }
+            
+            if ( isFirstFrame && softwareTrigger ){
+                sendSoftwareTrigger( c );
+            }
             
             // start transmit
             dc1394switch_t cur, target;
@@ -266,14 +288,11 @@ namespace mmi {
                     auto width = buffer.getWidth();
                     auto height = buffer.getHeight();
                     
-                    //            if(imageType == OF_IMAGE_GRAYSCALE) {
-                    //                memcpy(dst, src, width * height);
-                    //            } else if(imageType == OF_IMAGE_COLOR) {
-                    //                unsigned int bits = width * height * buffer.getPixels().getBitsPerPixel();
-                    //                dc1394_convert_to_RGB8(src, dst, width, height, 0, DC1394_COLOR_CODING_RAW8, bits);
-                    //            }
-                    
                     memcpy(dst, src, width * height);
+                    
+                    if ( softwareTrigger ){
+                        sendSoftwareTrigger( c );
+                    }
                     
                     dc1394_capture_enqueue(c, frame);
                     remaining = true;
@@ -286,23 +305,73 @@ namespace mmi {
             } while (remaining);
             
             if ( i > 0 ){
+                float aspect = 1;
+                float inv_aspect = 1;
+                if ( aspect_x.get() != 0 && aspect_y.get() != 0 ){
+                    inv_aspect = (float) aspect_y.get() / aspect_x.get();
+                    aspect = (float) aspect_x.get() / aspect_y.get();
+                }
+                float tw = ((float) this->width) * aspect;
+                float th = ((float) this->height) * inv_aspect;
+                
                 if ( gpuBayer.get() == 1 ){
-                    if (!cvBuffer.isAllocated()){
+                    if (!cvBuffer.isAllocated())
+                    {
                         cvBuffer.allocate(this->width, this->height, OF_IMAGE_COLOR);
                     }
                     ofxCv::convertColor(buffer,cvBuffer, CV_BayerRG2BGR);
-                    cvBuffer.update();
+                    
+                    // either update crop or buffer
+                    if ( aspect != 1.0 &&
+                        (!ofIsFloatEqual(cvBuffer.getWidth(), tw) ||
+                         !ofIsFloatEqual(cvBuffer.getHeight(), th))
+                        )
+                    {
+                        
+                        cropped.clone(cvBuffer);
+                        cropped.crop(0, 0, tw, th);
+                        cropped.update();
+                    } else {
+                        cvBuffer.update();
+                    }
                 } else {
-                    buffer.update();
+                    if ( aspect != 1.0&&
+                        (!ofIsFloatEqual(buffer.getWidth(), tw) ||
+                         !ofIsFloatEqual(buffer.getHeight(), th)) )
+                    {
+                        cropped.clone(buffer);
+                        cropped.crop(0, 0, tw, th);
+                        cropped.update();
+                    } else {
+                        buffer.update();
+                    }
                 }
             }
         }
+        
+        if ( isFirstFrame ){
+            auto sh = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_SHUTTER);
+            auto em = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_GAIN);
+            auto br = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_BRIGHTNESS);
+            auto ex = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_EXPOSURE);
+            auto wb = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_WHITE_BALANCE);
+            auto sp = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_STROBE_PATTERN);
+            
+//            cout <<"SHUTTER "<<sh<<endl;
+//            cout <<"GAIN "<<em<<endl;
+//            cout <<"BRIGHTNESS "<<br<<endl;
+//            cout <<"EXPOSURE "<<ex<<endl;
+//            cout <<"WHITE_BALANCE "<<wb<<endl;
+//            cout <<"STROBE "<<sp<<endl;
+        }
+        
+        isFirstFrame = false;
     }
 
     //--------------------------------------------------------------
     void BlackFlyCamera::draw( float x, float y, float w, float h){
         src->begin();
-//        ofClear(0);
+        ofClear(0);
         if ( gpuBayer.get() == 0 ){
             bayerShader.begin();
             bayerShader.setUniformTexture("source", buffer.getTexture(), 1);
@@ -313,13 +382,9 @@ namespace mmi {
 //            plane.mapTexCoordsFromTexture(buffer.getTexture());
 //            plane.draw();
             
-            buffer.draw(0,0);
+            getImage().draw(0,0);
         } else {
-            if ( gpuBayer == 1 ){
-                cvBuffer.draw(0,0);
-            } else {
-                buffer.draw(0,0);
-            }
+            getImage().draw(0,0);
         }
         if (gpuBayer.get() == 0){
             bayerShader.end();
@@ -347,7 +412,7 @@ namespace mmi {
         this->gain.removeListener(this, &BlackFlyCamera::onGainUpdated);
         this->exposure.removeListener(this, &BlackFlyCamera::onExposureUpdated);
         this->shutter.removeListener(this, &BlackFlyCamera::onShutterUpdated);
-        this->roi.removeListener(this, &BlackFlyCamera::onRoiUpdated);
+//        this->roi.removeListener(this, &BlackFlyCamera::onRoiUpdated);
     }
     
     //--------------------------------------------------------------
@@ -370,7 +435,18 @@ namespace mmi {
     
     //--------------------------------------------------------------
     ofImage & BlackFlyCamera::getImage(){
-//        return buffer;
+        
+        float aspect = 1;
+        float inv_aspect = 1;
+        if ( aspect_x.get() != 0 && aspect_y.get() != 0 ){
+            aspect = (float) aspect_x.get() / aspect_y.get();
+        }
+        
+        if ( aspect != 1.0)
+        {
+            return cropped;
+        }
+        
         if (gpuBayer.get() == 1) {
             return cvBuffer;
         } else {
@@ -413,12 +489,51 @@ namespace mmi {
     void BlackFlyCamera::onShutterUpdated( float & v ){
         if (isSetup()){
             camera.setShutter(v);
+            
+//            minValue |= 0x82000000;
+//            cout << minValue << endl;
+//            dc1394_set_control_register(c, PTGREY_SHUTTER, minValue);
         }
     }
     
     //--------------------------------------------------------------
     void BlackFlyCamera::onRoiUpdated( ofVec4f & v ){
         if (isSetup()){
+        }
+    }
+    
+    //--------------------------------------------------------------
+    void BlackFlyCamera::setMaxFramerate(){
+        if (isSetup()){
+            auto * c = camera.getLibdcCamera();
+            // set maximum framerate
+            unsigned int framerateInq;
+            dc1394_get_control_register(c, PTGREY_FRAME_RATE_INQ, &framerateInq);
+            unsigned int minValue = readBits(framerateInq, 24, 12);
+            minValue |= 0x82000000;
+            dc1394_set_control_register(c, PTGREY_FRAME_RATE, minValue);
+        }
+    }
+    
+    //--------------------------------------------------------------
+    void BlackFlyCamera::clearEmbeddedInfo() {
+        if(isSetup()) {
+            auto * c = camera.getLibdcCamera();
+            dc1394_set_control_register(c, PTGREY_FRAME_INFO, 0x80000000);
+        }
+    }
+    
+    //--------------------------------------------------------------
+    void BlackFlyCamera::setEmbeddedInfo(int embeddedInfo, bool enable) {
+        if(isSetup()) {
+            auto * c = camera.getLibdcCamera();
+            unsigned int reg;
+            dc1394_get_control_register(c, PTGREY_FRAME_INFO, &reg);
+            if(enable)
+                reg |= 1 << embeddedInfo;
+            else
+                reg &= ~(1 << embeddedInfo);
+            dc1394_set_control_register(c, PTGREY_FRAME_INFO, reg);
         }
     }
     
@@ -447,4 +562,62 @@ namespace mmi {
             return 0;
         }
     }
+    
+    //--------------------------------------------------------------
+    void BlackFlyCamera::getShutterValue(){
+        if(isSetup() ) {
+            auto * c = camera.getLibdcCamera();
+            // set shutter
+            unsigned int shutterInq;
+            dc1394_get_control_register(c, PTGREY_SHUTTER_INQ, &shutterInq);
+            unsigned int isAbs    = readBits(shutterInq, 1, 1);
+            unsigned int minValue = readBits(shutterInq, 8, 12);
+            unsigned int maxValue = readBits(shutterInq, 20, 12);
+            cout << isAbs << endl;
+            cout << minValue << endl;
+            cout << maxValue << endl;
+        }
+    }
+    
+    //--------------------------------------------------------------
+    void BlackFlyCamera::getTriggerMode(){
+        if(isSetup() ) {
+            auto * c = camera.getLibdcCamera();
+            
+            unsigned int triggerInq;
+            dc1394_get_control_register(c, PTGREY_TRIGGER_INQ, &triggerInq);
+            
+            unsigned int isSource0  = readBits(triggerInq, 8, 1);
+            unsigned int isSource1  = readBits(triggerInq, 9, 1);
+            unsigned int isSource2  = readBits(triggerInq, 10, 1);
+            unsigned int isSource3  = readBits(triggerInq, 11, 1);
+            unsigned int isSoftware  = readBits(triggerInq, 15, 1);
+            
+            unsigned int isMode0  = readBits(triggerInq, 16, 1);
+            unsigned int isMode1  = readBits(triggerInq, 17, 1);
+            unsigned int isMode2  = readBits(triggerInq, 18, 1);
+            unsigned int isMode3  = readBits(triggerInq, 19, 1);
+            unsigned int isMode4  = readBits(triggerInq, 20, 1);
+            unsigned int isMode5  = readBits(triggerInq, 21, 1);
+            unsigned int isMode14  = readBits(triggerInq, 30, 1);
+            unsigned int isMode15  = readBits(triggerInq, 31, 1);
+            
+            cout << isSource0 << endl;
+            cout << isSource1 << endl;
+            cout << isSource2 << endl;
+            cout << isSource3 << endl;
+            cout << isSoftware << endl;
+            
+            cout << isMode0 << endl;
+            cout << isMode1 << endl;
+            cout << isMode2 << endl;
+            cout << isMode3 << endl;
+            cout << isMode4 << endl;
+            cout << isMode5 << endl;
+            cout << isMode14 << endl;
+            cout << isMode15 << endl;
+            cout <<"-------"<<endl;
+        }
+    }
+    
 }
