@@ -13,13 +13,13 @@ function StreamHandler(){
 
   this.showStream = function showStream(){
     active = true;
-    MMI.show( domDestination );
+    MMI.show( domDestination.id, "block" );
   };
 
   this.hideStream = function hideStream(){
     active = false;
     newURL('');
-    MMI.hide( domDestination );
+    MMI.hide( domDestination.id );
   };
 
   //images come as binary from the server
@@ -33,9 +33,11 @@ function StreamHandler(){
     }
   };      
 
-  // this sucks!
-  var imageWidth = 1040;
-  var imageHeight = 776;
+  // this sucks!  
+  var aspect      = 9/16;
+  var aspect_inv  = 16/9;
+  var imageWidth = 1040;// * aspect;
+  var imageHeight = 776 * aspect_inv;
   var lastScale   = 0;
   var autoSize = true;
 
