@@ -112,9 +112,8 @@ function EventHandler(){
       // window.dispatchEvent(new Event('admin'));
     }
     // DEBUG
-    if ( keychar == 'N' ){
-      // window.dispatchEvent(new Event('next'));
-
+    if ( keychar == 'N' || keychar == 'H' ){
+      window.dispatchEvent(new Event('next'));
     }
   }
 }

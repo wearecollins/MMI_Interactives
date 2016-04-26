@@ -164,7 +164,6 @@ namespace mmi {
             auto * c = camera.getLibdcCamera();
             dc1394video_mode_t vm = (dc1394video_mode_t) ((int) DC1394_VIDEO_MODE_FORMAT7_0 + fmt7Mode);
             
-//            dc1394_camera_reset(c);
             setMaxFramerate();
 //            getTriggerMode();
             
