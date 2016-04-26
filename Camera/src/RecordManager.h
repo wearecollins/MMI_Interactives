@@ -15,6 +15,7 @@
 namespace mmi {
 
     class RecordManager {
+        friend class CameraApp;
     public:
         
         void setup();
@@ -40,6 +41,7 @@ namespace mmi {
         
         ofParameterGroup        advancedParams;
         ofParameter<string>     folderDest;
+        ofParameter<string>     folderAppend;
         ofParameter<string>     fileName;
         ofParameter<string>     fileExt;
         ofParameter<string>     fileExtImage;

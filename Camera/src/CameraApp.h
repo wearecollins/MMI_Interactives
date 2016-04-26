@@ -19,36 +19,39 @@
 // comment out to turn off keyboard debugging!
 #define DEBUG_ZONE
 
-enum Mode {
-    MODE_GENERAL = 0,
-    MODE_CAMERAS,
-    MODE_NONE
-};
+namespace mmi {
 
-class CameraApp
-{
-public:
-    void setup( bool bDoStream = true );
-    void update();
-    void draw();
-    
-    void keyPressed(ofKeyEventArgs & e );
-    void setStreamCamera( int & which );
-    
-    mmi::CameraManager cameraMgr;
-    mmi::RecordManager recordMgr;
-    mmi::ImageStreamer streamMgr;
-    mmi::MessageHandler messageHdlr;
-    
-    Mode currentMode;
-    ofxPanel * gui;
-    ofParameter<int> cameraTop;
-    ofParameter<int> whichSetup;
-    ofParameter<bool> reloadCameras;
-    ofParameter<int> whichStream;
-    
-protected:
-    
-    bool bStreaming;
-};
+    enum Mode {
+        MODE_GENERAL = 0,
+        MODE_CAMERAS,
+        MODE_NONE
+    };
+
+    class CameraApp
+    {
+    public:
+        void setup( bool bDoStream = true );
+        void update();
+        void draw();
+        
+        void keyPressed(ofKeyEventArgs & e );
+        void setStreamCamera( int & which );
+        
+        CameraManager cameraMgr;
+        RecordManager recordMgr;
+        ImageStreamer streamMgr;
+        MessageHandler messageHdlr;
+        
+        Mode currentMode;
+        ofxPanel * gui;
+        ofParameter<int> cameraTop;
+        ofParameter<int> whichSetup;
+        ofParameter<bool> reloadCameras;
+        ofParameter<int> whichStream;
+        
+    protected:
+        
+        bool bStreaming;
+    };
+}
 

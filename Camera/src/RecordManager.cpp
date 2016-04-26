@@ -32,6 +32,7 @@ namespace mmi {
         
         advancedParams.setName("Advanced params");
         advancedParams.add(folderDest.set("Output Folder","../../../data"));
+        advancedParams.add(folderAppend.set("Install folder","performance"));
         advancedParams.add(fileName.set("File name",""));
         advancedParams.add(fileExt.set("File extension",".mp4"));
         advancedParams.add(pixFmt.set("Pixel Format","rgb24"));
@@ -140,7 +141,7 @@ namespace mmi {
             currentFileName = currentFileName + "_final"+fileExt.get();
             
             if (f.open(ofToDataPath(currentFileName, true), ofFile::ReadWrite)){
-                f.moveTo( ofToDataPath( folderDest.get()) );
+                f.moveTo( ofToDataPath( folderDest.get() +"/" + folderAppend.get() ) );
             }
         } else {
         }
@@ -156,7 +157,7 @@ namespace mmi {
     //--------------------------------------------------------------
     void RecordManager::takePhotoEvt(){
         currentFileName = (fileName.get() +ofGetTimestampString()+fileExtImage.get() );
-        auto outputName = ofToDataPath(folderDest.get() + "/" + currentFileName, true );
+        auto outputName = ofToDataPath(folderDest.get() + "/" + folderAppend.get() + "/" + currentFileName, true );
         cout << "saving" <<endl;
         lastImage.save(outputName);
         cout << "saved" <<endl;

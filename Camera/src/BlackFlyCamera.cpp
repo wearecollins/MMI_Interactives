@@ -306,13 +306,11 @@ namespace mmi {
             
             if ( i > 0 ){
                 float aspect = 1;
-                float inv_aspect = 1;
                 if ( aspect_x.get() != 0 && aspect_y.get() != 0 ){
-                    inv_aspect = (float) aspect_y.get() / aspect_x.get();
                     aspect = (float) aspect_x.get() / aspect_y.get();
                 }
-                float tw = ((float) this->width) * aspect;
-                float th = ((float) this->height) * inv_aspect;
+                float tw = ((float) this->height) * aspect;
+                float th = this->height;
                 
                 if ( gpuBayer.get() == 1 ){
                     if (!cvBuffer.isAllocated())
