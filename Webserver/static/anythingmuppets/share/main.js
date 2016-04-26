@@ -4,6 +4,7 @@ var share = function(/*manager*/){
 
   // hack for multi image problem
   var didSetImage = false;
+  var capturedImage = null;
 
   // bind() creates new function refs
   // so we need to create shared variables for adding/removing
@@ -55,6 +56,7 @@ var share = function(/*manager*/){
         countdownInterval = setTimeout(function(){
           console.log("DISPATCH EVEBT");
           MMI.hide(("c_one"), "flex");
+          MMI.hide("countdownContainer");
           // this tells OF to capture
           window.dispatchEvent(new Event('take_photo'));
 
@@ -87,16 +89,16 @@ var share = function(/*manager*/){
   function setImage(e){
     if ( didSetImage ) return;
 
-    var bg = ("captureBgContainer");
-    var im = document.createElement("img");
-    im.onload = function(){
+    var bg = document.getElementById("captureBgContainer");
+    capturedImage = document.createElement("img");
+    capturedImage.onload = function(){
       var s = window.innerHeight / this.height;
       var w = this.width * s;
       bg.style.left = window.innerWidth / 2.0 - w/2.0;
     }
-    im.src = "output/" + e.detail;
+    capturedImage.src = "output/anythingmuppets/" + e.detail;
 
-    bg.appendChild(im);
+    bg.appendChild(capturedImage);
 
     skipToRetake.bind(this)();
     didSetImage = true;
@@ -104,6 +106,14 @@ var share = function(/*manager*/){
 
   function retake(){
     this.nRetakes++;
+    didSetImage = false;
+
+    try {
+      var bg = document.getElementById("captureBgContainer");
+      bg.removeChild(capturedImage);
+    } catch(e){
+
+    }
 
     clearTimeout(countdownInterval);
     MMI.hide(("retakeContainer"));
@@ -112,7 +122,7 @@ var share = function(/*manager*/){
 
   function skipToThanks(){
     clearTimeout(countdownInterval);
-      window.dispatchEvent(new Event('next'));
+    window.dispatchEvent(new Event('next'));
   }
 
   this.exit = function(/*evt*/){
@@ -124,8 +134,16 @@ var share = function(/*manager*/){
     window.removeEventListener("retake", retakeRef);
     window.removeEventListener("imageCapture", setImageRef);
 
-    var bg = ("captureBgContainer");
+    var bg = document.getElementById("captureBgContainer");
+
     function cleanUp(){
+      try {
+        var bg = document.getElementById("captureBgContainer");
+        bg.removeChild(capturedImage);
+      } catch(e){
+
+      }
+      
       bg.innerHTML = "";
       MMI.show(("captureContainer"), "flex");
       MMI.hide(("retakeContainer"));
