@@ -38,7 +38,6 @@ var share = function(/*manager*/){
   var countdownInterval = null;
 
   function startCountdown(){
-    console.log("START COUNTDOWN");
     // hide buttons
     MMI.hide(("captureContainer"));
     MMI.show(("countdownContainer"), "flex");
@@ -57,8 +56,12 @@ var share = function(/*manager*/){
           console.log("DISPATCH EVEBT");
           MMI.hide(("c_one"), "flex");
           MMI.hide("countdownContainer");
+
           // this tells OF to capture
           window.dispatchEvent(new Event('take_photo'));
+
+          var bg = document.getElementById("captureBgContainer");
+          bg.style.backgroundColor = "white";
 
         }.bind(this), 1000);
       }.bind(this), 1000);
@@ -111,6 +114,7 @@ var share = function(/*manager*/){
     try {
       var bg = document.getElementById("captureBgContainer");
       bg.removeChild(capturedImage);
+      bg.style.backgroundColor = "";
     } catch(e){
 
     }
@@ -140,10 +144,11 @@ var share = function(/*manager*/){
       try {
         var bg = document.getElementById("captureBgContainer");
         bg.removeChild(capturedImage);
+        bg.style.backgroundColor = "";
       } catch(e){
 
       }
-      
+
       bg.innerHTML = "";
       MMI.show(("captureContainer"), "flex");
       MMI.hide(("retakeContainer"));

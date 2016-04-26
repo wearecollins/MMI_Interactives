@@ -1,6 +1,7 @@
 /* for debuggin */
 #captureBgContainer {
 	/* background-color:rgba(0,0,0,.5); */
+  transition: background-color ease-in-out .25s;
 }
 
 #captureBgContainer img {
@@ -12,13 +13,19 @@
 	display: none;
 }
 
-#shareContainer {
+#shareBg {
   background: rgba(255,255,255,.5);
 }
 
 #c_three, #c_two, #c_one {
 	visibility: hidden;
 	display: none;
+}
+
+.shareCopyBlock {
+  text-align: left;
+  font-size: .25rem;
+  line-height: .3rem;
 }
 
 #{{name}}.disabled{

@@ -12,18 +12,24 @@ var script = function(data){
 	var text, str;
 	var typeDest;
 	var onTypingComplete;
+	var typingTimeout;
+	var textIndex = 0;
 
 	function typeString( string, dest, onComplete ){
+	    clearTimeout(typingTimeout);
 		isTag = false;
 		text = "";
 		str = string;
 		typeDest = dest;
 		onTypingComplete = onComplete;
+		textIndex = 0;
 		type();
 	}
+
 	function type() {
-	    text = str.slice(0, ++i);
+	    text = str.slice(0, ++textIndex);
 	    if (text === str){
+	    	clearTimeout(typingTimeout);
 	    	onTypingComplete();
 	    	return;
 	    }
@@ -35,10 +41,15 @@ var script = function(data){
 	    if( char === '>' || char == ';' ) isTag = false;
 
 	    if (isTag) return type();
-	    setTimeout(type, 30);
+	    typingTimeout = setTimeout(type, 30);
 	}
 
 	this.enter = function(/*evt*/){
+		clearTimeout(buildTimeout);
+
+		MMI.show( "start", "block" );
+		MMI.show( "done", "block" );
+
 		// show a random script
 		var parent = document.getElementById("script");
 		var scripts = parent.getElementsByClassName("scriptContainer");
@@ -47,6 +58,8 @@ var script = function(data){
 			var idx = Math.floor(Math.random() * scripts.length);
 			currentScript = scripts[idx];
 			currentScriptObject = scriptData[idx];
+
+			// console.log( idx, currentScript, currentScriptObject );
 
 			MMI.show(currentScript.id, "block");
 		} else {
@@ -62,9 +75,10 @@ var script = function(data){
 		window.addEventListener("openDone", hideRef);
 		window.addEventListener("done", showRef);
 
+		window.currentScriptObject = currentScriptObject;
+
 		// build stuff in
 		buildTimeout = setTimeout(function(){
-
 			var container = currentScript.getElementsByClassName("scriptInfoContainer")[0];
 			container.classList.remove("disabled");
 			container.classList.add("enabled");
@@ -72,7 +86,6 @@ var script = function(data){
 			buildTimeout = setTimeout(function(){
 				var dest = currentScript.getElementsByClassName("scriptText")[0];
 				typeString(currentScriptObject.text, dest, showButtons);
-
 			}, 1000);
 
 		}, 1500);
@@ -94,8 +107,8 @@ var script = function(data){
 		openDiv.classList.add("visible");
 
 		setTimeout(function(){
-			MMI.hide( ("start") );
-			MMI.show( ("done") );
+			MMI.hide( ("start"));
+			MMI.show( ("done"), "block"  );
 		}, 1000);
 	}
 
@@ -107,7 +120,6 @@ var script = function(data){
 
 		setTimeout(function(){
 			// openDiv.className = openClasses;
-			
 			var btnContainer = document.getElementById("scriptButtonDoneContainer");
 			btnContainer.classList.remove("disabled");
 			btnContainer.classList.add("enabled");
@@ -132,27 +144,44 @@ var script = function(data){
 			// spinDiv.className = spinClasses;
 		}, 1000);
 
-		MMI.show( ("start") );
+		MMI.show( ("start"), "block"  );
 		MMI.hide( ("done") );
 	}
 
 	this.exit = function(/*evt*/){
 		clearTimeout(buildTimeout);
-		currentScript.style.visibility = "hidden";
-		currentScript.style.display = "none";
+
 		setTimeout( function(){
-			hideSpinPrompt();
-			hideOpenPrompt();
+			MMI.hide(currentScript.id);
+
+			var spinDiv = document.getElementById("promptSpinPuppet");
+			spinDiv.classList.add("hideMe");
+			spinDiv.classList.remove("visible");
+
+			var openDiv = document.getElementById("promptOpenDrawers");
+			// hide(openDiv);
+			openDiv.classList.remove("visible");
+			openDiv.classList.add("hideMe");
 
 			var container = currentScript.getElementsByClassName("scriptInfoContainer")[0];
 			container.classList.add("disabled");
 
 			var btnContainer = document.getElementById("scriptButtonContainer");
+			btnContainer.classList.remove("enabled");
 			btnContainer.classList.add("disabled");
 
 			btnContainer = document.getElementById("scriptButtonDoneContainer");
+			btnContainer.classList.remove("enabled");
 			btnContainer.classList.add("disabled");
 
+			var scriptText = currentScript.getElementsByClassName("scriptText")[0];
+			scriptText.innerHTML = "";
+			
+			currentScript = null;
+			currentScriptObject = null;
+
+			MMI.show( ("start"), "block"  );
+			MMI.show( ("done"), "block"  );
 		}, 1000);
 
 		//cleanup
