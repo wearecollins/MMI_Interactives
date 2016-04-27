@@ -86,6 +86,7 @@ namespace mmi {
             ps3N++;
             
             bSetup = true;
+            params.add(camera.params);
             return bSetup;
         }
         
