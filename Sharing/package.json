@@ -1,0 +1,23 @@
+{
+  "name": "posttofacebook",
+  "version": "1.0.0",
+  "description": "posts content to linked social networks",
+  "main": "post.js",
+  "scripts": {
+    "start": "node server.js ./config.json",
+    "token": "node fetchToken/server.js ../config.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "node_modules/eslint/bin/eslint.js ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "fb": "^1.0.2",
+    "log4js": "^0.6.33"
+  },
+  "devDependencies": {
+    "eslint": "^2.7.0"
+  }
+}

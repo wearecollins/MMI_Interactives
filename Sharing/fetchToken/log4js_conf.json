@@ -1,0 +1,21 @@
+{
+  "appenders": [
+    {
+      "type":"console"
+    },
+    {
+      "type":"file",
+      "filename":"log/out.log",
+      "maxLogSize":20971520,
+      "backups":3
+    }
+  ],
+  "levels": {
+    "[all]":"ALL",
+    "fetchToken":"WARN",
+    "postServer":"WARN",
+    "Poster":"WARN",
+    "FBPoster":"WARN",
+    "TumblPoster":"WARN"
+  }
+}

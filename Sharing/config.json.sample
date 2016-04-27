@@ -1,0 +1,16 @@
+{
+  "processInterval":60000,
+  "maxAttempts":3,
+  "media":{
+    "localpath":"../media/",
+    "netpath":"http://momi-auth.ngrok.io/"
+  },
+  "facebook":{
+    "app":{
+      "id":"1703243309914146",
+      "secret":"APP_SECRET"
+    }
+  },
+  "tumblr":{
+  }
+}
