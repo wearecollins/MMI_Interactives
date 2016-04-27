@@ -93,6 +93,7 @@
 		011E372AEA4DFBC1A32C2851 /* all_indices.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = all_indices.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/all_indices.h; sourceTree = SOURCE_ROOT; };
 		012A4FDE1CAF206A00A74858 /* bayer.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = bayer.frag; path = bin/data/bayer.frag; sourceTree = "<group>"; };
 		012A4FDF1CAF206A00A74858 /* bayer.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = bayer.vert; path = bin/data/bayer.vert; sourceTree = "<group>"; };
+		013882B41CD0FE7600451DD5 /* DebugCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugCamera.h; sourceTree = "<group>"; };
 		0163799815EFC253C35FEE0F /* Calibration.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Calibration.cpp; path = addons/ofxCv/libs/ofxCv/src/Calibration.cpp; sourceTree = SOURCE_ROOT; };
 		0173A3F435DECD5A4DDE0B8E /* logger.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = logger.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/logger.h; sourceTree = SOURCE_ROOT; };
 		01DAE5C2E3E0A74207B2BE49 /* saving.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = saving.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/saving.h; sourceTree = SOURCE_ROOT; };
@@ -437,6 +438,7 @@
 			children = (
 				453F0401E5095CDE6796CDB3 /* BlackFlyCamera.cpp */,
 				B4601F9819B6D476DF147ECE /* BlackFlyCamera.h */,
+				013882B41CD0FE7600451DD5 /* DebugCamera.h */,
 				5A8C3FE6D8CA5E7050FB459A /* CameraApp.cpp */,
 				4E8C483B702379674A2E5C6C /* CameraApp.h */,
 				8509C9463C78960FFA8B852A /* CameraManager.cpp */,

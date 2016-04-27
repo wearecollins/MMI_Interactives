@@ -400,6 +400,12 @@ namespace mmi {
     bool BlackFlyCamera::isSetup() const {
         return bSetup;
     }
+    
+    //--------------------------------------------------------------
+    bool BlackFlyCamera::isAllocated(){
+        return getImage().isAllocated();
+    }
+    
     //--------------------------------------------------------------
     void BlackFlyCamera::close(){
         //todo: camera close?

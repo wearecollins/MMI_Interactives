@@ -164,9 +164,9 @@ static void setupEventHelper(ofApp *app)
         [webView reload:nil];
         cout << "RELOAD"<<endl;
     } else if ( key == 'm' ){
-        if ( cameraApp.currentMode == MODE_NONE ){
+        if ( cameraApp.currentMode == mmi::MODE_NONE ){
             [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
-        } else if ( cameraApp.currentMode >= MODE_GENERAL ){
+        } else if ( cameraApp.currentMode >= mmi::MODE_GENERAL ){
             [webView removeFromSuperview];
         }
     }

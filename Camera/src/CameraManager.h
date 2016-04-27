@@ -11,18 +11,20 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 
-//#define DEBUG_CAMERA
+#define DEBUG_CAMERA
 
 #ifndef DEBUG_CAMERA
 #include "BlackFlyCamera.h"
+#else
+#include "DebugCamera.h"
 #endif
 
 namespace mmi {
     
 #ifndef DEBUG_CAMERA
-    typedef mmi::BlackFlyCamera Camera;
+    typedef BlackFlyCamera Camera;
 #else
-    typedef ofVideoGrabber Camera;
+    typedef WebCamera Camera;
     
 #endif
     

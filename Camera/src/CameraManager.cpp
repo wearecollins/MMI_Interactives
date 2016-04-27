@@ -48,19 +48,12 @@ namespace mmi {
                 shared_ptr<Camera> camera = make_shared<Camera>();
                 string guid = settings.getValue("guid");
                 ofLogVerbose()<<"[CameraManager] Setting up camera "<<guid;
-#ifndef DEBUG_CAMERA
+                
                 auto bOpen = camera->setup(guid, this->lowRes.get() ? 1040 : 2080 );
                 if ( bOpen ){
                     gui->add(camera->params);
                     cameras.push_back(std::move( camera ) );
                 }
-#else
-                camera->setDeviceID(2); // just for brett's machine
-                auto bOpen = camera->setup(640, 480);
-                if ( bOpen ){
-                    cameras.push_back(std::move( camera ) );
-                }
-#endif
                 settings.setToParent();
                 
             }
@@ -70,18 +63,11 @@ namespace mmi {
             ofLogError()<<"[CameraManager] No settings file loaded. Trying to open 1 camera";
             shared_ptr<Camera> camera = make_shared<Camera>();
             
-#ifndef DEBUG_CAMERA
             auto bOpen = camera->setup();
             if ( bOpen ){
                 cameras.push_back(std::move( camera ) );
                 gui->add(camera->params);
             }
-#else
-            auto bOpen = camera->setup(640,480);
-            if ( bOpen ){
-                cameras.push_back(std::move( camera ) );
-            }
-#endif
             
             saveSettings();
         }
@@ -101,11 +87,11 @@ namespace mmi {
         switch ((DrawMode) drawMode.get()) {
             case MODE_FILL_MAX:
             {
-                float scale = MAX((float) ofGetWidth()/c->getWidth(), (float) ofGetHeight()/c->getHeight());
-                
-                if ( scale < 1 ){
-                    scale = MAX(c->getWidth() / (float) ofGetWidth(), c->getHeight() /(float)  ofGetHeight());
-                }
+                float scale = (float) ofGetWidth()/c->getWidth();
+//                
+//                if ( scale < 1 ){
+//                    scale = MAX(c->getWidth() / (float) ofGetWidth(), c->getHeight() /(float)  ofGetHeight());
+//                }
                 
                 w *= scale;
                 h *= scale;
@@ -114,11 +100,11 @@ namespace mmi {
                 
             case MODE_FILL_MIN:
             {
-                float scale = MIN(ofGetWidth()/c->getWidth(), ofGetHeight()/c->getHeight());
+                float scale = (float) ofGetHeight()/c->getHeight();
                 
-                if ( scale > 1 ){
-                    scale = MIN(c->getWidth() / ofGetWidth(), c->getHeight() / ofGetHeight());
-                }
+//                if ( scale > 1 ){
+//                    scale = MIN(c->getWidth() / ofGetWidth(), c->getHeight() / ofGetHeight());
+//                }
                 
                 w *= scale;
                 h *= scale;
@@ -138,13 +124,8 @@ namespace mmi {
         ofScale(.5, .5);
         
         for ( auto & c : cameras ){
-#ifndef DEBUG_CAMERA
             c->drawDebug(x, y, c->getWidth(), c->getHeight());
             x += c->getImage().getWidth();
-#else
-            c->draw(x, y, c->getWidth(), c->getHeight());
-            x += c->getWidth();
-#endif
         }
         ofPopMatrix();
         ofPopStyle();

@@ -28,7 +28,7 @@ namespace mmi {
         if ( this->bStreaming ){
             streamMgr.setup("", 9091);
             // connect stream message to message parser
-            ofAddListener(streamMgr.onWsMessage, &messageHdlr, &mmi::MessageHandler::onMessage);
+//            ofAddListener(streamMgr.onWsMessage, &messageHdlr, &mmi::MessageHandler::onMessage);
             gui->add( streamMgr.params );
         }
         
@@ -41,7 +41,6 @@ namespace mmi {
         ofAddListener(messageHdlr.onCaptureImage, &recordMgr, &mmi::RecordManager::takePhotoEvt);
         ofAddListener(recordMgr.onFinishedRecording, &messageHdlr, &mmi::MessageHandler::onVideoRecorded);
         ofAddListener(recordMgr.onFinishedCapture, &messageHdlr, &mmi::MessageHandler::onImageCaptured);
-        
         
         gui->add( recordMgr.params );
         gui->add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
@@ -86,13 +85,8 @@ namespace mmi {
         if ( this->bStreaming && camera != nullptr ){
             // try to stream all the time, image streamer will handle by framerate
             
-    #ifndef DEBUG_CAMERA
-            if ( camera != nullptr && camera->getImage().isAllocated() ){
+            if ( camera != nullptr && camera->isAllocated() ){
                 streamMgr.stream( camera->getImage() );
-    #else
-            if ( camera != nullptr ){
-                streamMgr.stream( *camera );
-    #endif
             }
         }
         
@@ -102,38 +96,14 @@ namespace mmi {
             int t = cameraTop.get() == 0 ? 0 : 1;
             int b = cameraTop.get() == 0 ? 1 : 0;
             
-    #ifndef DEBUG_CAMERA
             auto & img1 = cameraMgr.getCamera(t)->getImage();
             auto & img2 = cameraMgr.getCamera(b)->getImage();
-            if ( !img1.isAllocated() || !img2.isAllocated() ) return;
+            if ( !cameraMgr.getCamera(t)->isAllocated() || !cameraMgr.getCamera(b)->isAllocated() ) return;
             recordMgr.update(img1.getPixels(), img2.getPixels());
         } else if ( cameraMgr.getNumCameras() > 0 ) {
             auto & img1 = cameraMgr.getCamera(0)->getImage();
             recordMgr.update(img1.getPixels());
         }
-    #else
-            
-            shared_ptr<mmi::Camera> img1 = cameraMgr.getCamera(t);
-            shared_ptr<mmi::Camera> img2 = cameraMgr.getCamera(b);
-            
-            static int bEverNewA = false;
-            static int bEverNewB = false;
-            
-            if ( !bEverNewA ){
-                if ( img1->isFrameNew() ) bEverNewA = true;
-            }
-            
-            if ( !bEverNewB ){
-                if ( img2->isFrameNew() ) bEverNewB = true;
-            }
-            if ( !bEverNewA || !bEverNewB ) return;
-            
-            recordMgr.update(img1->getPixels(), img2->getPixels());
-        }  else if ( cameraMgr.getNumCameras() > 0 ) {
-            shared_ptr<mmi::Camera> img1 = cameraMgr.getCamera(0);
-            recordMgr.update(img1->getPixels());
-        }
-    #endif
     }
 
     //--------------------------------------------------------------
@@ -141,8 +111,6 @@ namespace mmi {
         ofSetColor(255);
         
         ofPushMatrix();
-    #ifndef DEBUG_CAMERA
-    #endif
         if ( currentMode != MODE_NONE ){
             cameraMgr.drawDebug(0, 0);
         } else {
@@ -188,9 +156,7 @@ namespace mmi {
             messageHdlr.onStartRecording.notify(whichVideo);
         } else if ( e.key == 'R'){
             for (auto & c : cameraMgr.getCameras() ){
-    #ifndef DEBUG_CAMERA
                 c->reloadShader();
-    #endif
             }
         }
     #endif

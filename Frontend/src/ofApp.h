@@ -10,7 +10,7 @@
 
 @interface ofApp : ofxCocoaGLView <WKNavigationDelegate> {
     Webview * webView;
-    CameraApp cameraApp;
+    mmi::CameraApp cameraApp;
     bool isLoaded;
     bool isFullscreen;
 }
