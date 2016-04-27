@@ -5,7 +5,7 @@
     </video>
   </div>
   <div id="{{name}}Buttons" class='container fillAbs bottomCenteredContainer topL disabled' style="z-index:2">
-    <div class="column" onclick="window.dispatchEvent(new Event('next'));">
+    <div class="column" onclick="window.events.dispatchEvent(new Event('next'));">
         <img src="svg/__get_started.svg" class="button_sm padding_sm" />
         <div class="type_med padding_sm">skip</div>
     </div>

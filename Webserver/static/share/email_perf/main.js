@@ -43,8 +43,8 @@ var email_perf = function(/*manager*/){
 		var email = input.value;
 		if ( MMI.validateEmail(email) ){
 			// grey out?
-			window.dispatchEvent( new CustomEvent("sendEmail", {detail:{"data":currentPerf, "email":email, "type":"performance"}}));
-			window.dispatchEvent(new Event("next"));
+			window.events.dispatchEvent( new CustomEvent("sendEmail", {detail:{"data":currentPerf, "email":email, "type":"performance"}}));
+			window.events.dispatchEvent(new Event("next"));
 
 		} else {
 			//do something

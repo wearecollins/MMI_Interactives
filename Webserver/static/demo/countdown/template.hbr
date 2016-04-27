@@ -8,7 +8,7 @@
     <div class='buttons'>
       {{#each buttons}}
       <div class='{{type}}' 
-           onclick="window.dispatchEvent(new Event('{{type}}'));">
+           onclick="window.events.dispatchEvent(new Event('{{type}}'));">
         {{text}}
       </div>
       {{/each}}

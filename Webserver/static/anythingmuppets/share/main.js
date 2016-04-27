@@ -60,7 +60,7 @@ var share = function(/*manager*/){
           MMI.hide("countdownContainer");
 
           // this tells OF to capture
-          window.dispatchEvent(new Event('take_photo'));
+          window.events.dispatchEvent(new Event('take_photo'));
 
           var bg = document.getElementById("captureBgContainer");
           bg.style.backgroundColor = "white";
@@ -143,7 +143,7 @@ var share = function(/*manager*/){
 
   function skipToThanks(){
     clearTimeout(countdownInterval);
-    window.dispatchEvent(new Event('next'));
+    window.events.dispatchEvent(new Event('next'));
   }
 
   this.exit = function(/*evt*/){

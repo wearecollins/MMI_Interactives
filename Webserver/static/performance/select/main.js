@@ -67,9 +67,9 @@ var select = function(data){
 
 	function selectClip(){
 		var evt = new CustomEvent("clipSelected", {detail:videos[1].name});
-		window.dispatchEvent(evt);
+		window.events.dispatchEvent(evt);
 
-		window.dispatchEvent(new Event("next"));
+		window.events.dispatchEvent(new Event("next"));
 	}
 
 	this.exit = function(/*evt*/){

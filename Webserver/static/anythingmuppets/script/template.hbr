@@ -29,21 +29,21 @@
     {{/each}}
 
     <div id="scriptButtonContainer" class='container fillAbs bottomCenteredContainer disabled' style="z-index:3">
-      <div id="start" class="column" onclick="window.dispatchEvent(new Event('start'));">
+      <div id="start" class="column" onclick="window.events.dispatchEvent(new Event('start'));">
           <img src="svg/__get_started.svg" class="button_sm padding_sm" />
           <div class="type_med padding_sm">start building</div>
       </div>
     </div>
 
     <div id="scriptButtonDoneContainer" class='container fillAbs bottomCenteredContainer disabled' style="z-index:3">
-      <div id="done" class="column" onclick="window.dispatchEvent(new Event('done'));">
+      <div id="done" class="column" onclick="window.events.dispatchEvent(new Event('done'));">
           <img src="svg/__get_started.svg" class="button_sm padding_sm" />
           <div class="type_med padding_sm">done building</div>
       </div>
     </div>
 
 {{!-- This is the 'drawer overlay' container --}}
-    <div id="promptOpenDrawers" class="parchBg bottomCenteredContainer fillAbs" style="z-index:4" onclick="window.dispatchEvent(new Event('openDone'));">
+    <div id="promptOpenDrawers" class="parchBg bottomCenteredContainer fillAbs" style="z-index:4" onclick="window.events.dispatchEvent(new Event('openDone'));">
         <div class="centeredContainer column fillAbs" style="left:0px">
             <img src="svg/__open_drawers.svg" class="button_lg padding_sm" />
             <div class="fillGreen type_med padding_sm">{{{prompt_open}}}</div>

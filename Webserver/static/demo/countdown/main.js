@@ -17,7 +17,7 @@ var countdown = function(data, configHandler){
     currCount--;
     numberDiv.innerHTML = currCount;
     if (currCount === 0){
-      window.dispatchEvent(new Event('next'));
+      window.events.dispatchEvent(new Event('next'));
     }
   }
 };
