@@ -33,12 +33,15 @@ var share = function(/*manager*/){
     if (doStream == "true" ){
         manager.getStreamHandler().showStream();
     }
+
+    setTimeout(showButtons, 1000, "shareButtonContainer");
   };
 
   var countdownInterval = null;
 
   function startCountdown(){
     // hide buttons
+    hideButtons("shareButtonContainer");
     MMI.hide(("captureContainer"));
     MMI.show(("countdownContainer"), "flex");
 
@@ -53,7 +56,6 @@ var share = function(/*manager*/){
         MMI.show(("c_one"), "flex");
 
         countdownInterval = setTimeout(function(){
-          console.log("DISPATCH EVEBT");
           MMI.hide(("c_one"), "flex");
           MMI.hide("countdownContainer");
 
@@ -68,6 +70,19 @@ var share = function(/*manager*/){
     }.bind(this), 1000);
   }
 
+
+  function showButtons( whichId ){
+    var btnContainer = document.getElementById(whichId);
+    btnContainer.classList.remove("disabled");
+    btnContainer.classList.add("enabled");
+  }
+
+  function hideButtons( whichId ) {
+    var btnContainer = document.getElementById(whichId);
+    btnContainer.classList.remove("enabled");
+    btnContainer.classList.add("disabled");
+  }
+
   function skipToRetake(){
   //todo: WHERE ARE THESE COUNTED 
   // & HOW DO I GET SETTING?
@@ -77,11 +92,13 @@ var share = function(/*manager*/){
       clearTimeout(countdownInterval);
       MMI.hide(("countdownContainer"));
       MMI.show(("retakeContainer"), "flex");
+      showButtons("retakeContainer");
     }
   }
 
   function share(){
     clearTimeout(countdownInterval);
+    hideButtons("retakeContainer");
     MMI.hide(("countdownContainer"));
     MMI.hide(("retakeContainer"));
     MMI.show(("shareContainer"), "flex");

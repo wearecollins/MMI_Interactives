@@ -13,6 +13,18 @@
 	display: none;
 }
 
+#shareButtonContainer.disabled, #retakeContainer.disabled  {
+  animation-name: animateOffBotton;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+}
+
+#shareButtonContainer.enabled, #retakeContainer.enabled  {
+  animation-name: animateUpScreen;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+}
+
 #shareBg {
   background: rgba(255,255,255,.5);
 }
