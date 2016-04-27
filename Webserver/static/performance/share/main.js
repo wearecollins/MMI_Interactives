@@ -1,16 +1,18 @@
-var share = function(/*manager*/){
+var share = function( data, configHandler ){
 
 	var currentVideo = null;
 	var canPlay = false;
 
 	var tryInterval;
 
+	var shareOnlineRef;
+
 	function setVideo(e){
 		currentVideo = e.detail;
 		canPlay = false;
 
 		var source = document.getElementById("shareSource");
-	    source.setAttribute("src", "output/" + e.detail);
+	    source.setAttribute("src", "output/performance/" + e.detail);
 
 		var video = document.getElementById("share_video");
 		video.load();
@@ -24,6 +26,9 @@ var share = function(/*manager*/){
 	window.addEventListener("videoRecorded", setVideo);
 
 	this.enter = function(/*evt*/){
+	    shareOnlineRef = shareOnline.bind(this);
+    	window.addEventListener("share_online", shareOnlineRef);
+
 		var video = document.getElementById("share_video");
 		video.play();
 		if (!canPlay){
@@ -32,10 +37,7 @@ var share = function(/*manager*/){
 					var video = document.getElementById("share_video");
 					video.play();
 					clearInterval(tryInterval);
-					console.log("YES");
-					console.log(video);
 				} else {
-					console.log("CANT");
 				}
 			}, 10);
 		}
@@ -43,6 +45,7 @@ var share = function(/*manager*/){
 
 	this.exit = function(/*evt*/){
 		clearInterval(tryInterval);
+    	window.removeEventListener("share_online", shareOnlineRef);
 
 		var video = document.getElementById("share_video");
 		video.pause();
@@ -50,4 +53,20 @@ var share = function(/*manager*/){
 	    
 		source.setAttribute("src","");
 	}
+
+	function shareOnline() {
+	    var shareServer = configHandler.get('shareServer', "http://localhost:8013");
+	    var url = shareServer + "/video";
+	    var filename = "performance/" + currentVideo;
+
+	    var xhttp = new XMLHttpRequest();
+	    xhttp.open("POST", url, true);
+	    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	    xhttp.send( "filename=" + filename );
+
+	    // then hide the button...
+	    window.removeEventListener("share_online", shareOnlineRef);
+	    var btn = document.getElementById("shareOnlineBtn");
+	    btn.classList.add("disabled");
+	  }
 };

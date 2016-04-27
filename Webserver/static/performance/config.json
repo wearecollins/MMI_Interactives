@@ -1,1 +1,10 @@
-{"countdownTime":3,"timeout":60,"continuousMode":false}
+{
+	"countdownTime":3,
+	"timeout":60,
+	"continuousMode":false,
+	"shareServer":"http://localhost:8013",
+	"aspect":1.33,
+	"imageWidth":1040,
+	"imageHeight":776,
+	"autoSize":true
+}

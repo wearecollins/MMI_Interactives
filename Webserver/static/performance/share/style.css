@@ -13,3 +13,11 @@
   animation-fill-mode:forwards;
   z-index: 0;
 }
+
+#shareOnlineBtn {
+  transition: opacity ease-in-out .2s;
+}
+
+#shareOnlineBtn.disabled {
+  opacity: .4;
+}
