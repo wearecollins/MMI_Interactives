@@ -33,13 +33,21 @@ function StreamHandler(){
     }
   };      
 
-  // this sucks!  
   var aspect      = 9/16;
   var aspect_inv  = 16/9;
   var imageWidth = 776 * aspect;
   var imageHeight = 776;
   var lastScale   = 0;
   var autoSize = true;
+
+  this.setImageDimensions = function (_width, _height) {
+    imageWidth = _width;
+    imageHeight = _height;
+  }
+
+  this.setAutosize  = function (trueFalse) {
+    autoSize =trueFalse;
+  }
 
   function newURL(url){
     domElem.src = url;

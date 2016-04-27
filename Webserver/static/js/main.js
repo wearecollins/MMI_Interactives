@@ -143,6 +143,16 @@ function Manager(states, transitions){
 
   function initStreamHandler(){
     streamHandler.init(document.getElementById('liveView'));
+
+    // setup image size stuff
+    var aspect      = parseFloat( configHandler.get('aspect', 9/7) );
+    var imageWidth  = parseFloat( configHandler.get('imageWidth', 1040) );
+    var imageHeight = parseFloat( configHandler.get('imageHeight', 776) );
+    var autoSize    = Boolean( configHandler.get('autoSize', true) );
+
+    streamHandler.setImageDimensions( imageHeight * aspect, imageHeight );
+    streamHandler.setAutosize( autoSize );
+
     //link publishers with subscribers
     ws.addBinaryHandler(streamHandler.handleImage.bind(streamHandler));
   }
