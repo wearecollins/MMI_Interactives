@@ -113,8 +113,8 @@ namespace mmi {
         }
     #else
             
-            auto * img1 = cameraMgr.getCamera(t);
-            auto * img2 = cameraMgr.getCamera(b);
+            shared_ptr<mmi::Camera> img1 = cameraMgr.getCamera(t);
+            shared_ptr<mmi::Camera> img2 = cameraMgr.getCamera(b);
             
             static int bEverNewA = false;
             static int bEverNewB = false;
@@ -129,6 +129,9 @@ namespace mmi {
             if ( !bEverNewA || !bEverNewB ) return;
             
             recordMgr.update(img1->getPixels(), img2->getPixels());
+        }  else if ( cameraMgr.getNumCameras() > 0 ) {
+            shared_ptr<mmi::Camera> img1 = cameraMgr.getCamera(0);
+            recordMgr.update(img1->getPixels());
         }
     #endif
     }
