@@ -120,6 +120,9 @@ var share = function(data, configHandler){
     xhttp.send( "filename=" + filename );
 
     // then hide the button...
+    window.removeEventListener("share_online", shareOnlineRef);
+    var btn = document.getElementById("shareOnlineBtn");
+    btn.classList.add("disabled");
   }
 
   function setImage(e){
@@ -192,6 +195,9 @@ var share = function(data, configHandler){
       MMI.hide(("shareContainer"));
       
       manager.getStreamHandler().hideStream();
+      
+      var btn = document.getElementById("shareOnlineBtn");
+      btn.classList.remove("disabled");
     }
 
     setTimeout(cleanUp, 1000);
