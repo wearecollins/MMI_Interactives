@@ -6,11 +6,11 @@
 
   <!-- Take a picture, why don't ya? -->
   <div id="captureContainer" class="container fillAbs bottomCenteredContainer" style="z-index:2">
-        <div class="column" onclick="window.dispatchEvent(new Event('capture'));">
+        <div class="column" onclick="window.events.dispatchEvent(new Event('capture'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">take a photo</div>
         </div>
-        <div class="column" onclick="window.dispatchEvent(new Event('skipToThanks'));">
+        <div class="column" onclick="window.events.dispatchEvent(new Event('skipToThanks'));">
             <img src="svg/__done.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">done</div>
         </div>
@@ -31,11 +31,11 @@
 
   <!-- Retake -->
   <div id="retakeContainer" class="container fillAbs bottomCenteredContainer" style="z-index:2">
-        <div class="column" onclick="window.dispatchEvent(new Event('share'));">
+        <div class="column" onclick="window.events.dispatchEvent(new Event('share'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">continue</div>
         </div>
-        <div class="column" onclick="window.dispatchEvent(new Event('retake'));">
+        <div class="column" onclick="window.events.dispatchEvent(new Event('retake'));">
             <img src="svg/__done.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">retake</div>
         </div>
@@ -55,11 +55,11 @@
             </div>
         </div>
         <div class="bottomCenteredContainer container">
-            <div onclick="window.dispatchEvent(new Event('share'));">
+            <div onclick="window.events.dispatchEvent(new Event('share'));">
                 <img src="svg/__select.svg" class="button_sm padding_sm" />
                 <div class="type_med">share</div>
             </div>
-            <div onclick="window.dispatchEvent(new Event('next'));">
+            <div onclick="window.events.dispatchEvent(new Event('next'));">
                 <img src="svg/__done.svg" class="button_sm padding_sm"  />
                 <div class="type_med">done</div>
             </div>

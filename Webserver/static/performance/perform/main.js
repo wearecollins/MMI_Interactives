@@ -28,7 +28,7 @@ var perform = function(data){
 		}
 
 		// this tells OF to switch cameras
-		window.dispatchEvent(new Event('camera_front'));
+		window.events.dispatchEvent(new Event('camera_front'));
 
 		// timeout 1 - "get ready" -> countdown
     // extra 1000 = placeholder for global transition duration 
@@ -46,7 +46,7 @@ var perform = function(data){
 
     			case 2:
     			{
-    				window.dispatchEvent( new Event("next") );
+            window.events.dispatchEvent( new Event("next") );
     			}
     			break;
     		}
@@ -93,7 +93,7 @@ var perform = function(data){
 
           if ( shootVideo ){
 	          // this tells OF to capture
-	          window.dispatchEvent(new CustomEvent('record_video', {detail:currentClip.name}));
+	          window.events.dispatchEvent(new CustomEvent('record_video', {detail:currentClip.name}));
           }
 
           videoDiv.play();

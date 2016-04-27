@@ -10,9 +10,11 @@ function EventHandler(){
   this.init = function init(a_stateHandler, a_configHandler){
     stateHandler = a_stateHandler;
     configHandler = a_configHandler;
-    overloadDispatcher();
     registerAllEvents();
     document.body.onkeydown = handlekey;
+    //make this globally accessible, and an easy replacement for
+    // window.dispatchEvent
+    window.events = this;
   };
 
   /**
@@ -46,22 +48,15 @@ function EventHandler(){
     }
   };
 
-  function dispatchedEvent(evt){
+  this.dispatchEvent = function dispatchEvent(evt){
     var message = {event:{name:evt.type, detail:evt.detail}};
     for(var notifierI = jsonNotifiers.length - 1;
         notifierI >= 0;
         notifierI--){
       jsonNotifiers[notifierI](message);
     }
-  }
-
-  function overloadDispatcher(){
-    var defaultDispatch = window.dispatchEvent;
-    window.dispatchEvent = function(args){
-      dispatchedEvent(args);
-      defaultDispatch(args);
-    };
-  }
+    window.dispatchEvent(evt);
+  };
 
   function registerAllEvents(){
     var events = ['next','prev','cancel','admin'];
@@ -89,7 +84,7 @@ function EventHandler(){
       activeTimeouts.push(
         setTimeout(
           function(){
-            window.dispatchEvent(new Event('cancel'));
+            window.events.dispatchEvent(new Event('cancel'));
           }, 
           timeoutTime * 1000));
       activeTimeouts.push(
@@ -109,11 +104,11 @@ function EventHandler(){
     var key = evt.keyCode || evt.which;
     var keychar = String.fromCharCode(key);
     if (keychar === 'a' || keychar === 'A') {
-      // window.dispatchEvent(new Event('admin'));
+      // window.events.dispatchEvent(new Event('admin'));
     }
     // DEBUG
     if ( keychar == 'N' || keychar == 'H' ){
-      window.dispatchEvent(new Event('next'));
+      window.events.dispatchEvent(new Event('next'));
     }
   }
 }

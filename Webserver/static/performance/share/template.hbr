@@ -17,11 +17,11 @@
         </div>
       </div>
       <div class="bottomCenteredContainer">
-        <div onclick="window.dispatchEvent(new Event('share'));">
+        <div onclick="window.events.dispatchEvent(new Event('share'));">
           <img src="svg/__select.svg" class="button_sm padding_sm" />
           <div class="type_med">share</div>
         </div>
-        <div onclick="window.dispatchEvent(new Event('next'));">
+        <div onclick="window.events.dispatchEvent(new Event('next'));">
           <img src="svg/__done.svg" class="button_sm padding_sm" />
           <div class="type_med">done</div>
         </div>

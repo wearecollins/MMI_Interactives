@@ -29,11 +29,11 @@
         
     </div> -->
     <div class="fillAbs centeredContainer column container" style="z-index:3">
-        <div id="" onclick="window.dispatchEvent(new Event('clip_up'));" class="button">
+        <div id="" onclick="window.events.dispatchEvent(new Event('clip_up'));" class="button">
             <img src="svg/__up.svg" class="button_mini" />
         </div>
         <div class="centeredContainer centerButtons">
-          <div class="column" onclick="window.dispatchEvent(new Event('selectClip'));">
+          <div class="column" onclick="window.events.dispatchEvent(new Event('selectClip'));">
               <img src="svg/__select.svg" class="button_sm padding_sm" />
               <div class="type_med">select</div>
           </div>
@@ -42,7 +42,7 @@
               <div class="type_med">cancel</div>
           </div> -->
         </div>
-        <div id="" onclick="window.dispatchEvent(new Event('clip_down'));" class="button" style="align-items: flex-end">
+        <div id="" onclick="window.events.dispatchEvent(new Event('clip_down'));" class="button" style="align-items: flex-end">
             <img src="svg/__down.svg" class="button_mini" />
         </div>
     </div>

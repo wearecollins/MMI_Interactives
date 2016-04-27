@@ -8,17 +8,17 @@ var overview = function(/*manager*/){
     }
     
     // this tells OF to switch cameras
-    window.dispatchEvent(new Event('camera_front'));
+    window.events.dispatchEvent(new Event('camera_front'));
 
     // play sounds
     var soundA = document.getElementById("camera_front");
     var soundB = document.getElementById("camera_side");
     soundA.onended = function(){
         // this tells OF to switch cameras
-        window.dispatchEvent(new Event('camera_side'));
+        window.events.dispatchEvent(new Event('camera_side'));
 
-    	soundB.onended = function(){
-    		window.dispatchEvent( new Event("next") );
+    soundB.onended = function(){
+        window.events.dispatchEvent( new Event("next") );
     	}.bind(this)
     	soundB.play();
     }.bind(this);
@@ -40,7 +40,7 @@ var overview = function(/*manager*/){
 
   	setTimeout(function(){
   		manager.getStreamHandler().hideStream();
-		window.dispatchEvent(new Event('camera_front'));
+		window.events.dispatchEvent(new Event('camera_front'));
   	}, 1000);
   	
   	//stop sounds

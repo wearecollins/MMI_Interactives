@@ -39,7 +39,7 @@ var share_am = function(data){
 
 	function selectShare(evt) {
 		// listening on next frame!
-		window.dispatchEvent(new Event('next'));
+		window.events.dispatchEvent(new Event('next'));
 	}
 
 	this.enter = function(/*evt*/){

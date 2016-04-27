@@ -18,6 +18,6 @@ var intro = function(/*manager*/){
   };
 
   function videoEnded(){
-    window.dispatchEvent(new Event('next'));
+    window.events.dispatchEvent(new Event('next'));
   }
 };

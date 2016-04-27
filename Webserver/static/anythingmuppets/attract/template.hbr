@@ -15,7 +15,7 @@
     Edit "text" in "buttons" to change text below button icon
   --}}
   <div class="container fillAbs bottomCenteredContainer" style="z-index:2">
-    <div id="sbContInternal" class="column" onclick="window.dispatchEvent(new Event('next'));">
+    <div id="sbContInternal" class="column" onclick="window.events.dispatchEvent(new Event('next'));">
         <img src="svg/__get_started.svg" class="button_sm padding_sm" />
         <div class="type_med padding_sm">Get Started</div>
     </div>

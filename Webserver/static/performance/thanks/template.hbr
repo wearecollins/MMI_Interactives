@@ -7,7 +7,7 @@
     </div>
 
     <div class="container fillAbs bottomCenteredContainer" style="z-index:1">
-        <div onclick="window.dispatchEvent(new Event('next'));" class="column">
+        <div onclick="window.events.dispatchEvent(new Event('next'));" class="column">
             <img src="svg/__start_over.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">start over</div>
         </div>
