@@ -9,6 +9,15 @@ var Poster = require(Path.join(__dirname, 'post.js'));
 
 Logger.configure(require(Path.join(__dirname, 'log4js_conf.json')));
 
+//CORS middleware
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
+}
+
 /**
  * Configure a server for handling photo and video posting requests
  * @constructor
@@ -21,6 +30,7 @@ var Server = function(a_configFilename, a_port){
   this.logger = Logger.getLogger('postServer');
   this.poster = new Poster(a_configFilename);
   this.app = Express();
+  this.app.use(allowCrossDomain);
   this.app.use(BodyParser.urlencoded({extended:false}));
   this.app.post('/photo', function photoPost(client_req, client_res){
     if (client_req.body && client_req.body.filename){

@@ -1,29 +1,32 @@
-var share = function(/*manager*/){
+var share = function(data, configHandler){
 
   this.nRetakes = 0;
 
   // hack for multi image problem
   var didSetImage = false;
   var capturedImage = null;
+  var currentImageUrl = "";
 
   // bind() creates new function refs
   // so we need to create shared variables for adding/removing
   // event listeners!
-  var startRef, skipRef, shareRef, retakeRef, setImageRef;
+  var startRef, skipRef, shareRef, shareOnlineRef, retakeRef, setImageRef;
 
   this.enter = function(/*evt*/){
-
+    currentImageUrl = "";
     this.nRetakes = 0;
 
     startRef = startCountdown.bind(this);
     skipRef = skipToThanks.bind(this);
     shareRef = share.bind(this);
+    shareOnlineRef = shareOnline.bind(this);
     retakeRef = retake.bind(this);
     setImageRef = setImage.bind(this);
 
   	window.addEventListener("capture", startRef);
   	window.addEventListener("skipToThanks", skipRef);
     window.addEventListener("share", shareRef);
+    window.addEventListener("share_online", shareOnlineRef);
     window.addEventListener("retake", retakeRef);
     window.addEventListener("imageCapture", setImageRef);
     
@@ -106,6 +109,19 @@ var share = function(/*manager*/){
     manager.getStreamHandler().hideStream();
   }
 
+  function shareOnline() {
+    var shareServer = configHandler.get('shareServer', "http://localhost:8013");
+    var url = shareServer + "/photo";
+    var filename = "anythingmuppets/" + currentImageUrl;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send( "filename=" + filename );
+
+    // then hide the button...
+  }
+
   function setImage(e){
     if ( didSetImage ) return;
 
@@ -116,7 +132,10 @@ var share = function(/*manager*/){
       var w = this.width * s;
       bg.style.left = window.innerWidth / 2.0 - w/2.0;
     }
-    capturedImage.src = "output/anythingmuppets/" + e.detail;
+
+    currentImageUrl = e.detail;
+
+    capturedImage.src = "output/anythingmuppets/" + currentImageUrl;
 
     bg.appendChild(capturedImage);
 
@@ -152,6 +171,7 @@ var share = function(/*manager*/){
     window.removeEventListener("capture", startRef);
     window.removeEventListener("skipToThanks", skipRef);
     window.removeEventListener("share", shareRef);
+    window.removeEventListener("share_online", shareOnlineRef);
     window.removeEventListener("retake", retakeRef);
     window.removeEventListener("imageCapture", setImageRef);
 

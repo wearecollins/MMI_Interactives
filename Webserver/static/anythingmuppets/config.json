@@ -1,1 +1,6 @@
-{"countdownTime":3,"timeout":60,"continuousMode":false}
+{
+	"countdownTime":3,
+	"timeout":60,
+	"continuousMode":false,
+	"shareServer":"http://localhost:8013"
+}
