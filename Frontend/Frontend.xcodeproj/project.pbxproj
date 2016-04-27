@@ -30,6 +30,8 @@
 		01793FEA1CA59F1E00D8DA83 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE51CA59F1E00D8DA83 /* CameraManager.cpp */; };
 		01793FEB1CA59F1E00D8DA83 /* RecordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE71CA59F1E00D8DA83 /* RecordManager.cpp */; };
 		01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01793FED1CA59F9B00D8DA83 /* MainMenu.xib */; };
+		01DADA801CD1635F00F1A2C3 /* anythingmuppets.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01DADA7E1CD1635F00F1A2C3 /* anythingmuppets.xml */; };
+		01DADA811CD1635F00F1A2C3 /* performance.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01DADA7F1CD1635F00F1A2C3 /* performance.xml */; };
 		01F10D071CA5EBBD006937FA /* CameraApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D031CA5EBBD006937FA /* CameraApp.cpp */; };
 		01F10D081CA5EBBD006937FA /* MessageHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D051CA5EBBD006937FA /* MessageHandler.cpp */; };
 		01F10D221CA5ECC7006937FA /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D1B1CA5ECC7006937FA /* Client.cpp */; };
@@ -39,7 +41,6 @@
 		01F10D261CA5ECC7006937FA /* Reactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D1F1CA5ECC7006937FA /* Reactor.cpp */; };
 		01F10D271CA5ECC7006937FA /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D201CA5ECC7006937FA /* Server.cpp */; };
 		01F10D281CA5ECC7006937FA /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D211CA5ECC7006937FA /* Util.cpp */; };
-		01F8BD501CAAD9C50011B550 /* cameras.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01F8BD4F1CAAD9C50011B550 /* cameras.xml */; };
 		01F8BD531CAAE3790011B550 /* clips in Resources */ = {isa = PBXBuildFile; fileRef = 01F8BD521CAAE3790011B550 /* clips */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
@@ -333,6 +334,8 @@
 		01793FE81CA59F1E00D8DA83 /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordManager.h; path = ../Camera/src/RecordManager.h; sourceTree = "<group>"; };
 		01793FED1CA59F9B00D8DA83 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = src/MainMenu.xib; sourceTree = "<group>"; };
 		01793FF01CA5BA7400D8DA83 /* SysCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SysCommand.h; sourceTree = "<group>"; };
+		01DADA7E1CD1635F00F1A2C3 /* anythingmuppets.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = anythingmuppets.xml; path = Resources/anythingmuppets.xml; sourceTree = "<group>"; };
+		01DADA7F1CD1635F00F1A2C3 /* performance.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = performance.xml; path = Resources/performance.xml; sourceTree = "<group>"; };
 		01F10D031CA5EBBD006937FA /* CameraApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraApp.cpp; path = ../Camera/src/CameraApp.cpp; sourceTree = "<group>"; };
 		01F10D041CA5EBBD006937FA /* CameraApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraApp.h; path = ../Camera/src/CameraApp.h; sourceTree = "<group>"; };
 		01F10D051CA5EBBD006937FA /* MessageHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageHandler.cpp; path = ../Camera/src/MessageHandler.cpp; sourceTree = "<group>"; };
@@ -354,7 +357,6 @@
 		01F10D211CA5ECC7006937FA /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		01F10D2A1CA5ECCD006937FA /* libwebsockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libwebsockets.h; sourceTree = "<group>"; };
 		01F10D2B1CA5ECCD006937FA /* lws_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lws_config.h; sourceTree = "<group>"; };
-		01F8BD4F1CAAD9C50011B550 /* cameras.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = cameras.xml; path = Resources/cameras.xml; sourceTree = "<group>"; };
 		01F8BD521CAAE3790011B550 /* clips */ = {isa = PBXFileReference; lastKnownFileType = folder; name = clips; path = Resources/clips; sourceTree = "<group>"; };
 		02127A1385C21C8F6CE77C4F /* iso.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = iso.h; path = ../Camera/addons/ofxLibdc/libs/dc1394/include/dc1394/iso.h; sourceTree = SOURCE_ROOT; };
 		02F7A4AD6B6185E33C243C88 /* Grabber.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Grabber.cpp; path = ../Camera/addons/ofxLibdc/src/Grabber.cpp; sourceTree = SOURCE_ROOT; };
@@ -1003,9 +1005,10 @@
 		01793FEC1CA59F8300D8DA83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				01DADA7E1CD1635F00F1A2C3 /* anythingmuppets.xml */,
+				01DADA7F1CD1635F00F1A2C3 /* performance.xml */,
 				014712581CAB2E290091E0DB /* settings.xml */,
 				01F8BD521CAAE3790011B550 /* clips */,
-				01F8BD4F1CAAD9C50011B550 /* cameras.xml */,
 				01793FED1CA59F9B00D8DA83 /* MainMenu.xib */,
 			);
 			name = Resources;
@@ -1437,11 +1440,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01DADA801CD1635F00F1A2C3 /* anythingmuppets.xml in Resources */,
 				014712591CAB2E290091E0DB /* settings.xml in Resources */,
 				01F8BD531CAAE3790011B550 /* clips in Resources */,
 				012A51F11CAF235600A74858 /* LICENSE in Resources */,
 				01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */,
-				01F8BD501CAAD9C50011B550 /* cameras.xml in Resources */,
+				01DADA811CD1635F00F1A2C3 /* performance.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
