@@ -4,7 +4,11 @@ var select = function(data){
 	var videoDivs = [];
 	var videoContainer;
 
+	var clipIsSelected = false;
+
 	this.enter = function(/*evt*/){
+		clipIsSelected = false;
+
 		videoContainer = document.getElementById("videoContainer");
 		if ( videoDivs.length == 0 ){
 			for ( var i in videos ){
@@ -12,7 +16,8 @@ var select = function(data){
 			}
 		}
 		// show 'intro'
-		show("select_intro");
+		var overlay = document.getElementById("select_intro");
+		overlay.classList.remove("disabled");
 
 		setTimeout(function(){
 			showSelectCancel.bind(this)();
@@ -25,8 +30,12 @@ var select = function(data){
 	}
 
 	function showSelectCancel(){
-		hide("select_intro");
+		overlay = document.getElementById("select_intro");
+		overlay.classList.add("disabled");
+
 		show("select_clips");
+		var btns = document.getElementById("selectButtons");
+		btns.classList.add("enabled");
 
 		unmute( videos[1].name );
 	}
@@ -66,6 +75,7 @@ var select = function(data){
 	}
 
 	function selectClip(){
+		clipIsSelected = true;
 		var evt = new CustomEvent("clipSelected", {detail:videos[1].name});
 		window.events.dispatchEvent(evt);
 
@@ -73,19 +83,30 @@ var select = function(data){
 	}
 
 	this.exit = function(/*evt*/){
-		setTimeout(function(){
-			hide("select_clips");
-			show("select_intro");
-		}, 1000);
+		setTimeout(cleanup, 1000);
 
 		for ( var v in videos ){
 			mute(videos[v].name);
+		}
+
+		// make sure we have a clip selected!
+		if ( !clipIsSelected ){
+			// selectClip();
+			// clipIsSelected = true;
 		}
 
 		// remove listeners
 		window.removeEventListener("clip_up", prevClip );
 		window.removeEventListener("clip_down", nextClip );
 		window.removeEventListener("selectClip", selectClip );
+	}
+
+	function cleanup() {
+		hide("select_clips");
+		show("select_intro");
+
+		var btns = document.getElementById("selectButtons");
+		btns.classList.remove("enabled");
 	}
 
 	// utils

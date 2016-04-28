@@ -13,5 +13,6 @@
 			"name":"horse_named_bill",
 			"src":"video/horse_named_bill.mp4"
 		}
-	]
+	],
+	"disableTimeout":true
 }

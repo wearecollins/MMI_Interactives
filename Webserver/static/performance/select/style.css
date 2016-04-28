@@ -28,8 +28,19 @@
     height: 250%;
 }
 
+#select_intro {
+  opacity: 1;
+  transition: opacity ease-out .5s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#select_intro.disabled {
+  opacity: 0;
+}
+
 #{{name}} .centerButtons {
-	height: 100%;
+	height: 70%;
 	display: flex;
 	align-items: flex-end;
 }
@@ -38,4 +49,27 @@
 	height:20vh;
 	display: flex;
 	align-items: flex-start;
+  pointer-events:all;
+}
+
+/* Animations */
+#selectBtnsUp, #selectBtnsDown {
+  left:0px;
+  top:0px;
+  pointer-events:none;
+  animation: animateDownTop;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+#selectBtnsUp.disabled {
+  animation-name: animateOffTop;
+}
+
+#selectBtnsDown.disabled {
+  animation-name: animateOffBotton;
+}
+
+#selectBtnsDown {
+  animation-name: animateUpScreen;
 }

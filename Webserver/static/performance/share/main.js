@@ -46,11 +46,14 @@ var share = function( data, configHandler ){
 	this.exit = function(/*evt*/){
 		clearInterval(tryInterval);
     	window.removeEventListener("share_online", shareOnlineRef);
-
 		var video = document.getElementById("share_video");
 		video.pause();
+		
+		setTimeout( cleanup, 1000);
+	}
+
+	function cleanup() {
 		var source = document.getElementById("shareSource");
-	    
 		source.setAttribute("src","");
 	}
 

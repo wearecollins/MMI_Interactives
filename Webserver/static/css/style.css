@@ -119,12 +119,31 @@ body,
         top:0vh;
     }
 }
+
 @keyframes animateOffBotton {
     from {
         top:0vh;
     }
     to {
         top:100vh;
+    }
+}
+
+@keyframes animateDownTop {
+    from {
+        top:-100vh;
+    }
+    to {
+        top:0vh;
+    }
+}
+
+@keyframes animateOffTop {
+    from {
+        top:0vh;
+    }
+    to {
+        top:-100vh;
     }
 }
 

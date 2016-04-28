@@ -3,7 +3,6 @@ var perform = function(data){
 	var currentClip = null;
 
 	function setClip(e){
-		console.log("Set clip! "+e.detail);
 		for ( var i in videos ){
 			var v = videos[i];
 			if ( v.name == e.detail ){
