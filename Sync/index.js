@@ -19,6 +19,7 @@ pid.running(function(err, running/*, data*/){
   if (running){
     logger.warn('[checkRunning] process still running, exiting');
   } else {
+    logger.debug('[checkRunning] process not running');
     writePID();
   }
 });
@@ -27,8 +28,20 @@ pid.running(function(err, running/*, data*/){
 function writePID(){
   pid.write(function(err){
     if (err){
-      logger.error('[run] error while creating PID file', err);
+      logger.error('[writePID] error while creating PID file', err);
+      if (err.code === 'EEXIST'){
+        logger.info('[writePID] removing stale PID file');
+        pid.delete(function(err){
+          if (err){
+            logger.error('[writePID] error deleting stale file',err);
+          } else {
+            logger.debug('writePID] removed stale file');
+            writePID();
+          }
+        });
+      }
     } else {
+      logger.debug('[writePID] created PID file');
       checkAccessibility();
     }
   });
@@ -41,6 +54,7 @@ function checkAccessibility(){
                checkPathAccessibility(configs.destination, 
                                       'destination directory')]).
     then(function resolved(/*results*/){
+      logger.debug('[checkAccessibility] directories accessible');
       cacheLatest();
     },
     function rejected(/*reason*/){
@@ -51,13 +65,14 @@ function checkAccessibility(){
 //cache file info
 var files = [];
 function cacheLatest(){
-  FileSystem.readdir(configs.source, function(err, files){
+  FileSystem.readdir(configs.source, function(err, filenames){
     if (err){
       logger.error('[cacheLatest] error getting directory listing', err);
       doRsync();
     } else {
+      logger.debug('[cacheLatest] got listing of',filenames.length,'files');
       var promises = [];
-      files.forEach(function(filename){
+      filenames.forEach(function(filename){
         promises.push(new Promise(function(resolve/*, reject*/){
           FileSystem.stat(
             Path.join(configs.source, filename), 
@@ -75,6 +90,7 @@ function cacheLatest(){
       });
       Promise.all(promises).
         then(function(){
+          logger.debug('[cacheLatest] sorting file stats');
           //sort files most recent first
           files.sort(function(a, b){
             return b.modified - a.modified;
@@ -91,6 +107,7 @@ function doRsync(){
   rsync.
     source(configs.source).
     destination(configs.destination).
+    recursive().
     quiet();
 
   rsync.execute(function(err, code, cmd){
@@ -126,7 +143,7 @@ function checkCopy(){
 //cleanup old files
 function removeOld(){
   var numRemoved = 0;
-  var oldest = Date().getTime() - configs.cleanupMins * 60000;
+  var oldest = new Date().getTime() - configs.cleanupMins * 60000;
   var promises = [];
   files.forEach(function(item){
     if (item.modified < oldest){
@@ -140,7 +157,8 @@ function removeOld(){
     then(() => {
       logger.info('[removeOld] removed',numRemoved);
       finish();
-    });
+    },
+    () => logger.error('[removeOld] Promises should not be able to reject'));
 }
 
 //clean up PID file
