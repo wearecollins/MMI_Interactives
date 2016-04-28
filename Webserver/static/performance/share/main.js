@@ -41,6 +41,8 @@ var share = function( data, configHandler ){
 				}
 			}, 10);
 		}
+
+		document.getElementById("shareAnimateContainer").classList.add("enabled");
 	}
 
 	this.exit = function(/*evt*/){
@@ -55,6 +57,8 @@ var share = function( data, configHandler ){
 	function cleanup() {
 		var source = document.getElementById("shareSource");
 		source.setAttribute("src","");
+
+		document.getElementById("shareAnimateContainer").classList.remove("enabled");
 	}
 
 	function shareOnline() {

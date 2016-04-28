@@ -49,6 +49,19 @@ Handlebars.registerHelper('if_even', function(conditional, options) {
   }
 });
 
+Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
+        
+    return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * rvalue,
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue
+    }[operator];
+});
+
 /*global Handlebars, log4javascript, Loader, 
  *       Page, StreamHandler, StateHandler, 
  *       WebsocketHandler, EventHandler,

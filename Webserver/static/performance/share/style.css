@@ -21,3 +21,23 @@
 #shareOnlineBtn.disabled {
   opacity: .4;
 }
+
+#shareAnimateContainer {
+  height: 0vh;
+}
+
+#{{name}}.disabled #shareAnimateContainer{
+  animation-name: hide;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+  animation-delay: 1s;
+  z-index: 0;
+}
+
+#{{name}} #shareAnimateContainer.enabled{
+  animation-name: animateIn;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+  animation-delay: 5s;
+  z-index: 1;
+}

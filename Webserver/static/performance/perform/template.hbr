@@ -22,13 +22,13 @@
   <!-- Countdown -->
   <div id="countdownContainer" class="fillAbs">
     <div id="c_three" class="fillAbs centeredContainer countDown">
-        <img src="svg/__count_3.svg" class="cdNumber" />
+        <img src="svg/__count_3.svg" class="button_lg padding_sm" />
     </div>
     <div id="c_two" class="fillAbs centeredContainer countDown">
-        <img src="svg/__count_2.svg" class="cdNumber" />
+        <img src="svg/__count_2.svg" class="button_lg padding_sm" />
     </div>
     <div id="c_one" class="fillAbs centeredContainer countDown">
-        <img src="svg/__count_1.svg" class="cdNumber" />
+        <img src="svg/__count_1.svg" class="button_lg padding_sm" />
     </div>
   </div>
 

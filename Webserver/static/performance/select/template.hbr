@@ -4,7 +4,7 @@
   <div class="fillAbs centeredContainer" style="z-index:1">
     <div id="videoContainer" class="fillCrop centeredContainer column">
       {{#each videos}}
-        <video class="" id="{{name}}" autoplay loop muted>
+        <video class="selectVideo" id="{{name}}" autoplay loop muted>
             <source src="{{src}}" type="video/mp4">
         </video>
       {{/each}}

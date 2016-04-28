@@ -15,8 +15,10 @@
 }
 
 #{{name}} video {
-    height: 80%;
+    height: {{math 100 "/" videos.length}}%;
     margin: .5%;
+    transition: all ease-in-out .5s;
+    position: relative;
 }
 
 #select_clips {

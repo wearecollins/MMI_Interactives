@@ -522,12 +522,6 @@ body,
     height: 100vh;
 }
 
-#cdContainer img {
-    width: 15%;
-    opacity: .5;
-    margin: 1rem;
-}
-
 .adminBtnContainer {
     width: 50%;
 }
