@@ -247,8 +247,8 @@ function Manager(states, transitions){
     ws.connect('ws://'+window.location.host, 'node');
 
     // perhaps this is a global setting?
-    var doStream = MMI.getQueryString("stream", false);
-    if (doStream == "true" ){
+    var doStream = configHandler.get('doStream', false);
+    if (doStream == "true" || doStream == true ){
       ws.connect('ws://localhost:9091', 'oF');
     }
   }

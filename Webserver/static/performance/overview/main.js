@@ -1,9 +1,9 @@
-var overview = function(/*manager*/){
+var overview = function( data, configHandler){
   this.enter = function(/*evt*/){
-
   	// show camera if streaming
-    var doStream = MMI.getQueryString("stream", false);
-    if (doStream == "true" ){
+    var doStream = configHandler.get('doStream', false);
+
+    if (doStream == "true" || doStream == true ){
         manager.getStreamHandler().showStream();
     }
     

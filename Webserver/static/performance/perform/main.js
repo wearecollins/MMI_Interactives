@@ -1,4 +1,4 @@
-var perform = function(data){
+var perform = function(data, configHandler){
 	var videos = data.videos;
 	var currentClip = null;
 
@@ -21,10 +21,11 @@ var perform = function(data){
 		state = 0;
 
 		// show camera if streaming
-		var doStream = MMI.getQueryString("stream", false);
-		if (doStream == "true" ){
-		    manager.getStreamHandler().showStream();
-		}
+		var doStream = configHandler.get('doStream', false);
+
+    if (doStream == "true" || doStream == true ){
+        manager.getStreamHandler().showStream();
+    }
 
 		// this tells OF to switch cameras
 		window.events.dispatchEvent(new Event('camera_front'));

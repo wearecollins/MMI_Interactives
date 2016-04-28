@@ -6,5 +6,6 @@
 	"aspect":1.33,
 	"imageWidth":1040,
 	"imageHeight":776,
-	"autoSize":true
+	"autoSize":true,
+	"doStream":false
 }
