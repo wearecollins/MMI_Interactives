@@ -111,7 +111,7 @@ FBPoster.prototype.linkVideo = function(apiData, videoId){
                    {access_token: apiData.page.token,
                     video_ids:    JSON.stringify([videoId])});
   } else {
-    return;
+    return Promise.resolve();
   }
 };
 
