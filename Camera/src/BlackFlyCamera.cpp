@@ -38,6 +38,7 @@ namespace mmi {
         this->params.add(this->shutter.set("shutter", .5, 0., 1.0));
         this->params.add(this->doReset.set( "Reset camera", false ));
         this->params.add(this->imageColor.set("Color/BW", true));
+        this->params.add(this->mirror.set("Mirror on/off", true));
         
         // unclear if this is a good idea yet
         this->params.add(this->aspect_x.set("Aspect x", 0, 0, 16 ));
@@ -106,7 +107,6 @@ namespace mmi {
         camera.resetBus(guid);
         
         if ( imageColor.get() && gpuBayer.get() == 2 ){
-            cout << "set bayer?" <<endl;
             /*
              DC1394_BAYER_METHOD_NEAREST=0,
              DC1394_BAYER_METHOD_SIMPLE,
@@ -132,8 +132,6 @@ namespace mmi {
         ofLogVerbose()<<"[PointGrey Camera] Setting up at "<<this->width<<","<<this->height;
         
         camera.setSize(this->width,this->height);
-        //        camera.setFrameRate(60);
-        
         
 //        ofSetLogLevel(OF_LOG_VERBOSE);
         if ( guid.get() == "" ){
@@ -167,12 +165,9 @@ namespace mmi {
             setMaxFramerate();
 //            getTriggerMode();
             
-            // more features
-            
-//            camera.setFeatureAbs( DC1394_FEATURE_TRIGGER_DELAY, 0.);
-            
-            // unclear if this really does anything yet
+            // this is slow & unwieldy. don't do it!
             if ( softwareTrigger ){
+                //            camera.setFeatureAbs( DC1394_FEATURE_TRIGGER_DELAY, 0.);
                 auto err = dc1394_feature_set_power(c,DC1394_FEATURE_TRIGGER,DC1394_ON);
                 
                 DC1394_ERR_RTN(err, "Could not set trigger on.");
@@ -224,15 +219,22 @@ namespace mmi {
             doReset.set(false);
         }
         
+        // aspect ratio/cropping stuff
+        
+        float aspect = 1;
+        if ( aspect_x.get() != 0 && aspect_y.get() != 0 ){
+            aspect = (float) aspect_x.get() / aspect_y.get();
+        }
+        float tw = ((float) this->height) * aspect;
+        float th = this->height;
+        
         if ( gpuBayer == 2){
             if (imageColor.get() && buffer.getImageType() != OF_IMAGE_COLOR ){
-                cout << "set bayer>"<<endl;
                 buffer.allocate(width, height, OF_IMAGE_COLOR);
                 buffer.getPixels().setColor(ofColor::black);
                 camera.setBayerMode(DC1394_COLOR_FILTER_RGGB, DC1394_BAYER_METHOD_NEAREST);
                 camera.setImageType(OF_IMAGE_COLOR);
             } else if ( !imageColor.get() && buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
-                cout << "set gray" << endl;
                 buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
                 buffer.getPixels().setColor(ofColor::black);
                 camera.setImageType(OF_IMAGE_GRAYSCALE);
@@ -242,7 +244,18 @@ namespace mmi {
             
             auto v = camera.grabVideo(buffer);
             if ( v ){
-                buffer.update();
+                if ( aspect != 1.0&&
+                    (!ofIsFloatEqual(buffer.getWidth(), tw) ||
+                     !ofIsFloatEqual(buffer.getHeight(), th)) )
+                {
+                    cropped.clone(buffer);
+                    cropped.crop(0, 0, tw, th);
+                    if ( mirror.get() ) cropped.mirror(false, true);
+                    cropped.update();
+                } else {
+                    if ( mirror.get() ) buffer.mirror(false, true);
+                    buffer.update();
+                }
             }
         } else {
             if (buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
@@ -304,13 +317,6 @@ namespace mmi {
             } while (remaining);
             
             if ( i > 0 ){
-                float aspect = 1;
-                if ( aspect_x.get() != 0 && aspect_y.get() != 0 ){
-                    aspect = (float) aspect_x.get() / aspect_y.get();
-                }
-                float tw = ((float) this->height) * aspect;
-                float th = this->height;
-                
                 if ( gpuBayer.get() == 1 ){
                     if (!cvBuffer.isAllocated())
                     {
@@ -338,8 +344,10 @@ namespace mmi {
                     {
                         cropped.clone(buffer);
                         cropped.crop(0, 0, tw, th);
+                        if ( mirror.get() ) cropped.mirror(false, true);
                         cropped.update();
                     } else {
+                        if ( mirror.get() ) buffer.mirror(false, true);
                         buffer.update();
                     }
                 }

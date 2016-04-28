@@ -139,9 +139,15 @@ namespace mmi {
     //ofVideoGrabber
     class WebCamera : public BaseCamera {
     public:
+        WebCamera(){
+            uid = -1;
+        }
+        
         bool setup( string guid = "", int width = 2080, int height = 1552 ){
             this->guid = guid;
+            this->uid  = ofToInt(guid);
             
+            camera.setDeviceId(uid);
             bSetup = camera.setup(width,height);
             return bSetup;
         }
@@ -189,6 +195,7 @@ namespace mmi {
         
     protected:
         ofVideoGrabber camera;
+        int uid;
     };
 #endif
 }

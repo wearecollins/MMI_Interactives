@@ -55,6 +55,7 @@ protected:
     ofParameter<int>            gpuBayer;
     ofParameter<int>            resMode;    // 0 = hi-res, 1 = lo-res
     ofParameter<bool>           imageColor;
+    ofParameter<bool>           mirror;
     ofParameter<float>          brightness;
     ofParameter<float>          gamma;
     ofParameter<float>          gain;
