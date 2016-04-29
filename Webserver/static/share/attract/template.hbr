@@ -7,7 +7,7 @@
   </div>
   <div class='fillAbs centeredContainer column'>
     <div id="sharePerf" class='fillHalfW'>
-      <div id="sharePerfBg" class="fillHalfW">
+      <div id="sharePerfBg" class="fillHalfW greenBg">
       </div>
       <div class="fillHalfW centeredContainer">
         <div class="column" onclick="window.events.dispatchEvent(new Event('next'));">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div id="shareAm" class="fillHalfW">
-      <div id="shareAmBg" class="fillHalfW">
+      <div id="shareAmBg" class="fillHalfW blueBg">
       </div>
 
       <div class="fillHalfW centeredContainer">

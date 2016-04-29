@@ -17,7 +17,7 @@
       <div id="amEmEm" class="whiteBg container">
         <div onclick="document.getElementById('anEmEmail').focus();">
           <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
-          <input class="type_med" placeholder="you@domain.com" type="email" id="anEmEmail" />
+          <input class="type_sm" placeholder="you@domain.com" type="email" id="anEmEmail" />
           <span id="amEmError" class="hidden type_sm">Invalid email. Please try again!</span>
         </div>
         <div class="rightContainer" style="align-items:center; width:30%" onclick="window.events.dispatchEvent(new Event('shareAmEmail'));">
@@ -36,7 +36,7 @@
             Legal terms etc. ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend massa quis fringilla iaculis. Quisque euismod, dolor id fermentum euismod, nisl nibh eleifend orci, mattis aliquam est nibh vitae lectus. Donec ac libero porta, tristique ligula in, congue</div>
           </div>
         </div>
-        <div class="topCenteredContainer" style="padding-left: 4vw; height:19vh;" onclick="window.events.dispatchEvent(new Event('shareAmMMI'));">
+        <div id="amOnlineBtn" class="topCenteredContainer" style="padding-left: 4vw; height:19vh;" onclick="window.events.dispatchEvent(new Event('shareAmMMI'));">
           <img src="svg/__share.svg" class="button_mini" />
         </div>
       </div>

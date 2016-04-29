@@ -1,0 +1,5 @@
+{{#each data}}
+<div>
+	<img src="{{image}}" />
+</div>
+{{/each}}

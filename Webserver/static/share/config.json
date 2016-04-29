@@ -4,7 +4,9 @@
   "continuousMode":false,
   "additionalStatic":[
   {
-    "diskPath":"/media/quin/data1/docs/collins/muppets/repo/media",
+    "diskPath":"/Users/brettrenfer/Dropbox/Code/OF/of_v0.X.X_github/apps/MMI_Interactives/Webserver/static/output",
     "webPath":"/media"
-  }]
+  }],
+  "disableKeyNext":true,
+  "shareServer":"http://192.168.88.108:8013"
 }

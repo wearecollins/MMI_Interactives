@@ -68,12 +68,13 @@
 	text-align: left;
 	line-height: 0;
 	z-index: 1;
+	transition: all ease-in-out .1s;
 }
 
 #pEmInfo > #spacer {
 	flex-shrink: 0;
     width: 100%;
-    height: 60vh;
+    height: 100vh;
 }
 
 #pEmEm {
@@ -84,5 +85,12 @@
 
 #pEmEm div, #pEmSh div {
 	flex-shrink: 1;
-	width: auto;
+	width: 50%;
+}
+
+#pEmSh .topCenteredContainer {
+	padding-left: 4vw;
+	height: 19vh;
+	width: 60%;
+	justify-content: flex-end;
 }

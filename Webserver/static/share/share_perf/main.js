@@ -1,39 +1,40 @@
-var share_perf = function(data){
+var share_perf = function(data, configHandler){
 
-	// how does this get populated?
 	var currentData = {
 		"videos":[
-			{
-				"timestamp":"04/07/2016 / 07:46 PM",
-				"video":"output/performance/mmi_performance_2016-03-09-11-11-36-287.mp4_final.mp4"
-			},
-			{
-				"timestamp":"04/07/2016 / 07:55 PM",
-				"video":"output/performance/mmi_performance_2016-03-09-11-11-36-287.mp4_final.mp4"
-			},
-			{
-				"timestamp":"04/07/2016 / 07:57 PM",
-				"video":"output/performance/mmi_performance_2016-03-09-11-11-36-287.mp4_final.mp4"
-			},
-			{
-				"timestamp":"04/07/2016 / 07:57 PM",
-				"video":"output/performance/mmi_performance_2016-03-09-11-11-36-287.mp4_final.mp4"
-			},
-			{
-				"timestamp":"04/07/2016 / 09:44 AM",
-				"video":"output/performance/mmi_performance_2016-03-09-11-11-36-287.mp4_final.mp4"
-			},
-			{
-				"timestamp":"04/07/2016 / 09:46 AM",
-				"video":"output/performance/mmi_performance_2016-03-09-11-11-36-287.mp4_final.mp4"
-			}
 		]
 	}
+	
+	window.addEventListener("perfData", updateData);
 
-	window.addEventListener("updatePerfData", updateData);
+	// performance comes in as Array
+	function updateData(e) {
+		var paths = configHandler.get('additionalStatic', [{"diskPath":"", "webPath":"/media"}]);
+		var base_path  = paths[0].webPath + "/performance";
 
-	function updateData(data) {
-		//...
+		var videoList = e.detail;
+		currentData.videos = [];
+		for ( var i in videoList ){
+			var path = videoList[i];
+			var ext  = path.split(".");
+			ext = ext[ext.length-1];
+			if ( ext == "mp4"){
+				// fmt = 2016-04-26-16-31-29-705.mp4
+				var ts = path.split(".")[0].split("-");
+				var am = ts[3] <= 11;
+				if ( !am ){
+					ts[3] -= 12;
+				}
+				var timestamp = "" + ts[1] +"/" + ts[2] +"/" + ts[0] +" " + ts[3]+":"+ts[4] + (am ? "AM" : "PM");
+				var obj = {
+					"timestamp":ts,
+					"video": base_path + "/" + path
+				}
+				currentData.videos.push(obj);
+			}
+		}
+
+		reloadList();
 	}
 
 
@@ -44,11 +45,20 @@ var share_perf = function(data){
 
 	this.enter = function(/*evt*/){
 		window.addEventListener("selectPerf", selectShare);
-		reloadList();
+
+		var videos = document.querySelectorAll(".srVideo");
+		for ( var i=0; i<videos.length; i++ ){
+			// setTimeout(function(v){v.play()}, 0, videos[i]);
+		}
 	};
 
 	this.exit = function(/*evt*/){
 		window.removeEventListener("selectPerf", selectShare);
+
+		var videos = document.querySelectorAll(".srVideo");
+		for ( var i=0; i<videos.length; i++ ){
+			// setTimeout(function(v){v.pause()}, 0, videos[i]);
+		}
 	};
 
 	function reloadList() {

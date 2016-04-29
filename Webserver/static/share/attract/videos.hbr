@@ -1,0 +1,5 @@
+{{#each data}}
+<video class="introVideo" muted>
+	<source src="{{image}}" type="video/mp4">
+</video>
+{{/each}}

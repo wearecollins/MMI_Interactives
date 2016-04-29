@@ -1,5 +1,5 @@
 {{#each images}}
-<div class="leftContainer container shareRow {{#if_even @index}}evenRow{{/if_even}}" onclick="window.events.dispatchEvent( new CustomEvent('selectAM', {detail:{'timestamp':'{{{timestamp}}}','image':'{{{image}}}' } }));">
+<div class="leftContainer container shareRow {{#if_even @index}}evenRow{{/if_even}}" onclick="window.events.dispatchEvent( new CustomEvent('selectAM', {detail:{'timestamp':'{{{timestamp}}}','image':'{{{image}}}', 'path':'{{{path}}}' } }));">
 	<img class="srImage" src="{{image}}" />
 	<div class="srType type_med" style="padding-left:2vw">
 		<span style="text-decoration: underline;
