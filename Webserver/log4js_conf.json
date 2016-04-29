@@ -14,6 +14,7 @@
     "[all]":"ALL",
     "remote":"ALL",
     "server":"ALL",
-    "websocket":"ALL"
+    "websocket":"ALL",
+    "express":"WARN"
   }
 }
