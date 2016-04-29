@@ -11,7 +11,12 @@ function EventHandler(){
     stateHandler = a_stateHandler;
     configHandler = a_configHandler;
     registerAllEvents();
-    document.body.onkeydown = handlekey;
+
+    var useKey = !(configHandler.get("disableKeyNext", false));
+    if (useKey){
+      document.body.onkeydown = handlekey;
+    }
+
     //make this globally accessible, and an easy replacement for
     // window.dispatchEvent
     window.events = this;
