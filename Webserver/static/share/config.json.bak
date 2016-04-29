@@ -1,0 +1,10 @@
+{
+  "countdownTime":3,
+  "timeout":30,
+  "continuousMode":false,
+  "additionalStatic":[
+  {
+    "diskPath":"/media/quin/data1/docs/collins/muppets/repo/media",
+    "webPath":"/media"
+  }]
+}
