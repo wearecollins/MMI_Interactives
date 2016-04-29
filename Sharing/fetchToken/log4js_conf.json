@@ -12,10 +12,6 @@
   ],
   "levels": {
     "[all]":"ALL",
-    "fetchToken":"WARN",
-    "postServer":"WARN",
-    "Poster":"WARN",
-    "FBPoster":"WARN",
-    "TumblPoster":"WARN"
+    "fetchToken":"ALL"
   }
 }

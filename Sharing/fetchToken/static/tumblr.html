@@ -1,0 +1,37 @@
+<html>
+<head>
+<script>
+window.onload = function(){
+  var queryList = location.search.substring(1).split('&');
+  var queryMap = {};
+  queryList.forEach(function(item){
+      var parts = item.split('=');
+      queryMap[parts[0]] = parts[1];
+  });
+  var ddlBlogs = document.getElementById('ddlBlogs');
+  ddlBlogs.innerHTML = '';
+  var blogs = queryMap.blogs.split(',');
+  blogs.forEach(function(blog){
+      option = document.createElement('option');
+      option.value = blog;
+      option.innerHTML = blog;
+      ddlBlogs.appendChild(option);
+  });
+  document.getElementById('rt').value = queryMap.rt;
+};
+</script>
+</head>
+<body>
+<form id='detailsForm' action='/auth/tumblr' method='post'>
+  <input type='hidden' name='rt' id='rt' />
+  <div class='item'>
+    <label for='ddlBlogs'>Blogs</label>
+    <select id='ddlBlogs' name='blog'>
+    </select>
+  </div>
+  <div class='item'>
+    <input type='submit' value='Submit' />
+  </div>
+</form>
+</body>
+</html>

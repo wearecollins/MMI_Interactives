@@ -179,7 +179,7 @@ FBPoster.prototype.postAPI = function(endpoint, options){
  */
 function getGraphConfig(){
   return new Promise(function(resolve, reject){
-    var filename = Path.join(__dirname, 'token.json');
+    var filename = Path.join(__dirname, 'facebookToken.json');
     FileSystem.readFile(
       filename, 
       'utf8', 

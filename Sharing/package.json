@@ -15,7 +15,8 @@
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "fb": "^1.0.2",
-    "log4js": "^0.6.33"
+    "log4js": "^0.6.33",
+    "oauth": "^0.9.14"
   },
   "devDependencies": {
     "eslint": "^2.7.0"
