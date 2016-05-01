@@ -5,7 +5,10 @@ This is a Nodejs script which uses rsync to copy files between two directories.
 * create [config.json]() based on [config.json.sample]()
 
 # running
-`npm start`
+* once
+  - `npm start`
+* repeatedly
+  - `npm run loop`
 
 This will be set up as a CRON job via `crontab -e`, 
 probably to run every minute:
