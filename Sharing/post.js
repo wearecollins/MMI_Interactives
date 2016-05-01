@@ -4,8 +4,8 @@ var Path = require('path');
 //external dependencies
 var Logger = require('log4js');
 //custom modules
-var Posters = [require(Path.join(__dirname, 'fbPost.js'))];//,
-               //require(Path.join(__dirname, 'tumblPost.js'))];
+var Posters = [require(Path.join(__dirname, 'fbPost.js')),
+               require(Path.join(__dirname, 'tumblrPost.js'))];
 
 /**
  * Used to track posts that need to be made.
