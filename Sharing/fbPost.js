@@ -86,14 +86,31 @@ FBPoster.prototype.postVideo = function(item, apiData){
   var APIPromise = this.postAPI(rootId+'/videos', options).
     then(function resolved(response){
       item.result.success = response;
-      return this.linkVideo(apiData, response.id).
-        then(function linkResolved(/*response*/){
-          return item;
-        },
-        function linkRejected(response){
-          item.result.error = response;
-          return Promise.reject(item);
-        });
+      item.item.fbID = response.id;
+      item.item.fbURL = 'http://www.facebook.com/' + 
+                        apiData.page.id +
+                        '/videos/' +
+                        response.id;
+      return Promise.all([
+        this.linkVideo(apiData, response.id).
+          then(function linkResolved(/*response*/){
+            return item;
+          },
+          function linkRejected(response){
+            item.result.error = response;
+            return Promise.reject(item);
+          }),
+        this.getEmbed(apiData, response.id).
+          then(function embedResolved(response){
+            this.logger.debug('[postVideo:embedResolved]', response.embed_html);
+            item.item.fbEmbed = response.embed_html;
+            return item;
+          }.bind(this),
+          function embedRejected(reason){
+            this.logger.warn('[postVideo:embedRejected]',reason);
+            return item;
+          }.bind(this))]).
+      then( () => item );
     }.bind(this),
     function rejected(reason){
       item.result.error = reason;
@@ -101,6 +118,35 @@ FBPoster.prototype.postVideo = function(item, apiData){
     });
 
   return APIPromise;
+};
+
+FBPoster.prototype.getEmbed = function(apiData, videoId){
+  //TODO: use a proper template provided via config?
+  var width = 560;
+  var height = 315;
+  var videoURI = 'https://www.facebook.com/'+apiData.page.id+'/videos/vb.'+apiData.page.id+'/'+videoId+'/?type=3';
+  var encodedURI = encodeURIComponent(videoURI);
+  var iframeURI = 'https://www.facebook.com/plugins/video.php?href='+encodedURI+'&show_text=0&width='+width;
+  var style = 'border:none;overflow:hidden';
+  return Promise.resolve({embed_html:'<iframe src="'+iframeURI+'" width="'+width+'" height="'+height+'" style="'+style+'" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>'});
+  /*
+  return new Promise(function(resolve, reject){
+    this.logger.debug('[getEmbed] requesting embed html');
+    Facebook.api(videoId, 
+                 {fields:       ['embed_html'],
+                  access_token: apiData.page.token},
+                 function (res){
+                   if (!res || res.error){
+                     var err = res ? res.error : undefined;
+                     this.logger.debug('[getEmbed] error',err);
+                     reject(err);
+                   } else {
+                     this.logger.debug('[getEmbed] got!');
+                     resolve(res);
+                   }
+                 }.bind(this));
+  }.bind(this));
+  */
 };
 
 //TODO: we could link all successful videos at once at end

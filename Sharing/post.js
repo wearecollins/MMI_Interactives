@@ -183,17 +183,22 @@ Poster.prototype.cleanQueue = function(numItems){
 };
 
 Poster.prototype.processQueue = function(){
+  function chainPost(prevPromise, posterIndex, queueSize){
+    return prevPromise.
+      then(this.postUsing.bind(this, posterIndex, queueSize));
+  }
+
   var queueSize = this.queue.length;
   this.logger.debug('[Poster::processQueue] processing', queueSize, 'items');
   /**
    * @type {Promise[]}
    */
-  var promises = [];
+  var prevPromise = Promise.resolve();
   for(var i = 0; i < this.posters.length; i++){
-    promises.push(this.postUsing(i, queueSize));
+    prevPromise = chainPost.bind(this, prevPromise, i, queueSize)();
   }
 
-  Promise.all(promises).
+  prevPromise.
     then(function(){
       this.logger.debug('[processQueue] done posting')
     }.bind(this)).
