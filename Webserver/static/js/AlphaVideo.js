@@ -1,0 +1,72 @@
+function AlphaVideo() {
+	var bufferCanvas, bufferCtx;
+	var outputCanvas, outputCtx;
+	var video;
+	var pRef, sRef;
+	var width, height;
+
+	/**
+	 * @param  {String} bufferCanvasID ID of DOM element (real)
+	 * @param  {String} outputCanvasID ID of DOM element to be displayed
+	 * @param  {String} videoID        ID of video DOM element
+	 * @param  {Number} inWidth        Width of video
+	 * @param  {Number} inHeight       *Final* height of video
+	 */
+	this.setup = function( bufferCanvasID, outputCanvasID, videoID, inWidth, inHeight ) {
+		width = inWidth,
+		height = inHeight;
+
+		// get stuff from DOM
+		video = document.getElementById( videoID );
+		bufferCanvas = document.getElementById(bufferCanvasID),
+		bufferCtx = bufferCanvas.getContext('2d'),
+		outputCanvas = document.getElementById(outputCanvasID),
+		outputCtx = outputCanvas.getContext('2d'),
+		pRef = this.update.bind(this),
+		sRef = this.stop.bind(this);
+	}
+
+	var _onEnded;
+
+	this.play = function( onEnded ){
+		video.play();
+		// video.addEventListener( "ended", onEnded );
+		video.addEventListener( "ended", sRef );
+		_onEnded = onEnded;
+		window.requestAnimationFrame(pRef);
+	}
+
+	this.update = function(){
+	    bufferCtx.drawImage(video, 0, 0);
+	    var image = bufferCtx.getImageData(0, 0, width, height);
+
+	    var imageData = image.data;
+	    var alphaData = bufferCtx.getImageData(0, height, width, height).data;
+	 
+	    for (var i = 3, len = imageData.length; i < len; i = i + 4) {
+	    	imageData[i] = alphaData[i-1];
+	    }
+	 
+		outputCtx.putImageData(image, 0, 0, 0, 0, width, height);
+		
+		// failsafe to check against 'ended' not firing
+		if ( video.currentTime > 1.0 ){
+			this.stop();
+			return;
+		}
+
+		window.requestAnimationFrame(pRef);
+	}
+
+	this.stop = function(){
+		_onEnded();
+		// video.removeEventListener( "ended", _onEnded );
+		video.removeEventListener( "ended", sRef );
+
+		video.pause();
+		video.currentTime = 0;
+
+		console.log("stop");
+		window.cancelAnimationFrame(pRef);
+	}
+}

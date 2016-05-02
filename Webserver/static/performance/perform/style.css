@@ -23,3 +23,14 @@
 	visibility: hidden;
 	display: none;
 }
+
+
+#countdownInput {
+  visibility: hidden;
+  display: none;
+}
+
+#c_three_v, #c_two_v, #c_one_v {
+  visibility: hidden;
+  display: none;
+}

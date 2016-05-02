@@ -14,15 +14,32 @@ var perform = function(data, configHandler){
 
 	window.addEventListener("clipSelected", setClip);
 
+  // alpha countdown
+  var cdOne = null, 
+  cdTwo = null, 
+  cdThree = null;
+
 	// 0 = start, 1 = practice, 2 = perform
 	var state = 0;
 
+  /**
+   * Enter: called automatically when page builds in
+   */
 	this.enter = function(/*evt*/){
 		state = 0;
 
+    // build countdown videos
+    if (cdOne == null ){
+      cdOne = new AlphaVideo();
+      cdOne.setup("countdownInput","countdownOutput", "c_one_v", 600, 600);
+      cdTwo = new AlphaVideo();
+      cdTwo.setup("countdownInput","countdownOutput", "c_two_v", 600, 600);
+      cdThree = new AlphaVideo();
+      cdThree.setup("countdownInput","countdownOutput", "c_three_v", 600, 600);
+    }
+
 		// show camera if streaming
 		var doStream = configHandler.get('doStream', false);
-
     if (doStream == "true" || doStream == true ){
         manager.getStreamHandler().showStream();
     }
@@ -54,56 +71,65 @@ var perform = function(data, configHandler){
     	}.bind(this)
 	}
 
-
-  function show( id, display ){
-  	var div = document.getElementById(id);
-    div.style.visibility = "visible";
-    div.style.display = display;
-  }
-
-  function hide( id ){
-  	var div = document.getElementById(id);
-    div.style.visibility = "hidden";
-    div.style.display = "none";
-  }
-
   var countdownInterval = null;
 
   function startCountdown( shootVideo ){
-	hide( "performReady" );
-    show(("countdownContainer"), "flex");
-    show(("c_three"), "flex");
+    MMI.hide( "performReady" );
+    MMI.show(("countdownContainer"), "flex");
+    // MMI.show(("c_three"), "flex");
 
     var videoDiv = document.getElementById("perf_"+currentClip.name);
 
-    console.log( videoDiv );
-
-    countdownInterval = setTimeout(function(){
-      hide(("c_three"));
-      show(("c_two"), "flex");
-
-      countdownInterval = setTimeout(function(){
-        hide(("c_two"));
-        show(("c_one"), "flex");
-
-        countdownInterval = setTimeout(function(){
-          hide(("c_one"));
-
+    cdThree.play(function(){
+      console.log("done!");
+      cdTwo.play(function(){
+        cdOne.play(function(){
+          MMI.hide(("countdownContainer"), "flex");
           state++;
 
           if ( shootVideo ){
-	          // this tells OF to capture
-	          window.events.dispatchEvent(new CustomEvent('record_video', {detail:currentClip.name}));
+            // this tells OF to capture
+            window.events.dispatchEvent(new CustomEvent('record_video', {detail:currentClip.name}));
           }
 
           videoDiv.play();
+        });
+      });
+    });
 
-        }.bind(this), 1000);
-      }.bind(this), 1000);
-    }.bind(this), 1000);
+    // countdownInterval = setTimeout(function(){
+    //   MMI.hide(("c_three"));
+    //   MMI.show(("c_two"), "flex");
+
+    //   countdownInterval = setTimeout(function(){
+    //     MMI.hide(("c_two"));
+    //     MMI.show(("c_one"), "flex");
+
+    //     countdownInterval = setTimeout(function(){
+    //       MMI.hide(("c_one"));
+
+    //       state++;
+
+    //       if ( shootVideo ){
+	   //        // this tells OF to capture
+	   //        window.events.dispatchEvent(new CustomEvent('record_video', {detail:currentClip.name}));
+    //       }
+
+    //       videoDiv.play();
+
+    //     }.bind(this), 1000);
+    //   }.bind(this), 1000);
+    // }.bind(this), 1000);
   }
 
   this.exit = function(/*evt*/){
   	manager.getStreamHandler().hideStream();
+    var videoDiv = document.getElementById("perf_"+currentClip.name);
+    videoDiv.pause();
+
+    // just in case
+    cdThree.stop();
+    cdTwo.stop();
+    cdOne.stop();
   }
 };

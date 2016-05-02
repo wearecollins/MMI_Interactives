@@ -67,3 +67,11 @@
 #shareOnlineBtn.disabled {
   opacity: .4;
 }
+
+#countdownInput {
+  visibility: hidden;
+  display: none;
+}
+
+#countdownOutput{
+}

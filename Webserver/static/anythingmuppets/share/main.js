@@ -7,6 +7,11 @@ var share = function(data, configHandler){
   var capturedImage = null;
   var currentImageUrl = "";
 
+  // alpha countdown
+  var cdOne = null, 
+  cdTwo = null, 
+  cdThree = null;
+
   // bind() creates new function refs
   // so we need to create shared variables for adding/removing
   // event listeners!
@@ -23,12 +28,22 @@ var share = function(data, configHandler){
     retakeRef = retake.bind(this);
     setImageRef = setImage.bind(this);
 
-  	window.addEventListener("capture", startRef);
-  	window.addEventListener("skipToThanks", skipRef);
+    window.addEventListener("capture", startRef);
+    window.addEventListener("skipToThanks", skipRef);
     window.addEventListener("share", shareRef);
     window.addEventListener("share_online", shareOnlineRef);
     window.addEventListener("retake", retakeRef);
     window.addEventListener("imageCapture", setImageRef);
+
+    // build CDs
+    if (cdOne == null ){
+      cdOne = new AlphaVideo();
+      cdOne.setup("countdownInput","countdownOutput", "c_one_v", 600, 600);
+      cdTwo = new AlphaVideo();
+      cdTwo.setup("countdownInput","countdownOutput", "c_two_v", 600, 600);
+      cdThree = new AlphaVideo();
+      cdThree.setup("countdownInput","countdownOutput", "c_three_v", 600, 600);
+    }
     
     didSetImage = false;
 
@@ -49,18 +64,10 @@ var share = function(data, configHandler){
     MMI.hide(("captureContainer"));
     MMI.show(("countdownContainer"), "flex");
 
-    MMI.show(("c_three"), "flex");
-
-    countdownInterval = setTimeout(function(){
-      MMI.hide(("c_three"), "flex");
-      MMI.show(("c_two"), "flex");
-
-      countdownInterval = setTimeout(function(){
-        MMI.hide(("c_two"), "flex");
-        MMI.show(("c_one"), "flex");
-
-        countdownInterval = setTimeout(function(){
-          MMI.hide(("c_one"), "flex");
+    // MMI.show(("c_three"), "flex");
+    cdThree.play(function(){
+      cdTwo.play(function(){
+        cdOne.play(function(){
           MMI.hide("countdownContainer");
 
           // this tells OF to capture
@@ -69,9 +76,31 @@ var share = function(data, configHandler){
           var bg = document.getElementById("captureBgContainer");
           bg.style.backgroundColor = "white";
 
-        }.bind(this), 1000);
-      }.bind(this), 1000);
-    }.bind(this), 1000);
+        });
+      });
+    });
+
+    // countdownInterval = setTimeout(function(){
+    //   MMI.hide(("c_three"), "flex");
+    //   MMI.show(("c_two"), "flex");
+
+    //   countdownInterval = setTimeout(function(){
+    //     MMI.hide(("c_two"), "flex");
+    //     MMI.show(("c_one"), "flex");
+
+    //     countdownInterval = setTimeout(function(){
+    //       MMI.hide(("c_one"), "flex");
+    //       MMI.hide("countdownContainer");
+
+    //       // this tells OF to capture
+    //       window.events.dispatchEvent(new Event('take_photo'));
+
+    //       var bg = document.getElementById("captureBgContainer");
+    //       bg.style.backgroundColor = "white";
+
+    //     }.bind(this), 1000);
+    //   }.bind(this), 1000);
+    // }.bind(this), 1000);
   }
 
 

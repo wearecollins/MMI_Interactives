@@ -21,15 +21,24 @@
 
   <!-- Countdown -->
   <div id="countdownContainer" class="fillAbs">
-    <div id="c_three" class="fillAbs centeredContainer countDown">
-        <img src="svg/__count_3.svg" class="button_lg padding_sm" />
+    <div class="container fillAbs centeredContainer">
+      <div>
+        <!-- Todo: Dynamic w/h -->
+        <canvas width="600" height="1200" id="countdownInput"></canvas>
+        <canvas width="600" height="600" id="countdownOutput" class="button_lg padding_sm"></canvas>  
+      </div>
     </div>
-    <div id="c_two" class="fillAbs centeredContainer countDown">
-        <img src="svg/__count_2.svg" class="button_lg padding_sm" />
-    </div>
-    <div id="c_one" class="fillAbs centeredContainer countDown">
-        <img src="svg/__count_1.svg" class="button_lg padding_sm" />
-    </div>
+    <!-- <img src="svg/__count_3.svg" class="button_lg padding_sm" /> -->
+    <video id="c_three_v">
+      <source src="video/mmi_count_3_s.mp4" type="video/mp4" />
+    </video>
+    <!-- <img src="svg/__count_2.svg" class="button_lg padding_sm" /> -->
+    <video id="c_two_v">
+      <source src="video/mmi_count_2_s.mp4" type="video/mp4" />
+    </video>
+    <video id="c_one_v">
+      <source src="video/mmi_count_1_s.mp4" type="video/mp4" />
+    </video>
   </div>
 
   <!-- Counter -->
