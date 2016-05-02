@@ -73,7 +73,9 @@ static void setupEventHelper(ofApp *app)
         Build WKWebView
      *************************************/
     
-    webView = [[Webview alloc] initWithFrame:[self frame]];//] configuration:config];
+    WKWebViewConfiguration * config = [[WKWebViewConfiguration alloc] init];
+//    [config setValue:@YES forKey:@"developerExtrasEnabled"];
+    webView = [[Webview alloc] initWithFrame:[self frame] configuration:config];
     
     string urlText = "http://127.0.0.1:8080";
     NSString * url = [NSString stringWithUTF8String:urlText.c_str()];
@@ -90,6 +92,8 @@ static void setupEventHelper(ofApp *app)
     [webView setValue:@YES forKey:@"drawsTransparentBackground"];
     
     [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
+    
+    ofHideCursor();
     
     /**************************************
          Open camera(s)
@@ -166,8 +170,10 @@ static void setupEventHelper(ofApp *app)
     } else if ( key == 'm' ){
         if ( cameraApp.currentMode == mmi::MODE_NONE ){
             [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
+            ofHideCursor();
         } else if ( cameraApp.currentMode >= mmi::MODE_GENERAL ){
             [webView removeFromSuperview];
+            ofShowCursor();
         }
     }
 }
