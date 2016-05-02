@@ -9,5 +9,5 @@ launchChild();
 
 function launchChild(){
   console.log(Date(), 'running sync process');
-  ChildProcess.fork(Path.join(__dirname, 'index.js'));
+  ChildProcess.fork(Path.join(__dirname, 'index.js'), [process.argv[2]]);
 }

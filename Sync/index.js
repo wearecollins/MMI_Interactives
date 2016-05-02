@@ -7,7 +7,7 @@ var PID = require('daemon-pid');
 var Rsync = require('rsync');
 
 //get configs
-var configs = require(Path.join(__dirname, 'configs.json'));
+var configs = require(Path.join(__dirname, process.argv[2]));
 
 //set up logger
 Logger.configure(require(Path.join(__dirname, 'log4js_conf.json')));
@@ -42,6 +42,7 @@ function writePID(){
       }
     } else {
       logger.debug('[writePID] created PID file');
+
       checkAccessibility();
     }
   });

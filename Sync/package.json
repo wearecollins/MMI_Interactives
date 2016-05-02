@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "loop": "node loop.js"
+    "start": "node index.js configs.json",
+    "loop": "node loop.js configs.json"
   },
   "author": "",
   "license": "ISC",
