@@ -46,6 +46,8 @@ namespace mmi {
         currentBgClip = "";
         
         frameRate = 1000./30.;
+        
+        ofAddListener(vidRecorder.outputFileCompleteEvent, this, &RecordManager::onFileComplete);
     }
 
     //--------------------------------------------------------------
@@ -120,15 +122,9 @@ namespace mmi {
         vidRecorder.start();
     }
 
+    
     //--------------------------------------------------------------
-    void RecordManager::stopRecording(){
-        bRecording = false;
-        vidRecorder.close();
-        
-        // this is stupid!
-        ofSleepMillis(1000);
-        
-        // after that, copy in the audio
+    void RecordManager::onFileComplete( ofxVideoRecorderOutputFileCompleteEventArgs & args ){
         if ( currentBgClip != "" ){
             string lastCmd = "bash --login -c 'ffmpeg -i " + ofToDataPath(currentFileName, true);
             lastCmd +=" -i "+ ofToDataPath("clips/" + currentBgClip + fileExt.get(), true) +" -c copy -map 0:v:0 -map 1:a:0 -shortest "+ofToDataPath(currentFileName +"_final"+fileExt.get(), true)+"'";
@@ -147,6 +143,14 @@ namespace mmi {
         }
         ofNotifyEvent(onFinishedRecording, currentFileName, this);
         currentBgClip = "";
+    }
+    
+    //--------------------------------------------------------------
+    void RecordManager::stopRecording(){
+        bRecording = false;
+        vidRecorder.close();
+        
+        // chill... we should get an event shortly (above)
     }
 
     //--------------------------------------------------------------

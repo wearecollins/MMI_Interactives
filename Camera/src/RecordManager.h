@@ -16,6 +16,7 @@ namespace mmi {
 
     class RecordManager {
         friend class CameraApp;
+        friend class ofxVideoRecorder;
     public:
         
         void setup();
@@ -59,6 +60,7 @@ namespace mmi {
         // recording
         ofxVideoRecorder    vidRecorder;
         bool bRecording;
+        void onFileComplete( ofxVideoRecorderOutputFileCompleteEventArgs & args );
         
         uint64_t startTime, lastTime;
         int whichCamera;

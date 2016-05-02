@@ -22,13 +22,23 @@ namespace mmi {
         gui->add(reloadCameras.set("Reload cameras", false));
         gui->add(cameraTop.set("Which camera top", 0, 0, 1));
         
-        cameraMgr.setup(this->bStreaming);
+        // first: get what camera setup we want
+        ofXml settings;
+        string html = "anythingmuppets.xml";
+        if ( settings.load( ofToDataPath( "settings.xml") ) ){
+            int mode = settings.getValue("Mode", 0);
+            if ( mode == 0 ){
+                html = "anythingmuppets.xml";
+            } else {
+                html = "anythingmuppets.xml";
+            }
+        }
+        
+        cameraMgr.setup(this->bStreaming, html);
         recordMgr.setup();
         
         if ( this->bStreaming ){
             streamMgr.setup("", 9091);
-            // connect stream message to message parser
-//            ofAddListener(streamMgr.onWsMessage, &messageHdlr, &mmi::MessageHandler::onMessage);
             gui->add( streamMgr.params );
         }
         

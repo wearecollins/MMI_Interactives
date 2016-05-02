@@ -42,6 +42,7 @@
 		B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */; };
 		B5568677EC64043366C79D29 /* Flow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC846DF1761087345789A502 /* Flow.cpp */; };
 		B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */; };
+		BD819EF51CD7F610004E9EB6 /* libturbojpeg.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD819EF41CD7F60F004E9EB6 /* libturbojpeg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C5663CD037438DFFA43AFB1F /* Grabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 021225C92E1EEDF754E178F8 /* Grabber.cpp */; };
 		C59A3596B1F4D492AD4E4D14 /* Protocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A242CB31166EBFB8EB607BE /* Protocol.cpp */; };
 		CA6167F6F32C9A340493B26A /* ofxVideoRecorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87254A05966A04894A1F0EA4 /* ofxVideoRecorder.cpp */; };
@@ -82,6 +83,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				BD819EF51CD7F610004E9EB6 /* libturbojpeg.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +324,7 @@
 		BC7AA847396B8D43A9B6FAD6 /* PointGrey.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PointGrey.cpp; path = addons/ofxLibdc/src/PointGrey.cpp; sourceTree = SOURCE_ROOT; };
 		BC846DF1761087345789A502 /* Flow.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Flow.cpp; path = addons/ofxCv/libs/ofxCv/src/Flow.cpp; sourceTree = SOURCE_ROOT; };
 		BD5EC7D3D3208820AFFEAED5 /* Server.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Server.cpp; path = addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Server.cpp; sourceTree = SOURCE_ROOT; };
+		BD819EF41CD7F60F004E9EB6 /* libturbojpeg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.dylib; path = "addons/ofxTurboJpeg/libs/turbo-jpeg/lib/osx/libturbojpeg.dylib"; sourceTree = "<group>"; };
 		BF112741B85FF69BC078F673 /* Events.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Events.h; path = addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets/Events.h; sourceTree = SOURCE_ROOT; };
 		C1A2E81B4FD0713346D7E806 /* affine.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = affine.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/affine.hpp; sourceTree = SOURCE_ROOT; };
 		C1C56D20A1A57DC44096BFE7 /* ofxCvContourFinder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvContourFinder.h; path = ../../../addons/ofxOpenCv/src/ofxCvContourFinder.h; sourceTree = SOURCE_ROOT; };
@@ -1267,6 +1270,7 @@
 		F5BD7AA6B377543CDE3A7289 /* ofxTurboJpeg */ = {
 			isa = PBXGroup;
 			children = (
+				BD819EF41CD7F60F004E9EB6 /* libturbojpeg.dylib */,
 				DB6E8C787F11E332759537AD /* src */,
 			);
 			name = ofxTurboJpeg;
