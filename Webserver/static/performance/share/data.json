@@ -1,3 +1,4 @@
 {
-	"name":"share"
+	"name":"share",
+	"disableTimeout":true
 }

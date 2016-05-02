@@ -92,6 +92,7 @@ function Manager(states, transitions){
       //wait for the persistent config to come from the server
       // must come after connectWebsockets
       then(initConfigHandler).
+      then(checkStreamSocket).
       then(configHandlebars).
       //load the basic DOM structure
       then(initStructure).
@@ -245,11 +246,13 @@ function Manager(states, transitions){
   
   function connectWebsockets(){
     ws.connect('ws://'+window.location.host, 'node');
+  }
 
-    // perhaps this is a global setting?
+  function checkStreamSocket(){
     var doStream = configHandler.get('doStream', false);
     if (doStream == "true" || doStream == true ){
       ws.connect('ws://localhost:9091', 'oF');
+      console.log("STREAM SERVER");
     }
   }
   

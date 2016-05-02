@@ -14,19 +14,33 @@ var overview = function( data, configHandler){
     var soundA = document.getElementById("camera_front");
     var soundB = document.getElementById("camera_side");
 
-    soundA.addEventListener("ended", showSideCamera);
+    soundA.addEventListener("timeupdate", onTimeUpdateA);
     soundA.currentTime = 0;
     soundA.play();
   };
 
+  function onTimeUpdateA( e ){
+    // timeupdate
+    if ( this.currentTime == this.duration ){
+      showSideCamera();
+    }
+  }
+
+  function onTimeUpdateB( e ){
+    // timeupdate
+    if ( this.currentTime == this.duration ){
+      next();
+    }
+  }
+
   function showSideCamera(){
       var soundA = document.getElementById("camera_front");
-      soundA.removeEventListener("ended", showSideCamera);
+      soundA.removeEventListener("timeupdate", onTimeUpdateA);
 
       // this tells OF to switch cameras
       window.events.dispatchEvent(new Event('camera_side'));
       var soundB = document.getElementById("camera_side");
-      soundB.addEventListener("ended", next);
+      soundB.addEventListener("timeupdate", onTimeUpdateB);
       soundB.currentTime = 0;
       soundB.play();
   }
@@ -34,7 +48,7 @@ var overview = function( data, configHandler){
   function next(){
       window.events.dispatchEvent( new Event("next") );
       var soundB = document.getElementById("camera_side");
-      soundB.removeEventListener("ended", next);
+      soundB.removeEventListener("timeupdate", onTimeUpdateB);
   }
 
   this.exit = function(/*evt*/){

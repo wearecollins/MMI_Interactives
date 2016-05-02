@@ -124,12 +124,16 @@ var perform = function(data, configHandler){
 
   this.exit = function(/*evt*/){
   	manager.getStreamHandler().hideStream();
-    var videoDiv = document.getElementById("perf_"+currentClip.name);
-    videoDiv.pause();
+    try {
+      var videoDiv = document.getElementById("perf_"+currentClip.name);
+      videoDiv.pause();
 
-    // just in case
-    cdThree.stop();
-    cdTwo.stop();
-    cdOne.stop();
+      // just in case
+      cdThree.stop();
+      cdTwo.stop();
+      cdOne.stop();
+    } catch(e){
+      
+    }
   }
 };

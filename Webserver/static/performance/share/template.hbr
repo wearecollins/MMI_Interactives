@@ -1,17 +1,16 @@
 <div id='{{name}}' class='page'>
   <div class='background'>
       <video id="share_video" class="fillContainer" loop>
-          <!-- This will be set by...? -->
           <source id="shareSource" src="" type="video/mp4">
       </video>
   </div>
   <div id="shareAnimateContainer" class="fillAbs">
     <div class="fillAbs rightContainer" style="z-index:1">
-      <div class="fillH centeredContainer column container fillContainer fillGrey whiteBg" style="width:50%">
+      <div class="fillH centeredContainer column container fillContainer fillGrey whiteBgTrans" style="width:40%">
         <div class="type_lg">Share</div>
         <div id="shareCopy" class="topCenteredContainer type_sm padding_sm">
           <div class="shareCopyBlock">
-            <strong>Download and share</strong><br>at the Museum Shop Your unique name: AM 202
+            <strong>Download and share</strong><br>at the Museum Shop Your unique name: AM 202<br><br>
           </div>
           <div class="shareCopyBlock">
               <strong>Post your video</strong><br>Optionally share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.

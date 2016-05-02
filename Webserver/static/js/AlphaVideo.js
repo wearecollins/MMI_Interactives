@@ -26,7 +26,7 @@ function AlphaVideo() {
 		sRef = this.stop.bind(this);
 	}
 
-	var _onEnded;
+	var _onEnded = null;
 
 	this.play = function( onEnded ){
 		video.play();
@@ -59,14 +59,16 @@ function AlphaVideo() {
 	}
 
 	this.stop = function(){
-		_onEnded();
+		if ( _onEnded != null ){
+			_onEnded();
+		}
+		_onEnded = null;
+		
 		// video.removeEventListener( "ended", _onEnded );
 		video.removeEventListener( "ended", sRef );
 
 		video.pause();
 		video.currentTime = 0;
-
-		console.log("stop");
 		window.cancelAnimationFrame(pRef);
 	}
 }

@@ -7,6 +7,14 @@ var share = function( data, configHandler ){
 
 	var shareOnlineRef;
 
+	function setCanPlay(){
+	   	// Video is loaded and can be played
+		canPlay = true;
+
+		var video = document.getElementById("share_video");
+		video.removeEventListener('loadeddata', setCanPlay, false);
+	}
+
 	function setVideo(e){
 		currentVideo = e.detail;
 		canPlay = false;
@@ -16,11 +24,7 @@ var share = function( data, configHandler ){
 
 		var video = document.getElementById("share_video");
 		video.load();
-		video.addEventListener('loadeddata', function() {
-		   	// Video is loaded and can be played
-			canPlay = true;
-			console.log("CAN");
-		}, false);
+		video.addEventListener('loadeddata', setCanPlay, false);
 	}
 
 	window.addEventListener("videoRecorded", setVideo);
@@ -50,14 +54,15 @@ var share = function( data, configHandler ){
     	window.removeEventListener("share_online", shareOnlineRef);
 		var video = document.getElementById("share_video");
 		video.pause();
+
+		var source = document.getElementById("shareSource");
+		source.setAttribute("src","");
+		video.load(); //safari requires you to 'load' to know it no longer has a src
 		
 		setTimeout( cleanup, 1000);
 	}
 
 	function cleanup() {
-		var source = document.getElementById("shareSource");
-		source.setAttribute("src","");
-
 		document.getElementById("shareAnimateContainer").classList.remove("enabled");
 	}
 

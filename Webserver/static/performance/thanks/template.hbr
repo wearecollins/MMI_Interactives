@@ -1,4 +1,4 @@
-<div id='{{name}}' class='page parchBg fillGrey'>
+<div id='{{name}}' class='page greenBg fillWhite'>
   <div class='background'>
   </div>
   <div class="fillContainer">
