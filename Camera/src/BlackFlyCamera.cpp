@@ -227,6 +227,8 @@ namespace mmi {
         }
         float tw = ((float) this->height) * aspect;
         float th = this->height;
+        float cx = (float) this->width/2.0 - tw/2.0;
+        float cy = (float) this->height/2.0 - th/2.0;
         
         if ( gpuBayer == 2){
             if (imageColor.get() && buffer.getImageType() != OF_IMAGE_COLOR ){
@@ -249,7 +251,7 @@ namespace mmi {
                      !ofIsFloatEqual(buffer.getHeight(), th)) )
                 {
                     cropped.clone(buffer);
-                    cropped.crop(0, 0, tw, th);
+                    cropped.crop(cx, cy, tw, th);
                     if ( mirror.get() ) cropped.mirror(false, true);
                     cropped.update();
                 } else {
@@ -332,9 +334,11 @@ namespace mmi {
                     {
                         
                         cropped.clone(cvBuffer);
-                        cropped.crop(0, 0, tw, th);
+                        cropped.crop(cx, cy, tw, th);
+                        if ( mirror.get() ) cropped.mirror(false, true);
                         cropped.update();
                     } else {
+                        if ( mirror.get() ) cvBuffer.mirror(false, true);
                         cvBuffer.update();
                     }
                 } else {
@@ -343,7 +347,7 @@ namespace mmi {
                          !ofIsFloatEqual(buffer.getHeight(), th)) )
                     {
                         cropped.clone(buffer);
-                        cropped.crop(0, 0, tw, th);
+                        cropped.crop(cx, cy, tw, th);
                         if ( mirror.get() ) cropped.mirror(false, true);
                         cropped.update();
                     } else {

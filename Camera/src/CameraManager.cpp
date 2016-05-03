@@ -13,7 +13,6 @@ namespace mmi {
     void CameraManager::setup( bool bSmall, string settingsFile ){
         gui = new ofxPanel();
         gui->setup("Camera Settings", "camera_settings.xml");
-        
         this->settingsFile.set("Settings file", settingsFile);
         this->lowRes.set("Lo-res/hi-res", bSmall);
         

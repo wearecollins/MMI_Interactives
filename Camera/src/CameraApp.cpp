@@ -24,17 +24,17 @@ namespace mmi {
         
         // first: get what camera setup we want
         ofXml settings;
-        string html = "anythingmuppets.xml";
+        string xml = "anythingmuppets.xml";
         if ( settings.load( ofToDataPath( "settings.xml") ) ){
             int mode = settings.getValue("Mode", 0);
             if ( mode == 0 ){
-                html = "anythingmuppets.xml";
+                xml = "performance.xml";
             } else {
-                html = "anythingmuppets.xml";
+                xml = "anythingmuppets.xml";
             }
         }
         
-        cameraMgr.setup(this->bStreaming, html);
+        cameraMgr.setup(this->bStreaming, xml);
         recordMgr.setup();
         
         if ( this->bStreaming ){

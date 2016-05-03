@@ -33,7 +33,7 @@ namespace mmi {
         /**
          Take a photo!
          */
-        ofEvent<void>    onCaptureImage;
+        ofEvent<string>    onCaptureImage;
         
         /**
          Incoming events: finished recording a video,

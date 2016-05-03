@@ -26,12 +26,12 @@ namespace mmi {
         // update for image-based app(s)
         void update( const ofPixels & cameraOne );
         
-        void startRecordingEvt( string & backgroundClip );
-        void startRecording( string backgroundClip = "");
+        void startRecordingEvt( string & backgroundClipAndName );
+        void startRecording( string backgroundClip = "", string baseName = "");
         void stopRecording();
         void close();
         
-        void takePhotoEvt();
+        void takePhotoEvt( string & baseName );
         
         ofParameterGroup params;
         
@@ -55,7 +55,7 @@ namespace mmi {
         ofParameter<int>        camWidth;
         ofParameter<int>        camHeight;
         
-        string currentFileName, currentBgClip;
+        string currentFileName, currentFileStart, currentBgClip;
         
         // recording
         ofxVideoRecorder    vidRecorder;

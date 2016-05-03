@@ -49,8 +49,8 @@ namespace mmi {
             } else if ( !e.json["event"].is_null() ){
                 auto n = e.json["event"]["name"];
                 if ( n == "take_photo" ){
-                    cout << "TAKING PHOTO"<<endl;
-                    ofNotifyEvent( onCaptureImage );
+                    string n = e.json["event"]["detail"];
+                    ofNotifyEvent( onCaptureImage, n );
                 } else if (n == "camera_front"){
                     int whichCamera = 0;
                     ofNotifyEvent( onSwitchCamera, whichCamera );
@@ -58,8 +58,11 @@ namespace mmi {
                     int whichCamera = 1;
                     ofNotifyEvent( onSwitchCamera, whichCamera );
                 } else if (n == "record_video"){
-                    string v = e.json["event"]["detail"];
-                    ofNotifyEvent( onStartRecording, v );
+                    string v = e.json["event"]["detail"]["clip"];
+                    string n = e.json["event"]["detail"]["name"];
+                    string s = v +":"+ n;
+                    // pack video and name into : separated streing
+                    ofNotifyEvent( onStartRecording, s );
                 }
             }
             

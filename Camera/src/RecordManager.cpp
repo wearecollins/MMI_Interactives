@@ -92,11 +92,20 @@ namespace mmi {
     }
     
     //--------------------------------------------------------------
-    void RecordManager::startRecordingEvt( string & backgroundClip ){
-        this->startRecording(backgroundClip);
+    void RecordManager::startRecordingEvt( string & backgroundClipAndName ){
+        auto strs = ofSplitString(backgroundClipAndName, ":");
+        if (strs.size() == 0){
+            strs.push_back("black_magic");
+            strs.push_back("");
+        } else if (strs.size() < 2 ){
+            strs.push_back("");
+        }
+        this->startRecording(strs[0], strs[1]);
     }
     //--------------------------------------------------------------
-    void RecordManager::startRecording( string backgroundClip ){
+    void RecordManager::startRecording( string backgroundClip, string fileStart ){
+        
+        this->currentFileStart = fileStart;
         
         if ( bRecording ){
             ofLogWarning()<<"Already recording, try again in "<<((ofGetElapsedTimeMillis()-startTime)/1000.)<<" seconds";
@@ -113,7 +122,7 @@ namespace mmi {
         bRecording = true;
         whichCamera = 0;
         
-        currentFileName = (fileName.get() +ofGetTimestampString()+fileExt.get() );
+        currentFileName = currentFileStart +"-"+ (fileName.get() +ofGetTimestampString()+fileExt.get() );
         
         currentBgClip = backgroundClip;
         
@@ -125,23 +134,36 @@ namespace mmi {
     
     //--------------------------------------------------------------
     void RecordManager::onFileComplete( ofxVideoRecorderOutputFileCompleteEventArgs & args ){
+        string outputFile = "";
         if ( currentBgClip != "" ){
+            auto fileSplit = ofSplitString(currentFileName, ".");
+            
             string lastCmd = "bash --login -c 'ffmpeg -i " + ofToDataPath(currentFileName, true);
-            lastCmd +=" -i "+ ofToDataPath("clips/" + currentBgClip + fileExt.get(), true) +" -c copy -map 0:v:0 -map 1:a:0 -shortest "+ofToDataPath(currentFileName +"_final"+fileExt.get(), true)+"'";
+            lastCmd +=" -i "+ ofToDataPath("clips/" + currentBgClip + fileExt.get(), true) +" -c copy -map 0:v:0 -map 1:a:0 -shortest "+ofToDataPath(fileSplit[0] +"_final"+fileExt.get(), true)+"'";
             system( lastCmd.c_str() );
             
             auto f = ofFile();
             if (f.open(ofToDataPath(currentFileName, true), ofFile::ReadWrite)){
                 f.remove();
             }
-            currentFileName = currentFileName + "_final"+fileExt.get();
+            currentFileName = fileSplit[0] + "_final"+fileExt.get();
             
             if (f.open(ofToDataPath(currentFileName, true), ofFile::ReadWrite)){
-                f.moveTo( ofToDataPath( folderDest.get() +"/" + folderAppend.get() ) );
+                outputFile = ofToDataPath( folderDest.get() +"/" + folderAppend.get() );
+                f.moveTo( outputFile  );
             }
         } else {
         }
         ofNotifyEvent(onFinishedRecording, currentFileName, this);
+        
+        // make a thumbnail quick
+        if ( outputFile != "" ){
+            string fn = ofSplitString(currentFileName, ".")[0];
+            string cmd = "bash --login -c 'ffmpeg -i " + outputFile;
+            string file = ofToDataPath(folderDest.get() +"/" + folderAppend.get() + "/" + fn +".png", true);
+            cmd +=" -ss 00:00:" + ofToString(recordLength.get()/1000 * .5) + " -vframes 1 " + file;
+        }
+        
         currentBgClip = "";
     }
     
@@ -159,8 +181,8 @@ namespace mmi {
     }
         
     //--------------------------------------------------------------
-    void RecordManager::takePhotoEvt(){
-        currentFileName = (fileName.get() +ofGetTimestampString()+fileExtImage.get() );
+    void RecordManager::takePhotoEvt( string & name ){
+        currentFileName = name + "-" + (fileName.get() +ofGetTimestampString()+fileExtImage.get() );
         auto outputName = ofToDataPath(folderDest.get() + "/" + folderAppend.get() + "/" + currentFileName, true );
         cout << "saving" <<endl;
         lastImage.save(outputName);
