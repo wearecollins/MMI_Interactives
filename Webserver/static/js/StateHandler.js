@@ -113,9 +113,9 @@ function StateHandler(){
       log.info(activeStateName,'->',targetStateName);
 
       if (action == 'prev'){
-        pages[activeStateI].exitPrev(evt);
+        pages[activeStateI].exitPrev(action);
       } else {
-        pages[activeStateI].exit(evt);
+        pages[activeStateI].exit(action);
       }
       notifyTransition(activeStateI, targetStateI);
       manageStream(activeStateI, targetStateI);
@@ -123,9 +123,9 @@ function StateHandler(){
 
       // there is certainly a more graceful way to do this?
       if ( action == 'prev'){
-        pages[targetStateI].enterPrev(evt);
+        pages[targetStateI].enterPrev(action);
       } else {
-        pages[targetStateI].enter(evt);
+        pages[targetStateI].enter(action);
       }
     }
   };
@@ -334,7 +334,7 @@ function StateHandler(){
 /**
  * The list of actions supported by the StateHandler
  */
-StateHandler.ACTIONS = ['next','prev','cancel','admin'];
+StateHandler.ACTIONS = ['next','prev','cancel','admin','special'];
 //populate actions to variables
 // so 'next' can be accessed via StateHandler.ACTIONS.NEXT
 for(var i = StateHandler.ACTIONS.length -1;

@@ -64,7 +64,7 @@ function EventHandler(){
   };
 
   function registerAllEvents(){
-    var events = ['next','prev','cancel','admin'];
+    var events = ['next','prev','cancel','admin','special'];
     for(var eventI = events.length - 1;
         eventI >= 0;
         eventI--){
@@ -109,11 +109,15 @@ function EventHandler(){
     var key = evt.keyCode || evt.which;
     var keychar = String.fromCharCode(key);
     if (keychar === 'a' || keychar === 'A') {
-      // window.events.dispatchEvent(new Event('admin'));
+      window.events.dispatchEvent(new Event('admin'));
     }
     // DEBUG
-    if ( keychar == 'N' || keychar == 'H' ){
+    if ( keychar == 'N' ){
       window.events.dispatchEvent(new Event('next'));
+    }
+
+    if ( keychar == 'H' ){
+      window.events.dispatchEvent(new Event('special') );
     }
   }
 }

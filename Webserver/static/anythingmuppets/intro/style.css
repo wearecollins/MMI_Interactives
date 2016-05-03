@@ -11,6 +11,14 @@
   animation-fill-mode:forwards;
 }
 
+#{{name}}.special{
+  display:flex;
+  animation-name: animateOff;
+  animation-delay: 0s;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+}
+
 #{{name}} {
   animation-name: animateIn;
   animation-duration: 1s;
@@ -22,6 +30,7 @@
   animation-duration:1s;
   animation-fill-mode:forwards;
 }
+
 
 #{{name}}Buttons.enabled {
   animation-name: animateUpScreen;

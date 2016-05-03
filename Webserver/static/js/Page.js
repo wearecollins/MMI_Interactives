@@ -73,6 +73,12 @@ function Page(){
   };
 
   /**
+   * Array of custom/event-based classes to remove on each event.
+   * @type {Array}
+   */
+  var toRemove = [];
+
+  /**
    * initializes the Page using already loaded elements
    * @param {Element} elem the DOM element to use for this page
    * @param {Object} a_data the configuration data used for this Page
@@ -87,11 +93,19 @@ function Page(){
   /**
    * tell this Page to become active on the screen
    */
-  this.enter = function enter(){
+  this.enter = function enter( evt ){
     if(domElem){
       domElem.classList.remove('disabled');
       domElem.classList.remove('canceled');
-      domElem.classList.remove('fromPrev');
+      for ( var i in toRemove ){
+        domElem.classList.remove( toRemove[i] );
+      }
+      toRemove = [];
+      
+      domElem.classList.add( evt );
+      toRemove.push(evt);
+
+      console.log("ADD "+evt);
     }
     if (instance){
       instance.enter();
@@ -105,7 +119,14 @@ function Page(){
     if(domElem){
       domElem.classList.remove('disabled');
       domElem.classList.remove('canceled');
+
+      for ( var i in toRemove ){
+        domElem.classList.remove( toRemove[i] );
+      }
+      toRemove = [];
+
       domElem.classList.add('fromPrev');
+      toRemove.push('fromPrev');
     }
     if (instance){
       instance.enter();
@@ -115,10 +136,18 @@ function Page(){
   /**
    * tell this Page to disappear from the screen
    */
-  this.exit = function exit(){
+  this.exit = function exit( evt ){
     if(domElem){
       domElem.classList.remove('fromPrev');
       domElem.classList.add('disabled');
+
+      for ( var i in toRemove ){
+        domElem.classList.remove( toRemove[i] );
+      }
+      toRemove = [];
+
+      domElem.classList.add( evt );
+      toRemove.push(evt);
     }
     if (instance){
       instance.exit();
@@ -132,7 +161,11 @@ function Page(){
     if(domElem){
       domElem.classList.add('disabled');
       domElem.classList.add('canceled');
-      domElem.classList.remove('fromPrev');
+
+      for ( var i in toRemove ){
+        domElem.classList.remove( toRemove[i] );
+      }
+      toRemove = [];
     }
     if (instance){
       instance.exit();

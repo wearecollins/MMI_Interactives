@@ -31,6 +31,7 @@
     var defaultMode = customTransitions.getDefaultMode();
     
     defaultMode.addGlobalTransition('cancel', 'anythingmuppets/attract');
+    defaultMode.addGlobalTransition('special', 'anythingmuppets/share');
     
     //we don't want the last state to go to freeplay.
     defaultMode.addTransition('anythingmuppets/thanks', 'next', 'anythingmuppets/attract');

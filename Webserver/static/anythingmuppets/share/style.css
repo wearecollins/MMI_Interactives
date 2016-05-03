@@ -57,7 +57,7 @@
   animation-duration: 1s;
   animation-delay: 1s;
   animation-fill-mode:forwards;
-  z-index: 0;
+  /* z-index: 0; */
 }
 
 #shareOnlineBtn {
