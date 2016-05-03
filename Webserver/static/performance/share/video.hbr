@@ -1,0 +1,3 @@
+<video id="share_video" class="fillContainerH" loop>
+  <source id="shareSource" src="{{video}}" type="video/mp4">
+</video>

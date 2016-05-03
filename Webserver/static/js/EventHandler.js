@@ -116,8 +116,12 @@ function EventHandler(){
       window.events.dispatchEvent(new Event('next'));
     }
 
-    if ( keychar == 'H' ){
+    // c = camera, h = home
+    if ( keychar == 'C' ){
       window.events.dispatchEvent(new Event('special') );
+    } else if ( keychar == 'H' ){
+      console.log("LIT")
+      window.events.dispatchEvent(new Event('cancel') );
     }
   }
 }

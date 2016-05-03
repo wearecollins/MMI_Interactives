@@ -20,6 +20,9 @@ var email_am = function(data, configHandler){
 		setTimeout( function() {
 			var input = document.getElementById("anEmEmail");
 			input.value = "";
+
+		    var btn = document.getElementById("amOnlineBtn");
+		    btn.classList.remove("disabled");
 		}, 1000);
 	};
 

@@ -22,6 +22,9 @@ var perform = function(data, configHandler){
 	// 0 = start, 1 = practice, 2 = perform
 	var state = 0;
 
+  // current name
+  var name = 0;
+
   /**
    * Enter: called automatically when page builds in
    */
@@ -46,6 +49,18 @@ var perform = function(data, configHandler){
 
 		// this tells OF to switch cameras
 		window.events.dispatchEvent(new Event('camera_front'));
+
+    // setup current name
+    var index = configHandler.get('currentName', 0);
+    index++;
+    
+    // this could be reset daily, or just when it hits
+    // a threshold
+    if ( index > 1000 ){
+      index = 0;
+    }
+    configHandler.set({'currentName':index});
+    name = index;
 
 		// timeout 1 - "get ready" -> countdown
     // extra 1000 = placeholder for global transition duration 
@@ -88,8 +103,14 @@ var perform = function(data, configHandler){
           state++;
 
           if ( shootVideo ){
+            var detail = {
+              "detail":{
+                "clip":currentClip.name,
+                "name":""+name
+              }
+            }
             // this tells OF to capture
-            window.events.dispatchEvent(new CustomEvent('record_video', {detail:currentClip.name}));
+            window.events.dispatchEvent(new CustomEvent('record_video', detail));
           }
 
           videoDiv.play();

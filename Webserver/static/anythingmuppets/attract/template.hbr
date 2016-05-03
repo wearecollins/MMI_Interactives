@@ -8,13 +8,13 @@
           <source src="anythingmuppets/{{name}}/{{video}}" type="video/mp4">
       </video>
   </div>
-  <div class='container fillAbs centeredContainer column' style="z-index:2">
+  <div class='container fillAbs centeredContainer column noselect' style="z-index:2">
     <div class="type_lg title">Design an<br />Anything Muppet</div>
   </div>
   {{!-- 
     Edit "text" in "buttons" to change text below button icon
   --}}
-  <div class="container fillAbs bottomCenteredContainer" style="z-index:2">
+  <div class="container fillAbs bottomCenteredContainer noselect" style="z-index:2">
     <div id="sbContInternal" class="column" onclick="window.events.dispatchEvent(new Event('next'));">
         <img src="svg/__get_started.svg" class="button_sm padding_sm" />
         <div class="type_med padding_sm">Get Started</div>

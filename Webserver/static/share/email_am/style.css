@@ -79,13 +79,12 @@
 	width: 70%;
 }
 
-#amEmSh .topCenteredContainer {
+#amEmSh .topCenteredContainer, #amEmEm .topCenteredContainer {
 	padding-left: 4vw;
 	height: 19vh;
 	width: 60%;
 	justify-content: flex-end;
 }
-
 
 #amOnlineBtn {
   transition: opacity ease-in-out .2s;

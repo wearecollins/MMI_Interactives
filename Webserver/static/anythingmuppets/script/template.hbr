@@ -13,7 +13,7 @@
             <img src="anythingmuppets/script/{{img}}" />
           </div>
           <div class="fillAbs centeredContainer scriptInfoContainer" style="z-index:3">
-            <div class="scriptTextContainer fill type_sm container">
+            <div class="scriptTextContainer fill type_sm container noselect">
                 <div class="column_23">
                     <span class="type_med"><u>{{name}}</u></span>
                     <br>{{episode}}
@@ -28,7 +28,7 @@
 
     {{/each}}
 
-    <div id="scriptButtonContainer" class='container fillAbs bottomCenteredContainer disabled' style="z-index:3">
+    <div id="scriptButtonContainer" class='container fillAbs bottomCenteredContainer disabled noselect' style="z-index:3">
       <div id="start" class="column" onclick="window.events.dispatchEvent(new Event('start'));">
           <img src="svg/__get_started.svg" class="button_sm padding_sm" />
           <div class="type_med padding_sm">start building</div>
@@ -45,9 +45,13 @@
 {{!-- This is the 'drawer overlay' container --}}
     <div id="promptOpenDrawers" class="parchBg bottomCenteredContainer fillAbs" style="z-index:4" onclick="window.events.dispatchEvent(new Event('openDone'));">
         <div class="centeredContainer column fillAbs" style="left:0px">
-            <img src="svg/__open_drawers.svg" class="button_lg padding_sm" />
+            <!-- <img src="svg/__open_drawers.svg" class="button_lg padding_sm" /> -->
+            <video class="button_lg padding_sm" autoplay loop>
+              <source src="video/arrow_d.mp4" type="video/mp4">
+            </video>
             <div class="fillGreen type_med padding_sm">{{{prompt_open}}}</div>
         </div>
+        <audio src="vo/am_v03.mp3" id="drawer_vo"></audio>
     </div>
 
 {{!-- This is the 'spin overlay' container --}}
@@ -57,6 +61,8 @@
             <video class="button_lg padding_sm" autoplay loop>
               <source src="video/arrow.mp4" type="video/mp4">
             </video>
+
+            <audio src="vo/am_v04.mp3" id="spin_vo"></audio>
             <div class="fillGreen type_med padding_sm">{{{prompt_spin}}}</div>
         </div>
     </div>

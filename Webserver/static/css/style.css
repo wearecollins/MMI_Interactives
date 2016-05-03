@@ -160,6 +160,15 @@ body,
     }
 }
 
+@keyframes disappear {
+    from {
+      display: block;
+    }
+    to {
+      display: none;
+    }
+}
+
 /* Top-level pages */
 
 #liveView{
@@ -402,6 +411,10 @@ body,
 
 .fillContainer {
     width: 100vw;
+}
+
+.fillContainerH {
+    height: 100vw;
 }
 
 .rightContainer {

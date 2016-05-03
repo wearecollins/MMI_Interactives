@@ -1,6 +1,6 @@
 <div id='{{name}}' class='page'>
   <div class="container header leftContainer blackBg">
-    <div style="padding-right:6vh" onclick="window.events.dispatchEvent(new Event('prev'));">
+    <div class="logoContainer" onclick="window.events.dispatchEvent(new Event('prev'));">
       <img src="svg/__back_white.svg" class="button_mini" />
     </div>
     <div class="type_med">Share your Anything Muppet</div>
@@ -9,7 +9,7 @@
     <div id="amEmShare" class="container">
       <img id="amEmImg" />
     </div>
-    <div id="amEmInfo">
+    <div id="amEmInfo" style="overflow:scroll">
       <div class="greyBg container">
         <span class="type_mini"><u>Your Puppet Name</u></span><br>
         <span id="amEmName" class="type_med">Anything Muppet 1</span>
@@ -20,7 +20,7 @@
           <input class="type_sm" placeholder="you@domain.com" type="email" id="anEmEmail" />
           <span id="amEmError" class="hidden type_sm">Invalid email. Please try again!</span>
         </div>
-        <div class="rightContainer" style="align-items:center; width:30%" onclick="window.events.dispatchEvent(new Event('shareAmEmail'));">
+        <div class="topCenteredContainer" style="width:30%" onclick="window.events.dispatchEvent(new Event('shareAmEmail'));">
           <img src="svg/__select.svg" class="button_mini" />
         </div>
       </div>
@@ -30,7 +30,7 @@
           <span class="type_sm">mmi-jh.tumblr.com</span><br>
           <span class="type_mini"><u>Share on MMI Facebook</u></span><br>
           <span class="type_sm">fb-me/mmi-henson</span><br><br>
-          <div class="type_mini">
+          <div class="type_mini" style="width:100%;">
             Optionally, share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.<br>
             <div class="type_micro">
             Legal terms etc. ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend massa quis fringilla iaculis. Quisque euismod, dolor id fermentum euismod, nisl nibh eleifend orci, mattis aliquam est nibh vitae lectus. Donec ac libero porta, tristique ligula in, congue</div>

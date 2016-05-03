@@ -1,6 +1,6 @@
 <div id='{{name}}' class='page'>
   <div class="container header leftContainer blackBg">
-    <div style="padding-right:6vh" onclick="window.events.dispatchEvent(new Event('prev'));">
+    <div class="logoContainer" onclick="window.events.dispatchEvent(new Event('prev'));">
       <img src="svg/__back_white.svg" class="button_mini" />
     </div>
     <div class="type_med">Share your Anything Muppet</div>

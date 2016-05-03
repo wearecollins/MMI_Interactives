@@ -12,11 +12,12 @@
   animation-duration: 1s;
   animation-fill-mode:forwards;
   z-index: 0;
+  background: white;
 }
 
 #{{name}} .type_sm {
-    font-size: .3rem;
-    line-height: .4rem;
+    font-size: .2rem;
+    line-height: .25rem;
 }
 
 .whiteBgTrans {

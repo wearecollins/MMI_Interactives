@@ -12,10 +12,14 @@ var share = function(data, configHandler){
   cdTwo = null, 
   cdThree = null;
 
+  var name = "AM 000";
+
   // bind() creates new function refs
   // so we need to create shared variables for adding/removing
   // event listeners!
   var startRef, skipRef, shareRef, shareOnlineRef, retakeRef, setImageRef;
+
+  var soundTimeout;
 
   this.enter = function(/*evt*/){
     currentImageUrl = "";
@@ -28,14 +32,24 @@ var share = function(data, configHandler){
     retakeRef = retake.bind(this);
     setImageRef = setImage.bind(this);
 
+    // 'take a photo'
     window.addEventListener("capture", startRef);
+
+    // 'done'
     window.addEventListener("skipToThanks", skipRef);
+
+    // 'capture' to 'share'
     window.addEventListener("share", shareRef);
+
+    // post to fb / tumblr / etc
     window.addEventListener("share_online", shareOnlineRef);
+
     window.addEventListener("retake", retakeRef);
+
+    // got image from camera app
     window.addEventListener("imageCapture", setImageRef);
 
-    // build CDs
+    // build countdowns
     if (cdOne == null ){
       cdOne = new AlphaVideo();
       cdOne.setup("countdownInput","countdownOutput", "c_one_v", 600, 600);
@@ -47,18 +61,46 @@ var share = function(data, configHandler){
     
     didSetImage = false;
 
+    // are we live streaming, or within Frontend app?
     var doStream = configHandler.get('doStream', false);
-
     if (doStream == "true" || doStream == true ){
         manager.getStreamHandler().showStream();
     }
 
+    // set next name
+    var index = configHandler.get('currentName', 0);
+    index++;
+    
+    // this could be reset daily, or just when it hits
+    // a threshold
+    if ( index > 1000 ){
+      index = 0;
+    }
+    configHandler.set({'currentName':index});
+    name = "AM_"+ index;
+
+    // show buttons after 1 second
     setTimeout(showButtons, 1000, "shareButtonContainer");
+    soundTimeout = setTimeout(function(){
+
+      var sound = document.getElementById("focus_vo");
+      sound.play();
+      
+    }, 500);
   };
+
+  function pauseSounds(){
+    var soundA = document.getElementById("focus_vo");
+    soundA.pause();
+    soundA.currentTime = 0;
+  }
 
   var countdownInterval = null;
 
   function startCountdown(){
+    // make sure sound is paused
+    pauseSounds();
+
     // hide buttons
     hideButtons("shareButtonContainer");
     MMI.hide(("captureContainer"));
@@ -71,7 +113,7 @@ var share = function(data, configHandler){
           MMI.hide("countdownContainer");
 
           // this tells OF to capture
-          window.events.dispatchEvent(new Event('take_photo'));
+          window.events.dispatchEvent(new CustomEvent('take_photo', {detail: name }));
 
           var bg = document.getElementById("captureBgContainer");
           bg.style.backgroundColor = "white";
@@ -132,6 +174,7 @@ var share = function(data, configHandler){
   function share(){
     clearTimeout(countdownInterval);
     hideButtons("retakeContainer");
+
     MMI.hide(("countdownContainer"));
     MMI.hide(("retakeContainer"));
     MMI.show(("shareContainer"), "flex");
@@ -158,6 +201,7 @@ var share = function(data, configHandler){
   function setImage(e){
     if ( didSetImage ) return;
 
+    // load image into container
     var bg = document.getElementById("captureBgContainer");
     capturedImage = document.createElement("img");
     capturedImage.onload = function(){
@@ -172,6 +216,11 @@ var share = function(data, configHandler){
 
     bg.appendChild(capturedImage);
 
+    // set 'name' on share screen
+    var un = document.getElementById("uniqueName");
+    un.innerHTML = name;
+
+    // call 'retake or not' event
     skipToRetake.bind(this)();
     didSetImage = true;
   }
@@ -231,5 +280,8 @@ var share = function(data, configHandler){
     }
 
     setTimeout(cleanUp, 1000);
+
+    clearTimeout(soundTimeout);
+    pauseSounds();
   };
 };

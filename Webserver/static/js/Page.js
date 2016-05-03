@@ -104,8 +104,6 @@ function Page(){
       
       domElem.classList.add( evt );
       toRemove.push(evt);
-
-      console.log("ADD "+evt);
     }
     if (instance){
       instance.enter();

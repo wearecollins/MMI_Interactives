@@ -88,9 +88,17 @@
 	width: 50%;
 }
 
-#pEmSh .topCenteredContainer {
+#pEmSh .topCenteredContainer, #pEmEm .topCenteredContainer {
 	padding-left: 4vw;
 	height: 19vh;
 	width: 60%;
 	justify-content: flex-end;
+}
+
+#shareEmOnlineBtn {
+  transition: opacity ease-in-out .2s;
+}
+
+#shareEmOnlineBtn.disabled {
+  opacity: .4;
 }

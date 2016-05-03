@@ -2,7 +2,7 @@
   <div class='background' id="captureBgContainer"></div>
 
   <!-- Take a picture, why don't ya? -->
-  <div id="shareButtonContainer" class="container fillAbs bottomCenteredContainer disabled" style="z-index:2">
+  <div id="shareButtonContainer" class="container fillAbs bottomCenteredContainer disabled noselect" style="z-index:2">
         <div class="column" onclick="window.events.dispatchEvent(new Event('capture'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">take a photo</div>
@@ -11,11 +11,12 @@
             <img src="svg/__done.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">done</div>
         </div>
+          <audio src="vo/am_v05.mp3" id="focus_vo"></audio>
   </div>
 
   <!-- Countdown -->
   <div id="countdownContainer" class="fillAbs" style="z-index:2">
-    <div class="container fillAbs centeredContainer">
+    <div class="container fillAbs centeredContainer noselect">
       <div>
         <!-- Todo: Dynamic w/h -->
         <canvas width="600" height="1200" id="countdownInput"></canvas>
@@ -43,7 +44,7 @@
   </div>
 
   <!-- Retake -->
-  <div id="retakeContainer" class="container fillAbs bottomCenteredContainer disabled" style="z-index:2">
+  <div id="retakeContainer" class="container fillAbs bottomCenteredContainer disabled noselect" style="z-index:2">
         <div class="column" onclick="window.events.dispatchEvent(new Event('share'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">continue</div>
@@ -56,7 +57,7 @@
 
   <!-- Sharing -->
   <div id="shareContainer" class="fillAbs bottomCenteredContainer" style="z-index:2">
-    <div id="shareBg" class="centeredContainer column container fillContainer fillGrey">
+    <div id="shareBg" class="centeredContainer column container fillContainer fillGrey noselect">
         <div class="type_lg">Share</div>
         <div class="topCenteredContainer type_sm">
             <div class="shareCopyBlock">

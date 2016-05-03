@@ -97,8 +97,7 @@ var script = function(data){
 		btnContainer.classList.add("enabled");
 	}
 
-	var openClasses = "parchBg bottomCenteredContainer fillAbs";
-	var spinClasses = "parchBg bottomCenteredContainer fillAbs";
+	var promptTimeout;
 
 	function showOpenPrompt(){
 		var openDiv = document.getElementById("promptOpenDrawers");
@@ -106,20 +105,32 @@ var script = function(data){
 		openDiv.classList.remove("hideMe");
 		openDiv.classList.add("visible");
 
+		var soundA = document.getElementById("drawer_vo");
+		soundA.play();
+
 		setTimeout(function(){
 			MMI.hide( ("start"));
 			MMI.show( ("done"), "block"  );
 		}, 1000);
+
+		// timeout prompt
+		// 1000 = fade in
+		promptTimeout = setTimeout(hideOpenPrompt, 1000 + 10000);
 	}
 
 	function hideOpenPrompt(){
+		clearTimeout(promptTimeout);
+
+		var soundA = document.getElementById("drawer_vo");
+		soundA.pause();
+		soundA.currentTime = 0;
+
 		var openDiv = document.getElementById("promptOpenDrawers");
 		// hide(openDiv);
 		openDiv.classList.remove("visible");
 		openDiv.classList.add("hideMe");
 
 		setTimeout(function(){
-			// openDiv.className = openClasses;
 			var btnContainer = document.getElementById("scriptButtonDoneContainer");
 			btnContainer.classList.remove("disabled");
 			btnContainer.classList.add("enabled");
@@ -131,6 +142,9 @@ var script = function(data){
 		// show(spinDiv);
 		spinDiv.classList.remove("hideMe");
 		spinDiv.classList.add("visible");
+
+		var sound = document.getElementById("spin_vo");
+		sound.play();
 	}
 
 	function hideSpinPrompt(){
@@ -140,12 +154,12 @@ var script = function(data){
 		spinDiv.classList.add("hideMe");
 		spinDiv.classList.remove("visible");
 
-		setTimeout(function(){
-			// spinDiv.className = spinClasses;
-		}, 1000);
-
 		MMI.show( ("start"), "block"  );
 		MMI.hide( ("done") );
+
+		var soundB = document.getElementById("spin_vo");
+		soundB.pause();
+		soundB.currentTime = 0;
 	}
 
 	this.exit = function(/*evt*/){
@@ -188,5 +202,13 @@ var script = function(data){
 		window.removeEventListener("start", shareRef);
 		window.removeEventListener("openDone", hideRef);
 		window.removeEventListener("done", showRef);
+
+		var soundA = document.getElementById("drawer_vo");
+		soundA.pause();
+		soundA.currentTime = 0;
+
+		var soundB = document.getElementById("spin_vo");
+		soundB.pause();
+		soundB.currentTime = 0;
 	};
 };

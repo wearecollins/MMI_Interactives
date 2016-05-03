@@ -3,8 +3,10 @@
   </div>
   <div id="titleContainer" class="container fillAbs centeredContainer column fillGrey" style="z-index:2">
       <div class="type_lg padding_sm">{{{thankyou}}}</div>
-      <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" />
-      <div class="type_med">
+      <video class="button_lg padding_sm" autoplay loop>
+	  	<source src="video/arrow.mp4" type="video/mp4">
+	  </video>
+      <div class="type_med noselect">
       {{{prompt}}}
       </div>
   </div>

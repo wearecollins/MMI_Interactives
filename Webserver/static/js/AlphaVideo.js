@@ -21,17 +21,25 @@ function AlphaVideo() {
 		bufferCanvas = document.getElementById(bufferCanvasID),
 		bufferCtx = bufferCanvas.getContext('2d'),
 		outputCanvas = document.getElementById(outputCanvasID),
+		outputCanvas.width = inWidth, 
+		outputCanvas.height = inHeight,
+		outputCanvas.setAttribute("width", inWidth),
+		outputCanvas.setAttribute("height", inHeight),
 		outputCtx = outputCanvas.getContext('2d'),
 		pRef = this.update.bind(this),
 		sRef = this.stop.bind(this);
 	}
 
 	var _onEnded = null;
+	var looping	 = false;
 
-	this.play = function( onEnded ){
+	this.play = function( onEnded, loop ){
 		video.play();
+		looping = (loop === undefined ? false : loop);
 		// video.addEventListener( "ended", onEnded );
-		video.addEventListener( "ended", sRef );
+		if (!looping)
+			video.addEventListener( "ended", sRef );
+
 		_onEnded = onEnded;
 		window.requestAnimationFrame(pRef);
 	}
@@ -51,8 +59,12 @@ function AlphaVideo() {
 		
 		// failsafe to check against 'ended' not firing
 		if ( video.currentTime > 1.0 ){
-			this.stop();
-			return;
+			if ( looping ){
+				video.currentTime = 0;
+			} else {
+				this.stop();
+				return;
+			}
 		}
 
 		window.requestAnimationFrame(pRef);

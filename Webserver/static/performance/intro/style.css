@@ -14,3 +14,11 @@
   animation-fill-mode:forwards;
   z-index: 0;
 }
+
+#leftInput, #l_arrow {
+  visibility: hidden;
+  display: none; 
+}
+/* leftOutput {
+
+} */

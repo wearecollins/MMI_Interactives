@@ -19,13 +19,13 @@ var email_perf = function(data, configHandler){
 		var info = document.getElementById("pEmInfo");
 		info.scrollTop = window.innerHeight * .6;
 
-		window.addEventListener("shareAmMMI", shareOnline );
+		window.addEventListener("sharePerfMMI", shareOnline );
 	};
 
 	function shareOnline() {
 	    var shareServer = configHandler.get('shareServer', "http://localhost:8013");
-	    var url = shareServer + "/photo";
-	    var filename = "anythingmuppets/" + currentImageUrl;
+	    var url = shareServer + "/video";
+	    var filename = "performance/" + currentVideo;
 
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("POST", url, true);
@@ -34,18 +34,21 @@ var email_perf = function(data, configHandler){
 
 	    // then hide the button...
 	    window.removeEventListener("share_online", shareOnlineRef);
-	    var btn = document.getElementById("shareOnlineBtn");
+	    var btn = document.getElementById("shareEmOnlineBtn");
 	    btn.classList.add("disabled");
-	}
+	  }
 
 	this.exit = function(/*evt*/){
-		window.removeEventListener("shareAmMMI", shareOnline );
+		window.removeEventListener("sharePerfMMI", shareOnline );
 		setTimeout( function() {
 			var video = document.getElementById("pEmImg");
 			video.src = "";
 			// video.parentElement.unload();
 			var input = document.getElementById("pEmEmail");
 			input.value = "";
+
+		    var btn = document.getElementById("shareEmOnlineBtn");
+		    btn.classList.remove("disabled");
 		}, 1000);
 	};
 

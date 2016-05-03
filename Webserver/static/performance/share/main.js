@@ -7,6 +7,8 @@ var share = function( data, configHandler ){
 
 	var shareOnlineRef;
 
+	var name;
+
 	function setCanPlay(){
 	   	// Video is loaded and can be played
 		canPlay = true;
@@ -19,12 +21,37 @@ var share = function( data, configHandler ){
 		currentVideo = e.detail;
 		canPlay = false;
 
-		var source = document.getElementById("shareSource");
-	    source.setAttribute("src", "output/performance/" + e.detail);
+		var cont = document.getElementById("shareBackground");
+		cont.innerHTML = "";
 
-		var video = document.getElementById("share_video");
-		video.load();
-		video.addEventListener('loadeddata', setCanPlay, false);
+		var data = {
+			"video":"output/performance/" + e.detail
+		}
+
+		var templatePromise = Loader.loadHTML('performance/share/video.hbr', data);
+		templatePromise.
+		then( function resolve(html){
+			cont.innerHTML = html;
+			var video = document.getElementById("share_video");
+			video.play();
+		}).
+		catch(function reject(reason){
+			log.warn('video not created!',reason);
+		});
+
+		// var source = document.getElementById("shareSource");
+	    // source.setAttribute("src", "output/performance/" + e.detail);
+
+		// var video = document.getElementById("share_video");
+		// video.addEventListener('loadeddata', setCanPlay, false);
+
+		// get next name
+	    var index = configHandler.get('currentName', 0);
+	    name = "Perf"+ index;
+
+	    // set 'name' on share screen
+	    var un = document.getElementById("uniqueName");
+	    un.innerHTML = name;
 	}
 
 	window.addEventListener("videoRecorded", setVideo);
@@ -33,18 +60,18 @@ var share = function( data, configHandler ){
 	    shareOnlineRef = shareOnline.bind(this);
     	window.addEventListener("share_online", shareOnlineRef);
 
-		var video = document.getElementById("share_video");
-		video.play();
-		if (!canPlay){
-			tryInterval = setInterval(function(){
-				if ( canPlay ){
-					var video = document.getElementById("share_video");
-					video.play();
-					clearInterval(tryInterval);
-				} else {
-				}
-			}, 10);
-		}
+		// var video = document.getElementById("share_video");
+		// video.play();
+		// if (!canPlay){
+		// 	tryInterval = setInterval(function(){
+		// 		if ( canPlay ){
+		// 			var video = document.getElementById("share_video");
+		// 			video.play();
+		// 			clearInterval(tryInterval);
+		// 		} else {
+		// 		}
+		// 	}, 10);
+		// }
 
 		document.getElementById("shareAnimateContainer").classList.add("enabled");
 	}
@@ -55,15 +82,21 @@ var share = function( data, configHandler ){
 		var video = document.getElementById("share_video");
 		video.pause();
 
-		var source = document.getElementById("shareSource");
-		source.setAttribute("src","");
-		video.load(); //safari requires you to 'load' to know it no longer has a src
+		// var source = document.getElementById("shareSource");
+		// source.setAttribute("src","");
+		// video.load(); //safari requires you to 'load' to know it no longer has a src
 		
 		setTimeout( cleanup, 1000);
 	}
 
 	function cleanup() {
 		document.getElementById("shareAnimateContainer").classList.remove("enabled");
+
+		var cont = document.getElementById("shareBackground");
+		cont.innerHTML = "";
+
+	    var btn = document.getElementById("shareOnlineBtn");
+	    btn.classList.remove("disabled");
 	}
 
 	function shareOnline() {

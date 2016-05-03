@@ -66,4 +66,6 @@
 	display: flex;
 	align-items: flex-end;
 	justify-content: flex-end;
+	height: 70%;
+	flex-grow: 1;
 }

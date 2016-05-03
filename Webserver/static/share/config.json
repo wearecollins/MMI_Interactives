@@ -4,9 +4,9 @@
   "continuousMode":false,
   "additionalStatic":[
   {
-    "diskPath":"/Users/brettrenfer/Dropbox/Code/OF/of_v0.X.X_github/apps/MMI_Interactives/Webserver/static/output",
+    "diskPath":"/Users/brettrenfer/Dropbox/Code/OF/of_v0.X.X_github/apps/MMI_Interactives/Sharing/media/",
     "webPath":"/media"
   }],
   "disableKeyNext":true,
-  "shareServer":"http://192.168.88.108:8013"
+  "shareServer":"http://192.168.88.124:8013"
 }
