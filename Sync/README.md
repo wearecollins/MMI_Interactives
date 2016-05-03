@@ -1,18 +1,64 @@
-This is a Nodejs script which uses rsync to copy files between two directories.
+This is a Node.js® script which uses rsync to copy files between two directories.
+
+1. [dependencies](#dependencies)
+2. [setup](#setup)
+  1. [production](#production)
+3. [running in development](#running-in-development)
+4. [configuration](#configuration)
+  1. [configs.json](#configsjson)
+  2. [loop_conf.json](#loop_confjson)
+5. [Troubleshooting](#troubleshooting)
+
+# dependencies
+developed/tested/used with 
+
+* Node.js
+  - 5.9.1 
+  - 4.3.1
+* npm 
+  - 3.7.3
+* -nix OS
+  - Ubuntu 14.04
+  - OSX 10.11
 
 # setup
 * `npm install`
-* create [config.json]() based on [config.json.sample]()
+* create _configs.json_ based on [configs.json.sample](configs.json.sample)
+  - documentation [below](#configsjson)
 
-# running
-* once
-  - `npm start`
-* repeatedly
-  - `npm run loop`
-
+## production
 This will be set up as a CRON job via `crontab -e`, 
 probably to run every minute:
 
-`* * * * * /PATH/TO/node /PATH/TO/REPO/Sync/index.js`
+`* * * * * /PATH/TO/node /PATH/TO/REPO/Sync/index.js configs.json`
 
 where /PATH/TO/node can be found using `which node`
+
+# running in development
+* once
+  - `npm start` or `node index.js configs.json`
+* repeatedly
+  - `npm run loop` or `node loop.js configs.json`
+
+# configuration
+index.js uses a configuration file. There is a sample included in the repository at [configs.json.sample](configs.json.sample). The name of the configuration file is passed to the script when you run the script.
+
+## configs.json
+
+* **source** The source directory to copy files from. This should be an absolute path _with_ a trailing slash.
+* **destination** The directory to copy files to. This should be an absolute path _without_ a trailing slash.
+* **cleanupMins** Number of minutes to leave files in the _source_ directory before cleaning them up. The modified time is used to determine file age.
+
+## loop_conf.json
+There is also a configuration file for the loop script. The loop script is meant to be used only in development.
+
+* **intervalMillis** The number of milliseconds between repeated runs of the Sync script.
+
+# Troubleshooting
+
+* The sync script does not handle nested directories. Make sure the _source_ directory does not contain any directories.
+* The sync script uses [log4js](https://npmjs.com/package/log4js) 
+  - The script will normally log to rolling files in the [log/](log/) directory
+  - to enable console logging add `{"type":"console"}` to the **appenders** array in [log4js_conf.json](log4js_conf.json)
+  - you can change the logging detail by changing the value of **levels.[all]** in [log4js_conf.json](log4js_conf.json) to `"INFO"`, `"DEBUG"`, `"TRACE"`, or `"ALL"`
+* The script uses a PID file in this directory to ensure that only one instance of the script is running at a time. Make sure the user that is running the script has read/write access to this directory.
