@@ -5,13 +5,15 @@
     },
     {
       "type":"file",
-      "filename":"log/out.log",
+      "filename":"fetchToken/log/out.log",
       "maxLogSize":20971520,
       "backups":3
     }
   ],
   "levels": {
     "[all]":"ALL",
-    "fetchToken":"ALL"
+    "fetchToken":"ALL",
+    "facebook":"ALL",
+    "tumblr":"ALL"
   }
 }

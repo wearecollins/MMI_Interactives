@@ -9,6 +9,8 @@ This Node.js® server posts videos and photos to the Museum's Facebook and Tumbl
   1. [config.json](#configjson)
   2. [facebookToken.json](#facebooktokenjson)
   3. [tumblrToken.json](#tumblrtokenjson)
+0. [Running](#running)
+0. [Troubleshooting](#troubleshooting)
 
 # dependencies
 developed/tested/used with
@@ -31,17 +33,15 @@ This webservice requires a lot of setup. You need to authenticate against
 each network you want to post to, and set up a server to be able to serve
 media to the internet.
 
+1. `npm install` to download all Node.js dependencies
+2. go through [Platform Authentication](#platform-authentication)
+
 ## platform authentication
 First we need to set up the ability to post media to Tumblr and Facebook.
 These instructions were current as of May 2016.
 
-First you need to set up a Facebook App ([below](#facebook)) and Tumblr App ([below](#tumblr))
-
-Make sure when the authorization server is running, it will be accessible 
-from the internet. If your network is not configured to allow your 
-computer to be accessible from the internet, 
-I suggest using ngrok to provide an internet-accessible tunnel to the 
-Node.js server.
+1. Set up a Facebook App ([below](#facebook)) and Tumblr App ([below](#tumblr))
+2. Follow the instructions for the [Token Fetching Service](fetchToken/)
 
 ### facebook
 You will need a [Facebook App](https://developers.facebook.com/apps/) to be
@@ -102,9 +102,6 @@ and _http://www.movingimage.us/muppets/performance/video.mp4_.
 If your server configuration is such that simple concatenation 
 is not appropriate, extra development will be necessary.
 
-In order to get the appropriate Access Tokens from Facebook, 
-you need to follow the instructions in [#get-tokens]().
-
 ## facebookToken.json
 This file should not be created or edited manually. Use the [fetchToken](fetchToken/) app to create this file.
 
@@ -123,28 +120,42 @@ This file should not be created or edited manually. Use the [fetchToken](fetchTo
 * **accessSecret** the associated token secret for authenticating requests
 * **blog** the name of the blog to post to
 
-## usage
+# Running
 
-start this server with `npm start` (after `npm install`-ing dependencies). 
-It will start an HTTP server on port 8013.
+start this server with `npm start`.
+It will start an HTTP server on port 8013. 
+The Sharing server itself does not need to be accessible from the internet, 
+but the media files you want to post will need to be.
 
-In order to upload Videos, post the _publicly-accessible_ url of the video to 
-`/video` like so: 
-`curl --data "url=http://momi-auth.ngrok.io/myvideo.mov" http://localhost:8013/video`
+In production this will probably be set up to start on boot using Upstart 
+or init.d in which case you will configure those services to execute 
+`/PATH/TO/node /PATH/TO/REPO/Sharing/server.js ./config.json` 
+where _/PATH/TO/node_ can be determined by running `which node`.
 
-In order to upload Photos, post the _publicly-accessible_ url of the photo to
-`/photo` like so: 
-`curl --data "url=http://momi-auth.ngrok.io/myphoto.png" http://localhost:8013/photo`
+In order to upload Videos, post the filename (relative to **media.localpath**
+in _config.json_) of the video to `/video` like so: 
+`curl --data "filename=performance/myvideo.mov" http://localhost:8013/video`
+
+In order to upload Photos, post the filename (relative to **media.localpath**
+in _config.json_) of the photo to `/photo` like so: 
+`curl --data "filename=anythingmuppets/myphoto.png" http://localhost:8013/photo`
 
 If the computer you are working from cannot serve files to the internet, 
 you can use ngrok and a static server to open a tunnel to the media directory 
-(configured in config.json). 
+(**media.localpath** in _config.json_). 
 Follow the instructions in [#setup-ngrok]() 
-and [#startup-ngrok]() to get it running.
 
-## get tokens
+# Troubleshooting
 
-### setup [ngrok](https://ngrok.com/)
+* Make sure the media files are accessible from the internet.
+* Make sure the **media.localpath** and **media.netpath** values are correct and resolve POST-ed _filename_ values to the correct relative path and internet address.
+* Make sure the Sync service is properly and periodically copying files from the touchpoint computers to the server.
+* The Sharing server uses [log4js](https://npmjs.com/package/log4js) 
+  - The script will normally log to rolling files in the [log/](log/) directory
+  - to enable console logging add `{"type":"console"}` to the **appenders** array in [log4js_conf.json](log4js_conf.json)
+  - you can change the logging detail by changing the value of **levels.[all]** (and/or any other key in the **levels** object) in [log4js_conf.json](log4js_conf.json) to `"INFO"`, `"DEBUG"`, `"TRACE"`, or `"ALL"`
+
+# setup [ngrok](https://ngrok.com/)
 
 ngrok is used for accessing local servers from the internet. 
 
@@ -155,23 +166,3 @@ allowed domains to be a domain you own, and host the server at that address.
 * create an [ngrok](https://ngrok.com/) account
 * following the instructions after you sign in, authenticate the ngrok app using your authtoken
     - eg. `~/Downloads/ngrok authtoken [YOUR AUTHTOKEN HERE]`
-
-### startup the token-fetching server
-
-from the same directory as this README:
-
-* `npm install`
-* `npm run token`
-
-### startup ngrok
-
-* `~/Downloads/ngrok http -subdomain=momi-auth 8012`
-    - you need to register for an account in order to use the `-subdomain` flag
-
-### authenticate
-
-Authenticate the FB App, and select the Page/Album/Video List to upload to
-
-* visit [http://momi-auth.ngrok.io/]()
-* once you reach the Thank You screen, 
-you can shutdown the ngrok and the server

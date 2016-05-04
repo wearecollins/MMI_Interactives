@@ -1,3 +1,20 @@
+1. [Introduction](#MMI---The-Jim-Henson-Exhibition)
+  1. [Performance](#performance)
+  2. [Anything Muppet](#anything-muppet)
+  3. [Sharing Station](#sharing-station)
+2. [Setup](#setup)
+  1. [Production](#production)
+  2. [Development](#development)
+3. [Overview](#overview)
+  1. [Structure & Technical Breakdown](#structure---technical-breakdown)
+  2. [Setting Up](#setting-up)
+  3. [Shared Resources](#shared-resources)
+  4. [Interactive Exhibits](#interactive-exhibits)
+    1. [Puppetry for the Screen](#puppetry-for-the-screen)
+    2. [Design an Anything Muppet](#design-an-anything-muppet)
+    3. [Share Your Creation](#share-your-creation)
+    4. [Prototypes](#prototypes)
+
 # MMI - The Jim Henson Exhibition
 
 This repo contains digital portions of a Jim Henson exhibit for the [Museum of the Moving Image](http://www.movingimage.us/) 
@@ -25,7 +42,7 @@ There are 4 computers involved with this whole installation:
 * Central Server
   - serves files to the internet from a _Public Media Directory_
   - hosts the webserver for the Sharing iPad interface
-  - runs webservices for sending e-mails and posting to MotMI%39s social network pages
+  - runs webservices for sending e-mails and posting to MotMI&apos;s social network pages
 * Anything Muppet Computer
   - the computer that the Anything Muppet touchpoint runs on including
     * interfacing with industrial camera
@@ -72,8 +89,8 @@ Follow these steps for setting up everything:
   - I set up my _media/_ directory parallel to the cloned repository.
 2. set up a server to serve files from your _media/_ directory.
   - I set up the server to use port 8014. Suggestions include:
-    * python%39s (SimpleHTTPServer)[https://docs.python.org/2/library/simplehttpserver.html] `python -m SimpleHTTPServer 8014`
-    * Node$39s (http-server)[https://www.npmjs.com/package/http-server] `http-server -p 8014`
+    * python&apos;s (SimpleHTTPServer)[https://docs.python.org/2/library/simplehttpserver.html] `python -m SimpleHTTPServer 8014`
+    * Node&apos;s (http-server)[https://www.npmjs.com/package/http-server] `http-server -p 8014`
 3. [Setup ngrok](#setup-ngrok) if you have not done this before
 4. run ngrok to make your simple server accessible from the internet
   - `PATH/TO/ngrok http 8014`
@@ -92,7 +109,7 @@ Follow these steps for setting up everything:
 
 
 # Overview
-### Structure & Technical breakdown
+## Structure & Technical breakdown
 * Webserver
 	* Each exhibit is hosted by a general [webserver](Webserver/)
 	* Individual exhibit files (e.g. ["performance"](Webserver/static/performance/)) live inside this general server

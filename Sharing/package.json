@@ -1,5 +1,5 @@
 {
-  "name": "posttofacebook",
+  "name": "posttosocial",
   "version": "1.0.0",
   "description": "posts content to linked social networks",
   "main": "post.js",
