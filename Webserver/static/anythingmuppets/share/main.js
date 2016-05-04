@@ -19,7 +19,7 @@ var share = function(data, configHandler){
   // event listeners!
   var startRef, skipRef, shareRef, shareOnlineRef, retakeRef, setImageRef;
 
-  var soundTimeout;
+  var soundTimeout, nextTimeout;
 
   this.enter = function(/*evt*/){
     currentImageUrl = "";
@@ -87,6 +87,12 @@ var share = function(data, configHandler){
       sound.play();
       
     }, 500);
+
+    var to = configHandler.get('timeout', 60) * 1000;
+
+    nextTimeout = setTimeout(function(){
+      window.events.dispatchEvent(new Event('next'));
+    }, to);
   };
 
   function pauseSounds(){
@@ -249,6 +255,7 @@ var share = function(data, configHandler){
 
   this.exit = function(/*evt*/){
     clearTimeout(countdownInterval);
+    clearTimeout(nextTimeout);
     
     window.removeEventListener("capture", startRef);
     window.removeEventListener("skipToThanks", skipRef);

@@ -24,17 +24,25 @@ var share_am = function(data, configHandler){
 			var ext  = path.split(".");
 			ext = ext[ext.length-1];
 			if ( isImage( ext ) ){
-				// fmt = 2016-04-26-16-31-29-705.mp4
-				var ts = path.split(".")[0].split("-");
+				// fmt = AM_2-2016-04-26-16-31-29-705.mp4
+				var base  = path.split(".")[0];
+				var ts = base.split("-");
+				var name = "AM";
+				if (ts[0].indexOf("_") >= 0 ){
+					name = ts.shift().replace("_"," ");
+				} else {
+					name = ts.shift();
+				}
 				var am = ts[3] <= 11;
 				if ( !am ){
 					ts[3] -= 12;
 				}
 				var timestamp = "" + ts[1] +"/" + ts[2] +"/" + ts[0] +" " + ts[3]+":"+ts[4] + (am ? "AM" : "PM");
 				var obj = {
-					"timestamp":ts,
+					"timestamp":timestamp,
 					"image": base_path + "/" + path,
-					"path": path
+					"path": path,
+					"name": name
 				}
 				currentData.images.push(obj);
 			}

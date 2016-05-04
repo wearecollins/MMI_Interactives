@@ -1,13 +1,14 @@
 {{#each videos}}
-<div class="leftContainer container shareRow {{#if_even @index}}evenRow{{/if_even}}" onclick="window.events.dispatchEvent( new CustomEvent('selectPerf', {detail:{'timestamp':'{{{timestamp}}}','video':'{{{video}}}' } }));">
-	<video class="srVideo" loop muted>
+<div class="leftContainer container shareRow {{#if_even @index}}evenRow{{/if_even}}" onclick="window.events.dispatchEvent( new CustomEvent('selectPerf', {detail:{'timestamp':'{{{timestamp}}}','video':'{{{video}}}','name':'{{{name}}}' } }));">
+	<!-- <video class="srVideo" loop muted>
 		<source src="{{video}}" type="video/mp4">
-	</video>
+	</video> -->
+	<img src="{{thumb}}" class="srVideo" />
 	<div class="srType type_med" style="padding-left:2vw">
 		<span style="text-decoration: underline;
 " class="type_mini">{{timestamp}}</span>
 		<br>
-		Performance {{@index}}
+		Performance "{{{name}}}"
 	</div>
 	<div class="srButton">
 		<img class="button_mini" src="svg/__share.svg"  />

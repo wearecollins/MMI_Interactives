@@ -16,19 +16,36 @@ var share_perf = function(data, configHandler){
 		currentData.videos = [];
 		for ( var i in videoList ){
 			var path = videoList[i];
+			var thumb = "";
+			var th_split = path.split(".");
+			for ( var i=0; i<th_split.length-1; i++){
+				thumb += th_split[i] + ".";
+			}
+
+			thumb += "png";
+
 			var ext  = path.split(".");
 			ext = ext[ext.length-1];
-			if ( ext == "mp4"){
-				// fmt = 2016-04-26-16-31-29-705.mp4
-				var ts = path.split(".")[0].split("-");
+			if ( ext == "mp4"){// fmt = AM_2-2016-04-26-16-31-29-705.mp4
+				var base  = path.split(".")[0];
+				var ts = base.split("-");
+				var name = "Performance";
+				if (ts[0].indexOf("_") >= 0 ){
+					name = ts.shift().replace("_"," ");
+				} else {
+					name = ts.shift();
+				}
+
 				var am = ts[3] <= 11;
 				if ( !am ){
 					ts[3] -= 12;
 				}
 				var timestamp = "" + ts[1] +"/" + ts[2] +"/" + ts[0] +" " + ts[3]+":"+ts[4] + (am ? "AM" : "PM");
 				var obj = {
-					"timestamp":ts,
-					"video": base_path + "/" + path
+					"timestamp":timestamp,
+					"video": base_path + "/" + path,
+					"thumb": base_path + "/" + thumb,
+					"name": name
 				}
 				currentData.videos.push(obj);
 			}

@@ -1,7 +1,7 @@
 var attract = function(data, configHandler){
 	
 	var lastRefreshed = 0;//Date().now();
-	var refreshRate	  = 60 * 5 * 1000; // every 5 minutes
+	var refreshRate	  = 60 * .2 * 1000; // every 5 minutes
 
 	var images = {"data":[]};
 	var videos = {"data":[]};
@@ -38,6 +38,8 @@ var attract = function(data, configHandler){
 	    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	    xhttp.send();
 	}
+
+	var refreshInterval = null;
 	
 	this.enter = function(/*evt*/){
 		window.addEventListener( "perfData", buildPerfBg );
@@ -54,9 +56,12 @@ var attract = function(data, configHandler){
 				// videos[i].play();
 			}
 		}
+
+		refreshInterval = setInterval( refreshData, refreshRate);
 	};
 
 	this.exit = function(/*evt*/){
+		clearInterval(refreshInterval);
 		window.removeEventListener( "perfData", buildPerfBg );
 		window.removeEventListener( "amData", buildAMBG );
 
@@ -85,8 +90,23 @@ var attract = function(data, configHandler){
 			var path = list[i];
 			var ext  = path.split(".");
 			ext = ext[ext.length-1];
-			if ( isImage( ext ) || isVideo(ext) ){
+			if ( isImage( ext ) ){
 				array.push({"image":base_path + "/" + path});
+			} else if ( isVideo(ext) ){
+
+				var path = list[i];
+				var thumb = "";
+				var th_split = path.split(".");
+				for ( var i=0; i<th_split.length-1; i++){
+					thumb += th_split[i] + ".";
+				}
+
+				thumb += "png";
+
+				array.push({
+					"image":base_path + "/" + path,
+					"thumb":base_path + "/" + thumb,
+				});
 			}
 		}
 	}
@@ -113,7 +133,18 @@ var attract = function(data, configHandler){
 
 	function buildPerfBg( e ){
 		videos.data = [];
-		parseData( e.detail, "performance", videos.data );
+
+		var vidArray = [];
+		for ( var i in e.detail){
+			var p = e.detail[i];
+			var ext  = p.split(".");
+			ext = ext[ext.length-1];
+
+			if ( isVideo( ext ) ){
+				vidArray.push( p );
+			}
+		}
+		parseData( vidArray, "performance", videos.data );
 		var bg = document.getElementById("sharePerfBg");
 
 		var templatePromise = Loader.loadHTML('share/attract/videos.hbr', videos);

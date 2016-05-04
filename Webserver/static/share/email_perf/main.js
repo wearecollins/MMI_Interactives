@@ -25,7 +25,7 @@ var email_perf = function(data, configHandler){
 	function shareOnline() {
 	    var shareServer = configHandler.get('shareServer', "http://localhost:8013");
 	    var url = shareServer + "/video";
-	    var filename = "performance/" + currentVideo;
+	    var filename = "performance/" + currentPerf.path;
 
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("POST", url, true);
@@ -33,7 +33,7 @@ var email_perf = function(data, configHandler){
 	    xhttp.send( "filename=" + filename );
 
 	    // then hide the button...
-	    window.removeEventListener("share_online", shareOnlineRef);
+	    window.removeEventListener("share_online", shareOnline);
 	    var btn = document.getElementById("shareEmOnlineBtn");
 	    btn.classList.add("disabled");
 	  }

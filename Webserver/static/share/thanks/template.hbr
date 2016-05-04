@@ -1,7 +1,7 @@
 <div id='{{name}}' class='page'>
   <div class="fillAbs centeredContainer column blackBg">
     <div class="type_lg">Thank You for Sharing.</div>
-    <div onclick="window.events.dispatchEvent(new Event('next'));">
+    <div style="height: 20%;" onclick="window.events.dispatchEvent(new Event('next'));">
 	    <img src="svg/__start_over.svg" class="button_med padding_sm" />
 	    <div class="type_sm padding_sm">start over</div>
 	</div>

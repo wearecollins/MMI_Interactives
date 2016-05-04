@@ -34,9 +34,10 @@
 	color: black;
 }
 
-#{{name}}.fillAbs, #{{name}}.fillHalfW {
+#{{name}} .fillAbs, #{{name}} .fillHalfW {
 	height: 85vh;
 }
+
 .srVideo {
 	height: 100%;
 }

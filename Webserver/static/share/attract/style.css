@@ -1,5 +1,15 @@
 /* Reset styles for whole app */
 
+div {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
 .button_mini {
     width: auto;
     height: 100%;
@@ -87,8 +97,17 @@
 #sharePerfBg {
 }
 
-#sharePerfBg video {
+/* #sharePerfBg video {
 	width: calc(100% / 3);
+	opacity: .5;
+} */
+
+#sharePerfBg div {
+	width: calc(100% / 2);
+}
+
+#sharePerfBg img {
+	width: 100%;
 	opacity: .5;
 }
 
