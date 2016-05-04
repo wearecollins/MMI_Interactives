@@ -159,9 +159,11 @@ namespace mmi {
         // make a thumbnail quick
         if ( outputFile != "" ){
             string fn = ofSplitString(currentFileName, ".")[0];
-            string cmd = "bash --login -c 'ffmpeg -i " + outputFile;
+            string cmd = "bash --login -c 'ffmpeg -i " + outputFile +"/"+currentFileName;
             string file = ofToDataPath(folderDest.get() +"/" + folderAppend.get() + "/" + fn +".png", true);
-            cmd +=" -ss 00:00:" + ofToString(recordLength.get()/1000 * .5) + " -vframes 1 " + file;
+            cmd +=" -ss 00:00:" + ofToString(recordLength.get()/1000 * .5) + " -vframes 1 " + file +"'";
+            system( cmd.c_str() );
+            cout << file << endl;
         }
         
         currentBgClip = "";
