@@ -5,7 +5,7 @@ This is a Node.js® script which uses rsync to copy files between two directorie
   1. [production](#production)
 3. [running in development](#running-in-development)
 4. [configuration](#configuration)
-  1. [configs.json](#configsjson)
+  1. [Sync configuration file](#sync-configuration-file)
   2. [loop_conf.json](#loop_confjson)
 5. [Troubleshooting](#troubleshooting)
 
@@ -27,23 +27,25 @@ developed/tested/used with
   - documentation [below](#configsjson)
 
 ## production
-This will be set up as a CRON job via `crontab -e`, 
-probably to run every minute:
+This will be set up as a CRON job.
 
-`* * * * * /PATH/TO/node /PATH/TO/REPO/Sync/index.js configs.json`
+execute `crontab -e` to open the CRON file for editing.
+Place this at the bottom of that file to run the Sync script every minute: 
 
-where /PATH/TO/node can be found using `which node`
+* `* * * * * /PATH/TO/node /PATH/TO/REPO/Sync/index.js RELATIVE/CONFIG.JSON`
+  - _/PATH/TO/node_ can be found using `which node`
+  - _RELATIVE/CONFIG.JSON_ is the relative path from _index.js_ for the configuration file to use
 
 # running in development
-* once
+* to run once for testing
   - `npm start` or `node index.js configs.json`
-* repeatedly
+* to run repeatedly for simulating the production setup without editing your crontab
   - `npm run loop` or `node loop.js configs.json`
 
 # configuration
-index.js uses a configuration file. There is a sample included in the repository at [configs.json.sample](configs.json.sample). The name of the configuration file is passed to the script when you run the script.
 
-## configs.json
+## Sync configuration file
+_index.js_ uses a configuration file. There is a sample included in the repository at [configs.json.sample](configs.json.sample). The name of the configuration file is passed to the script when you run the script.
 
 * **source** The source directory to copy files from. This should be an absolute path _with_ a trailing slash.
 * **destination** The directory to copy files to. This should be an absolute path _without_ a trailing slash.
@@ -57,6 +59,7 @@ There is also a configuration file for the loop script. The loop script is meant
 # Troubleshooting
 
 * The sync script does not handle nested directories. Make sure the _source_ directory does not contain any directories.
+* The sync service has not been tested with ssh/remote directories. It is expected that any remote locations will be mounted locally before this script is run.
 * The sync script uses [log4js](https://npmjs.com/package/log4js) 
   - The script will normally log to rolling files in the [log/](log/) directory
   - to enable console logging add `{"type":"console"}` to the **appenders** array in [log4js_conf.json](log4js_conf.json)
