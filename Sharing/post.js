@@ -36,6 +36,7 @@ Postee.Types.VIDEO = 'video';
  * @param {string} a_configFilename path to the config json
  */
 var Poster = function(a_configFilename){
+  this.notifiers = [];
   this.configs = require(a_configFilename);
   this.logger = Logger.getLogger('Poster');
   this.timeoutTime = this.configs.processInterval;
@@ -54,6 +55,13 @@ var Poster = function(a_configFilename){
    * @type {Postee[]}
    */
   this.queue = [];
+};
+
+Poster.prototype.registerNotifier = function(notifier){
+  this.notifiers.push(notifier);
+  this.logger.debug('[registerNotifier] now',
+                    this.notifiers.length,
+                    'notifiers');
 };
 
 Poster.prototype.addPhoto = function(filename){
@@ -170,6 +178,7 @@ Poster.prototype.cleanQueue = function(numItems){
                         'posted to all services',
                         postee.getFilename());
       this.queue.splice(posteeI, 1);
+      this.updateNotifiers(postee.getFilename(), 'posted');
     }
     //if this item has failed too many times, remove it from the queue
     postee.attempts++;
@@ -178,8 +187,16 @@ Poster.prototype.cleanQueue = function(numItems){
                        'file failed to upload too many times',
                        postee.getFilename());
       this.queue.splice(posteeI, 1);
+      this.updateNotifiers(postee.getFilename(), 'failed');
     }
   }
+};
+
+Poster.prototype.updateNotifiers = function(filename, state){
+  this.notifiers.forEach(function(notifier, index){
+    this.logger.debug('[updateNotifiers] updating notifier',index);
+    notifier.update(filename, state);
+  }.bind(this));
 };
 
 Poster.prototype.processQueue = function(){

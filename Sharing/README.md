@@ -10,6 +10,7 @@ This Node.js® server posts videos and photos to the Museum's Facebook and Tumbl
   2. [facebookToken.json](#facebooktokenjson)
   3. [tumblrToken.json](#tumblrtokenjson)
 0. [Running](#running)
+  0. [Endpoints](#endpoints)
 0. [Troubleshooting](#troubleshooting)
 
 # dependencies
@@ -132,18 +133,29 @@ or init.d in which case you will configure those services to execute
 `/PATH/TO/node /PATH/TO/REPO/Sharing/server.js ./config.json` 
 where _/PATH/TO/node_ can be determined by running `which node`.
 
-In order to upload Videos, post the filename (relative to **media.localpath**
-in _config.json_) of the video to `/video` like so: 
-`curl --data "filename=performance/myvideo.mov" http://localhost:8013/video`
-
-In order to upload Photos, post the filename (relative to **media.localpath**
-in _config.json_) of the photo to `/photo` like so: 
-`curl --data "filename=anythingmuppets/myphoto.png" http://localhost:8013/photo`
-
 If the computer you are working from cannot serve files to the internet, 
 you can use ngrok and a static server to open a tunnel to the media directory 
 (**media.localpath** in _config.json_). 
 Follow the instructions in [#setup-ngrok]() 
+
+## endpoints
+
+* **POST /video** In order to upload Videos, 
+post the filename (relative to **media.localpath** in _config.json_) 
+of the video to `/video` like so: 
+`curl --data "filename=performance/myvideo.mov" http://localhost:8013/video`
+* **POST /photo** In order to upload Photos, 
+post the filename (relative to **media.localpath** in _config.json_) 
+of the photo to `/photo` like so: 
+`curl --data "filename=anythingmuppets/myphoto.png" http://localhost:8013/photo`
+* **GET /state** You can check the status of files like so:
+`curl http://localhost:8013/state?filename=anythingmuppets/myphoto.png`
+  - This endpoint returns a JSON-formatted response: `{"filename":"FILENAME","type":"TYPE","state":"STATE"}`
+    * _FILENAME_ will match the queried filename
+    * _TYPE_ will be either `photo` or `video`
+    * _STATE_ will be either `unknown`, `posting`, `posted`, or `failed`
+      - _unknown_ means the file was never submitted for posting, or it has since been deleted from the server.
+      - _failed_ means the file failed to post too many times. It can be re-submitted for posting.
 
 # Troubleshooting
 

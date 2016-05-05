@@ -16,6 +16,7 @@
     "postServer":"WARN",
     "Poster":"WARN",
     "FBPoster":"WARN",
-    "TumblPoster":"WARN"
+    "TumblPoster":"WARN",
+    "persister":"WARN"
   }
 }
