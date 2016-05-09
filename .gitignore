@@ -45,3 +45,5 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 npm-debug.log
+
+!*.xml
