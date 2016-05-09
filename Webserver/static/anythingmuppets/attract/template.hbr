@@ -1,11 +1,7 @@
 <div id='{{name}}' class='page'>
-  {{!-- 
-    Container for background video
-    * Edit "video" in data.json to change what's loaded below
-  --}}
   <div class='background'>
       <video class="fillContainer attractVideo" autoplay loop muted>
-          <source src="anythingmuppets/{{name}}/{{video}}" type="video/mp4">
+          <source src="video/am_attract.mp4" type="video/mp4">
       </video>
   </div>
   <div class='container fillAbs centeredContainer column noselect' style="z-index:2">
