@@ -49,6 +49,10 @@ namespace mmi {
         ofParameter<bool> reloadCameras;
         ofParameter<int> whichStream;
         
+        map<string,ofVideoPlayer> videos;
+        
+        void startRecordingEvt( string & video );
+        
     protected:
         
         bool bStreaming;

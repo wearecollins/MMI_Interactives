@@ -42,15 +42,37 @@ namespace mmi {
             gui->add( streamMgr.params );
         }
         
+        // load videos for sound playback
+        ofDirectory vDir;
+        int n = vDir.listDir(ofToDataPath("clips"));
+        for ( auto i=0; i<n;i++){
+            auto n = vDir.getName(i);
+            n = ofSplitString(n, ".")[0];
+            
+            cout <<"SETUP "<<n<<endl;
+            
+            videos[n] = ofVideoPlayer();
+            videos[n].load(ofToDataPath(vDir.getPath(i)));
+            videos[n].setLoopState(OF_LOOP_NONE);
+        }
+        
         // setup message handler, which opens its own ws:// client
         messageHdlr.setup();
         
         // listen to events from message parser
         ofAddListener(messageHdlr.onSwitchCamera, this, &CameraApp::setStreamCamera);
+        
         ofAddListener(messageHdlr.onStartRecording, &recordMgr, &mmi::RecordManager::startRecordingEvt);
+        
+        ofAddListener(messageHdlr.onStartRecording, this, &mmi::CameraApp::startRecordingEvt);
+        
         ofAddListener(messageHdlr.onCaptureImage, &recordMgr, &mmi::RecordManager::takePhotoEvt);
+        
         ofAddListener(recordMgr.onFinishedRecording, &messageHdlr, &mmi::MessageHandler::onVideoRecorded);
+        
         ofAddListener(recordMgr.onFinishedCapture, &messageHdlr, &mmi::MessageHandler::onImageCaptured);
+        
+        // complete gui setup
         
         gui->add( recordMgr.params );
         gui->add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
@@ -176,6 +198,17 @@ namespace mmi {
     void CameraApp::setStreamCamera( int & which ){
         if (which < cameraMgr.getNumCameras()){
             whichStream.set(which);
+        }
+    }
+    
+    //--------------------------------------------------------------
+    void CameraApp::startRecordingEvt( string & video ){
+        // play video sound!
+        // this comes in as video:name
+        video = ofSplitString(video, ":")[0];
+        cout << "PLAY "<<video<<":"<<(videos.count(video))<<endl;;
+        if ( videos.count(video) > 0 ){
+            videos[video].play();
         }
     }
 }

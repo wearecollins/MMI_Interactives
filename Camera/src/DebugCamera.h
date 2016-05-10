@@ -147,7 +147,11 @@ namespace mmi {
             this->guid = guid;
             this->uid  = ofToInt(guid);
             
-            camera.setDeviceId(uid);
+            if ( this->uid > 2 ){
+                this->uid = 1;
+            }
+            
+            camera.setDeviceID(uid);
             bSetup = camera.setup(width,height);
             return bSetup;
         }
