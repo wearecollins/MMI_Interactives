@@ -38,7 +38,7 @@ html, body {
 
 @media (max-width: 500px) {
   html, body {
-    font-size: 14px;
+    font-size: 50px;
   }
 }
 
@@ -186,20 +186,17 @@ body,
   position: absolute;
 }
 
-#loading{
+#loading {
   background-color:black;
   color:white;
   align-items: center;
 }
 
-/* .page .container{
-  position:absolute;
-  height:100vh;
-  width:100vw;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-} */
+.page.disabled{
+  display:none;
+  z-index: 0;
+  pointer-events: none;
+}
 
 .page .container .content{
   flex-grow:4;
@@ -215,11 +212,6 @@ body,
   flex-direction:row;
   align-items:center;
   justify-content:space-around;
-}
-
-.page.disabled{
-  display:none;
-  z-index: 0;
 }
 
 .page .container .buttons div{
@@ -390,7 +382,8 @@ body,
 }
 
 .page {
-    z-index: 1;
+  z-index: 1;
+  pointer-events: all;
 }
 
 .fillAbs, .page, .background {
