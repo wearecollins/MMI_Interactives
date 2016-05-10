@@ -5,6 +5,6 @@
     </div>
     <div class="type_med">Share your Anything Muppet</div>
   </div>
-  <div id="amContainer" class='fillAbs column'>
+  <div id="amContainer" class='fillAbs leftContainer'>
   </div>
 </div>

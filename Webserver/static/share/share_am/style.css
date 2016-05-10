@@ -40,16 +40,21 @@
 
 #amContainer {
 	overflow: scroll;
+	flex-wrap: wrap;
 }
 
 .shareRow {
 	background: #E5E5E5;
-	height: 25vh;
-	width: 100vw;
+	/* height: calc(100vh/3); */
+	width: calc(100%/3);
+}
+
+#{{name}} .shareRow {
+	width: calc(100%/5);
 }
 
 .srImage {
-	height: 100%;
+	width: 100%;
 }
 
 .evenRow {
@@ -57,7 +62,7 @@
 }
 
 .srType {
-	width: 60%;
+	/* width: 60%; */
 	text-align: left;
 }
 

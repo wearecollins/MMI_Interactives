@@ -39,9 +39,10 @@
 }
 
 .srVideo {
-	height: 100%;
+	width: 100%;
 }
 
 #perfContainer {
 	overflow: scroll;
+	flex-wrap: wrap;
 }

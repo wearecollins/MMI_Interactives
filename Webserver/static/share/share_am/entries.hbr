@@ -1,14 +1,14 @@
 {{#each images}}
-<div class="leftContainer container shareRow {{#if_even @index}}evenRow{{/if_even}}" onclick="window.events.dispatchEvent( new CustomEvent('selectAM', {detail:{'timestamp':'{{{timestamp}}}','image':'{{{image}}}', 'path':'{{{path}}}', 'name':'{{{name}}}' } }));">
+<div class="leftContainer container shareRow column {{#if_even @index}}evenRow{{/if_even}}" onclick="window.events.dispatchEvent( new CustomEvent('selectAM', {detail:{'timestamp':'{{{timestamp}}}','image':'{{{image}}}', 'path':'{{{path}}}', 'name':'{{{name}}}' } }));">
 	<img class="srImage" src="{{image}}" />
-	<div class="srType type_med" style="padding-left:2vw">
+	<div class="srType type_sm" style="width:100%">
 		<span style="text-decoration: underline;
 " class="type_mini">{{timestamp}}</span>
 		<br>
-		Anything Muppet "{{{name}}}"
+		"{{{name}}}"
 	</div>
-	<div class="srButton">
+<!-- 	<div class="srButton">
 		<img class="button_mini" src="svg/__share.svg"  />
-	</div>
+	</div> -->
 </div>
 {{/each}}

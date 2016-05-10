@@ -4,7 +4,7 @@
   "continuousMode":false,
   "additionalStatic":[
   {
-    "diskPath":"/Users/brettrenfer/Dropbox/Code/OF/of_v0.X.X_github/apps/MMI_Interactives/Sharing/media/",
+    "diskPath":"/Users/brettrenfer/Dropbox/MMI-Henson/04_Creative_Assets/code/openFrameworks/apps/MMI_Interactives/Sharing/media/",
     "webPath":"/media"
   }],
   "disableKeyNext":true,
