@@ -111,9 +111,13 @@ var perform = function(data, configHandler){
             }
             // this tells OF to capture
             window.events.dispatchEvent(new CustomEvent('record_video', detail));
-          }
+            videoDiv.volume = 0;
+          } else {
 
+            videoDiv.volume = 1;
+          }
           videoDiv.play();
+
         });
       });
     });
