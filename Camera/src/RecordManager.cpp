@@ -51,7 +51,7 @@ namespace mmi {
     }
 
     //--------------------------------------------------------------
-    void RecordManager::update( const ofPixels & cameraOne, const ofPixels & cameraTwo ){
+    void RecordManager::update( ofPixels & cameraOne, ofPixels & cameraTwo ){
         if(bRecording){
             auto t = ofGetElapsedTimeMillis();
             
@@ -70,11 +70,28 @@ namespace mmi {
             
             bool success = false;
             
+            static ofPixels yuvOut;
+            static ofPixels rgbOut;
+            
+            static auto code = CV_RGB2YUV;//_I420;
+            
             if ( whichCamera == 0){
-                success = vidRecorder.addFrame(cameraOne);
+                if ( cameraOne.getNumChannels() == 1 ){
+                    ofxCv::convertColor(cameraOne, rgbOut, CV_GRAY2RGB);
+                    ofxCv::convertColor(rgbOut, yuvOut, code);
+                } else {
+                    ofxCv::convertColor(cameraOne, yuvOut, code);
+                }
             } else {
-                success = vidRecorder.addFrame(cameraTwo);
+                if ( cameraOne.getNumChannels() == 1 ){
+                    ofxCv::convertColor(cameraTwo, rgbOut, CV_GRAY2RGB);
+                    ofxCv::convertColor(rgbOut, yuvOut, code);
+                } else {
+                    ofxCv::convertColor(cameraTwo, yuvOut, code);
+                }
             }
+            
+            success = vidRecorder.addFrame(yuvOut);
             
             lastFrameAdded = t;
             

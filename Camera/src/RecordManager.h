@@ -9,6 +9,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxCv.h"
 #include "ofxGui.h"
 #include "ofxVideoRecorder.h"
 
@@ -21,7 +22,7 @@ namespace mmi {
         
         void setup();
         // update for video-based app(s)
-        void update( const ofPixels & cameraOne, const ofPixels & cameraTwo );
+        void update( ofPixels & cameraOne, ofPixels & cameraTwo );
         
         // update for image-based app(s)
         void update( const ofPixels & cameraOne );
