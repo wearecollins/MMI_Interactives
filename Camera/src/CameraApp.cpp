@@ -10,7 +10,7 @@
 namespace mmi {
 
     //--------------------------------------------------------------
-    void CameraApp::setup( bool bDoStream ){
+    void CameraApp::setup( bool bDoStream, string settingsFile ){
         this->bStreaming = bDoStream;
         
         ofSetLogLevel(OF_LOG_VERBOSE);
@@ -25,7 +25,7 @@ namespace mmi {
         // first: get what camera setup we want
         ofXml settings;
         string xml = "anythingmuppets.xml";
-        if ( settings.load( ofToDataPath( "settings.xml") ) ){
+        if ( settings.load( ofToDataPath( settingsFile ) ) ){
             int mode = settings.getValue("Mode", 0);
             if ( mode == 0 ){
                 xml = "performance.xml";

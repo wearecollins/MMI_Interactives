@@ -7,7 +7,7 @@
 	<Advanced_params>
 			<File_name/>
 			<File_extension>.mp4</File_extension>
-			<Pixel_Format>gray</Pixel_Format>
+			<Pixel_Format>yuv420p</Pixel_Format>
 			<Video_codec>mpeg4</Video_codec>
 			<Bitrate>2000</Bitrate>
             <Output_Folder>../../../../../Webserver/static/output</Output_Folder>
@@ -16,7 +16,7 @@
 	</Recording_params>
 	<Stream_which_camera>0</Stream_which_camera>
 <group/>
-<Mode>0</Mode>
+<Mode>1</Mode>
 	<Camera_1_settings>
 		<Guid>b09d0100ed927f</Guid>
 		<Bayer_GPU_on_cv_off>2</Bayer_GPU_on_cv_off>

@@ -24,12 +24,13 @@
 		012A52591CAF247F00A74858 /* Tracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012A524C1CAF247F00A74858 /* Tracker.cpp */; };
 		012A525A1CAF247F00A74858 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012A524D1CAF247F00A74858 /* Utilities.cpp */; };
 		012A525B1CAF247F00A74858 /* Wrappers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012A524E1CAF247F00A74858 /* Wrappers.cpp */; };
-		014712591CAB2E290091E0DB /* settings.xml in Resources */ = {isa = PBXBuildFile; fileRef = 014712581CAB2E290091E0DB /* settings.xml */; };
 		01793FE11CA59E8E00D8DA83 /* ofApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE01CA59E8E00D8DA83 /* ofApp.mm */; };
 		01793FE91CA59F1E00D8DA83 /* BlackFlyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */; };
 		01793FEA1CA59F1E00D8DA83 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE51CA59F1E00D8DA83 /* CameraManager.cpp */; };
 		01793FEB1CA59F1E00D8DA83 /* RecordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE71CA59F1E00D8DA83 /* RecordManager.cpp */; };
 		01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01793FED1CA59F9B00D8DA83 /* MainMenu.xib */; };
+		01C3FBE71CE282820005502F /* settings_am.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01C3FBE51CE282820005502F /* settings_am.xml */; };
+		01C3FBE81CE282820005502F /* settings_perf.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01C3FBE61CE282820005502F /* settings_perf.xml */; };
 		01DADA801CD1635F00F1A2C3 /* anythingmuppets.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01DADA7E1CD1635F00F1A2C3 /* anythingmuppets.xml */; };
 		01DADA811CD1635F00F1A2C3 /* performance.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01DADA7F1CD1635F00F1A2C3 /* performance.xml */; };
 		01F10D071CA5EBBD006937FA /* CameraApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D031CA5EBBD006937FA /* CameraApp.cpp */; };
@@ -324,7 +325,6 @@
 		012A524C1CAF247F00A74858 /* Tracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tracker.cpp; sourceTree = "<group>"; };
 		012A524D1CAF247F00A74858 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		012A524E1CAF247F00A74858 /* Wrappers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wrappers.cpp; sourceTree = "<group>"; };
-		014712581CAB2E290091E0DB /* settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = settings.xml; path = Resources/settings.xml; sourceTree = "<group>"; };
 		01793FE01CA59E8E00D8DA83 /* ofApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofApp.mm; sourceTree = "<group>"; };
 		01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlackFlyCamera.cpp; path = ../Camera/src/BlackFlyCamera.cpp; sourceTree = "<group>"; };
 		01793FE41CA59F1E00D8DA83 /* BlackFlyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlackFlyCamera.h; path = ../Camera/src/BlackFlyCamera.h; sourceTree = "<group>"; };
@@ -334,6 +334,8 @@
 		01793FE81CA59F1E00D8DA83 /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordManager.h; path = ../Camera/src/RecordManager.h; sourceTree = "<group>"; };
 		01793FED1CA59F9B00D8DA83 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = src/MainMenu.xib; sourceTree = "<group>"; };
 		01793FF01CA5BA7400D8DA83 /* SysCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SysCommand.h; sourceTree = "<group>"; };
+		01C3FBE51CE282820005502F /* settings_am.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = settings_am.xml; path = Resources/settings_am.xml; sourceTree = "<group>"; };
+		01C3FBE61CE282820005502F /* settings_perf.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = settings_perf.xml; path = Resources/settings_perf.xml; sourceTree = "<group>"; };
 		01DADA7E1CD1635F00F1A2C3 /* anythingmuppets.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = anythingmuppets.xml; path = Resources/anythingmuppets.xml; sourceTree = "<group>"; };
 		01DADA7F1CD1635F00F1A2C3 /* performance.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = performance.xml; path = Resources/performance.xml; sourceTree = "<group>"; };
 		01F10D031CA5EBBD006937FA /* CameraApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraApp.cpp; path = ../Camera/src/CameraApp.cpp; sourceTree = "<group>"; };
@@ -406,7 +408,7 @@
 		D00A66F20DF41FFD0B32A05B /* AppDelegate.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = AppDelegate.m; path = src/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* FrontendDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrontendDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* AnythingMuppetsDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnythingMuppetsDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -1007,7 +1009,8 @@
 			children = (
 				01DADA7E1CD1635F00F1A2C3 /* anythingmuppets.xml */,
 				01DADA7F1CD1635F00F1A2C3 /* performance.xml */,
-				014712581CAB2E290091E0DB /* settings.xml */,
+				01C3FBE51CE282820005502F /* settings_am.xml */,
+				01C3FBE61CE282820005502F /* settings_perf.xml */,
 				01F8BD521CAAE3790011B550 /* clips */,
 				01793FED1CA59F9B00D8DA83 /* MainMenu.xib */,
 			);
@@ -1331,7 +1334,7 @@
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				6948EE371B920CB800B5AC1A /* local_addons */,
-				E4B69B5B0A3A1756003C02F2 /* FrontendDebug.app */,
+				E4B69B5B0A3A1756003C02F2 /* AnythingMuppetsDebug.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1370,9 +1373,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E4B69B5A0A3A1756003C02F2 /* Frontend */ = {
+		E4B69B5A0A3A1756003C02F2 /* AnythingMuppets */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "Frontend" */;
+			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "AnythingMuppets" */;
 			buildPhases = (
 				E4B69B580A3A1756003C02F2 /* Sources */,
 				E4B69B590A3A1756003C02F2 /* Frameworks */,
@@ -1386,9 +1389,9 @@
 			dependencies = (
 				E4EEB9AC138B136A00A80321 /* PBXTargetDependency */,
 			);
-			name = Frontend;
+			name = AnythingMuppets;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* FrontendDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* AnythingMuppetsDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1408,7 +1411,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "Frontend" */;
+			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "AnythingMuppets" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1429,7 +1432,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				E4B69B5A0A3A1756003C02F2 /* Frontend */,
+				E4B69B5A0A3A1756003C02F2 /* AnythingMuppets */,
 			);
 		};
 /* End PBXProject section */
@@ -1449,12 +1452,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01C3FBE71CE282820005502F /* settings_am.xml in Resources */,
 				01DADA801CD1635F00F1A2C3 /* anythingmuppets.xml in Resources */,
-				014712591CAB2E290091E0DB /* settings.xml in Resources */,
 				01F8BD531CAAE3790011B550 /* clips in Resources */,
 				012A51F11CAF235600A74858 /* LICENSE in Resources */,
 				01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */,
 				01DADA811CD1635F00F1A2C3 /* performance.xml in Resources */,
+				01C3FBE81CE282820005502F /* settings_perf.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1640,7 +1644,10 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
-				GCC_PREPROCESSOR_DEFINITIONS = NO_TURBO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NO_TURBO,
+					FRONTEND_AM,
+				);
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "APPSTORE=1";
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
@@ -1690,7 +1697,7 @@
 					WebKit,
 					../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AnythingMuppets;
 				WRAPPER_EXTENSION = app;
 				baseConfigurationReference = E4EB6923138AFD0F00A09F29;
 			};
@@ -1857,7 +1864,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
-				GCC_PREPROCESSOR_DEFINITIONS = NO_TURBO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NO_TURBO,
+					FRONTEND_AM,
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
 					src,
@@ -1906,7 +1916,7 @@
 					WebKit,
 					../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)Debug";
+				PRODUCT_NAME = AnythingMuppetsDebug;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1925,7 +1935,10 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
-				GCC_PREPROCESSOR_DEFINITIONS = NO_TURBO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NO_TURBO,
+					FRONTEND_AM,
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
 					src,
@@ -1974,7 +1987,7 @@
 					WebKit,
 					../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AnythingMuppets;
 				WRAPPER_EXTENSION = app;
 				baseConfigurationReference = E4EB6923138AFD0F00A09F29;
 			};
@@ -1983,7 +1996,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "Frontend" */ = {
+		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "AnythingMuppets" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B4E0A3A1720003C02F2 /* Debug */,
@@ -1993,7 +2006,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "Frontend" */ = {
+		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "AnythingMuppets" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B600A3A1757003C02F2 /* Debug */,

@@ -19,6 +19,12 @@
 // comment out to turn off keyboard debugging!
 #define DEBUG_ZONE
 
+#ifdef FRONTEND_AM
+#define SETTINGS_FILE "settings_am.xml"
+#else
+#define SETTINGS_FILE "settings_perf.xml"
+#endif
+
 namespace mmi {
 
     enum Mode {
@@ -30,7 +36,7 @@ namespace mmi {
     class CameraApp
     {
     public:
-        void setup( bool bDoStream = true );
+        void setup( bool bDoStream = true, string settings = "settings.xml" );
         void update();
         void draw();
         
