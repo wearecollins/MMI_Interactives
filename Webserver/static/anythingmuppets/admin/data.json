@@ -1,8 +1,9 @@
-{"name":"admin",
- "disableTimeout":true,
- "buttons":[{"type":"cancel","text":"cancel"},
-            {"type":"admin_save","text":"save"}],
- "configs":[{"type":"number","key":"timeout"},
-            {"type":"number","key":"countdownTime"},
-            {"type":"boolean","key":"continuousMode"}]
+{
+	"name":"admin",
+ 	"disableTimeout":true,
+ 	"configs":[
+ 		{"type":"number","key":"timeout"},
+        {"type":"boolean","key":"doStream"},
+        {"type":"string", "key":"shareServer"}
+    ]
 }

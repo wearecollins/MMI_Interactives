@@ -1,0 +1,16 @@
+/* Overall */
+#{{name}} .background {
+	background: white;
+}
+
+#{{name}} .centeredContainer {
+	justify-content:flex-start;
+}
+
+#buttonAdminSave {
+  transition: opacity ease-in-out .2s;
+}
+
+#buttonAdminSave.disabled {
+  opacity: .4;
+}

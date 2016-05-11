@@ -1,6 +1,6 @@
 <div id='{{name}}' class='page'>
   <div class='background topL'>
-    <video id="video" class="fillContainer intoVideo">
+    <video id="video" class="fillContainer introVideo">
         <source src="video/am_intro.mp4" type="video/mp4">
     </video>
   </div>

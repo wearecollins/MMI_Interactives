@@ -1,28 +1,46 @@
 <div id='{{name}}' class='page'>
   <div class='background'></div>
-  <div class='container'>
-    <div class='content'>
-      {{#each configs}}
-        <div class='config'>
-          <label for='config_{{key}}'>{{key}}</label>
-          {{#switch type}}
-            {{#case 'number'}}
-              <input type='number' id='config_{{key}}'></input>
-            {{/case}}
-            {{#case 'boolean'}}
-              <input type='checkbox' id='config_{{key}}'></input>
-            {{/case}}
-          {{/switch}}
-        </div>
-      {{/each}}
-    </div>
-    <div class='buttons'>
-      {{#each buttons}}
-      <div class='{{type}}' 
-           onclick="window.events.dispatchEvent(new Event('{{type}}'));">
-        {{text}}
+  <div class='centeredContainer column container fillAbs noselect' style="z-index:2">
+    <div class="type_lg">Admin</div>
+
+    <div class="column">
+      <div class="adminEl">
+          <div class="type_med padding_sm">Startover timeout (minutes)</div>
+          <form oninput="x.value=parseInt(config_timeout.value)" class="type_sm">
+            1m
+            <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" type="range" id="config_timeout" name="a" value="1" step="1" min="1" max="15">
+            15m
+            <output name="x" for="config_timeout"></output>
+          </form>
       </div>
-      {{/each}}
+
+      <div class="adminEl centeredContainer column">
+        <div class="type_med padding_sm">Mode (frontend/stream)</div>
+        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_doStream" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />
+         <label for="config_doStream"></label>
+      </div>
+
+      <div class="adminEl">
+        <div class="type_med padding_sm">Share Server Address</div>
+        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_shareServer" class="borderInput type_sm" />
+      </div>
+
+      <div class="adminEl">
+        <div class="type_med padding_sm">Shutdown machine</div>
+        <button onclick="window.events.dispatchEvent('shutdown')" class="shutdownButton type_sm">Shutdown</button>
+      </div>
+
+      <div class="bottomCenteredContainer noselect" style="z-index:2; height:30vh; bottom:0">
+          <div id="buttonAdminSave" class="column" onclick="window.events.dispatchEvent(new Event('saveAdmin'));">
+              <img src="svg/__select.svg" class="button_sm padding_sm" />
+              <div class="type_med padding_sm">save</div>
+          </div>
+          <div class="column" onclick="window.events.dispatchEvent(new Event('next'));">
+              <img src="svg/__done.svg" class="button_sm padding_sm" />
+              <div class="type_med padding_sm">cancel</div>
+          </div>
+      </div>
     </div>
+
   </div>
 </div>

@@ -1,13 +1,6 @@
 {
 	"name":"script",
- 	"buttons":[
- 		{
- 			"type":"start","text":"start building"
- 		},
- 		{
- 			"type":"done","text":"done building"
- 		}
- 	],
+	"disableTimeout":false,
  	"prompt_open":"open the drawers <br>and start building",
  	"prompt_spin":"spin the puppet <br>to test on camera",
  	"scripts":[

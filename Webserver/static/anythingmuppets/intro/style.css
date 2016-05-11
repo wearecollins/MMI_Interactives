@@ -2,6 +2,7 @@
 	background-color: rgba(0,0,0,50);
 }
 
+/* Transition off */
 #{{name}}.disabled{
   display:flex;
   /* animation-name: {{name}}animateOff; */
@@ -11,6 +12,7 @@
   animation-fill-mode:forwards;
 }
 
+/* Transition to AM photo */
 #{{name}}.special{
   display:flex;
   animation-name: animateOff;
@@ -19,11 +21,14 @@
   animation-fill-mode:forwards;
 }
 
+/* Main animation in */
 #{{name}} {
   animation-name: animateIn;
   animation-duration: 1s;
   animation-fill-mode:forwards;
 }
+
+/* Animate buttons in/out */
 
 #{{name}}Buttons.disabled {
   animation-name: animateOffBotton;
@@ -31,9 +36,17 @@
   animation-fill-mode:forwards;
 }
 
-
 #{{name}}Buttons.enabled {
   animation-name: animateUpScreen;
   animation-duration: 1s;
   animation-fill-mode:forwards;
+}
+
+/* Video: lock to size */
+.introVideo {
+  /* 
+  The video is 1080x1920; will scale up but 
+  shouldn't scale down below its default size
+   */
+  min-width: 1080px;
 }

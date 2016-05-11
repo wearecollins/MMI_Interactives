@@ -7,7 +7,7 @@ var intro = function(/*manager*/){
     clearTimeout(pauseT);
 
     var me = document.getElementById("intro");;
-  	videoDiv = me.getElementsByClassName("intoVideo")[0];
+  	videoDiv = me.getElementsByClassName("introVideo")[0];
     videoDiv.addEventListener("timeupdate", onTimeupdate);
 
   	videoDiv.play();
