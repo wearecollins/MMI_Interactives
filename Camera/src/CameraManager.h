@@ -3,7 +3,7 @@
 //  CameraTest
 //
 //  Created by Brett Renfer on 3/21/16.
-//  Copyright (c) 2016 __MyCompanyName__. All rights reserved.
+//  .
 //
 
 #pragma once
