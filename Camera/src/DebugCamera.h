@@ -42,7 +42,7 @@ namespace mmi {
         }
         
         virtual bool isAllocated(){
-            return false;
+            return true;
         }
         
 //        template<class T>
@@ -109,7 +109,7 @@ namespace mmi {
         }
         
         bool isAllocated(){
-            return false;
+            return true;
         }
         
         ofPS3Eye & getImage(){
@@ -175,7 +175,7 @@ namespace mmi {
         }
         
         bool isAllocated(){
-            return false;
+            return true;
         }
         
         ofVideoGrabber & getImage(){

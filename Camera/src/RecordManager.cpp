@@ -83,7 +83,7 @@ namespace mmi {
                     ofxCv::convertColor(cameraOne, yuvOut, code);
                 }
             } else {
-                if ( cameraOne.getNumChannels() == 1 ){
+                if ( cameraTwo.getNumChannels() == 1 ){
                     ofxCv::convertColor(cameraTwo, rgbOut, CV_GRAY2RGB);
                     ofxCv::convertColor(rgbOut, yuvOut, code);
                 } else {

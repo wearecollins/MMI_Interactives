@@ -36,7 +36,7 @@ namespace mmi {
     class CameraApp
     {
     public:
-        void setup( bool bDoStream = true, string settings = "settings.xml" );
+        void setup( bool bDoStream = true, string settings = SETTINGS_FILE );
         void update();
         void draw();
         
