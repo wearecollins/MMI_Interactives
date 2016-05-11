@@ -14,6 +14,7 @@ var Configer = require(Path.join(__dirname, 'configer.js'));
 var WebSocket = require(Path.join(__dirname, 'websockets.js'));
 var RemoteLogs = require(Path.join(__dirname, 'log4javascript_to_log4js.js'));
 var DirLister = require(Path.join(__dirname, 'dirlister.js'));
+var ComputerControl = require(Path.join(__dirname, 'computer_control.js'));
 
 // set up logging
 Logger.configure(require('./log4js_conf.json'));
@@ -54,6 +55,7 @@ config.load('static/'+station+'/config.json').
     app.use(Logger.connectLogger(
               Logger.getLogger('express', {level: 'auto'})));
     app.use(bodyParser.urlencoded({extended:true}));
+    app.use('/comp', ComputerControl.control());
     app.use(RemoteLogs.log(Logger));
     {
       //create full webpath <-> filepath mapping for directory lister
@@ -95,7 +97,7 @@ config.load('static/'+station+'/config.json').
     
     // listen to connections on the given port/interface
     var port = 8080;
-    server.listen(port, function(){
+    server.listen(port, '127.0.0.1', function(){
       logger.info('listening on port',port);
     });
   });

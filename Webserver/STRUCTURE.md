@@ -77,8 +77,32 @@ app.use('/list', DirLister.list([{diskPath:'static/', webPath:'/'}]));
 app.use(express.static('static'));
 ```
 
+### Computer Control
+
+Provides an endpoint for controlling the computer.
+Currently shutdown and restart. Implemented as Express Middleware.
+For this to work the server needs permission to run `/sbin/shutdown` 
+without providing a password. You can do this by either:
+
+* running the server as root
+  - `sudo /PATH/TO/npm start` where _/PATH/TO/npm_ can be determined using `which npm` 
+* allowing the user that runs the server to run that command.
+  - run `sudo -E visudo` to edit the permission file and add `[USER] ALL=NOPASSWD:/sbin/shutdown` to the end of the file.
+    * where _[USER]_ is the username of the user that is running the server. 
+You can access this via the command `whoami`.
+
+```
+var Express = require('express');
+var CompControl = require('./computer_control.js');
+
+var app = Express();
+app.use('/comp', CompControl.control());
+```
+
 ## Endpoints
 
+* **POST /comp/shutdown** Shuts down the computer
+* **POST /comp/restart** Restarts the computer
 * **GET /list** Returns a directory listing of any queried directory:
 `curl http://localhost:8080/list?path=static/`
 * **POST /** Logs the value of _message_ in the POST body
