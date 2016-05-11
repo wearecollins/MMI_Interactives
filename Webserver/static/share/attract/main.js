@@ -1,7 +1,12 @@
 var attract = function(data, configHandler){
 	
+	// rate at which to refresh all data
 	var lastRefreshed = 0;//Date().now();
-	var refreshRate	  = 60 * .2 * 1000; // every 5 minutes
+	var refreshRate	  = 60 * 5 * 1000; // every 5 minutes
+
+	// Config on whether to show image grid
+	// (Off by default)
+	var doGridBackground = false;
 
 	var images = {"data":[]};
 	var videos = {"data":[]};
@@ -42,8 +47,15 @@ var attract = function(data, configHandler){
 	var refreshInterval = null;
 	
 	this.enter = function(/*evt*/){
-		window.addEventListener( "perfData", buildPerfBg );
-		window.addEventListener( "amData", buildAMBG );
+
+		gridBackground = configHandler.get('gridBackground', false);
+
+		// ignore data events unless we're building background
+		// (these events are still picked up in other views!)
+		if ( gridBackground ){
+			window.addEventListener( "perfData", buildPerfBg );
+			window.addEventListener( "amData", buildAMBG );
+		}
 
 		var now = Date.now();
 		if (lastRefreshed == 0 || now -lastRefreshed > refreshRate ){

@@ -176,6 +176,9 @@ function Manager(states, transitions){
     //link publishers with subscribers
     ws.addTextHandler(eventHandler.handleJson.bind(eventHandler));
     eventHandler.addJsonNotifier(ws.send.bind(ws));
+
+    // listen to global 'check on streaming' event
+    window.addEventListener("refreshStreamMode", checkStreamSocket);
   }
 
   function initConfigHandler(){
@@ -248,12 +251,17 @@ function Manager(states, transitions){
     ws.connect('ws://'+window.location.host, 'node');
   }
 
+  var wasStreaming = false;
+
   function checkStreamSocket(){
     var doStream = configHandler.get('doStream', false);
     if (doStream == "true" || doStream == true ){
       ws.connect('ws://localhost:9091', 'oF');
-      console.log("STREAM SERVER");
+    } else if ( wasStreaming ){
+      ws.disconnect('ws://localhost:9091', 'oF');
     }
+
+    wasStreaming = doStream;
   }
   
 /*

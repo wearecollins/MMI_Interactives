@@ -26,8 +26,11 @@ var admin = function(data, configHandler){
 
     configHandler.set(configUpdate);
     disableButton();
-    
+  
+    // are we streaming now?
+    window.events.dispatchEvent(new Event("refreshStreamMode"));
   });
+
   this.enter = function(){
 
     for(var configI = data.configs.length - 1;

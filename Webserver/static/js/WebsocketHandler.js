@@ -9,6 +9,13 @@ function WebsocketHandler(){
    * @type {WebSocket[]}
    */
   var websockets = [];
+
+  /** 
+   * connections setup to kill
+   * @type {String} Name of ws
+   */
+  var websocketsToClose = [];
+
   /** 
    * functions to forward incoming binary data to
    * @type {function[]}
@@ -52,13 +59,48 @@ function WebsocketHandler(){
       removeWS(this);
       this.close();
       ws = undefined;
-      setTimeout(self.connect.bind(self, url, name), reconnectDelay);
+
+      // check if need to remove
+      var dontConnect = false;
+      for ( var i = websocketsToClose.length-1; i>=0; i--  ){
+        var n = websocketsToClose[i];
+        if ( n == name ){
+          dontConnect = true;
+          websocketsToClose.splice(i,1);
+        }
+      }
+      // try to reconnect if not on the 'dont connect' list
+      if ( !dontConnect ){
+        setTimeout(self.connect.bind(self, url, name), reconnectDelay);
+      }
     };
     ws.onopen = function(){
       log.info('connected to',name,url);
       addWS(ws, name);
     };
   };
+
+  this.disconnect = function disconnect(url, name){
+    var found = false;
+    for(var wsI = websockets.length - 1;
+        wsI >= 0;
+        wsI--){
+      if (websockets[wsI].name === name){
+        var ws = websockets[wsI].ws;
+        removeWs( ws );
+        ws.onclose = function(){return false;};
+        ws.close();
+        ws = undefined;
+        found = true;
+      }
+    }
+
+    // not a current socket, need to add to
+    // remove queue
+    if ( !found ){
+      websocketsToClose.push(name);
+    }
+  }
 
   /**
    * Sends a message to all connected servers.

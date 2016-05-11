@@ -1,38 +1,51 @@
-{{!--
- it is assumed that each page has one div wrapping it 
- with an id that matches the pages name.
---}}
 <div id='{{name}}' class='page'>
-  {{!--
-   the background and container divs are designed to layer
-   on top of one another
-  --}}
-  <div class='background'>
-    {{!-- 
-     use this space (or style the parent div) 
-     for customizing a full-screen background
-    --}}
-  </div>
-  <div class='container'>
-    {{!-- 
-     the content and buttons divs are used to balance the amount of space
-     given to the buttons
-    --}}
-    <div class='content'>
-      {{!-- any custom content should go in here --}}
-      This page intentionally left blank
-    </div>
-    <div class='buttons'>
-      {{!--
-       generally buttons are defined in the JSON 
-       and automatically populated and styled for a consistent UI
-      --}}
-      {{#each buttons}}
-      <div class='{{type}}' 
-           onclick="window.events.dispatchEvent(new Event('{{type}}'));">
-        {{text}}
+  <div class='background'></div>
+  <div class='centeredContainer column container fillAbs noselect' style="z-index:2">
+    <div class="type_lg">Admin</div>
+
+    <div id="formContainer" class="centeredContainer column">
+      <div class="adminEl">
+          <div class="type_med padding_sm">Startover timeout (minutes)</div>
+          <form oninput="x.value=parseInt(config_timeout.value)" class="type_sm">
+            1m
+            <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" type="range" id="config_timeout" name="a" value="1" step="1" min="1" max="15">
+            15m
+            <output name="x" for="config_timeout"></output>
+          </form>
       </div>
-      {{/each}}
+
+      <div class="adminEl centeredContainer column" style="">
+        <div class="type_med padding_sm">Freeplay mode (on/off)</div>
+        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_continuousMode" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />
+         <label for="config_continuousMode"></label>
+      </div>
+
+      <div class="adminEl centeredContainer column" style="">
+        <div class="type_med padding_sm">Mode (frontend/stream)</div>
+        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_doStream" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />
+         <label for="config_doStream"></label>
+      </div>
+
+      <div class="adminEl">
+        <div class="type_med padding_sm">Share Server Address</div>
+        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_shareServer" class="borderInput type_sm" />
+      </div>
+
+      <div class="adminEl centeredContainer column" style="">
+        <div class="type_med padding_sm">Shutdown machine</div>
+        <button onclick="window.events.dispatchEvent(new Event('shutdown'))" class="shutdownButton type_sm">Shutdown</button>
+      </div>
+    </div>
+
+    <div class="bottomCenteredContainer noselect" style="z-index:2; height:30vh; bottom:0">
+        <div id="buttonAdminSave" class="column" onclick="window.events.dispatchEvent(new Event('saveAdmin'));">
+            <img src="svg/__select.svg" class="button_sm padding_sm" />
+            <div class="type_med padding_sm">save</div>
+        </div>
+        <div class="column" onclick="window.events.dispatchEvent(new Event('cancel'));">
+            <img src="svg/__done.svg" class="button_sm padding_sm" />
+            <div class="type_med padding_sm">cancel</div>
+        </div>
     </div>
   </div>
 </div>

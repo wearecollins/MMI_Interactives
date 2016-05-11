@@ -1,0 +1,26 @@
+/* Overall */
+#{{name}} .background {
+	background: white;
+}
+
+#{{name}} .centeredContainer {
+	justify-content:flex-start;
+}
+
+#{{name}} {
+	text-align: left;
+}
+
+#formContainer {
+	height: 60vh;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+#buttonAdminSave {
+  transition: opacity ease-in-out .2s;
+}
+
+#buttonAdminSave.disabled {
+  opacity: .4;
+}

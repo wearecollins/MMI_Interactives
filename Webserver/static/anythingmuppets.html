@@ -17,7 +17,6 @@
 
     // Build array of pages
     var pages = [
-      'anythingmuppets/freeplay',
       'anythingmuppets/attract',
       'anythingmuppets/intro',
       'anythingmuppets/script',
@@ -33,11 +32,10 @@
     defaultMode.addGlobalTransition('cancel', 'anythingmuppets/attract');
     defaultMode.addGlobalTransition('special', 'anythingmuppets/share');
     
-    //we don't want the last state to go to freeplay.
     defaultMode.addTransition('anythingmuppets/thanks', 'next', 'anythingmuppets/attract');
 
-    var continuousMode = customTransitions.createMode('continuous');
-    continuousMode.addGlobalTransition('cancel', 'anythingmuppets/freeplay');
+    // var continuousMode = customTransitions.createMode('continuous');
+    // continuousMode.addGlobalTransition('cancel', 'anythingmuppets/freeplay');
 
     var manager = new Manager(pages, customTransitions);
   </script>

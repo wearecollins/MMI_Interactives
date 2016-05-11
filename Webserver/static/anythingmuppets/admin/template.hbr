@@ -27,7 +27,7 @@
 
       <div class="adminEl">
         <div class="type_med padding_sm">Shutdown machine</div>
-        <button onclick="window.events.dispatchEvent('shutdown')" class="shutdownButton type_sm">Shutdown</button>
+        <button onclick="window.events.dispatchEvent(new Event('shutdown'))" class="shutdownButton type_sm">Shutdown</button>
       </div>
 
       <div class="bottomCenteredContainer noselect" style="z-index:2; height:30vh; bottom:0">

@@ -1,4 +1,10 @@
-{"name":"blank",
-  "buttons":[{"type":"cancel","text":"cancel"},
-             {"type":"prev","text":"prev"},
-             {"type":"next","text":"next"}]}
+{
+	"name":"admin",
+ 	"disableTimeout":true,
+ 	"configs":[
+ 		{"type":"number","key":"timeout"},
+        {"type":"boolean","key":"continuousMode"},
+        {"type":"boolean","key":"doStream"},
+        {"type":"string", "key":"shareServer"}
+    ]
+}
