@@ -7,5 +7,6 @@
 	"imageWidth":1040,
 	"imageHeight":776,
 	"autoSize":true,
-	"doStream":false
+	"doStream":false,
+  "allowControl":true
 }

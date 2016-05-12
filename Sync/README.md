@@ -24,6 +24,8 @@ developed/tested/used with
 # setup
 * `npm install`
 * create _configs.json_ based on [configs.json.sample](configs.json.sample)
+  - the actual name of the file can be different since it is passed in as a
+command-line parameter
   - documentation [below](#configsjson)
 
 ## production
@@ -42,10 +44,14 @@ Place this at the bottom of that file to run the Sync script every minute:
 * to run repeatedly for simulating the production setup without editing your crontab
   - `npm run loop` or `node loop.js configs.json`
 
+**note**: _configs.json_ can be any relative path to a config file
+
 # configuration
 
 ## Sync configuration file
-_index.js_ uses a configuration file. There is a sample included in the repository at [configs.json.sample](configs.json.sample). The name of the configuration file is passed to the script when you run the script.
+_index.js_ uses a configuration file. There is a sample included in the 
+repository at [configs.json.sample](configs.json.sample). 
+The name of the configuration file is provided when you run the script.
 
 * **source** The source directory to copy files from. This should be an absolute path _with_ a trailing slash.
 * **destination** The directory to copy files to. This should be an absolute path _without_ a trailing slash.

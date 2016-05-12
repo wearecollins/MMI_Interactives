@@ -1,1 +1,1 @@
-{"countdownTime":3,"timeout":60,"continuousMode":false,"shareServer":"http://192.168.88.124:8013","aspect":1.33,"imageWidth":1040,"imageHeight":776,"autoSize":true,"doStream":false,"currentName":11}
+{"countdownTime":3,"timeout":60,"continuousMode":false,"shareServer":"http://192.168.88.124:8013","aspect":1.33,"imageWidth":1040,"imageHeight":776,"autoSize":true,"doStream":false,"currentName":11,"allowControl":true}

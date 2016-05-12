@@ -1,3 +1,13 @@
+0. [Instructions](#instructions)
+0. [Structure](#structure)
+0. [Configuration](#configuration)
+0. [Modules](#modules)
+  0. [Log4Javascript to Log4js](#log4javascript-to-log4js)
+  0. [Configer](#configer)
+  0. [Dirlister](#dirlister)
+  0. [Computer Control](#computer-control)
+0. [Endpoints](#endpoints)
+
 ## Instructions
 
 The server defaults to serving [demo.html](static/demo.html) and using [static/demo/config.json]() as the persistent configuration. You can use a different html file and config using the `--station` parameter: `npm start -- --station [STATION]`. This will default to serving _static/[STATION].html_ and loading configs from _static/[STATION]/config.json_
@@ -17,7 +27,27 @@ The design is as follows:
     - <PagePath>/template.hbr
     - <PagePath>/data.json
 
+## Configuration
+
+The persistent configs for stations are primarily used for controlling
+functionality of the front-end, however there are a few settings which
+effect the Node server itself:
+
+* **allowControl** set to a non-falsy value in order to enable 
+the _/comp/shutdown_ and _/comp/restart_ endpoints of the server. Enabling this will also
+restrict the server to only serving connection via the loopback interface,
+protecting the server from remote shutdowns.
+* **additionalStatic** set to an array of objects, each with _diskPath_ 
+and _webPath_ keys, to allow additional directories to be served via the
+static server and listed via the [directory lister](#dirlister).
+    - for example: `"additionalStatic":[{"diskPath":"/Users/user/docs/",
+"webPath":"/docs"}]` will allow the specified _diskPath_ to be accessible from 
+the _/docs_ endpoint of the server.
+
 ## Modules
+
+A few modules are used in this server which may be individually useful 
+in the future.
 
 ### Log4Javascript to Log4js
 
@@ -102,7 +132,9 @@ app.use('/comp', CompControl.control());
 ## Endpoints
 
 * **POST /comp/shutdown** Shuts down the computer
+  - only active if _allowControl_ is set to true in the station&apos;s config
 * **POST /comp/restart** Restarts the computer
+  - only active if _allowControl_ is set to true in the station&apos;s config
 * **GET /list** Returns a directory listing of any queried directory:
 `curl http://localhost:8080/list?path=static/`
 * **POST /** Logs the value of _message_ in the POST body
