@@ -57,7 +57,7 @@ The URL for accessing the server used for setting up authentication
 needs to be listed in the _App Domains_ list 
 and set up as the _Site URL_ for a Website Platform associated with the App.
 Both these settings are accessible in the _Basic_ section of the
-_Settings_ tab of your Facebook App.
+_Settings_ tab of your Facebook App. [Screenshot](facebook_app.jpg)
 
 Enter the Facebook App's ID and Secret into [config.json](#configjson)
 
@@ -66,7 +66,7 @@ You will need a [Tumblr app](https://www.tumblr.com/oauth/apps) to be
 able to post to Tumblr. 
 
 The URL for accessing the server used for setting up authentication needs to 
-be set up as the _Default callback URL_ of the Tumblr App.
+be set up as the _Default callback URL_ of the Tumblr App. [Screenshot](tumblr_app.jpg)
 
 Enter the Tumblr App's Key and Secret into [config.json](#configjson)
 

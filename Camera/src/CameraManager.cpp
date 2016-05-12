@@ -31,6 +31,29 @@ namespace mmi {
     }
     
     //--------------------------------------------------------------
+    void CameraManager::discoverCameras(){
+#ifndef DEBUG_CAMERA
+        auto v = ofxLibdc::Camera::listDevices();
+        
+        ofXml xml;
+        xml.addChild("settings");
+        xml.setTo("settings");{
+            int idx = 0;
+            for ( auto & c : v ){
+                xml.addChild("camera");
+                xml.setTo("camera["+ofToString(idx)+"]");
+#ifndef DEBUG_CAMERA
+                xml.addValue("guid", c.guid);
+#endif
+                idx++;
+                xml.setToParent();
+            }
+        } xml.setToParent();
+        xml.save(settingsFile.get());
+#endif
+    }
+    
+    //--------------------------------------------------------------
     void CameraManager::setupCameras(){
         clearCameras();
         

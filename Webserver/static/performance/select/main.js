@@ -1,114 +1,149 @@
 var select = function(data){
 
+	/**
+	 * Voiceover: Will automatically play if it
+	 * exists in template; will do nothing if 
+	 * commented out in template!
+	 * @type {SoundPlayer}
+	 */
+	var soundPlayer = null;
+
 	var videos = data.videos;
 	var videoDivs = [];
 	var videoContainer;
 
 	var clipIsSelected = false;
 
-	this.enter = function(/*evt*/){
+	/**************************************************
+	* Enter: called automatically when page builds
+	**************************************************/
+
+	this.enter = function(){
+		// show 'select a clip'
+		MMI.show("selectText","flex");
+
+		// setup VO
+		if ( soundPlayer === null ){
+			soundPlayer = new SoundPlayer();
+			soundPlayer.setup("vo_select");
+		}
+
+		// setup initial states
 		clipIsSelected = false;
 
 		videoContainer = document.getElementById("videoContainer");
 		if ( videoDivs.length == 0 ){
 			for ( var i in videos ){
+				var n = videos[i].name;
+
 				videoDivs.push( 
 				{
+					"name":n,
 					"index":i,
-					"div":document.getElementById( videos[i].name )
+					"div":document.getElementById( n ),
+					"overlay":document.getElementById( n +"_overlay" ),
+					"big_video":document.getElementById( n +"_big_video" ),
+					"big":document.getElementById( n +"_big" )
 				} );
 			}
 		}
-		// show 'intro'
+
+		// Setup chain of animations
 		var overlay = document.getElementById("select_intro");
 		overlay.classList.remove("disabled");
 
-		setTimeout(function(){
-			showSelectCancel.bind(this)();
-		}, 1500)
-
-		// listen to buttons
-		window.addEventListener("clip_up", prevClip );
-		window.addEventListener("clip_down", nextClip );
-		window.addEventListener("selectClip", selectClip );
-	}
-
-	function showSelectCancel(){
-		overlay = document.getElementById("select_intro");
-		overlay.classList.add("disabled");
-
-		show("select_clips");
-		var btns = document.getElementById("selectButtons");
-		btns.classList.add("enabled");
-
-		unmute( videos[1].name );
-	}
-
-	function prevClip(){
-		// change order of array
-		var v = videoDivs.pop();
-		videoDivs.unshift(v);
-
-		var v = videos.pop();
-		videos.unshift(v);
-
-		refreshClips(0);
-	}
-
-	function nextClip(){
-		var v = videoDivs.shift();
-		videoDivs.push(v);
-
-		var v = videos.shift();
-		videos.push(v);
-
-		refreshClips(videoDivs.length-1);
-	}
-
-	var showTimeout = null;
-
-	function refreshClips( first ){
-		clearTimeout(showTimeout);
-		var dontAnimate = first === undefined ? 0 : first;
-		for ( var i in videoDivs ){
-			videoDivs[i].div.volume = 0;
-			videoDivs[i].div.play();
-
-			var top = ( i - videoDivs[i].index) * (100/videoDivs.length);
-			videoDivs[i].div.style.zIndex = i == 1 ? 2 : 0;
-
-			if ( i == dontAnimate ){
-				videoDivs[i].div.style["transition"] = "none";
-				videoDivs[i].div.style["opacity"]	 = 0;
-				showTimeout = setTimeout( function(d) {
-					videoDivs[i].div.style["transition"] = "all ease-in-out .25s";
-					d.style["opacity"] = 1;
-				}, 250, videoDivs[i].div);
-			} else {
-				videoDivs[i].div.style["transition"] = "all ease-in-out .5s";
-			}
-			videoDivs[i].div.style.zIndex = i == 1 ? 2 : 0;
-			videoDivs[i].div.style.top = top + "%";
+		// play voiceover
+		if ( soundPlayer.exists() ){
+			soundPlayer.play( function(){
+				// trigger stuff, if you'd like
+			});
 		}
 
-		videoDivs[1].div.currentTime = 0;
-		unmute( videoDivs[1].div.id );
+		// listen to buttons
+		window.addEventListener("selectClip", selectClip );
+		window.addEventListener("previewClip", previewClip );
 	}
+
+
+	/**************************************************
+		Clip selection (move to next state)
+	**************************************************/
+
+	var showTimeout = null;
+	var currentClip = "black_magic";
 
 	function selectClip(){
 		clipIsSelected = true;
-		var evt = new CustomEvent("clipSelected", {detail:videos[1].name});
+		var evt = new CustomEvent("clipSelected", {detail:currentClip});
 		window.events.dispatchEvent(evt);
 
 		window.events.dispatchEvent(new Event("next"));
 	}
 
-	this.exit = function(/*evt*/){
-		setTimeout(cleanup, 1000);
 
-		for ( var v in videos ){
-			mute(videos[v].name);
+	/**************************************************
+		Clip preview
+	**************************************************/
+
+	var previewingClip = null,
+	previewingThumb = null,
+	previewingVideo = null;
+
+	var buttonTimeout = null;
+
+	function previewClip( e ){
+		// stop VO if still playing]
+		if ( soundPlayer.exists() ){
+			soundPlayer.stop();
 		}
+
+		// hide 'select a clip'
+		MMI.hide("selectText");
+
+		clearTimeout(buttonTimeout);
+		// hide buttons
+		var b = document.getElementById("selectButtons");
+		b.classList.remove("enabled");
+
+		currentClip  = e.detail;
+		var whichDiv = e.detail + "_big";
+		var smDiv 	 = e.detail +"_overlay";
+		var whichVid = e.detail + "_big_video";
+
+		if (previewingClip){
+			var b = document.getElementById(previewingClip);
+			b.style.opacity = "0";
+			var d = document.getElementById(previewingThumb);
+			d.classList.add("disabled");
+			var v = document.getElementById(previewingVideo);
+			v.classList.add("disabled");
+			mute( previewingVideo );
+		}
+		var b = document.getElementById(whichDiv);
+		b.style.opacity = "1";
+		var d = document.getElementById(smDiv);
+		d.classList.remove("disabled");
+		var v = document.getElementById(whichVid);
+		v.currentTime = 0;
+		unmute( whichVid );
+
+		previewingThumb = smDiv;
+		previewingClip = whichDiv;
+		previewingVideo = whichVid;
+
+		buttonTimeout = setTimeout(function(){
+			var b = document.getElementById("selectButtons");
+			b.classList.add("enabled");
+		}, 1000);
+	}
+
+	/**************************************************
+		Exit: called automatically when page closes
+	**************************************************/
+
+	this.exit = function(/*evt*/){
+		clearTimeout(buttonTimeout);
+		setTimeout(cleanup, 1000);
 
 		// make sure we have a clip selected!
 		if ( !clipIsSelected ){
@@ -116,18 +151,34 @@ var select = function(data){
 			// clipIsSelected = true;
 		}
 
+		// stop VO if still playing]
+		if ( soundPlayer.exists() ){
+			soundPlayer.stop();
+		}
+
 		// remove listeners
-		window.removeEventListener("clip_up", prevClip );
-		window.removeEventListener("clip_down", nextClip );
 		window.removeEventListener("selectClip", selectClip );
 	}
 
+	// cleanup after everything animates off page
 	function cleanup() {
 		hide("select_clips");
 		show("select_intro");
 
 		var btns = document.getElementById("selectButtons");
 		btns.classList.remove("enabled");
+
+
+		for ( var v in videoDivs ){
+			mute(videoDivs[v].name);
+			mute(videoDivs[v].name+"_big_video");
+
+			var b = videoDivs[v].big;
+			b.style.opacity = "0";
+
+			var d = videoDivs[v].overlay;
+			d.classList.add("disabled");
+		}
 	}
 
 	// utils

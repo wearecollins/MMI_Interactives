@@ -15,11 +15,12 @@ namespace mmi {
         
         ofSetLogLevel(OF_LOG_VERBOSE);
         gui = new ofxPanel();
-        gui->setup("Settings");
+        gui->setup("Settings", settingsFile);
         
         gui->registerMouseEvents();
         gui->add(whichSetup.set("Performance or AM ", 0, 0, 1 ));
         gui->add(reloadCameras.set("Reload cameras", false));
+        gui->add(discoverCameras.set("Discover cameras", false));
         gui->add(cameraTop.set("Which camera top", 0, 0, 1));
         
         // first: get what camera setup we want
@@ -77,7 +78,7 @@ namespace mmi {
         gui->add( recordMgr.params );
         gui->add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
         
-        gui->loadFromFile("settings.xml");
+        gui->loadFromFile(settingsFile);
         
         ofSetLogLevel(OF_LOG_ERROR);
         
@@ -109,6 +110,16 @@ namespace mmi {
             cameraMgr.setupCameras();
         }
         
+        // try to discover and setup new cameras?
+        if ( discoverCameras.get() ){
+            discoverCameras.set(false);
+            
+            string settings = whichSetup.get() == 0 ? "performance.xml" : "anythingmuppets.xml";
+            cameraMgr.settingsFile.set(ofToDataPath(settings));
+            cameraMgr.discoverCameras();
+            cameraMgr.setupCameras();
+        }
+        
         for ( auto & c : cameraMgr.getCameras()){
             c->update();
         }
@@ -122,11 +133,21 @@ namespace mmi {
             }
         }
         
-        // update recording, if 2x camera app
-        if ( cameraMgr.getNumCameras() > 1 ){
+        // update recording: performance
+        if ( whichSetup.get() == 0 ){
             
             int t = cameraTop.get() == 0 ? 0 : 1;
             int b = cameraTop.get() == 0 ? 1 : 0;
+            
+            // special debug case with just one camera
+            if ( cameraMgr.getNumCameras() == 1 ){
+                t = b = 0;
+            }
+            
+            // care: if there are 0 cameras, return
+            if ( cameraMgr.getNumCameras() == 0 ){
+                return;
+            }
             
             auto & img1 = cameraMgr.getCamera(t)->getImage();
             auto & img2 = cameraMgr.getCamera(b)->getImage();

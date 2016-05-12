@@ -4,6 +4,7 @@
  	"configs":[
  		{"type":"number","key":"timeout"},
         {"type":"boolean","key":"continuousMode"},
+        {"type":"boolean","key":"showLocalShare"},
         {"type":"boolean","key":"doStream"},
         {"type":"string", "key":"shareServer"}
     ]

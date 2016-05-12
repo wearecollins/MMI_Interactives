@@ -262,6 +262,16 @@ body,
     height: 75vw;
 }
 
+#performance .button_lg {
+  width: 60vh;
+  height: 60vh;
+}
+
+#performance .button_sm {
+    width: 16vh;
+    height: 16vh;
+}
+
 @media (max-height: 1024px) {
     .button_sm {
         width: 160px;
@@ -356,7 +366,7 @@ body,
 /* Performance */
 @media (max-height: 1024px) {
     .shareCopyBlock {
-        min-height:20vh;
+        min-height:0vh;
         width:50%;
         padding: 1vw;
     }

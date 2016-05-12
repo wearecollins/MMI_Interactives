@@ -52,6 +52,7 @@ namespace mmi {
         ofxPanel * gui;
         ofParameter<int> cameraTop;
         ofParameter<int> whichSetup;
+        ofParameter<bool> discoverCameras;
         ofParameter<bool> reloadCameras;
         ofParameter<int> whichStream;
         

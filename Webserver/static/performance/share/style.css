@@ -12,12 +12,15 @@
   animation-duration: 1s;
   animation-fill-mode:forwards;
   z-index: 0;
-  background: white;
 }
 
 #{{name}} .type_sm {
     font-size: .2rem;
     line-height: .25rem;
+}
+
+#shareSaving, #shareBackground {
+  background: black;
 }
 
 .whiteBgTrans {
@@ -32,11 +35,11 @@
   opacity: .4;
 }
 
-#shareAnimateContainer {
-  height: 0vh;
+.shareAnimateContainer {
+  top:100vh;
 }
 
-#{{name}}.disabled #shareAnimateContainer{
+#{{name}}.disabled .shareAnimateContainer{
   animation-name: hide;
   animation-duration: 1s;
   animation-fill-mode:forwards;
@@ -44,10 +47,20 @@
   z-index: 0;
 }
 
-#{{name}} #shareAnimateContainer.enabled{
-  animation-name: animateIn;
+#{{name}} .shareAnimateContainer.enabled{
+  animation-name: animateUpScreen;
   animation-duration: 1s;
   animation-fill-mode:forwards;
-  animation-delay: 5s;
+  animation-delay: 0s;
   z-index: 1;
+  height: 100vh;
+}
+
+#{{name}} .shareAnimateContainer.disabled{
+  animation-name: animateOffBotton;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+  animation-delay: 0s;
+  z-index: 1;
+  height: 100vh;
 }

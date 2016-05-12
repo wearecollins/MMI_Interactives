@@ -70,28 +70,39 @@ namespace mmi {
             
             bool success = false;
             
-            static ofPixels yuvOut;
-            static ofPixels rgbOut;
+            bool bEncodeYUV = false;
             
-            static auto code = CV_RGB2YUV;//_I420;
-            
-            if ( whichCamera == 0){
-                if ( cameraOne.getNumChannels() == 1 ){
-                    ofxCv::convertColor(cameraOne, rgbOut, CV_GRAY2RGB);
-                    ofxCv::convertColor(rgbOut, yuvOut, code);
+            if ( bEncodeYUV ){
+                
+                static ofPixels yuvOut;
+                static ofPixels rgbOut;
+                
+                static auto code = CV_RGB2YUV;//_I420;
+                
+                if ( whichCamera == 0){
+                    if ( cameraOne.getNumChannels() == 1 ){
+                        ofxCv::convertColor(cameraOne, rgbOut, CV_GRAY2RGB);
+                        ofxCv::convertColor(rgbOut, yuvOut, code);
+                    } else {
+                        ofxCv::convertColor(cameraOne, yuvOut, code);
+                    }
                 } else {
-                    ofxCv::convertColor(cameraOne, yuvOut, code);
+                    if ( cameraTwo.getNumChannels() == 1 ){
+                        ofxCv::convertColor(cameraTwo, rgbOut, CV_GRAY2RGB);
+                        ofxCv::convertColor(rgbOut, yuvOut, code);
+                    } else {
+                        ofxCv::convertColor(cameraTwo, yuvOut, code);
+                    }
                 }
+                
+                success = vidRecorder.addFrame(yuvOut);
             } else {
-                if ( cameraTwo.getNumChannels() == 1 ){
-                    ofxCv::convertColor(cameraTwo, rgbOut, CV_GRAY2RGB);
-                    ofxCv::convertColor(rgbOut, yuvOut, code);
+                if ( whichCamera == 0){
+                    success = vidRecorder.addFrame(cameraOne);
                 } else {
-                    ofxCv::convertColor(cameraTwo, yuvOut, code);
+                    success = vidRecorder.addFrame(cameraTwo);
                 }
             }
-            
-            success = vidRecorder.addFrame(yuvOut);
             
             lastFrameAdded = t;
             
@@ -156,11 +167,22 @@ namespace mmi {
             auto fileSplit = ofSplitString(currentFileName, ".");
             
             string lastCmd = "bash --login -c 'ffmpeg -i " + ofToDataPath(currentFileName, true);
-            lastCmd +=" -i "+ ofToDataPath("clips/" + currentBgClip + fileExt.get(), true) +" -c copy -map 0:v:0 -map 1:a:0 -shortest "+ofToDataPath(fileSplit[0] +"_final"+fileExt.get(), true)+"'";
+            lastCmd +=" -i "+ ofToDataPath("clips/" + currentBgClip + fileExt.get(), true) +" -c copy -map 0:v:0 -map 1:a:0 -shortest "+ofToDataPath(fileSplit[0] +"_tCvht"+fileExt.get(), true)+"'";
+            system( lastCmd.c_str() );
+            
+            string toCvt = ofToDataPath(fileSplit[0] +"_tCvht"+fileExt.get(), true);
+            
+            lastCmd = "bash --login -c 'ffmpeg -i "+toCvt+" -vcodec h264 -strict -2 " + ofToDataPath(fileSplit[0] +"_final"+fileExt.get(), true)+"'";
+            
             system( lastCmd.c_str() );
             
             auto f = ofFile();
+            // remove original
             if (f.open(ofToDataPath(currentFileName, true), ofFile::ReadWrite)){
+                f.remove();
+            }
+            // remove 'to convert'
+            if (f.open(ofToDataPath(toCvt, true), ofFile::ReadWrite)){
                 f.remove();
             }
             currentFileName = fileSplit[0] + "_final"+fileExt.get();
@@ -182,6 +204,9 @@ namespace mmi {
             system( cmd.c_str() );
             cout << file << endl;
         }
+        
+        
+        cout <<folderDest.get()<<" IS FOLDER"<<endl;
         
         currentBgClip = "";
     }

@@ -1,5 +1,5 @@
 A Node.js® server and frontend framework for making single-page, 
-multi-state web apps.
+multi-state web apps. The framework is detailed in [STRUCTURE.md](STRUCTURE.md)
 
 0. [Dependencies](#dependencies)
 0. [Setup](#setup)

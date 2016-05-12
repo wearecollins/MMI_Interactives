@@ -1,5 +1,11 @@
 var perform = function(data, configHandler){
+  // Localize data
 	var videos = data.videos;
+  
+  /**************************************************
+    Section: Set which clip we're performing
+  **************************************************/
+
 	var currentClip = null;
 
 	function setClip(e){
@@ -12,7 +18,12 @@ var perform = function(data, configHandler){
 		}
 	}
 
+  // this event comes from the 'select' state
 	window.addEventListener("clipSelected", setClip);
+
+  /**************************************************
+    Section: Main variables
+  **************************************************/
 
   // alpha countdown
   var cdOne = null, 
@@ -25,9 +36,17 @@ var perform = function(data, configHandler){
   // current name
   var name = 0;
 
-  /**
-   * Enter: called automatically when page builds in
-   */
+  // voiceovers
+  var soundPractice = new SoundPlayer(),
+  soundPerform = new SoundPlayer();
+
+  // timeouts
+  var timeouts = [];
+
+  /**************************************************
+   * Enter: called automatically when page builds
+  **************************************************/
+
 	this.enter = function(/*evt*/){
 		state = 0;
 
@@ -50,7 +69,7 @@ var perform = function(data, configHandler){
 		// this tells OF to switch cameras
 		window.events.dispatchEvent(new Event('camera_front'));
 
-    // setup current name
+    // setup current unique name
     var index = configHandler.get('currentName', 0);
     index++;
     
@@ -62,43 +81,113 @@ var perform = function(data, configHandler){
     configHandler.set({'currentName':index});
     name = index;
 
-		// timeout 1 - "get ready" -> countdown
-    // extra 1000 = placeholder for global transition duration 
-		setTimeout( function(){ startCountdown(false); }, 1000 + 500);
+    // -----------------------------------------------
+    // Kickoff build / events
+    
+    // build VOs
+    soundPractice.setup("vo_practice");
+    soundPerform.setup("vo_perform");
 
-    	var videoDiv = document.getElementById("perf_"+currentClip.name);
-    	videoDiv.onended = function(){
+    MMI.show( "performPractice", "block" );
 
-    		switch( state ){
-    			case 1:
-    			{
-    				startCountdown(true);
-    			}
-    			break;
+    // Option 1: VO -- Show 'get ready', start countdown after VO
+    
+    if ( soundPractice.exists() ){
+      // play takes a 'onComplete' parameter,
+      // so countdown will automatically occurr after VO
+      soundPractice.play( function(){
+          MMI.hide( "performPractice" );
+          startCountdown(false); 
+      });
+    } 
 
-    			case 2:
-    			{
-            window.events.dispatchEvent( new Event("next") );
-    			}
-    			break;
-    		}
+    // Option 2: VO -- No VO, just go into countdown 
+    // after we're done animating
 
-    	}.bind(this)
-	}
+    else {
+      // timeout 1 - "get ready" -> countdown
+      var t =setTimeout( 
+        function(){
+          MMI.hide( "performPractice" );
+          startCountdown(false); 
+        }, 
+        1000 + 500
+      );
+      // ^ extra 1000 = global transition duration 
+
+      timeouts.push(t);
+    }
+
+    // -----------------------------------------------
+    // Setup Videoplayer: once it ends, go to next state
+
+  	var videoDiv = document.getElementById("perf_"+currentClip.name);
+
+  	videoDiv.onended = function(){
+  		switch( state ){
+  			case 1:
+  			{
+          // same as above: see if VO exists, and either
+          // a) play it and wait or b) set a timeout to
+          // start the countdown again
+
+          MMI.show( "performPerform", "block" );
+
+          // a) VO
+          if ( soundPerform.exists() ){
+            // play takes a 'onComplete' parameter,
+            // so countdown will automatically occurr after VO
+            soundPerform.play( function(){
+                MMI.hide( "performPerform" );
+                startCountdown(true); 
+            });
+
+          // b) timeout
+          } else {
+            setTimeout( 
+              function(){ 
+                MMI.hide( "performPerform" );
+                startCountdown(true);
+              }, 1000
+            );
+          }
+  			}
+  			break;
+
+  			case 2:
+  			{
+          window.events.dispatchEvent( new Event("next") );
+  			}
+  			break;
+  		}
+
+  	}.bind(this)
+
+	} 
+  //end this.enter()
+
+  /**************************************************
+   * Start 3-2-1 Countdown
+  **************************************************/
 
   var countdownInterval = null;
 
+  /**
+   * Start countdown (practice and perform)
+   * @param  {Boolean} shootVideo Tell OF to start recording (or not, just practicing)
+   */
   function startCountdown( shootVideo ){
-    MMI.hide( "performReady" );
     MMI.show(("countdownContainer"), "flex");
-    // MMI.show(("c_three"), "flex");
 
     var videoDiv = document.getElementById("perf_"+currentClip.name);
 
+    // play each countdown (alpha video)
     cdThree.play(function(){
-      console.log("done!");
       cdTwo.play(function(){
         cdOne.play(function(){
+
+          // hide self, then either setup 'practice' or 'perform'
+
           MMI.hide(("countdownContainer"), "flex");
           state++;
 
@@ -111,41 +200,26 @@ var perform = function(data, configHandler){
             }
             // this tells OF to capture
             window.events.dispatchEvent(new CustomEvent('record_video', detail));
-            videoDiv.volume = 0;
-          } else {
 
+            // video plays in OF to match up sound better
+            videoDiv.volume = 0;
+
+          } else {
             videoDiv.volume = 1;
           }
+
+          // play bg video, which gets 'oncomplete'
+          // from this.enter() going
           videoDiv.play();
 
         });
       });
     });
-
-    // countdownInterval = setTimeout(function(){
-    //   MMI.hide(("c_three"));
-    //   MMI.show(("c_two"), "flex");
-
-    //   countdownInterval = setTimeout(function(){
-    //     MMI.hide(("c_two"));
-    //     MMI.show(("c_one"), "flex");
-
-    //     countdownInterval = setTimeout(function(){
-    //       MMI.hide(("c_one"));
-
-    //       state++;
-
-    //       if ( shootVideo ){
-	   //        // this tells OF to capture
-	   //        window.events.dispatchEvent(new CustomEvent('record_video', {detail:currentClip.name}));
-    //       }
-
-    //       videoDiv.play();
-
-    //     }.bind(this), 1000);
-    //   }.bind(this), 1000);
-    // }.bind(this), 1000);
   }
+
+  /**************************************************
+    Exit: called automatically when page closes
+  **************************************************/
 
   this.exit = function(/*evt*/){
   	manager.getStreamHandler().hideStream();
@@ -157,6 +231,8 @@ var perform = function(data, configHandler){
       cdThree.stop();
       cdTwo.stop();
       cdOne.stop();
+      soundPractice.stop();
+      soundPerform.stop();
     } catch(e){
       
     }

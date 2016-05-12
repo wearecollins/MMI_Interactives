@@ -4,12 +4,26 @@
   </div>
 
   <!-- State I -->
-  <div id="performReady" class="fillAbs">
-      <div class="fillAbs centeredContainer column" style="z-index:2">
-          <div class="type_lg noselect">Get Ready!</div>
+  <div id="performPractice" class="fillAbs">
+      <div class="fillAbs centeredContainer column noselect" style="z-index:2">
+          <div class="type_lg noselect">Practice</div>
+          <div class="type_med noselect">Get Ready!</div>
       </div>
   </div>
 
+  <!-- Voiceover: Practice -->
+  <audio src="vo/Pv05.mp3" id="vo_practice"></audio>
+
+  <!-- State III -->
+  <div id="performPerform" class="fillAbs">
+      <div class="fillAbs centeredContainer column noselect" style="z-index:2">
+          <div class="type_lg noselect">Perform</div>
+          <div class="type_med noselect">Get Ready!</div>
+      </div>
+  </div>
+
+  <!-- Voiceover: Practice -->
+  <audio src="vo/Pv05.mp3" id="vo_perform"></audio>
 
   <div id="hiddenVideos">
     {{#each videos}}

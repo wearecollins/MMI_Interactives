@@ -9,12 +9,14 @@ var share = function( data, configHandler ){
 
 	var name;
 
-	function setCanPlay(){
-	   	// Video is loaded and can be played
-		canPlay = true;
+	function onTimeupdate(){
+	    if ( this.currentTime >= this.duration ){
+			document.getElementById("shareOnlineContainer").classList.add("enabled");
 
-		var video = document.getElementById("share_video");
-		video.removeEventListener('loadeddata', setCanPlay, false);
+			var video = document.getElementById("share_video");
+			video.currentTime = 0;
+			video.play();
+	    }
 	}
 
 	function setVideo(e){
@@ -31,19 +33,19 @@ var share = function( data, configHandler ){
 		var templatePromise = Loader.loadHTML('performance/share/video.hbr', data);
 		templatePromise.
 		then( function resolve(html){
+			// first, hide "saving"
+			MMI.hide("shareSaving");
+
 			cont.innerHTML = html;
 			var video = document.getElementById("share_video");
 			video.play();
+
+    		video.addEventListener("timeupdate", onTimeupdate);
+			
 		}).
 		catch(function reject(reason){
 			log.warn('video not created!',reason);
 		});
-
-		// var source = document.getElementById("shareSource");
-	    // source.setAttribute("src", "output/performance/" + e.detail);
-
-		// var video = document.getElementById("share_video");
-		// video.addEventListener('loadeddata', setCanPlay, false);
 
 		// get next name
 	    var index = configHandler.get('currentName', 0);
@@ -56,41 +58,38 @@ var share = function( data, configHandler ){
 
 	window.addEventListener("videoRecorded", setVideo);
 
-	this.enter = function(/*evt*/){
+	this.enter = function(){
+		if ( currentVideo === null ){
+			// show 'saving'
+			MMI.show("shareSaving", "flex");
+		}
 	    shareOnlineRef = shareOnline.bind(this);
     	window.addEventListener("share_online", shareOnlineRef);
-
-		// var video = document.getElementById("share_video");
-		// video.play();
-		// if (!canPlay){
-		// 	tryInterval = setInterval(function(){
-		// 		if ( canPlay ){
-		// 			var video = document.getElementById("share_video");
-		// 			video.play();
-		// 			clearInterval(tryInterval);
-		// 		} else {
-		// 		}
-		// 	}, 10);
-		// }
-
-		document.getElementById("shareAnimateContainer").classList.add("enabled");
 	}
 
 	this.exit = function(/*evt*/){
 		clearInterval(tryInterval);
     	window.removeEventListener("share_online", shareOnlineRef);
-		var video = document.getElementById("share_video");
-		video.pause();
 
+		var video = document.getElementById("share_video");
+		if ( video ){
+			video.pause();
+			video.removeEventListener("timeupdate", onTimeupdate);
+		}
 		// var source = document.getElementById("shareSource");
 		// source.setAttribute("src","");
 		// video.load(); //safari requires you to 'load' to know it no longer has a src
 		
-		setTimeout( cleanup, 1000);
+		setTimeout( cleanup, 1500);
+
+		currentVideo = null;
 	}
 
 	function cleanup() {
-		document.getElementById("shareAnimateContainer").classList.remove("enabled");
+		document.getElementById("shareOnlineContainer").classList.remove("enabled");
+		document.getElementById("shareLocalContainer").classList.remove("enabled");
+		document.getElementById("shareOnlineContainer").classList.remove("disabled");
+		document.getElementById("shareLocalContainer").classList.remove("disabled");
 
 		var cont = document.getElementById("shareBackground");
 		cont.innerHTML = "";
@@ -104,14 +103,27 @@ var share = function( data, configHandler ){
 	    var url = shareServer + "/video";
 	    var filename = "performance/" + currentVideo;
 
-	    var xhttp = new XMLHttpRequest();
-	    xhttp.open("POST", url, true);
-	    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	    xhttp.send( "filename=" + filename );
+	    try {
+		    var xhttp = new XMLHttpRequest();
+		    xhttp.open("POST", url, true);
+		    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		    xhttp.send( "filename=" + filename );
+		} catch(e){}
 
 	    // then hide the button...
 	    window.removeEventListener("share_online", shareOnlineRef);
 	    var btn = document.getElementById("shareOnlineBtn");
 	    btn.classList.add("disabled");
+
+	    var showLocalShare = configHandler.get("showLocalShare", false);
+	    if ( showLocalShare ){
+			document.getElementById("shareOnlineContainer").classList.remove("enabled");
+			document.getElementById("shareOnlineContainer").classList.add("disabled");
+			setTimeout(function(){
+				document.getElementById("shareLocalContainer").classList.add("enabled");
+			}, 1000);
+	    } else {
+		    window.events.dispatchEvent( new Event("next") );
+	    }
 	  }
 };

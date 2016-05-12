@@ -1,6 +1,8 @@
 <div id='{{name}}' class='page'>
-  <div class='background fill blueBg'>
-  </div>
+  <div class='background fill blueBg'></div>
+
+  <audio src="vo/Pv01.mp3" id="vo_grab"></audio>
+
   <div class="container fillAbs centeredContainer column container" style="">
     <div id="sbContInternal" class="column" onclick="window.events.dispatchEvent(new Event('next'));">
         <!-- <img src="svg/__select_a_puppet.svg" class="button_lg padding_sm" /> -->
@@ -11,7 +13,6 @@
           <source src="video/arrow_l_a.mp4" type="video/mp4" />
         </video>
     </div>
-        <div class="type_med padding_sm">Grab a Puppet</div>
-    </div>
+    <div class="type_med padding_sm">Grab a Puppet</div>
   </div>
 </div>

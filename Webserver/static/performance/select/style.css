@@ -15,10 +15,53 @@
 }
 
 #{{name}} video {
-    height: {{math 100 "/" videos.length}}%;
+    width: {{math 100 "/" videos.length}}%;
     margin: .5%;
-    transition: all ease-in-out .5s;
+    transition: all ease-in-out .25s;
     position: relative;
+}
+
+.selectOverlay {
+  height: 100%;
+  background: #56b79e;
+  opacity: .7;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+#overlayContainer video {
+  width:100%;
+  margin: 0;
+}
+
+.selectOverlay.disabled {
+  opacity: 0;
+}
+
+#selectTextContainer {
+  background: rgb(30,30,30);
+}
+
+/* Override for 'big' video */
+#{{name}} .mainVideo {
+  height: 100%;
+  width: auto;
+  margin:0;
+  top: 0px;
+}
+
+.videoContainer {
+  position: relative;
+  margin: .5%;
+  transition: all ease-in-out .25s;
+  position: relative;
+}
+
+.bigVideoCont{
+  opacity: 0;
+  transition: opacity ease-out .5s;
 }
 
 #select_clips {
@@ -26,9 +69,6 @@
 	display: none;
 }
 
-#videoContainer {
-    height: 250%;
-}
 
 #select_intro {
   opacity: 1;
@@ -37,12 +77,24 @@
   z-index: 10;
 }
 
+#select_intro .previewing {
+
+}
+
 #select_intro.disabled {
   opacity: 0;
 }
 
+#selectButtons{
+  opacity: 0;
+  transition: opacity ease-out .25s;
+}
+#selectButtons.enabled{
+  opacity: 1;
+}
+
 #{{name}} .centerButtons {
-	height: 70%;
+	height: 50%;
 	display: flex;
 	align-items: flex-end;
 }
@@ -52,26 +104,4 @@
 	display: flex;
 	align-items: flex-start;
   pointer-events:all;
-}
-
-/* Animations */
-#selectBtnsUp, #selectBtnsDown {
-  left:0px;
-  top:0px;
-  pointer-events:none;
-  animation: animateDownTop;
-  animation-fill-mode: forwards;
-  animation-duration: 1s;
-}
-
-#selectBtnsUp.disabled {
-  animation-name: animateOffTop;
-}
-
-#selectBtnsDown.disabled {
-  animation-name: animateOffBotton;
-}
-
-#selectBtnsDown {
-  animation-name: animateUpScreen;
 }

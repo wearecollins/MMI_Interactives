@@ -14,6 +14,7 @@ var Configer = require(Path.join(__dirname, 'configer.js'));
 var WebSocket = require(Path.join(__dirname, 'websockets.js'));
 var RemoteLogs = require(Path.join(__dirname, 'log4javascript_to_log4js.js'));
 var DirLister = require(Path.join(__dirname, 'dirlister.js'));
+var ComputerControl = require(Path.join(__dirname, 'computer_control.js'));
 
 // set up logging
 Logger.configure(require('./log4js_conf.json'));
@@ -24,6 +25,8 @@ var logger = Logger.getLogger('Server');
  * @type {string}
  */
 var station = 'demo';
+var hostname = '0.0.0.0';
+var port = 8080;
 
 var argv = process.argv;
 for (var argI = 0; argI < argv.length; argI++){
@@ -54,6 +57,10 @@ config.load('static/'+station+'/config.json').
     app.use(Logger.connectLogger(
               Logger.getLogger('express', {level: 'auto'})));
     app.use(bodyParser.urlencoded({extended:true}));
+    if (config.getConfig('allowControl')){
+      app.use('/comp', ComputerControl.control());
+      hostname = '127.0.0.1';
+    }
     app.use(RemoteLogs.log(Logger));
     {
       //create full webpath <-> filepath mapping for directory lister
@@ -94,8 +101,7 @@ config.load('static/'+station+'/config.json').
     /*eslint-enable*/
     
     // listen to connections on the given port/interface
-    var port = 8080;
-    server.listen(port, function(){
+    server.listen(port, hostname, function(){
       logger.info('listening on port',port);
     });
   });

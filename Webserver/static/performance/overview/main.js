@@ -1,4 +1,8 @@
 var overview = function( data, configHandler){
+
+  var soundPlayerA = null, 
+  soundPlayerB = null;
+
   this.enter = function(/*evt*/){
 
   	// show camera if streaming
@@ -10,13 +14,23 @@ var overview = function( data, configHandler){
     // this tells OF to switch cameras
     window.events.dispatchEvent(new Event('camera_front'));
 
-    // play sounds
-    var soundA = document.getElementById("camera_front");
-    var soundB = document.getElementById("camera_side");
+    if ( soundPlayerA === null ){
+      soundPlayerA = new SoundPlayer();
+      soundPlayerB = new SoundPlayer();
 
-    soundA.addEventListener("timeupdate", onTimeUpdateA);
-    soundA.currentTime = 0;
-    soundA.play();
+      soundPlayerA.setup("camera_front");
+      soundPlayerB.setup("camera_side");
+    }
+
+    // play sounds
+    // var soundA = document.getElementById("camera_front");
+    // var soundB = document.getElementById("camera_side");
+
+    // soundA.addEventListener("timeupdate", onTimeUpdateA);
+    // soundA.currentTime = 0;
+    if ( soundPlayerA.exists() ){
+      soundPlayerA.play( showSideCamera );
+    }
   };
 
   function onTimeUpdateA( e ){
@@ -34,44 +48,46 @@ var overview = function( data, configHandler){
   }
 
   function showSideCamera(){
-      var soundA = document.getElementById("camera_front");
-      soundA.removeEventListener("timeupdate", onTimeUpdateA);
+      // var soundA = document.getElementById("camera_front");
+      // soundA.removeEventListener("timeupdate", onTimeUpdateA);
 
       // this tells OF to switch cameras
       window.events.dispatchEvent(new Event('camera_side'));
-      var soundB = document.getElementById("camera_side");
-      soundB.addEventListener("timeupdate", onTimeUpdateB);
-      soundB.currentTime = 0;
-      soundB.play();
+      // var soundB = document.getElementById("camera_side");
+      // soundB.addEventListener("timeupdate", onTimeUpdateB);
+      // soundB.currentTime = 0;
+      // soundB.play();
+      
+      if ( soundPlayerA.exists() ){
+        soundPlayerB.play( next );
+      } else {
+        next();
+      }
   }
 
   function next(){
       window.events.dispatchEvent( new Event("next") );
-      var soundB = document.getElementById("camera_side");
-      soundB.removeEventListener("timeupdate", onTimeUpdateB);
+      // var soundB = document.getElementById("camera_side");
+      // soundB.removeEventListener("timeupdate", onTimeUpdateB);
   }
 
   this.exit = function(/*evt*/){
-    var soundA = document.getElementById("camera_front");
-    var soundB = document.getElementById("camera_side");
+    // var soundA = document.getElementById("camera_front");
+    // var soundB = document.getElementById("camera_side");
     
-    soundA.pause();
-    soundB.pause();
-    soundA.currentTime = 0;
-    soundB.currentTime = 0;
+    // soundA.pause();
+    // soundB.pause();
+    // soundA.currentTime = 0;
+    // soundB.currentTime = 0;
+
+    //stop sounds
+    soundPlayerA.stop();
+    soundPlayerB.stop();
 
   	setTimeout(function(){
   		manager.getStreamHandler().hideStream();
 		  window.events.dispatchEvent(new Event('camera_front'));
   	}, 1000);
-  	
-    var soundA = document.getElementById("camera_front");
-    soundA.removeEventListener("ended", showSideCamera);
-    var soundB = document.getElementById("camera_side");
-    soundB.removeEventListener("ended", next);
 
-  	//stop sounds
-  	
-  	//todo: fade out sound ;)
   };
 };

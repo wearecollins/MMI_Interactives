@@ -2,14 +2,21 @@
   <div id="shareBackground" class='background'>
       
   </div>
-  <div id="shareAnimateContainer" class="fillAbs">
-    <div class="fillAbs rightContainer" style="z-index:1">
-      <div class="fillH centeredContainer column container fillContainer fillGrey whiteBgTrans" style="width:40%">
+
+  <!-- State I: 'Saving' -->
+  <div id="shareSaving" class="fillWhite fillAbs centeredContainer column">
+    <div class="type_lg">Saving...</div>
+  </div>
+
+  <!-- <div id="dummy" style="position:absolute; z-index:1000"></div> -->
+
+
+  <!-- State II: Share online -->
+  <div id="shareOnlineContainer" class="shareAnimateContainer fillAbs">
+    <div class="fillAbs bottomCenteredContainer" style="z-index:1">
+      <div class="fillContainer column container fillGrey whiteBgTrans">
         <div class="type_lg">Share</div>
-        <div id="shareCopy" class="topCenteredContainer type_sm">
-          <div class="shareCopyBlock">
-            <strong>Download and share</strong><br>at the Museum Shop Your unique name:<br><div id="uniqueName"></div>
-          </div>
+        <div id="shareCopy" class="topCenteredContainer type_sm padding_sm">
           <div class="shareCopyBlock">
               <strong>Post your video</strong><br>Optionally share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.
           </div>
@@ -26,6 +33,27 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> <!-- End shareAnimateContainer -->
 
+  <!-- State III: (Optional) Share @ shop -->
+  <!-- (this state is turned on/off in the Admin) -->
+  <div id="shareLocalContainer" class="shareAnimateContainer fillAbs">
+    <div class="fillAbs bottomCenteredContainer" style="z-index:1">
+      <div class="fillContainer column container fillGrey whiteBgTrans">
+        <div class="type_lg">Download </div>
+        <div id="shareCopy" class="topCenteredContainer type_sm">
+          <div class="shareCopyBlock">
+              <strong>Download and share</strong><br>at the Museum Shop Your unique name:<br><div id="uniqueName"></div>
+          </div>
+        </div>
+        <div class="bottomCenteredContainer">
+          <div onclick="window.events.dispatchEvent(new Event('next'));">
+            <img src="svg/__get_started.svg" class="button_sm padding_sm" />
+            <div class="type_med">continue</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End shareAnimateContainer -->
 </div>

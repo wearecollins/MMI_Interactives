@@ -1,0 +1,62 @@
+<div id='{{name}}' class='page'>
+  <div class='background blackBg' style="">
+  </div>
+  <div class="fillAbs centeredContainer" style="z-index:1">
+    <div id="videoContainer" class="fillCrop centeredContainer column">
+      {{#each videos}}
+        <video class="selectVideo" id="{{name}}" autoplay loop muted>
+            <source src="{{src}}" type="video/mp4">
+        </video>
+      {{/each}}
+    </div>
+  </div>
+
+  <!-- Voiceover -->
+  <audio src="vo/Pv04.mp3" id="vo_select"></audio>
+
+  <!-- state I -->
+  <div id="select_intro" class="fillAbs">
+    <div class='blackBg fillAbs' style="opacity:.5; z-index:2">
+    </div>
+    <div class='container fillAbs centeredContainer column' style="z-index:2">
+      <div class="type_lg">Select a Clip</div>
+    </div>
+  </div>
+
+  <!-- state II -->
+  <div id="select_clips">
+
+    <!-- 
+    Why are these structed so crazy, you ask?
+    Simply to make animating each button container easier!    
+     -->
+
+    <div class="fillAbs centeredContainer column container" style="z-index:3">
+      <div id="selectBtnsUp" class="fillAbs centeredContainer column container">
+        <div id="" onclick="window.events.dispatchEvent(new Event('clip_up'));" class="button">
+            <img src="svg/__up.svg" class="button_mini" />
+        </div>
+        <div class="centeredContainer centerButtons"></div>
+        <div class="button"></div>
+      </div>  
+
+      <div id="{{name}}Buttons" class="centeredContainer centerButtons">
+        <div class="button"></div>
+        <div class="column" onclick="window.events.dispatchEvent(new Event('selectClip'));">
+            <img src="svg/__select.svg" class="button_sm padding_sm" />
+            <div class="type_med">select</div>
+        </div>
+        <div class="button"></div>
+      </div>
+
+      <div id="selectBtnsDown" class="fillAbs centeredContainer column container">
+        <div class="button"></div>
+        <div class="centeredContainer centerButtons"></div>
+        <div id="" onclick="window.events.dispatchEvent(new Event('clip_down'));" class="button" style="align-items: flex-end">
+            <img src="svg/__down.svg" class="button_mini" />
+        </div>
+      </div> 
+
+    </div>
+  </div>
+</div>

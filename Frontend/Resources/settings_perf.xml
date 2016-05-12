@@ -7,7 +7,7 @@
 	<Advanced_params>
 			<File_name/>
 			<File_extension>.mp4</File_extension>
-			<Pixel_Format>yuv420p</Pixel_Format>
+			<Pixel_Format>gray</Pixel_Format>
 			<Video_codec>mpeg4</Video_codec>
 			<Bitrate>2000</Bitrate>
             <Output_Folder>../../../../../Webserver/static/output</Output_Folder>

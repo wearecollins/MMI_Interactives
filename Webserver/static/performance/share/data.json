@@ -1,4 +1,4 @@
 {
 	"name":"share",
-	"disableTimeout":true
+	"disableTimeout":false
 }

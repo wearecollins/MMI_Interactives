@@ -42,6 +42,7 @@ namespace mmi {
         
         void clearCameras();
         void setupCameras();
+        void discoverCameras();
         
         void draw(int x, int y, int which = 0 );
         void drawDebug( int x, int y );

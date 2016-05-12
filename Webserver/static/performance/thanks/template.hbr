@@ -3,7 +3,8 @@
   </div>
   <div class="fillContainer">
     <div class="container fillAbs centeredContainer column" style="z-index:1">
-        <div class="type_lg title">Thank you<br />for sharing</div>
+        <div class="type_lg padding_sm">Thank you<br />for sharing</div>
+        <div class="type_med">Please place the puppets <br>back where you found them</div>
     </div>
 
     <div class="container fillAbs bottomCenteredContainer" style="z-index:1">

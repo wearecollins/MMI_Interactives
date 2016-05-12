@@ -1,3 +1,4 @@
+// todo: {"type":"boolean","key":"introOnOff"},
 var admin = function(data, configHandler){
   var adminButtonEnabled = false;
 
@@ -32,6 +33,15 @@ var admin = function(data, configHandler){
     disableButton();
     
   });
+
+  function shutdown(){
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/comp/shutdown", true);
+      xhttp.send();
+  }
+
+  window.addEventListener("shutdown", shutdown);
+
   this.enter = function(){
 
     for(var configI = data.configs.length - 1;
