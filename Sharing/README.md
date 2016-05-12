@@ -27,7 +27,8 @@ developed/tested/used with
 * [Facebook app](https://developers.facebook.com/apps/) setup directions [below](#facebook)
 * [Tumblr app](https://www.tumblr.com/oauth/apps) setup directions [below](#tumblr)
 * server for serving images and videos to the internet
-  - [ngrok](ngrok)
+  - publicly-accessible server
+  - [ngrok](../Readme.md#using-ngrok)
 
 # setup
 This webservice requires a lot of setup. You need to authenticate against
@@ -41,6 +42,9 @@ media to the internet.
 First we need to set up the ability to post media to Tumblr and Facebook.
 These instructions were current as of May 2016.
 
+0. Ensure your server has a publicly-accessible URL
+  - The token-fetching server binds to port 8012. Make sure requests are forwarded to the appropriate port before continuing.
+  - If your computer or network configuration make this impractical, read through [using ngrok](../Readme.md#using-ngrok)
 1. Set up a Facebook App ([below](#facebook)) and Tumblr App ([below](#tumblr))
 2. Follow the instructions for the [Token Fetching Service](fetchToken/)
 
@@ -56,6 +60,10 @@ the *pages_show_list*, *manage_pages*, and *publish_pages* permissions)
 The URL for accessing the server used for setting up authentication
 needs to be listed in the _App Domains_ list 
 and set up as the _Site URL_ for a Website Platform associated with the App.
+If you cannot access your computer from a 
+public URL, I suggest you use [ngrok](https://ngrok.com/), in which case 
+you will need to provide their randomly-assigned url as the 
+_Site URL_ and _App Domain_ after you start ngrok.
 Both these settings are accessible in the _Basic_ section of the
 _Settings_ tab of your Facebook App. [Screenshot](facebook_app.jpg)
 
@@ -66,7 +74,11 @@ You will need a [Tumblr app](https://www.tumblr.com/oauth/apps) to be
 able to post to Tumblr. 
 
 The URL for accessing the server used for setting up authentication needs to 
-be set up as the _Default callback URL_ of the Tumblr App. [Screenshot](tumblr_app.jpg)
+be set up as the _Default callback URL_ of the Tumblr App 
+([Screenshot](tumblr_app.jpg)). If you cannot access your computer from a 
+public URL, I suggest you use [ngrok](https://ngrok.com/), in which case 
+you will need to provide their randomly-assigned url as the 
+_Default callback URL_ after you start ngrok.
 
 Enter the Tumblr App's Key and Secret into [config.json](#configjson)
 
@@ -167,14 +179,3 @@ of the photo to `/photo` like so:
   - to enable console logging add `{"type":"console"}` to the **appenders** array in [log4js_conf.json](log4js_conf.json)
   - you can change the logging detail by changing the value of **levels.[all]** (and/or any other key in the **levels** object) in [log4js_conf.json](log4js_conf.json) to `"INFO"`, `"DEBUG"`, `"TRACE"`, or `"ALL"`
 
-# setup [ngrok](https://ngrok.com/)
-
-ngrok is used for accessing local servers from the internet. 
-
-An altertative to using ngrok would be to configure the FB App's 
-allowed domains to be a domain you own, and host the server at that address.
-
-* download & unzip [ngrok](https://ngrok.com/download)
-* create an [ngrok](https://ngrok.com/) account
-* following the instructions after you sign in, authenticate the ngrok app using your authtoken
-    - eg. `~/Downloads/ngrok authtoken [YOUR AUTHTOKEN HERE]`

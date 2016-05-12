@@ -5,6 +5,7 @@
 2. [Setup](#setup)
   1. [Production](#production)
   2. [Development](#development)
+  3. [Using ngrok](#using-ngrok)
 3. [Overview](#overview)
   1. [Structure & Technical Breakdown](#structure---technical-breakdown)
   2. [Setting Up](#setting-up)
@@ -59,8 +60,7 @@ There are 4 computers involved with this whole installation:
 
 Follow these steps for setting up everything:
 
-0. Bootstrap the Anything Muppet and Performance computers
-  - TODO
+0. Bootstrap the Anything Muppet and Performance computers using the scripts in [bootstrapping](Startup/bootstrap/)
 1. Setup the [Sharing](Sharing/) webservice on the Central Server
 2. Setup the [Share Webserver](Webserver/README.md#share) on the Central Server
   - including setting up the iPad to be pinned to the Share UI
@@ -91,7 +91,7 @@ Follow these steps for setting up everything:
   - I set up the server to use port 8014. Suggestions include:
     * python&apos;s (SimpleHTTPServer)[https://docs.python.org/2/library/simplehttpserver.html] `python -m SimpleHTTPServer 8014`
     * Node&apos;s (http-server)[https://www.npmjs.com/package/http-server] `http-server -p 8014`
-3. [Setup ngrok](#setup-ngrok) if you have not done this before
+3. [Setup ngrok](#using-ngrok) if you have not done this before
 4. run ngrok to make your simple server accessible from the internet
   - `PATH/TO/ngrok http 8014`
   - If you want to upload to Facebook or Tumblr, your ngrok URL will need to be registered with your Facebook/Tumblr app.
@@ -107,6 +107,23 @@ Follow these steps for setting up everything:
 11. run the Camera app
   - `make run` or run from within your IDE
 
+## using [ngrok](https://ngrok.com/)
+
+ngrok is used for accessing local servers from the internet. 
+
+An altertative to using ngrok would be to use a domain you own, 
+and host the server at that address.
+
+After downloading and unzipping ngrok, you can run in using 
+`./ngrok http [PORT]` where _[PORT]_ is the port number you want to forward 
+requests to. If you are running a server on your computer attached to port 
+8080, then you would run `./ngrok http 8080`. Once ngrok is running it will 
+display (among other things) the _Forwarding_ address that can be used to 
+access your server from the internet. This address will be referred to in the 
+rest of the documentation as your **Public URL** ([Screenshot](ngrok.png)).
+
+Every time you run ngrok it will provide you with a new randomized 
+**Public URL**.
 
 # Overview
 ## Structure & Technical breakdown
