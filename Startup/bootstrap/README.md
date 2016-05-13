@@ -1,18 +1,29 @@
 ###Preparation steps
-0. make sure the scripts in this directory (primarily bootstrapping.command and visudo_edit.sh) include the appropriate username in the scripts
+0. Make sure the scripts in this directory (primarily bootstrapping.command and visudo_edit.sh) include the appropriate username in the scripts
   - you can get the correct username via `whoami` in the terminal after logging in as the appropriate user
-0. copy the contents of this directory to a thumb drive to run on each individual computer as you set it up
+0. Copy the contents of this directory to a thumb drive to run on each individual computer as you set it up
 
 ###Initial steps to run on each computer
-0. manually do initial computer setup using the same username and password for all OSX computers
-0. run _01_0_setHostnames.command (double-click) to set the hostname as appropriate
-0. run _03_0_bootstrap.command to do all bootstrapping etc.
-0. mount the central-server's SAMBA drive on the computer, saving the credentials. Then drag the mounted drive into _Startup Items_ in the OSX Settings to make sure the drive gets mounted on boot
-0. clone the repository to _~/Documents/repo_
-0. copy a compiled version of the _Frontend_ app to _~/Documents/repo/Frontend/bin/_
-0. copy _com.collins.muppets.frontend.plist_ to _~/Library/LaunchAgents/_
-0. load plist into launchd: `launchctl load -w /Users/user/Library/LaunchAgents/com.collins.muppets.frontend.plist`
-    * If you want to stop running the app, run `launchctl unload /Users/user/Library/LaunchAgents/com.collins.muppets.frontend.plist`
-0. install Node.js
-0. configure the Sync service as a cron job as specified [here](../../Sync/README.md#setup)
-0. configure the computers for automatic shutdown/startup as preferred.
+0. Manually do initial computer setup using the same username and password for all OSX computers
+0. Run ```_01_0_setHostnames.command``` (double-click) to set the hostname as appropriate
+0. Run ```_03_0_bootstrap.command``` to do all bootstrapping
+  - This will set default settings, such as power management, turning off Notification Center, etc.
+0. Mount the central-server's SAMBA drive on the computer, saving the credentials.
+0. Drag the mounted drive into _Startup Items_ in the OSX Settings to make sure the drive gets mounted on boot
+  - Follow [this guide](https://www.tekrevue.com/tip/automatically-connect-network-drive/) if you need help with this step
+0. Download all code from the [releases section](https://github.com/wearecollins/MMI_Interactives/releases), and copy to _~/Documents/repo_
+  - Note: if setting up via ```git``` instead, you must still download the _media_ directory and copy files into place
+0. Copy the appropriate _Frontend plist_ to _~/Library/LaunchAgents/_
+  - Anything Muppets: _com.collins.muppets.anythingmuppets.plist_
+  - Performance for the Screen: _com.collins.muppets.performance.plist_
+0. Install [Node.js](https://nodejs.org/en/download/)
+0. Configure the Sync service as a cron job as specified [here](../../Sync/README.md#setup)
+0. Configure the computers for automatic shutdown/startup as preferred.
+  - This step is optional
+0. Launch the interactive by either:
+a. Logging out, then logging back in
+b. Loading plist into launchd: 
+  - AM: `launchctl load -w /Users/user/Library/LaunchAgents/com.collins.muppets.anythingmuppets.plist`
+    * If you want to stop running the app, run `launchctl unload /Users/user/Library/LaunchAgents/com.collins.muppets.anythingmuppets.plist`
+  - Performance: `launchctl load -w /Users/user/Library/LaunchAgents/com.collins.muppets.performance.plist`
+    * If you want to stop running the app, run `launchctl unload /Users/user/Library/LaunchAgents/com.collins.muppets.performance.plist`
