@@ -27,20 +27,25 @@ namespace mmi {
         params.setName("Recording params");
         params.add(recordInterval.set("Camera switch interval", 5000, 0, 15000));
         params.add(recordLength.set("Recording length", 15000, 1, 60000));
-        params.add(camWidth.set("Video width", 1040, 1, 2080) );
-        params.add(camHeight.set("Video height", 776, 1, 1552) );
+//        params.add(camWidth.set("Video width", 1040, 1, 2080) );
+//        params.add(camHeight.set("Video height", 776, 1, 1552) );
+        advancedParams.add(bitrate.set("Bitrate",800, 1, 10000));
         
         advancedParams.setName("Advanced params");
-        advancedParams.add(bitrate.set("Bitrate",800, 1, 10000));
-        advancedParams.add(folderDest.set("Output Folder","../../../data"));
-        advancedParams.add(folderAppend.set("Install folder","performance"));
-        advancedParams.add(fileName.set("File name",""));
-        advancedParams.add(fileExt.set("File extension",".mp4"));
+//        advancedParams.add(folderDest.set("Output Folder","../../../data"));
+//        advancedParams.add(folderAppend.set("Install folder","performance"));
+//        advancedParams.add(fileName.set("File name",""));
         
         // this is now automagic
         //advancedParams.add(pixFmt.set("Pixel Format","rgb24"));
+        advancedParams.add(fileExt.set("File extension",".mp4"));
         advancedParams.add(codec.set("Video codec","mpeg4"));
         advancedParams.add(fileExtImage.set("File extension image",".png"));
+        
+        // these are externally editable
+        folderDest.set("Output Folder","../../../data");
+        folderAppend.set("Install folder","performance");
+        fileName.set("File name","");
         
         params.add(advancedParams);
 
@@ -54,12 +59,30 @@ namespace mmi {
 
     //--------------------------------------------------------------
     void RecordManager::update( ofPixels & cameraOne, ofPixels & cameraTwo ){
+        // update 'automatic' parameters
         static ofPixelFormat lastPixFmt = OF_PIXELS_UNKNOWN;
         if ( cameraOne.getPixelFormat() != lastPixFmt ){
             updatePixelFormat(cameraOne);
             lastPixFmt = cameraOne.getPixelFormat();
         }
         
+        static int lastCamWidth = camWidth.get();
+        static int lastCamHeight = camHeight.get();
+        
+        int realWidth   = cameraOne.getWidth();
+        int realHeight  = cameraOne.getHeight();
+        
+        if ( lastCamWidth != realWidth ){
+            camWidth.set(realWidth);
+        }
+        if ( lastCamHeight != realHeight ){
+            camHeight.set(realHeight);
+        }
+        
+        lastCamWidth = realWidth;
+        lastCamHeight = realHeight;
+        
+        // recording time!
         if(bRecording){
             auto t = ofGetElapsedTimeMillis();
             
@@ -77,39 +100,10 @@ namespace mmi {
             }
             
             bool success = false;
-            
-            bool bEncodeYUV = false;
-            
-            if ( bEncodeYUV ){
-                
-                static ofPixels yuvOut;
-                static ofPixels rgbOut;
-                
-                static auto code = CV_RGB2YUV;//_I420;
-                
-                if ( whichCamera == 0){
-                    if ( cameraOne.getNumChannels() == 1 ){
-                        ofxCv::convertColor(cameraOne, rgbOut, CV_GRAY2RGB);
-                        ofxCv::convertColor(rgbOut, yuvOut, code);
-                    } else {
-                        ofxCv::convertColor(cameraOne, yuvOut, code);
-                    }
-                } else {
-                    if ( cameraTwo.getNumChannels() == 1 ){
-                        ofxCv::convertColor(cameraTwo, rgbOut, CV_GRAY2RGB);
-                        ofxCv::convertColor(rgbOut, yuvOut, code);
-                    } else {
-                        ofxCv::convertColor(cameraTwo, yuvOut, code);
-                    }
-                }
-                
-                success = vidRecorder.addFrame(yuvOut);
+            if ( whichCamera == 0){
+                success = vidRecorder.addFrame(cameraOne);
             } else {
-                if ( whichCamera == 0){
-                    success = vidRecorder.addFrame(cameraOne);
-                } else {
-                    success = vidRecorder.addFrame(cameraTwo);
-                }
+                success = vidRecorder.addFrame(cameraTwo);
             }
             
             lastFrameAdded = t;
