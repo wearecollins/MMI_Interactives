@@ -31,13 +31,15 @@ namespace mmi {
         params.add(camHeight.set("Video height", 776, 1, 1552) );
         
         advancedParams.setName("Advanced params");
+        advancedParams.add(bitrate.set("Bitrate",800, 1, 10000));
         advancedParams.add(folderDest.set("Output Folder","../../../data"));
         advancedParams.add(folderAppend.set("Install folder","performance"));
         advancedParams.add(fileName.set("File name",""));
         advancedParams.add(fileExt.set("File extension",".mp4"));
-        advancedParams.add(pixFmt.set("Pixel Format","rgb24"));
+        
+        // this is now automagic
+        //advancedParams.add(pixFmt.set("Pixel Format","rgb24"));
         advancedParams.add(codec.set("Video codec","mpeg4"));
-        advancedParams.add(bitrate.set("Bitrate",800, 1, 10000));
         advancedParams.add(fileExtImage.set("File extension image",".png"));
         
         params.add(advancedParams);
@@ -52,6 +54,12 @@ namespace mmi {
 
     //--------------------------------------------------------------
     void RecordManager::update( ofPixels & cameraOne, ofPixels & cameraTwo ){
+        static ofPixelFormat lastPixFmt = OF_PIXELS_UNKNOWN;
+        if ( cameraOne.getPixelFormat() != lastPixFmt ){
+            updatePixelFormat(cameraOne);
+            lastPixFmt = cameraOne.getPixelFormat();
+        }
+        
         if(bRecording){
             auto t = ofGetElapsedTimeMillis();
             
@@ -117,6 +125,40 @@ namespace mmi {
     //--------------------------------------------------------------
     void RecordManager::update( const ofPixels & cameraOne ){
         lastImage.setFromPixels(cameraOne);
+    }
+    
+    //--------------------------------------------------------------
+    void RecordManager::updatePixelFormat( const ofPixels & camera ){
+        ofPixelFormat fmt = camera.getPixelFormat();
+        switch (fmt) {
+            case OF_PIXELS_GRAY:
+                pixFmt.set("gray");
+                break;
+                
+            case OF_PIXELS_BGR:
+                pixFmt.set("bgr24");
+                break;
+                
+            case OF_PIXELS_BGRA:
+                pixFmt.set("bgra");
+                break;
+                
+            case OF_PIXELS_I420:
+                pixFmt.set("yuv420p");
+                break;
+                
+            case OF_PIXELS_RGB:
+                pixFmt.set("rgb24");
+                break;
+                
+            case OF_PIXELS_RGBA:
+                pixFmt.set("rgba");
+                break;
+                
+            default:
+                pixFmt.set("rgb24");
+                break;
+        }
     }
     
     //--------------------------------------------------------------

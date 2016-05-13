@@ -27,6 +27,9 @@ namespace mmi {
         // update for image-based app(s)
         void update( const ofPixels & cameraOne );
         
+        // update pixel format automatically
+        void updatePixelFormat( const ofPixels & camera );
+        
         void startRecordingEvt( string & backgroundClipAndName );
         void startRecording( string backgroundClip = "", string baseName = "");
         void stopRecording();
