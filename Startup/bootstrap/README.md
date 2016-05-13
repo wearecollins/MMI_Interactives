@@ -1,12 +1,12 @@
 ###Preparation steps
 0. Make sure the scripts in this directory (primarily bootstrapping.command and visudo_edit.sh) include the appropriate username in the scripts
-  - you can get the correct username via `whoami` in the terminal after logging in as the appropriate user
+  - You can get the correct username via `whoami` in the terminal after logging in as the appropriate user
 0. Copy the contents of this directory to a thumb drive to run on each individual computer as you set it up
 
 ###Initial steps to run on each computer
 0. Manually do initial computer setup using the same username and password for all OSX computers
 0. Run ```_01_0_setHostnames.command``` (double-click) to set the hostname as appropriate
-0. Run ```_03_0_bootstrap.command``` to do all bootstrapping
+0. Run ```_03_0_bootstrap.command``` (double-click) to do all bootstrapping
   - This will set default settings, such as power management, turning off Notification Center, etc.
 0. Mount the central-server's SAMBA drive on the computer, saving the credentials.
 0. Drag the mounted drive into _Startup Items_ in the OSX Settings to make sure the drive gets mounted on boot
