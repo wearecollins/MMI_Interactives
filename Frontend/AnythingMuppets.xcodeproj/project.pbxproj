@@ -24,6 +24,7 @@
 		012A52591CAF247F00A74858 /* Tracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012A524C1CAF247F00A74858 /* Tracker.cpp */; };
 		012A525A1CAF247F00A74858 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012A524D1CAF247F00A74858 /* Utilities.cpp */; };
 		012A525B1CAF247F00A74858 /* Wrappers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012A524E1CAF247F00A74858 /* Wrappers.cpp */; };
+		0138DBDC1CE624DB00976530 /* ofxInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0138DBDA1CE624DB00976530 /* ofxInputField.cpp */; };
 		01793FE11CA59E8E00D8DA83 /* ofApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE01CA59E8E00D8DA83 /* ofApp.mm */; };
 		01793FE91CA59F1E00D8DA83 /* BlackFlyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */; };
 		01793FEA1CA59F1E00D8DA83 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE51CA59F1E00D8DA83 /* CameraManager.cpp */; };
@@ -325,6 +326,8 @@
 		012A524C1CAF247F00A74858 /* Tracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tracker.cpp; sourceTree = "<group>"; };
 		012A524D1CAF247F00A74858 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		012A524E1CAF247F00A74858 /* Wrappers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wrappers.cpp; sourceTree = "<group>"; };
+		0138DBDA1CE624DB00976530 /* ofxInputField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxInputField.cpp; sourceTree = "<group>"; };
+		0138DBDB1CE624DB00976530 /* ofxInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxInputField.h; sourceTree = "<group>"; };
 		01793FE01CA59E8E00D8DA83 /* ofApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofApp.mm; sourceTree = "<group>"; };
 		01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlackFlyCamera.cpp; path = ../Camera/src/BlackFlyCamera.cpp; sourceTree = "<group>"; };
 		01793FE41CA59F1E00D8DA83 /* BlackFlyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlackFlyCamera.h; path = ../Camera/src/BlackFlyCamera.h; sourceTree = "<group>"; };
@@ -992,6 +995,24 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		0138DBD81CE624D100976530 /* ofxInputField */ = {
+			isa = PBXGroup;
+			children = (
+				0138DBD91CE624DB00976530 /* src */,
+			);
+			name = ofxInputField;
+			sourceTree = "<group>";
+		};
+		0138DBD91CE624DB00976530 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0138DBDA1CE624DB00976530 /* ofxInputField.cpp */,
+				0138DBDB1CE624DB00976530 /* ofxInputField.h */,
+			);
+			name = src;
+			path = ../Camera/addons/ofxInputField/src;
+			sourceTree = "<group>";
+		};
 		01793FE21CA59EDE00D8DA83 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -1160,6 +1181,7 @@
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
+				0138DBD81CE624D100976530 /* ofxInputField */,
 				012A51F21CAF235A00A74858 /* ofxCv */,
 				01F10D091CA5ECA7006937FA /* ofxLibwebsockets */,
 				884ED7B2810CEF825D7C13DE /* ofxCocoaGLView */,
@@ -1521,6 +1543,7 @@
 				012A52591CAF247F00A74858 /* Tracker.cpp in Sources */,
 				012A525A1CAF247F00A74858 /* Utilities.cpp in Sources */,
 				01F10D081CA5EBBD006937FA /* MessageHandler.cpp in Sources */,
+				0138DBDC1CE624DB00976530 /* ofxInputField.cpp in Sources */,
 				01F10D241CA5ECC7006937FA /* Events.cpp in Sources */,
 				01F10D281CA5ECC7006937FA /* Util.cpp in Sources */,
 				01055C811CA9A7B800DAD4CC /* Webview.mm in Sources */,

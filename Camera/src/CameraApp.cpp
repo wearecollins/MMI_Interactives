@@ -76,6 +76,12 @@ namespace mmi {
         // complete gui setup
         
         gui->add( recordMgr.params );
+        
+        // add text fields from gui
+        recFolder = new ofxTextField();
+        recFolder->setup(recordMgr.folderDest);
+        gui->add(recFolder);
+        
         gui->add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
         
         gui->loadFromFile(settingsFile);

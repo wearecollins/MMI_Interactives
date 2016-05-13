@@ -1,0 +1,11 @@
+*/\.*
+MMI_Interactives/Sharing/node_modules/*
+MMI_Interactives/Sharing/config.json
+MMI_Interactives/Sharing/facebookToken.json
+MMI_Interactives/Sharing/tumblrToken.json
+MMI_Interactives/Sharing/media/*
+MMI_Interactives/Sync/node_modules/*
+MMI_Interactives/Sync/log/*
+MMI_Interactives/Webserver/node_modules/*
+MMI_Interactives/Webserver/log/*
+MMI_Interactives/Webserver/static/output/*

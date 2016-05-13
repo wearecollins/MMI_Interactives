@@ -16,3 +16,6 @@
 [submodule "Camera/addons/ofxCv"]
 	path = Camera/addons/ofxCv
 	url = https://github.com/kylemcdonald/ofxCv.git
+[submodule "Camera/addons/ofxInputField"]
+	path = Camera/addons/ofxInputField
+	url = https://github.com/fx-lange/ofxInputField.git

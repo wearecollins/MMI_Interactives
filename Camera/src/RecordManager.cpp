@@ -43,7 +43,7 @@ namespace mmi {
         advancedParams.add(fileExtImage.set("File extension image",".png"));
         
         // these are externally editable
-        folderDest.set("Output Folder","../../../data");
+        folderDest.set("Folder","../../../data");
         folderAppend.set("Install folder","performance");
         fileName.set("File name","");
         

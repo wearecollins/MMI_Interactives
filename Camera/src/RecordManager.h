@@ -45,13 +45,13 @@ namespace mmi {
         // public parameters to allow for text fields
         ofParameter<string>     folderDest;
         ofParameter<string>     folderAppend;
-        ofParameter<string>     fileName;
         
     protected:
         
         ofParameterGroup        advancedParams;
         ofParameter<string>     fileExt;
         ofParameter<string>     fileExtImage;
+        ofParameter<string>     fileName;
         ofParameter<string>     pixFmt;
         ofParameter<string>     codec;
         ofParameter<int>        bitrate;

@@ -10,6 +10,7 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "ofxInputField.h"
 
 #include "CameraManager.h"
 #include "ImageStreamer.h"
@@ -63,6 +64,7 @@ namespace mmi {
     protected:
         
         bool bStreaming;
+        ofxTextField * recFolder;
     };
 }
 

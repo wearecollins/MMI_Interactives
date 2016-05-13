@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0138DBC61CE6164500976530 /* ofxInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0138DBC41CE6164500976530 /* ofxInputField.cpp */; };
 		071782FE59F668E0759F9050 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5EC7D3D3208820AFFEAED5 /* Server.cpp */; };
 		0A096E7C81287CA693A6EFCA /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F107D0AD6A1FE1F0E0F15FF9 /* Utilities.cpp */; };
 		15DCF11A6445D447A0D48491 /* ETF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A679DB0600518400D26C73C /* ETF.cpp */; };
@@ -96,6 +97,8 @@
 		012A4FDE1CAF206A00A74858 /* bayer.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = bayer.frag; path = bin/data/bayer.frag; sourceTree = "<group>"; };
 		012A4FDF1CAF206A00A74858 /* bayer.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = bayer.vert; path = bin/data/bayer.vert; sourceTree = "<group>"; };
 		013882B41CD0FE7600451DD5 /* DebugCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugCamera.h; sourceTree = "<group>"; };
+		0138DBC41CE6164500976530 /* ofxInputField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxInputField.cpp; sourceTree = "<group>"; };
+		0138DBC51CE6164500976530 /* ofxInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxInputField.h; sourceTree = "<group>"; };
 		0163799815EFC253C35FEE0F /* Calibration.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Calibration.cpp; path = addons/ofxCv/libs/ofxCv/src/Calibration.cpp; sourceTree = SOURCE_ROOT; };
 		0173A3F435DECD5A4DDE0B8E /* logger.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = logger.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/logger.h; sourceTree = SOURCE_ROOT; };
 		01DAE5C2E3E0A74207B2BE49 /* saving.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = saving.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/saving.h; sourceTree = SOURCE_ROOT; };
@@ -456,6 +459,24 @@
 			name = Camera;
 			sourceTree = "<group>";
 		};
+		0138DBC21CE6163E00976530 /* ofxInputField */ = {
+			isa = PBXGroup;
+			children = (
+				0138DBC31CE6164500976530 /* src */,
+			);
+			name = ofxInputField;
+			sourceTree = "<group>";
+		};
+		0138DBC31CE6164500976530 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0138DBC41CE6164500976530 /* ofxInputField.cpp */,
+				0138DBC51CE6164500976530 /* ofxInputField.h */,
+			);
+			name = src;
+			path = addons/ofxInputField/src;
+			sourceTree = "<group>";
+		};
 		02F10902E070193ED805A1F6 /* ofxCv */ = {
 			isa = PBXGroup;
 			children = (
@@ -792,6 +813,7 @@
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
+				0138DBC21CE6163E00976530 /* ofxInputField */,
 				40694B518C0E85CF62A9A412 /* ofxCv */,
 				8048739552F53EBF03ECB65E /* ofxVideoRecorder */,
 				6D16D13427A54E3B69840DD2 /* ofxLibdc */,
@@ -1438,6 +1460,7 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				77BDB6A21B60A01BFF0FFC75 /* BlackFlyCamera.cpp in Sources */,
+				0138DBC61CE6164500976530 /* ofxInputField.cpp in Sources */,
 				7CE672430BB156ED0D795A46 /* CameraApp.cpp in Sources */,
 				8032B08950A24F980638184D /* CameraManager.cpp in Sources */,
 				76B39B9ECD968A8DB680106F /* ImageStreamer.cpp in Sources */,
