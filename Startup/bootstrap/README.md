@@ -21,9 +21,9 @@
 0. Configure the computers for automatic shutdown/startup as preferred.
   - This step is optional
 0. Launch the interactive by either:
-a. Logging out, then logging back in
-b. Loading plist into launchd: 
-  - AM: `launchctl load -w /Users/user/Library/LaunchAgents/com.collins.muppets.anythingmuppets.plist`
-    * If you want to stop running the app, run `launchctl unload /Users/user/Library/LaunchAgents/com.collins.muppets.anythingmuppets.plist`
-  - Performance: `launchctl load -w /Users/user/Library/LaunchAgents/com.collins.muppets.performance.plist`
-    * If you want to stop running the app, run `launchctl unload /Users/user/Library/LaunchAgents/com.collins.muppets.performance.plist`
+  0. Logging out, then logging back in
+  0. Loading plist into launchd: 
+    - _AM_: `launchctl load -w /Users/user/Library/LaunchAgents/com.collins.muppets.anythingmuppets.plist`
+      * If you want to stop running the app, run `launchctl unload /Users/user/Library/LaunchAgents/com.collins.muppets.anythingmuppets.plist`
+    - _Performance_: `launchctl load -w /Users/user/Library/LaunchAgents/com.collins.muppets.performance.plist`
+      * If you want to stop running the app, run `launchctl unload /Users/user/Library/LaunchAgents/com.collins.muppets.performance.plist`
