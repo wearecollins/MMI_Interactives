@@ -4,6 +4,7 @@ var email_am = function(data, configHandler){
 	function selectShare(evt) {
 		currentAM = evt.detail;
 		document.getElementById("amEmImg").src = currentAM.image;
+		document.getElementById("amEmName").innerHTML = currentAM.name;
 	}
 
 	function getCanShare( evt ){
@@ -35,9 +36,9 @@ var email_am = function(data, configHandler){
 		        	//STATE will be either unknown, posting, posted, or failed
 		        	var s = data.state;
 		        	if ( s === "unknown" || s === "failed" ){
-		        		MMI.show("amEmSh", "flex");
+		        		document.getElementById("amEmSh").classList.remove("disabled");
 		        	} else {
-		        		MMI.hide("amEmSh");
+		        		document.getElementById("amEmSh").classList.add("disabled");
 		        	}
 		        }
 		    }
@@ -65,6 +66,8 @@ var email_am = function(data, configHandler){
 
 		    var btn = document.getElementById("amOnlineBtn");
 		    btn.classList.remove("disabled");
+
+		    document.getElementById("amEmSh").classList.add("disabled");
 		}, 1000);
 	};
 

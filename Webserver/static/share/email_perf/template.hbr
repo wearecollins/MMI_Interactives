@@ -3,44 +3,36 @@
     <div class="logoContainer" onclick="window.events.dispatchEvent(new Event('prev'));">
       <img src="svg/__back_white.svg" class="button_mini" />
     </div>
-    <div class="type_med">Share your Performance</div>
-  </div>
-
-  <div id="pEmShare" class="container">
-    <video autoplay loop muted>
-      <source id="pEmImg" src="" type="video/mp4">
-    </video>
+    <div class="type_med">Share Performance <span id="pEmName">Performance 1</span></div>
   </div>
   <div id="pEmInfo" class="leftContainer fillAbs">
-    <div id="spacer"></div>
-    <div class="greyBg container">
-      <span class="type_mini"><u>Your Performance Name</u></span><br>
-      <span id="pEmName" class="type_med">Performance 1</span>
+    <div id="pEmVideo" class="container greyBg">
+      <video autoplay loop muted>
+        <source id="pEmImg" src="" type="video/mp4">
+      </video>    
     </div>
-    <div id="pEmEm" class="whiteBg container">
-      <div onclick="document.getElementById('pEmEmail').focus();">
-        <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
-        <input class="type_sm" placeholder="you@domain.com" type="email" id="pEmEmail" />
-        <span id="pEmError" class="hidden type_sm">Invalid email. Please try again!</span>
-      </div>
-      <div class="topCenteredContainer" style="align-items:center; width:50%" onclick="window.events.dispatchEvent(new Event('sharepEmail'));">
-        <img src="svg/__select.svg" class="button_mini" />
-      </div>
-    </div>
-    <div id="pEmSh" class="greyBg container leftContainer">
-      <div style="flex-shrink:1">
-        <span class="type_mini"><u>Share on MMI Tumblr</u></span><br>
-        <span class="type_sm">mmi-jh.tumblr.com</span><br>
-        <span class="type_mini"><u>Share on MMI Facebook</u></span><br>
-        <span class="type_sm">fb-me/mmi-henson</span><br><br>
-        <div class="type_mini" style="width: 100%;">
-          Optionally, share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.<br>
-          <div class="type_micro">
-          Legal terms etc. ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend massa quis fringilla iaculis. Quisque euismod, dolor id fermentum euismod, nisl nibh eleifend orci, mattis aliquam est nibh vitae lectus. Donec ac libero porta, tristique ligula in, congue</div>
+    <div id="pEmEm" class="whiteBg leftContainer column">
+      <div style="width:100%" class="leftContainer container">
+        <div onclick="document.getElementById('pEmEmail').focus();" style="width: 100%;">
+          <div class="type_med">Share</div>
+          <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
+          <input class="type_mini" placeholder="you@domain.com" type="email" id="pEmEmail" style="width: 100%;" />
+          <span id="pEmError" class="hidden type_sm">Invalid email. Please try again!</span>
+        </div>
+        <div class="topCenteredContainer" style="align-items:center; width:auto" onclick="window.events.dispatchEvent(new Event('sharepEmail'));">
+          <img src="svg/__select.svg" class="button_mini" />
         </div>
       </div>
-      <div id="shareEmOnlineBtn" class="topCenteredContainer" onclick="window.events.dispatchEvent(new Event('sharePerfMMI'));">
-        <img src="svg/__share.svg" class="button_mini" />
+      <div id="pEmSh" class="greyBg container leftContainer disabled">
+        <div style="flex-shrink:1">
+          <div class="type_med">Post Online</div>
+          <div class="type_mini" style="width: 100%;">
+            Optionally, share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.
+          </div>
+        </div>
+        <div id="shareEmOnlineBtn" class="topCenteredContainer" onclick="window.events.dispatchEvent(new Event('sharePerfMMI'));">
+          <img src="svg/__share.svg" class="button_mini" />
+        </div>
       </div>
     </div>
   </div>

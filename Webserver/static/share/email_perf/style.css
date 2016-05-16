@@ -15,6 +15,14 @@
   	color: black;
 }
 
+#{{name}} .button_mini {
+	height: 60%;
+}
+
+#{{name}} .logoContainer .button_mini {
+	height: 100%;
+}
+
 #{{name}}.canceled{
 	display:block;
 	  /* animation-name: {{name}}animateOff; */
@@ -42,6 +50,13 @@
     border-bottom: 1px solid #56b79e;
 }
 
+#pEmVideo {
+	/* width: calc(100%); */
+	height: 100%;
+	align-items: flex-start;
+	display: flex;
+}
+
 #pEmShare {
 	width: 100%;
 	height: 100%;
@@ -49,17 +64,12 @@
     z-index: 0;
 }
 
-#pEmSh {
-	visibility: hidden;
-	display: none;
+#pEmSh.disabled {
+	opacity: .5;
+	pointer-events: none;
 }
 
-#pEmShare video {
-	height: 100%;
-}
-
-#pEmInfo div {
-	flex-shrink: 0;
+#pEmVideo video {
 	width: 100%;
 }
 
@@ -68,7 +78,7 @@
 	height: 100%;
 	display: flex;
 	align-items: flex-start;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: flex-start;
 	text-align: left;
 	line-height: 0;
@@ -83,14 +93,24 @@
 }
 
 #pEmEm {
-	justify-content: flex-start;
-    flex-direction: row;
-    display: flex;
+	max-width: calc(100%/3);
 }
 
-#pEmEm div, #pEmSh div {
+@media (max-width: 1024px) {
+	#pEmEm {
+		max-width: calc(100%/2);
+	}
+}
+
+@media (max-width: 500px) {
+	#pEmEm {
+		max-width: calc(100%/2);
+	}
+}
+
+#pEmSh div {
 	flex-shrink: 1;
-	width: 50%;
+	/* width: 50%; */
 }
 
 #pEmSh .topCenteredContainer, #pEmEm .topCenteredContainer {

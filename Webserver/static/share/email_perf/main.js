@@ -11,6 +11,8 @@ var email_perf = function(data, configHandler){
 			video.parentElement.removeEventListener('loadeddata', play);
 		}
 		video.parentElement.addEventListener('loadeddata', play, false);
+
+		document.getElementById("pEmName").innerHTML = currentPerf.name;
 	}
 
 	function getCanShare( evt ){
@@ -42,9 +44,9 @@ var email_perf = function(data, configHandler){
 		        	//STATE will be either unknown, posting, posted, or failed
 		        	var s = data.state;
 		        	if ( s === "unknown" || s === "failed" ){
-		        		MMI.show("pEmSh", "flex");
+		        		document.getElementById("pEmSh").classList.remove("disabled");
 		        	} else {
-		        		MMI.hide("pEmSh");
+		        		document.getElementById("pEmSh").classList.add("disabled");
 		        	}
 		        }
 		    }
@@ -93,6 +95,8 @@ var email_perf = function(data, configHandler){
 
 		    var btn = document.getElementById("shareEmOnlineBtn");
 		    btn.classList.remove("disabled");
+		    
+    		document.getElementById("pEmSh").classList.add("disabled");
 		}, 1000);
 	};
 
