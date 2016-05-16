@@ -8,9 +8,6 @@
     <div class="type_lg">Saving...</div>
   </div>
 
-  <!-- <div id="dummy" style="position:absolute; z-index:1000"></div> -->
-
-
   <!-- State II: Share online -->
   <div id="shareOnlineContainer" class="shareAnimateContainer fillAbs">
     <div class="fillAbs bottomCenteredContainer" style="z-index:1">
@@ -48,7 +45,7 @@
         </div>
         <div class="bottomCenteredContainer">
           <div onclick="window.events.dispatchEvent(new Event('next'));">
-            <img src="svg/__get_started.svg" class="button_sm padding_sm" />
+            <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med">continue</div>
           </div>
         </div>
