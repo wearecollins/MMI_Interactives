@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0710"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,16 +14,16 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
+               BlueprintIdentifier = "01CD01C81CE9341700C9CB0F"
                BuildableName = "AnythingMuppets.app"
                BlueprintName = "AnythingMuppets"
-               ReferencedContainer = "container:AnythingMuppets.xcodeproj">
+               ReferencedContainer = "container:Frontend.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
+            BlueprintIdentifier = "01CD01C81CE9341700C9CB0F"
             BuildableName = "AnythingMuppets.app"
             BlueprintName = "AnythingMuppets"
-            ReferencedContainer = "container:AnythingMuppets.xcodeproj">
+            ReferencedContainer = "container:Frontend.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
+            BlueprintIdentifier = "01CD01C81CE9341700C9CB0F"
             BuildableName = "AnythingMuppets.app"
             BlueprintName = "AnythingMuppets"
-            ReferencedContainer = "container:AnythingMuppets.xcodeproj">
+            ReferencedContainer = "container:Frontend.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,15 +74,15 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
+            BlueprintIdentifier = "01CD01C81CE9341700C9CB0F"
             BuildableName = "AnythingMuppets.app"
             BlueprintName = "AnythingMuppets"
-            ReferencedContainer = "container:AnythingMuppets.xcodeproj">
+            ReferencedContainer = "container:Frontend.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Release">
+      buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"

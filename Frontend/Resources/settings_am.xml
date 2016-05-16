@@ -1,42 +1,49 @@
 <group>
-	<Recording_params>
-		<Camera_switch_interval>3000</Camera_switch_interval>
-		<Recording_length>15000</Recording_length>
-		<Video_width>1040</Video_width>
-		<Video_height>776</Video_height>
-	<Advanced_params>
-			<File_name/>
-			<File_extension>.mp4</File_extension>
-			<Pixel_Format>gray</Pixel_Format>
-			<Video_codec>mpeg4</Video_codec>
-			<Bitrate>2000</Bitrate>
+    <Recording_params>
+        <Camera_switch_interval>3000</Camera_switch_interval>
+        <Recording_length>15000</Recording_length>
+        <Video_width>1040</Video_width>
+        <Video_height>776</Video_height>
+        <Advanced_params>
+            <File_name/>
+            <File_extension>.mp4</File_extension>
+            <Pixel_Format>gray</Pixel_Format>
+            <Video_codec>mpeg4</Video_codec>
+            <Bitrate>5002</Bitrate>
             <Output_Folder>../../../../../Webserver/static/output</Output_Folder>
-			<File_extension_image>.jpg</File_extension_image>
-		</Advanced_params>
-	</Recording_params>
-	<Stream_which_camera>0</Stream_which_camera>
-<group/>
-<Mode>1</Mode>
-	<Camera_1_settings>
-		<Guid>b09d0100ed927f</Guid>
-		<Bayer_GPU_on_cv_off>2</Bayer_GPU_on_cv_off>
-		<Brightness>0.5</Brightness>
-		<gamma>0.5</gamma>
-		<gain>0.5</gain>
-		<exposure>0.5</exposure>
-		<shutter>0.5</shutter>
-		<Color_BW>1</Color_BW>
-		<roi>0, 0, 2080, 1552</roi>
-	</Camera_1_settings>
-	<Camera_2_settings>
-		<Guid>b09d0100ed9281</Guid>
-		<Bayer_GPU_on_cv_off>2</Bayer_GPU_on_cv_off>
-		<Brightness>0.5</Brightness>
-		<gamma>0.5</gamma>
-		<gain>0.5</gain>
-		<exposure>0.5</exposure>
-		<shutter>0.5</shutter>
-		<Color_BW>1</Color_BW>
-		<roi>0, 0, 2080, 1552</roi>
-	</Camera_2_settings>
+            <File_extension_image>.jpg</File_extension_image>
+            <Install_folder>anythingmuppets</Install_folder>
+            <Temp_folder>temp</Temp_folder>
+        </Advanced_params>
+    </Recording_params>
+    <Stream_which_camera>0</Stream_which_camera>
+    <group/>
+    <Mode>1</Mode>
+    <Camera_1_settings>
+        <Guid>b09d0100ed927f</Guid>
+        <Bayer_GPU_on_cv_off>2</Bayer_GPU_on_cv_off>
+        <Brightness>0.5</Brightness>
+        <gamma>0.5</gamma>
+        <gain>0.5</gain>
+        <exposure>0.5</exposure>
+        <shutter>0.5</shutter>
+        <Color_BW>1</Color_BW>
+        <roi>0, 0, 2080, 1552</roi>
+    </Camera_1_settings>
+    <Camera_2_settings>
+        <Guid>b09d0100ed9281</Guid>
+        <Bayer_GPU_on_cv_off>2</Bayer_GPU_on_cv_off>
+        <Brightness>0.5</Brightness>
+        <gamma>0.5</gamma>
+        <gain>0.5</gain>
+        <exposure>0.5</exposure>
+        <shutter>0.5</shutter>
+        <Color_BW>1</Color_BW>
+        <roi>0, 0, 2080, 1552</roi>
+    </Camera_2_settings>
+    <Performance_or_AM_>1</Performance_or_AM_>
+    <Reload_cameras>0</Reload_cameras>
+    <Discover_cameras>0</Discover_cameras>
+    <Which_camera_top>0</Which_camera_top>
+    <Folder>../../../../../Webserver/static/output</Folder>
 </group>

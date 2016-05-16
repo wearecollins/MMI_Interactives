@@ -114,32 +114,8 @@ static void setupEventHelper(ofApp *app)
     if ( (([[self window] styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask) ) return;
     
     [[self window] toggleFullScreen:nil];
-    return;
-    // this is custom full screen stuff
-    // as some of the view ordering things
-    // screw up default ofxCocaoView things
-    NSPoint center;
-    NSRect rect = [self.window frame];
     
-    center.x = rect.origin.x + rect.size.width / 2;
-    center.y = rect.origin.y + rect.size.height / 2;
-    
-    NSMutableDictionary *opts = [NSMutableDictionary dictionary];
-    
-    NSEnumerator *screenEnum = [[NSScreen screens] objectEnumerator];
-    NSScreen *screen;
-    while (screen = [screenEnum nextObject])
-    {
-        if (NSPointInRect(center, [screen frame]))
-        {
-            [[self superview] enterFullScreenMode:screen withOptions:opts];
-            break;
-        }
-    }
-    
-    auto frame = [[self superview] frame];
-    
-    [self setBounds:frame];
+    ofHideCursor();
 }
 
 - (void)update
@@ -166,12 +142,11 @@ static void setupEventHelper(ofApp *app)
 {
     if ( key =='R'){
         [webView reload:nil];
-        cout << "RELOAD"<<endl;
     } else if ( key == 'm' ){
         if ( cameraApp.currentMode == mmi::MODE_NONE ){
             [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
             ofHideCursor();
-        } else if ( cameraApp.currentMode >= mmi::MODE_GENERAL ){
+        } else {
             [webView removeFromSuperview];
             ofShowCursor();
         }

@@ -1,0 +1,18 @@
+<group>
+    <Mode>1</Mode>
+    <Camera_b09d0100ed9281>
+        <Guid>b09d0100ed9281</Guid>
+        <Hi-res_lo-res>1</Hi-res_lo-res>
+        <Bayer_cv_off>0</Bayer_cv_off>
+        <Brightness>0.5</Brightness>
+        <gamma>0.5</gamma>
+        <gain>0.5</gain>
+        <exposure>0.5</exposure>
+        <shutter>0.5</shutter>
+        <Reset_camera>0</Reset_camera>
+        <Color_BW>1</Color_BW>
+        <Mirror_on_off>1</Mirror_on_off>
+        <Aspect_x>9</Aspect_x>
+        <Aspect_y>16</Aspect_y>
+    </Camera_b09d0100ed9281>
+</group>
