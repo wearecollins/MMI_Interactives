@@ -3,6 +3,9 @@ multi-state web apps. The framework is detailed in [STRUCTURE.md](STRUCTURE.md)
 
 0. [Dependencies](#dependencies)
 0. [Setup](#setup)
+  - [Anything Muppets](#anythingmuppets)
+  - [Performance](#performance)
+  - [Share](#share)
 0. [Running](#running)
 
 # Dependencies
@@ -20,6 +23,20 @@ developed/tested/used with
 # Setup
 
 0. `npm install`
+
+## Anything Muppets
+- All configurations in the Anything Muppets app can be set in the Admin interface
+- Access the Admin interface by swiping from right-to-left across the top of the screen, or by pressing 'a' on a keyboard
+
+## Performance
+- All configurations in the Performance app can be set in the Admin interface
+- Access the Admin interface by swiping from right-to-left across the top of the screen, or by pressing 'a' on a keyboard
+
+## Share
+- The Share server must be configured to list and show files on disk, and to communicate correctly with the [Sharing](https://github.com/wearecollins/MMI_Interactives/Sharing) service
+- Open Webserver/static/share/config.json
+  - Edit "diskPath": The _absolute path_ to the 'media' folder managed by the [Sync](https://github.com/wearecollins/MMI_Interactives/Sync) service
+  - Edit "shareServer": The _URL_ to the [Sharing service](https://github.com/wearecollins/MMI_Interactives/Sharing)
 
 # Running
 The station this instance is hosting is passed in via a _--station_ parameter.
