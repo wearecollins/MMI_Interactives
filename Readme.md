@@ -74,12 +74,14 @@ These instructions assume you are testing everything on one computer. It should 
 
 There are usually 7 processes which should be run:
 
-* A simple webserver to serve media files for sharing. 
+* A simple webserver to serve media files for sharing
 * [ngrok](https://ngrok.com/) to make your simple server accessible via the internet
+  - Unless your development machine has a publicly-accessible web address already
 * A [Sync](Sync/) service to sync Anything Muppet images to your _media/_ directory
 * A [Sync](Sync/) service to sync Performance videos to your _media/_ directory
 * A [Webserver](Webserver/) instance to host whichever frontend you are testing
-* The [Camera](Camera/) app for interfacing with cameras
+* The [Frontend](Frontend/) app for interfacing with cameras and displaying the Performance or Anything Muppet frontend
+  - Or [Camera](Camera/) app and separate web browser directed at [http://localhost:8080/?stream=true]() if not on OSX
 * The [Sharing](Sharing/) webservice to enable posting to social media
 
 Follow these steps for setting up everything:
@@ -91,10 +93,9 @@ Follow these steps for setting up everything:
   - I set up the server to use port 8014. Suggestions include:
     * python&apos;s (SimpleHTTPServer)[https://docs.python.org/2/library/simplehttpserver.html] `python -m SimpleHTTPServer 8014`
     * Node&apos;s (http-server)[https://www.npmjs.com/package/http-server] `http-server -p 8014`
-3. [Setup ngrok](#using-ngrok) if you have not done this before
-4. run ngrok to make your simple server accessible from the internet
-  - `PATH/TO/ngrok http 8014`
-  - If you want to upload to Facebook or Tumblr, your ngrok URL will need to be registered with your Facebook/Tumblr app.
+3. Ensure your _media/_ server is accessible from the internet
+    * if your computer or network configuration makes this impossible, I suggest using [ngrok](#using-ngrok) to tunnel internet traffic to the media server you have running.
+        - `./ngrok http 8014`
 5. [Configure your Sync services](Sync/README.md#configure)
 6. run sync services
   1. `node loop.js anythingmuppet.json`
@@ -102,10 +103,8 @@ Follow these steps for setting up everything:
 7. [Configure your Webserver](Webserver/README.md#configure)
 8. run the webserver
   - `npm start -- --station [STATION]` where _[STATION]_ is one of `performance`, `anythingmuppets`, or `share`
-9. [Configure the Camera App](Camera/Readme.md#configure)
-10. Compile the Camera App
-11. run the Camera app
-  - `make run` or run from within your IDE
+9. If testing the Performance or Anything Muppet stations, configure/compile/run the [Frontend app](Frontend/)
+  - or [Camera app](Camera/) if you are not on OSX
 
 ## using [ngrok](https://ngrok.com/)
 
