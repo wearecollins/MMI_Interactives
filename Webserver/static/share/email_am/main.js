@@ -1,12 +1,54 @@
 var email_am = function(data, configHandler){
 	var currentAM = null;
 
-	window.addEventListener("selectAM", selectShare);
-
 	function selectShare(evt) {
 		currentAM = evt.detail;
 		document.getElementById("amEmImg").src = currentAM.image;
 	}
+
+	function getCanShare( evt ){
+		var file = evt.detail.image;
+		var wpObj   = configHandler.get("additionalStatic");
+		var webPath = "/media";
+
+		if ( wpObj.length > 0 ){
+			webPath = wpObj[0].webPath;
+		}
+
+		// file should just be am/image or perf/image
+		var ind = file.indexOf(webPath);
+		console.log(ind, webPath, file);
+		if ( ind >=0 ){
+			// include the "/" in removal
+			file = file.substr(ind + webPath.length + 1 );
+		}
+
+		var url = configHandler.get("shareServer");
+		url += '/state?filename=' + file;
+
+		var xhttp = new XMLHttpRequest();
+	    xhttp.onreadystatechange = function() {
+		    if (xhttp.readyState == 4 && xhttp.status == 200) {
+		        var data = JSON.parse(xhttp.responseText);
+		        if ( data ){
+		        	console.log(data);
+		        	//STATE will be either unknown, posting, posted, or failed
+		        	var s = data.state;
+		        	if ( s === "unknown" || s === "failed" ){
+		        		MMI.show("amEmSh", "flex");
+		        	} else {
+		        		MMI.hide("amEmSh");
+		        	}
+		        }
+		    }
+		};
+	    xhttp.open("GET", url, true);
+	    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	    xhttp.send();
+	}
+
+	window.addEventListener("selectAM", selectShare);
+	window.addEventListener("selectAM", getCanShare);
 
 	var shareOnlineRef;
 

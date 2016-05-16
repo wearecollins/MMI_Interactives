@@ -6,5 +6,9 @@
   {
     "diskPath":"/media/quin/data1/docs/collins/muppets/repo/media",
     "webPath":"/media"
-  }]
+  }],
+  "disableKeyNext":true,
+  "shareServer":"http://192.168.88.124:8013",
+  "gridBackground":false,
+  "isTablet":false
 }

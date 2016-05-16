@@ -1,8 +1,6 @@
 var email_perf = function(data, configHandler){
 	var currentPerf = null;
 
-	window.addEventListener("selectPerf", selectShare);
-
 	function selectShare(evt) {
 		currentPerf = evt.detail;
 		var video = document.getElementById("pEmImg");
@@ -14,6 +12,50 @@ var email_perf = function(data, configHandler){
 		}
 		video.parentElement.addEventListener('loadeddata', play, false);
 	}
+
+	function getCanShare( evt ){
+		var file = evt.detail.video;
+		var wpObj   = configHandler.get("additionalStatic");
+		var webPath = "/media";
+
+		if ( wpObj.length > 0 ){
+			webPath = wpObj[0].webPath;
+		}
+
+		// file should just be am/image or perf/image
+		var ind = file.indexOf(webPath);
+		console.log(ind, webPath, file);
+		if ( ind >=0 ){
+			// include the "/" in removal
+			file = file.substr(ind + webPath.length + 1 );
+		}
+
+		var url = configHandler.get("shareServer");
+		url += '/state?filename=' + file;
+
+		var xhttp = new XMLHttpRequest();
+	    xhttp.onreadystatechange = function() {
+		    if (xhttp.readyState == 4 && xhttp.status == 200) {
+		        var data = JSON.parse(xhttp.responseText);
+		        if ( data ){
+		        	console.log(data);
+		        	//STATE will be either unknown, posting, posted, or failed
+		        	var s = data.state;
+		        	if ( s === "unknown" || s === "failed" ){
+		        		MMI.show("pEmSh", "flex");
+		        	} else {
+		        		MMI.hide("pEmSh");
+		        	}
+		        }
+		    }
+		};
+	    xhttp.open("GET", url, true);
+	    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	    xhttp.send();
+	}
+
+	window.addEventListener("selectPerf", selectShare);
+	window.addEventListener("selectPerf", getCanShare);
 
 	this.enter = function(/*evt*/){
 		var info = document.getElementById("pEmInfo");
@@ -31,6 +73,8 @@ var email_perf = function(data, configHandler){
 	    xhttp.open("POST", url, true);
 	    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	    xhttp.send( "filename=" + filename );
+
+	    console.log("Posting ",currentPerf);
 
 	    // then hide the button...
 	    window.removeEventListener("share_online", shareOnline);

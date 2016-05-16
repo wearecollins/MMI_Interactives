@@ -45,6 +45,7 @@ var share_perf = function(data, configHandler){
 					"timestamp":timestamp,
 					"video": base_path + "/" + path,
 					"thumb": base_path + "/" + thumb,
+					"path": path,
 					"name": name
 				}
 				currentData.videos.push(obj);

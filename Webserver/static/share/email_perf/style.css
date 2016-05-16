@@ -49,6 +49,11 @@
     z-index: 0;
 }
 
+#pEmSh {
+	visibility: hidden;
+	display: none;
+}
+
 #pEmShare video {
 	height: 100%;
 }

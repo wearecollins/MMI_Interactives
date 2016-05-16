@@ -4,10 +4,11 @@
   "continuousMode":false,
   "additionalStatic":[
   {
-    "diskPath":"/Users/brettrenfer/Dropbox/MMI-Henson/04_Creative_Assets/code/openFrameworks/apps/MMI_Interactives/Sharing/media/",
+    "diskPath":"/Users/brettrenfer/Dropbox/MMI-Henson/code/openFrameworks/apps/MMI_Interactives/Webserver/static/output/",
     "webPath":"/media"
   }],
   "disableKeyNext":true,
   "shareServer":"http://192.168.88.124:8013",
-  "gridBackground":false
+  "gridBackground":false,
+  "isTablet"
 }
