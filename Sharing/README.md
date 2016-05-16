@@ -35,8 +35,11 @@ This webservice requires a lot of setup. You need to authenticate against
 each network you want to post to, and set up a server to be able to serve
 media to the internet.
 
-1. `npm install` to download all Node.js dependencies
-2. go through [Platform Authentication](#platform-authentication)
+1. Open Terminal
+2. Navigate to where you installed the MMI_Interactives code, and to the Sharing folder inside
+  * ```cd /path/to/MMI_Interactives/Sharing```
+3. `npm install` to download all Node.js dependencies
+4. go through [Platform Authentication](#platform-authentication)
 
 ## platform authentication
 First we need to set up the ability to post media to Tumblr and Facebook.
@@ -44,30 +47,37 @@ These instructions were current as of May 2016.
 
 0. Ensure your server has a publicly-accessible URL
   - The token-fetching server binds to port 8012. Make sure requests are forwarded to the appropriate port before continuing.
+  - For the Museum server, this should already be configured. For testing and/or debugging, we suggest using [usig ngrok](https://github.com/wearecollins/MMI_Interactives/#using-ngrok)
   - If your computer or network configuration make this impractical, read through [using ngrok](../Readme.md#using-ngrok)
-1. Set up a Facebook App ([below](#facebook)) and Tumblr App ([below](#tumblr))
-2. Follow the instructions for the [Token Fetching Service](fetchToken/)
+1. Setup a 'config.json' file by copying and renaming the config.json.sample file
+  - Open this file (you will edit it in the Facebook and Tumblr steps below)
+  - Edit the 'netpath' value to the URL noted in '0'
+  - e.g. for the Museum server, it may look like this (the slash is necessary):
+  - ``` "netpath":"http://www.movingimage.us/" ```
+2. Set up a Facebook App ([below](#facebook)) and Tumblr App ([below](#tumblr))
+3. Follow the instructions for the [Token Fetching Service](fetchToken/)
 
 ### facebook
 You will need a [Facebook App](https://developers.facebook.com/apps/) to be
-able to post to Facebook. The app needs to either be:
+able to post to Facebook. 
+* This requires you be signed in as an owner of the MMI Facebook Page
 
-* public (requires Facebook review since we need 
-the *pages_show_list*, *manage_pages*, and *publish_pages* permissions)
-* have the user that will be used to post assigned a Role 
-(_Administrator_, _Developer_, or _Tester_) in the App
+Once you are signed in, you can set up the App.
 
-The URL for accessing the server used for setting up authentication
-needs to be listed in the _App Domains_ list 
-and set up as the _Site URL_ for a Website Platform associated with the App.
-If you cannot access your computer from a 
-public URL, I suggest you use [ngrok](https://ngrok.com/), in which case 
-you will need to provide their randomly-assigned url as the 
-_Site URL_ and _App Domain_ after you start ngrok.
-Both these settings are accessible in the _Basic_ section of the
-_Settings_ tab of your Facebook App. [Screenshot](facebook_app.jpg)
-
-Enter the Facebook App's ID and Secret into [config.json](#configjson)
+0. Click 'Create a new app' on the [Facebook App page](https://developers.facebook.com/apps/) 
+1. Setup the app, selecting a memorable 'Display Name' and entering your email in 'Contact Email'
+2. Once you're setup, click the "Settings" tab
+   0. First, click "+ Add Platform"
+   1. Select "Website"
+   2. In "App Domains" (under settings) and "Site URL" (under 'Website'), enter your public-facing URL
+     0. For production, it will most likely be [http://www.movingimage.us/](http://www.movingimage.us/)
+     0. For developing using ngrok, it will be something like http://2z999999.ngrok.io
+     0. ![Screenshot](facebook_app.jpg) 
+   3. Click "Save Changes"
+3. You may add other users via the _Roles_ tab
+   0. In order to authenticate with the Sharing script, they must have a Role (_Administrator_, _Developer_, or _Tester_)
+4. From the "Dashboard" page, show the App Secret (click show)
+5. Enter the Facebook App's ID and Secret into [config.json](#configjson)
 
 ### tumblr
 You will need a [Tumblr app](https://www.tumblr.com/oauth/apps) to be 
@@ -75,7 +85,7 @@ able to post to Tumblr.
 
 The URL for accessing the server used for setting up authentication needs to 
 be set up as the _Default callback URL_ of the Tumblr App 
-([Screenshot](tumblr_app.jpg)). If you cannot access your computer from a 
+(![Screenshot](tumblr_app.jpg)). If you cannot access your computer from a 
 public URL, I suggest you use [ngrok](https://ngrok.com/), in which case 
 you will need to provide their randomly-assigned url as the 
 _Default callback URL_ after you start ngrok.
@@ -178,4 +188,3 @@ of the photo to `/photo` like so:
   - The script will normally log to rolling files in the [log/](log/) directory
   - to enable console logging add `{"type":"console"}` to the **appenders** array in [log4js_conf.json](log4js_conf.json)
   - you can change the logging detail by changing the value of **levels.[all]** (and/or any other key in the **levels** object) in [log4js_conf.json](log4js_conf.json) to `"INFO"`, `"DEBUG"`, `"TRACE"`, or `"ALL"`
-
