@@ -33,7 +33,8 @@ namespace mmi {
         
         advancedParams.setName("Advanced params");
 //        advancedParams.add(folderDest.set("Output Folder","../../../data"));
-//        advancedParams.add(folderAppend.set("Install folder","performance"));
+        advancedParams.add(folderAppend.set("Install folder","performance"));
+        advancedParams.add(tempAppend.set("Temp folder","temp"));
 //        advancedParams.add(fileName.set("File name",""));
         
         // this is now automagic
@@ -44,7 +45,6 @@ namespace mmi {
         
         // these are externally editable
         folderDest.set("Folder","../../../data");
-        folderAppend.set("Install folder","performance");
         fileName.set("File name","");
         
         params.add(advancedParams);
@@ -263,11 +263,18 @@ namespace mmi {
     //--------------------------------------------------------------
     void RecordManager::takePhotoEvt( string & name ){
         currentFileName = name + "-" + (fileName.get() +ofGetTimestampString()+fileExtImage.get() );
-        auto outputName = ofToDataPath(folderDest.get() + "/" + folderAppend.get() + "/" + currentFileName, true );
-        cout << "saving" <<endl;
+        auto outputName = ofToDataPath(folderDest.get() + "/" + tempAppend.get() + "/" + currentFileName, true );
+        cout << outputName << endl;
         lastImage.save(outputName);
-        cout << "saved" <<endl;
         ofNotifyEvent(onFinishedCapture, currentFileName, this);
     }
     
+    //--------------------------------------------------------------
+    void RecordManager::confirmPhotoEvt( string & baseName ){
+        auto outputName = ofToDataPath(folderDest.get() + "/" + tempAppend.get() + "/" + currentFileName, true );
+        ofFile img;
+        if (img.open(outputName)){
+            img.copyTo(ofToDataPath(folderDest.get() + "/" + folderAppend.get() + "/" + currentFileName, true ));
+        }
+    }
 }

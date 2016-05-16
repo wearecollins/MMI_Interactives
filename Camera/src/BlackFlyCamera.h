@@ -49,7 +49,6 @@ protected:
     ofFbo   pingPong[2];
     ofFbo * src;
     ofFbo * dst;
-    ofShader bayerShader;
     
     ofParameter<string>         guid;
     ofParameter<int>            gpuBayer;

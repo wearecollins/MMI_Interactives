@@ -36,6 +36,7 @@ namespace mmi {
         void close();
         
         void takePhotoEvt( string & baseName );
+        void confirmPhotoEvt( string & baseName );
         
         ofParameterGroup params;
         
@@ -44,7 +45,6 @@ namespace mmi {
         
         // public parameters to allow for text fields
         ofParameter<string>     folderDest;
-        ofParameter<string>     folderAppend;
         
     protected:
         
@@ -55,6 +55,8 @@ namespace mmi {
         ofParameter<string>     pixFmt;
         ofParameter<string>     codec;
         ofParameter<int>        bitrate;
+        ofParameter<string>     folderAppend;
+        ofParameter<string>     tempAppend;
         
         ofParameter<uint64_t>   recordInterval;
         ofParameter<uint64_t>   recordLength;

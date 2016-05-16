@@ -12,7 +12,7 @@ namespace mmi {
     //--------------------------------------------------------------
     void CameraManager::setup( bool bSmall, string settingsFile ){
         gui = new ofxPanel();
-        gui->setup("Camera Settings", "camera_settings.xml");
+        gui->setup("Camera Settings", settingsFile + "_camera.xml");
         this->settingsFile.set("Settings file", settingsFile);
         this->lowRes.set("Lo-res/hi-res", bSmall);
         
@@ -49,7 +49,7 @@ namespace mmi {
                 xml.setToParent();
             }
         } xml.setToParent();
-        xml.save(settingsFile.get());
+        xml.save(settingsFile.get() + ".xml");
 #endif
     }
     
@@ -60,7 +60,7 @@ namespace mmi {
         gui->add(drawMode.set("Mode", (int) MODE_FILL_MAX, (int) MODE_FILL_MAX, (int) MODE_ACTUAL));
         
         ofXml settings;
-        if (settings.load(settingsFile)){
+        if (settings.load(settingsFile.get() + ".xml" ) ){
             
             settings.setTo("settings");
             auto n = settings.getNumChildren();
@@ -93,7 +93,7 @@ namespace mmi {
             
             saveSettings();
         }
-        gui->loadFromFile("camera_settings.xml");
+        gui->loadFromFile(settingsFile.get() + "_camera.xml");
     }
     
     //--------------------------------------------------------------
@@ -174,7 +174,7 @@ namespace mmi {
                 xml.setToParent();
             }
         } xml.setToParent();
-        xml.save(settingsFile.get());
+        xml.save(settingsFile.get() + ".xml");
     }
     
     //--------------------------------------------------------------

@@ -36,6 +36,12 @@ namespace mmi {
         ofEvent<string>    onCaptureImage;
         
         /**
+         Not retaking OR like our photo:
+         move into place!
+         */
+        ofEvent<string>    onConfirmImage;
+        
+        /**
          Incoming events: finished recording a video,
          or finished capturing a photo
          */

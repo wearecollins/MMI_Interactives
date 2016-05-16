@@ -51,6 +51,9 @@ namespace mmi {
                 if ( n == "take_photo" ){
                     string n = e.json["event"]["detail"];
                     ofNotifyEvent( onCaptureImage, n );
+                } else if ( n == "confirm_photo" ){
+                    string n = e.json["event"]["detail"];
+                    ofNotifyEvent( onConfirmImage, n );
                 } else if (n == "camera_front"){
                     int whichCamera = 0;
                     ofNotifyEvent( onSwitchCamera, whichCamera );

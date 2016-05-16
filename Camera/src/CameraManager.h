@@ -38,7 +38,7 @@ namespace mmi {
     {
     public:
         
-        void setup( bool bSmall = false, string settingsFile = "anythingmuppets.xml" );
+        void setup( bool bSmall = false, string settingsFile = "anythingmuppets" );
         
         void clearCameras();
         void setupCameras();

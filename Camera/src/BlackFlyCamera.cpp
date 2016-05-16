@@ -30,7 +30,7 @@ namespace mmi {
         this->params.setName("Camera " + ofToString( bfCamIdx ) + " settings");
         this->params.add(this->guid.set("Guid", guid));
         this->params.add(this->resMode.set( "Hi-res/lo-res", 1, 0, 1 ));
-        this->params.add(this->gpuBayer.set("Bayer GPU on/cv/off", 1,0,2));
+        this->params.add(this->gpuBayer.set("Bayer cv/off", 0,0,1));
         this->params.add(this->brightness.set("Brightness", .5, 0., 1.0));
         this->params.add(this->gamma.set("gamma", .5, 0., 1.0));
         this->params.add(this->gain.set("gain", .5, 0., 1.0));
@@ -106,7 +106,7 @@ namespace mmi {
         // reset bus
         camera.resetBus(guid);
         
-        if ( imageColor.get() && gpuBayer.get() == 2 ){
+        if ( imageColor.get() && gpuBayer.get() == 1 ){
             /*
              DC1394_BAYER_METHOD_NEAREST=0,
              DC1394_BAYER_METHOD_SIMPLE,
@@ -142,7 +142,7 @@ namespace mmi {
         
         if ( bSetup ){
             // setup buffers
-            if ( imageColor.get() && gpuBayer.get() == 2 ){
+            if ( imageColor.get() && gpuBayer.get() == 1 ){
                 buffer.clear();
                 buffer.allocate(this->width, this->height, OF_IMAGE_COLOR);
             } else {
@@ -192,7 +192,6 @@ namespace mmi {
     
     //--------------------------------------------------------------
     void BlackFlyCamera::reloadShader(){
-        bayerShader.load("bayer");
     }
     
     //--------------------------------------------------------------
@@ -222,15 +221,26 @@ namespace mmi {
         // aspect ratio/cropping stuff
         
         float aspect = 1;
+        float tw, th, cx, cy;
         if ( aspect_x.get() != 0 && aspect_y.get() != 0 ){
-            aspect = (float) aspect_x.get() / aspect_y.get();
+            if ( aspect_x > aspect_y ){
+                aspect = (float) aspect_y.get() / aspect_x.get();
+                tw = this->width;
+                th =  ((float) this->width) * aspect;
+            } else {
+                aspect = (float) aspect_x.get() / aspect_y.get();
+                tw = ((float) this->height) * aspect;
+                th = this->height;
+            }
+        } else {
+            tw = this->width;
+            th = this->height;
         }
-        float tw = ((float) this->height) * aspect;
-        float th = this->height;
-        float cx = (float) this->width/2.0 - tw/2.0;
-        float cy = (float) this->height/2.0 - th/2.0;
+        cx = (float) this->width/2.0 - tw/2.0;
+        cy = (float) this->height/2.0 - th/2.0;
         
-        if ( gpuBayer == 2){
+        
+        if ( gpuBayer == 1){
             if (imageColor.get() && buffer.getImageType() != OF_IMAGE_COLOR ){
                 buffer.allocate(width, height, OF_IMAGE_COLOR);
                 buffer.getPixels().setColor(ofColor::black);
@@ -319,7 +329,7 @@ namespace mmi {
             } while (remaining);
             
             if ( i > 0 ){
-                if ( gpuBayer.get() == 1 ){
+                if ( gpuBayer.get() == 0 ){
                     if (!cvBuffer.isAllocated())
                     {
                         cvBuffer.allocate(this->width, this->height, OF_IMAGE_COLOR);
@@ -381,23 +391,7 @@ namespace mmi {
     void BlackFlyCamera::draw( float x, float y, float w, float h){
         src->begin();
         ofClear(0);
-        if ( gpuBayer.get() == 0 ){
-            bayerShader.begin();
-            bayerShader.setUniformTexture("source", buffer.getTexture(), 1);
-            bayerShader.setUniform4f("sourceSize", buffer.getWidth(), buffer.getHeight(), 1./buffer.getWidth(), 1./buffer.getHeight());
-            bayerShader.setUniform2f("firstRed", 0, 0);
-            
-//            ofPlanePrimitive plane(w,h,2,2);
-//            plane.mapTexCoordsFromTexture(buffer.getTexture());
-//            plane.draw();
-            
-            getImage().draw(0,0);
-        } else {
-            getImage().draw(0,0);
-        }
-        if (gpuBayer.get() == 0){
-            bayerShader.end();
-        }
+        getImage().draw(0,0);
         src->end();
         dst->draw(x,y,w,h);
         swap(src, dst);
@@ -462,7 +456,7 @@ namespace mmi {
             return cropped;
         }
         
-        if (gpuBayer.get() == 1) {
+        if (gpuBayer.get() == 0) {
             return cvBuffer;
         } else {
             return buffer;

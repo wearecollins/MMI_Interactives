@@ -25,13 +25,13 @@ namespace mmi {
         
         // first: get what camera setup we want
         ofXml settings;
-        string xml = "anythingmuppets.xml";
+        string xml = "anythingmuppets";
         if ( settings.load( ofToDataPath( settingsFile ) ) ){
             int mode = settings.getValue("Mode", 0);
             if ( mode == 0 ){
-                xml = "performance.xml";
+                xml = "performance";
             } else {
-                xml = "anythingmuppets.xml";
+                xml = "anythingmuppets";
             }
         }
         
@@ -55,6 +55,7 @@ namespace mmi {
             videos[n] = ofVideoPlayer();
             videos[n].load(ofToDataPath(vDir.getPath(i)));
             videos[n].setLoopState(OF_LOOP_NONE);
+            videos[n].stop();
         }
         
         // setup message handler, which opens its own ws:// client
@@ -68,6 +69,7 @@ namespace mmi {
         ofAddListener(messageHdlr.onStartRecording, this, &mmi::CameraApp::startRecordingEvt);
         
         ofAddListener(messageHdlr.onCaptureImage, &recordMgr, &mmi::RecordManager::takePhotoEvt);
+        ofAddListener(messageHdlr.onConfirmImage, &recordMgr, &mmi::RecordManager::confirmPhotoEvt);
         
         ofAddListener(recordMgr.onFinishedRecording, &messageHdlr, &mmi::MessageHandler::onVideoRecorded);
         
@@ -84,13 +86,13 @@ namespace mmi {
         
         gui->add( whichStream.set("Stream which camera", 0, 0, cameraMgr.getNumCameras()-1));
         
-        gui->loadFromFile(settingsFile);
+        gui->loadFromFile( ofToDataPath( settingsFile ) );
         
         ofSetLogLevel(OF_LOG_ERROR);
         
         currentMode = MODE_NONE;
         
-        ofAddListener(ofEvents().keyPressed, this, &CameraApp::keyPressed);
+        ofAddListener(ofEvents().keyPressed, this, &CameraApp::keyPressed, OF_EVENT_ORDER_BEFORE_APP);
     }
 
     //--------------------------------------------------------------
@@ -111,7 +113,7 @@ namespace mmi {
         if (reloadCameras.get()){
             reloadCameras.set(false);
             
-            string settings = whichSetup.get() == 0 ? "performance.xml" : "anythingmuppets.xml";
+            string settings = whichSetup.get() == 0 ? "performance" : "anythingmuppets";
             cameraMgr.settingsFile.set(ofToDataPath(settings));
             cameraMgr.setupCameras();
         }
@@ -120,7 +122,7 @@ namespace mmi {
         if ( discoverCameras.get() ){
             discoverCameras.set(false);
             
-            string settings = whichSetup.get() == 0 ? "performance.xml" : "anythingmuppets.xml";
+            string settings = whichSetup.get() == 0 ? "performance" : "anythingmuppets";
             cameraMgr.settingsFile.set(ofToDataPath(settings));
             cameraMgr.discoverCameras();
             cameraMgr.setupCameras();
@@ -233,7 +235,6 @@ namespace mmi {
         // play video sound!
         // this comes in as video:name
         video = ofSplitString(video, ":")[0];
-        cout << "PLAY "<<video<<":"<<(videos.count(video))<<endl;;
         if ( videos.count(video) > 0 ){
             videos[video].play();
         }
