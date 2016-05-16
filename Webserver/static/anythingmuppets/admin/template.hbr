@@ -5,7 +5,7 @@
 
     <div class="column">
       <div class="adminEl">
-          <div class="type_med padding_sm">Startover timeout (minutes)</div>
+          <div class="type_sm padding_sm">Startover timeout (minutes)</div>
           <form oninput="x.value=parseInt(config_timeout.value)" class="type_sm">
             1m
             <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" type="range" id="config_timeout" name="a" value="1" step="1" min="1" max="15">
@@ -14,30 +14,36 @@
           </form>
       </div>
 
-      <div class="adminEl centeredContainer column">
-        <div class="type_med padding_sm">Mode (frontend/stream)</div>
+      <div class="adminEl centeredContainer">
+        <div class="type_sm" style="padding-right:.5rem">Mode (frontend/stream)</div>
         <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_doStream" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />
          <label for="config_doStream"></label>
       </div>
 
-      <div class="adminEl">
-        <div class="type_med padding_sm">Share Server Address</div>
-        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_shareServer" class="borderInput type_sm" />
+      <div class="adminEl centeredContainer">
+        <div class="type_sm" style="padding-right:.5rem">Local share screen (off/on)</div>
+        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_showLocalShare" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />
+         <label for="config_showLocalShare"></label>
       </div>
 
       <div class="adminEl">
-        <div class="type_med padding_sm">Shutdown machine</div>
+        <div class="type_sm padding_sm">Share Server Address</div>
+        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_shareServer" class="borderInput type_sm" />
+      </div>
+
+      <div class="adminEl centeredContainer">
+        <div class="type_sm" style="padding-right:.5rem">Shutdown machine</div>
         <button onclick="window.events.dispatchEvent(new Event('shutdown'))" class="shutdownButton type_sm">Shutdown</button>
       </div>
 
       <div class="bottomCenteredContainer noselect" style="z-index:2; height:30vh; bottom:0">
           <div id="buttonAdminSave" class="column" onclick="window.events.dispatchEvent(new Event('saveAdmin'));">
               <img src="svg/__select.svg" class="button_sm padding_sm" />
-              <div class="type_med padding_sm">save</div>
+              <div class="type_sm padding_sm">save</div>
           </div>
           <div class="column" onclick="window.events.dispatchEvent(new Event('next'));">
               <img src="svg/__done.svg" class="button_sm padding_sm" />
-              <div class="type_med padding_sm">cancel</div>
+              <div class="type_sm padding_sm">cancel</div>
           </div>
       </div>
     </div>

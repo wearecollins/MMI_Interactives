@@ -38,7 +38,7 @@
 		{
 			"name":"Design a <strong>Vacuum Cleaner Salesman</strong>",
 			"name_clean":"salesman",
-			"text":"<em>An AM Man enters dressed as a salesman, carrying his briefcase. The AM Man is in his thirties, has brown hair, a pointy nose, a friendly face, and speaks with a kind of nasal, slightly annoying voice.</em>",
+			"text":"<em>An AM Man enters dressed as a salesman, carrying his briefcase. The AM Man is in his thirties, has brown hair, a pointy nose, a friendly face, and speaks with a kind of nasal, slightly annoying voice.</em><br/><br/><span class='hang_punctuation'>&ldquo;Hello there. I’m your friendly neighborhood vacuum cleaner salesman.&rdquo;</span>",
 			"img":"img/salesman.jpg"
 		}
 	]

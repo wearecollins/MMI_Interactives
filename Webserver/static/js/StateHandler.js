@@ -112,6 +112,11 @@ function StateHandler(){
       var targetStateName = pages[targetStateI].getName();
       log.info(activeStateName,'->',targetStateName);
 
+      if ( activeStateName === targetStateName ){
+        log.info('already in this state, returning');
+        return;
+      }
+
       if (action == 'prev'){
         pages[activeStateI].exitPrev(action);
       } else {

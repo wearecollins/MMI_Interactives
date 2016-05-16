@@ -1,5 +1,15 @@
 <div id='{{name}}' class='page'>
   <div class="background">
+  {{#if useVideo}}
+    <video class="fillContainer" autoplay loop muted>
+        <source src="video/am_script.mp4" type="video/mp4">
+    </video>
+  {{/if}}
+  <!-- Optional voiceover -->
+  <audio src="vo/am_v02.mp3" id="vo_script"></audio>
+
+  <!-- Optional 'done' VO -->
+<!--   <audio src="vo/am_v04.mp3" id="vo_done"></audio> -->
   </div>
 
   {{!-- This is the main scripts container --}}
@@ -9,15 +19,21 @@
   --}}
     {{#each scripts}}
     <div id="{{name_clean}}" class="fillAbs scriptContainer">
+
+          {{#if useVideo}}
+            <div class="fillAbs centeredContainer" style="z-index:2"></div>
+          {{else}}
           <div class="fillAbs centeredContainer" style="z-index:2">
             <img src="anythingmuppets/script/{{img}}" />
           </div>
+          {{/if}}
           <div class="fillAbs centeredContainer scriptInfoContainer" style="z-index:3">
             <div class="scriptTextContainer fill type_sm container noselect">
-                <div class="column_23">
-                    <span class="type_med"><u>{{name}}</u></span>
-                    <br>{{episode}}
+                <div class="">
+                <!-- <div class="column_23"> -->
+                    <span class="type_lg">{{{ name }}}</span>
                     <br><br>
+                    <div class="type_sm"><strong>Script Excerpt</strong></div>
                     <div class="scriptText"></div>
                     <!-- Uncomment this to smash in text from template -->
                     <!-- {{{ text }}} -->
@@ -25,9 +41,9 @@
             </div>
         </div>
     </div>
-
     {{/each}}
 
+    <!-- Start building button -->
     <div id="scriptButtonContainer" class='container fillAbs bottomCenteredContainer disabled noselect' style="z-index:3">
       <div id="start" class="column" onclick="window.events.dispatchEvent(new Event('start'));">
           <img src="svg/__get_started.svg" class="button_sm padding_sm" />
@@ -35,6 +51,7 @@
       </div>
     </div>
 
+    <!-- Done building button -->
     <div id="scriptButtonDoneContainer" class='container fillAbs bottomCenteredContainer disabled' style="z-index:3">
       <div id="done" class="column" onclick="window.events.dispatchEvent(new Event('done'));">
           <img src="svg/__get_started.svg" class="button_sm padding_sm" />
@@ -51,7 +68,7 @@
             </video>
             <div class="fillGreen type_med padding_sm">{{{prompt_open}}}</div>
         </div>
-        <audio src="vo/am_v03.mp3" id="drawer_vo"></audio>
+        <audio src="vo/am_v03.mp3" id="vo_drawer"></audio>
     </div>
 
 {{!-- This is the 'spin overlay' container --}}
@@ -59,10 +76,10 @@
         <div class="centeredContainer column fillAbs" style="left:0px"><!-- 
             <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" /> -->
             <video class="button_lg padding_sm" autoplay loop>
-              <source src="video/arrow.mp4" type="video/mp4">
+              <source src="video/arrow_ccw.mp4" type="video/mp4">
             </video>
 
-            <audio src="vo/am_v04.mp3" id="spin_vo"></audio>
+            <audio src="vo/am_v04.mp3" id="vo_spin"></audio>
             <div class="fillGreen type_med padding_sm">{{{prompt_spin}}}</div>
         </div>
     </div>

@@ -116,12 +116,14 @@ function EventHandler(){
       window.events.dispatchEvent(new Event('next'));
     }
 
+    // Special cases for AnythingMuppets
+
     // c = camera, h = home
     if ( keychar == 'C' ){
       window.events.dispatchEvent(new Event('special') );
+
     } else if ( keychar == 'H' ){
-      console.log("LIT")
-      window.events.dispatchEvent(new Event('cancel') );
+      window.events.dispatchEvent(new Event('shouldCancel') );
     }
   }
 }

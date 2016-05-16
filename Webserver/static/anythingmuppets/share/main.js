@@ -1,4 +1,13 @@
+/**
+ * Page: share screen
+ * @param  {Object} data          incoming JSON from data.json
+ * @param  {ConfigHandler} configHandler incoming object from global confighandler
+ */
 var share = function(data, configHandler){
+
+  /**************************************************
+    Section: Main vars
+  **************************************************/
 
   this.nRetakes = 0;
 
@@ -20,6 +29,11 @@ var share = function(data, configHandler){
   var startRef, skipRef, shareRef, shareOnlineRef, retakeRef, setImageRef;
 
   var soundTimeout, nextTimeout;
+
+
+  /**************************************************
+    Section: Enter
+  **************************************************/
 
   this.enter = function(/*evt*/){
     currentImageUrl = "";
@@ -48,6 +62,9 @@ var share = function(data, configHandler){
 
     // got image from camera app
     window.addEventListener("imageCapture", setImageRef);
+
+    // should we go back to 'home' screen?
+    window.addEventListener("shouldCancel", returnShouldCancel);
 
     // build countdowns
     if (cdOne == null ){
@@ -95,6 +112,22 @@ var share = function(data, configHandler){
     }, to);
   };
 
+  /**************************************************
+    Section: Return home
+  **************************************************/
+
+  /**
+   * On 'shouldCancel' event (from Arduino keyboard),
+   * skip back to camera state
+   */
+  function returnShouldCancel(){
+    window.events.dispatchEvent( new Event('cancel') );
+  }
+
+  /**************************************************
+    Section: Events
+  **************************************************/
+
   function pauseSounds(){
     var soundA = document.getElementById("focus_vo");
     soundA.pause();
@@ -117,6 +150,7 @@ var share = function(data, configHandler){
       cdTwo.play(function(){
         cdOne.play(function(){
           MMI.hide("countdownContainer");
+          MMI.hide("shareButtonContainer")
 
           // this tells OF to capture
           window.events.dispatchEvent(new CustomEvent('take_photo', {detail: name }));
@@ -127,30 +161,7 @@ var share = function(data, configHandler){
         });
       });
     });
-
-    // countdownInterval = setTimeout(function(){
-    //   MMI.hide(("c_three"), "flex");
-    //   MMI.show(("c_two"), "flex");
-
-    //   countdownInterval = setTimeout(function(){
-    //     MMI.hide(("c_two"), "flex");
-    //     MMI.show(("c_one"), "flex");
-
-    //     countdownInterval = setTimeout(function(){
-    //       MMI.hide(("c_one"), "flex");
-    //       MMI.hide("countdownContainer");
-
-    //       // this tells OF to capture
-    //       window.events.dispatchEvent(new Event('take_photo'));
-
-    //       var bg = document.getElementById("captureBgContainer");
-    //       bg.style.backgroundColor = "white";
-
-    //     }.bind(this), 1000);
-    //   }.bind(this), 1000);
-    // }.bind(this), 1000);
   }
-
 
   function showButtons( whichId ){
     var btnContainer = document.getElementById(whichId);
@@ -178,14 +189,23 @@ var share = function(data, configHandler){
   }
 
   function share(){
+    // tell OF we want to keep it!
+    window.events.dispatchEvent( new CustomEvent("confirm_photo", {detail: name }));
+
     clearTimeout(countdownInterval);
     hideButtons("retakeContainer");
 
     MMI.hide(("countdownContainer"));
     MMI.hide(("retakeContainer"));
-    MMI.show(("shareContainer"), "flex");
 
     manager.getStreamHandler().hideStream();
+
+    // show 'share online' container
+    MMI.show(("shareOnlineContainer"), "flex");
+    document.getElementById("shareOnlineContainer").classList.add("enabled");
+
+    setTimeout(function(){
+    }, 1000 )
   }
 
   function shareOnline() {
@@ -202,6 +222,23 @@ var share = function(data, configHandler){
     window.removeEventListener("share_online", shareOnlineRef);
     var btn = document.getElementById("shareOnlineBtn");
     btn.classList.add("disabled");
+
+    var showLocalShare = configHandler.get("showLocalShare", false);
+    if ( showLocalShare ){
+      // hide 'online'
+      document.getElementById("shareOnlineContainer").classList.remove("enabled");
+      document.getElementById("shareOnlineContainer").classList.add("disabled");
+
+      // show 'local'
+      setTimeout(function(){
+        document.getElementById("shareLocalContainer").classList.add("enabled");
+        MMI.hide(("shareOnlineContainer"), "flex");
+      }, 1000);
+    } else {
+      // document.getElementById("shareOnlineContainer").classList.remove("enabled");
+      // document.getElementById("shareOnlineContainer").classList.add("disabled");
+      window.events.dispatchEvent( new Event("next") );
+    }
   }
 
   function setImage(e){
@@ -218,7 +255,7 @@ var share = function(data, configHandler){
 
     currentImageUrl = e.detail;
 
-    capturedImage.src = "output/anythingmuppets/" + currentImageUrl;
+    capturedImage.src = "output/temp/" + currentImageUrl;
 
     bg.appendChild(capturedImage);
 
@@ -253,10 +290,43 @@ var share = function(data, configHandler){
     window.events.dispatchEvent(new Event('next'));
   }
 
+  /**************************************************
+    Section: EXIT!
+  **************************************************/
+
+  function cleanUp(){
+    try {
+      var bg = document.getElementById("captureBgContainer");
+      bg.removeChild(capturedImage);
+      bg.style.backgroundColor = "";
+
+      document.getElementById("shareLocalContainer").classList.remove("enabled");
+      document.getElementById("shareOnlineContainer").classList.remove("enabled");
+      document.getElementById("shareLocalContainer").classList.remove("disabled");
+      document.getElementById("shareOnlineContainer").classList.remove("disabled");
+  
+    } catch(e){
+
+    }
+
+    bg.innerHTML = "";
+    MMI.show(("captureContainer"), "flex");
+    MMI.hide(("retakeContainer"));
+    MMI.show(("shareOnlineContainer"), "flex");
+    MMI.show(("shareLocalContainer"), "flex");
+    MMI.show("shareButtonContainer", "flex");
+
+    manager.getStreamHandler().hideStream();
+    
+    var btn = document.getElementById("shareOnlineBtn");
+    btn.classList.remove("disabled");
+  }
+
   this.exit = function(/*evt*/){
     clearTimeout(countdownInterval);
     clearTimeout(nextTimeout);
     
+    window.removeEventListener("shouldCancel", returnShouldCancel);
     window.removeEventListener("capture", startRef);
     window.removeEventListener("skipToThanks", skipRef);
     window.removeEventListener("share", shareRef);
@@ -266,27 +336,7 @@ var share = function(data, configHandler){
 
     var bg = document.getElementById("captureBgContainer");
 
-    function cleanUp(){
-      try {
-        var bg = document.getElementById("captureBgContainer");
-        bg.removeChild(capturedImage);
-        bg.style.backgroundColor = "";
-      } catch(e){
-
-      }
-
-      bg.innerHTML = "";
-      MMI.show(("captureContainer"), "flex");
-      MMI.hide(("retakeContainer"));
-      MMI.hide(("shareContainer"));
-      
-      manager.getStreamHandler().hideStream();
-      
-      var btn = document.getElementById("shareOnlineBtn");
-      btn.classList.remove("disabled");
-    }
-
-    setTimeout(cleanUp, 1000);
+    setTimeout(cleanUp, 1500);
 
     clearTimeout(soundTimeout);
     pauseSounds();

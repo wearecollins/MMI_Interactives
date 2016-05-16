@@ -1,3 +1,7 @@
+#{{name}} .background {
+  background: white;
+}
+
 .scriptContainer {
 	visibility: hidden;
 	display: none;
@@ -7,7 +11,10 @@
 	height: 100%;
   position: absolute;
   left: -35%;
-  /* Just a try */
+  /* 
+  The scripts all have dead space
+  to their left. Hence: this
+   */
 }
 
 #scriptButtonContainer.disabled, #scriptButtonDoneContainer.disabled {
@@ -25,6 +32,8 @@
 .scriptTextContainer {
     padding:8vh;
     text-align: left;
+    position: absolute;
+    left:0px;
 }
 
 .scriptInfoContainer {
@@ -37,7 +46,6 @@
   animation-duration:1s;
   animation-fill-mode:forwards;
 }
-
 
 .scriptInfoContainer.enabled{
   animation-name: animateIn;
