@@ -6,15 +6,6 @@
   1. [Production](#production)
   2. [Development](#development)
   3. [Using ngrok](#using-ngrok)
-3. [Overview](#overview)
-  1. [Structure & Technical Breakdown](#structure---technical-breakdown)
-  2. [Setting Up](#setting-up)
-  3. [Shared Resources](#shared-resources)
-  4. [Interactive Exhibits](#interactive-exhibits)
-    1. [Puppetry for the Screen](#puppetry-for-the-screen)
-    2. [Design an Anything Muppet](#design-an-anything-muppet)
-    3. [Share Your Creation](#share-your-creation)
-    4. [Prototypes](#prototypes)
 
 # MMI - The Jim Henson Exhibition
 
@@ -55,14 +46,14 @@ There are 4 computers involved with this whole installation:
     * interfacing with two industrial cameras
     * hosting webserver for graphic interface
     * syncing videos to Central Server
-* Sharing iPad
+* Sharing Frontend (iPad/touchscreen)
   - displays Sharing graphic interface from Central Server
 
 Follow these steps for setting up everything:
 
 0. Bootstrap the Anything Muppet and Performance computers using the scripts in [bootstrapping](Startup/bootstrap/)
 1. Setup the [Sharing](Sharing/) webservice on the Central Server
-2. Setup the [Share Webserver](Webserver/README.md#share) on the Central Server
+2. Setup the [Share Frontend Webserver](Webserver/README.md#share) on the Central Server
   - including setting up the iPad to be pinned to the Share UI
 3. Setup the [Performance Frontend](Frontend/Readme.md#performance) on the Performance computer
 4. Setup the [Anything Muppet Frontend](Frontend/Readme.md#anything-muppet) on the Anything Muppet computer
