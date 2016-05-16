@@ -103,6 +103,7 @@ function Manager(states, transitions){
       // must come after initStructure
       then(initStreamHandler).
       then(initEventHandler).
+      then(initAdminSwipe).
       then( function(){log.info('[Manager::init] done')} );  
       //could also wait to connect to websockets until very end...
   }
@@ -179,6 +180,15 @@ function Manager(states, transitions){
 
     // listen to global 'check on streaming' event
     window.addEventListener("refreshStreamMode", checkStreamSocket);
+  }
+
+  function initAdminSwipe(){
+    var hammertime = new Hammer(document.getElementById("adminSwipe"), {});
+    hammertime.get('swipe').set( { direction: Hammer.DIRECTION_LEFT } );
+
+    hammertime.on('swipe', function(ev) {
+      window.events.dispatchEvent(new Event('admin'));
+    });
   }
 
   function initConfigHandler(){

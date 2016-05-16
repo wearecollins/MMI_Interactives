@@ -57,6 +57,15 @@ body,
   margin-left: -.5em;
 }
 
+#adminSwipe {
+  z-index: 100000;
+  position: absolute;
+  left:0px;
+  top:0px;
+  height: 10vh;
+  width: 100%;
+}
+
 /* Shared Animations */
 
 @keyframes animateIn {
