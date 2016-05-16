@@ -81,15 +81,13 @@ static void setupEventHelper(ofApp *app)
     WKWebViewConfiguration * config = [[WKWebViewConfiguration alloc] init];
     webView = [[Webview alloc] initWithFrame:[self frame] configuration:config];
     
-    string urlText = "http://127.0.0.1:8080";
-    NSString * url = [NSString stringWithUTF8String:urlText.c_str()];
-    
     [webView setNavigationDelegate:self];
-    
-    self->isLoaded = false;
     self->isFullscreen = false;
     
-    [webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]]];
+    self->lastReloaded = ofGetElapsedTimeMillis();
+    self->reloadInterval = 5000;
+    
+    [self loadURL];
     
     [webView setWantsLayer:YES];
     [webView setValue:@YES forKey:@"drawsTransparentBackground"];
@@ -114,6 +112,17 @@ static void setupEventHelper(ofApp *app)
     ofLogVerbose()<<"[ofApp] - frontend loaded";
 }
 
+
+- (void) loadURL
+{
+    string urlText = "http://127.0.0.1:8080";
+    NSString * url = [NSString stringWithUTF8String:urlText.c_str()];
+    
+    self->isLoaded = false;
+    
+    [webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]]];
+}
+
 - (void) goFullscreen
 {
     if ( (([[self window] styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask) ) return;
@@ -125,6 +134,18 @@ static void setupEventHelper(ofApp *app)
 
 - (void)update
 {
+    // something happened in load/reload?
+    if ( !self->isLoaded ){
+        
+        auto t = ofGetElapsedTimeMillis();
+        if ( t - self->lastReloaded > self->reloadInterval ){
+            self->lastReloaded = t;
+            ofLogVerbose()<<"[ofApp] - frontend not loaded. Trying reload";
+            [webView stopLoading];
+            [self loadURL];
+        }
+    }
+    
     cameraApp.update();
 }
 
@@ -146,7 +167,9 @@ static void setupEventHelper(ofApp *app)
 - (void)keyReleased:(int)key
 {
     if ( key =='R'){
-        [webView reload:nil];
+        [webView stopLoading];
+        [self loadURL];
+        
     } else if ( key == 'm' ){
         if ( cameraApp.currentMode == mmi::MODE_NONE ){
             [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];

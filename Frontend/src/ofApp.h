@@ -14,6 +14,9 @@
     mmi::CameraApp cameraApp;
     bool isLoaded;
     bool isFullscreen;
+    
+    // in case frontend starts before webserver
+    uint64_t lastReloaded, reloadInterval;
 }
 
 - (void)setup;
@@ -22,6 +25,8 @@
 - (void)exit;
 
 - (void) goFullscreen;
+
+- (void) loadURL;
 
 - (void)keyPressed:(int)key;
 - (void)keyReleased:(int)key;
