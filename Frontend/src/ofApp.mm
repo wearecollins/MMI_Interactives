@@ -38,6 +38,11 @@ static void setupEventHelper(ofApp *app)
     setupEventHelper(self);
     ofAddListener(ofEvents().keyPressed, eventHelper.get(), &EventHelper::keyReleased);
     
+    // attach log4cpp
+    // channels can be configured in bin/data/log4cpp.properties
+    shared_ptr<ofxLog4CppChannel> log(new ofxLog4CppChannel());
+    ofSetLoggerChannel(log);
+    
     id globalKey = [NSEvent addGlobalMonitorForEventsMatchingMask:NSKeyUpMask handler:^(NSEvent *e) {
         [self keyUp:e];
     }];
@@ -74,7 +79,6 @@ static void setupEventHelper(ofApp *app)
      *************************************/
     
     WKWebViewConfiguration * config = [[WKWebViewConfiguration alloc] init];
-//    [config setValue:@YES forKey:@"developerExtrasEnabled"];
     webView = [[Webview alloc] initWithFrame:[self frame] configuration:config];
     
     string urlText = "http://127.0.0.1:8080";
@@ -88,7 +92,6 @@ static void setupEventHelper(ofApp *app)
     [webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]]];
     
     [webView setWantsLayer:YES];
-//    [self setTranslucent:YES];
     [webView setValue:@YES forKey:@"drawsTransparentBackground"];
     
     [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
@@ -107,6 +110,8 @@ static void setupEventHelper(ofApp *app)
     if ( self->isLoaded) return;
     self->isLoaded = true;
     [self goFullscreen];
+    
+    ofLogVerbose()<<"[ofApp] - frontend loaded";
 }
 
 - (void) goFullscreen

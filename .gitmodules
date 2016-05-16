@@ -19,3 +19,6 @@
 [submodule "Camera/addons/ofxInputField"]
 	path = Camera/addons/ofxInputField
 	url = https://github.com/fx-lange/ofxInputField.git
+[submodule "Camera/addons/ofxLog4Cpp"]
+	path = Camera/addons/ofxLog4Cpp
+	url = https://github.com/quinkennedy/ofxLog4Cpp.git

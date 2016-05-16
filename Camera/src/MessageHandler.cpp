@@ -35,6 +35,7 @@ namespace mmi {
         if ( !bConnected && ofGetElapsedTimeMillis() - lastTimeTriedConnect > reconnectInterval ){
             lastTimeTriedConnect = ofGetElapsedTimeMillis();
             connect();
+            ofLogVerbose()<<"[MessageHanlder] - Disconnected from Frontend. Trying reconnect";
         }
     };
     
@@ -74,7 +75,7 @@ namespace mmi {
                 ofNotifyEvent( onSwitchCamera, whichCamera );
             }
         }
-        cout <<"Recieved message: "<< e.message << endl;
+        ofLogVerbose()<<"[MessageHanlder] - Recieved message from Frontend: "<< e.message;
     }
     
     

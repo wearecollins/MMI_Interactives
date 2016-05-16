@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0138DBC61CE6164500976530 /* ofxInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0138DBC41CE6164500976530 /* ofxInputField.cpp */; };
+		01C212F91CEA07CD009E1695 /* liblog4cpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C212E31CEA07CD009E1695 /* liblog4cpp.a */; };
+		01C212FE1CEA07CD009E1695 /* ofxLog4Cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C212EC1CEA07CD009E1695 /* ofxLog4Cpp.cpp */; };
+		01C212FF1CEA07CD009E1695 /* ofxLog4CppChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C212EE1CEA07CD009E1695 /* ofxLog4CppChannel.cpp */; };
 		071782FE59F668E0759F9050 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5EC7D3D3208820AFFEAED5 /* Server.cpp */; };
 		0A096E7C81287CA693A6EFCA /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F107D0AD6A1FE1F0E0F15FF9 /* Utilities.cpp */; };
 		15DCF11A6445D447A0D48491 /* ETF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A679DB0600518400D26C73C /* ETF.cpp */; };
@@ -101,6 +104,69 @@
 		0138DBC51CE6164500976530 /* ofxInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxInputField.h; sourceTree = "<group>"; };
 		0163799815EFC253C35FEE0F /* Calibration.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Calibration.cpp; path = addons/ofxCv/libs/ofxCv/src/Calibration.cpp; sourceTree = SOURCE_ROOT; };
 		0173A3F435DECD5A4DDE0B8E /* logger.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = logger.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/logger.h; sourceTree = SOURCE_ROOT; };
+		01C212941CEA07CD009E1695 /* AbortAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AbortAppender.hh; sourceTree = "<group>"; };
+		01C212951CEA07CD009E1695 /* Appender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Appender.hh; sourceTree = "<group>"; };
+		01C212961CEA07CD009E1695 /* AppendersFactory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppendersFactory.hh; sourceTree = "<group>"; };
+		01C212971CEA07CD009E1695 /* AppenderSkeleton.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppenderSkeleton.hh; sourceTree = "<group>"; };
+		01C212981CEA07CD009E1695 /* BasicConfigurator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BasicConfigurator.hh; sourceTree = "<group>"; };
+		01C212991CEA07CD009E1695 /* BasicLayout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BasicLayout.hh; sourceTree = "<group>"; };
+		01C2129A1CEA07CD009E1695 /* BufferingAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BufferingAppender.hh; sourceTree = "<group>"; };
+		01C2129B1CEA07CD009E1695 /* Category.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Category.hh; sourceTree = "<group>"; };
+		01C2129C1CEA07CD009E1695 /* CategoryStream.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CategoryStream.hh; sourceTree = "<group>"; };
+		01C2129D1CEA07CD009E1695 /* config-MinGW32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-MinGW32.h"; sourceTree = "<group>"; };
+		01C2129E1CEA07CD009E1695 /* config-openvms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-openvms.h"; sourceTree = "<group>"; };
+		01C2129F1CEA07CD009E1695 /* config-win32-stlport-boost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-win32-stlport-boost.h"; sourceTree = "<group>"; };
+		01C212A01CEA07CD009E1695 /* config-win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-win32.h"; sourceTree = "<group>"; };
+		01C212A11CEA07CD009E1695 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		01C212A21CEA07CD009E1695 /* Configurator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configurator.hh; sourceTree = "<group>"; };
+		01C212A31CEA07CD009E1695 /* convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convenience.h; sourceTree = "<group>"; };
+		01C212A41CEA07CD009E1695 /* Export.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Export.hh; sourceTree = "<group>"; };
+		01C212A51CEA07CD009E1695 /* FactoryParams.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FactoryParams.hh; sourceTree = "<group>"; };
+		01C212A61CEA07CD009E1695 /* FileAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileAppender.hh; sourceTree = "<group>"; };
+		01C212A71CEA07CD009E1695 /* Filter.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Filter.hh; sourceTree = "<group>"; };
+		01C212A81CEA07CD009E1695 /* FixedContextCategory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FixedContextCategory.hh; sourceTree = "<group>"; };
+		01C212A91CEA07CD009E1695 /* HierarchyMaintainer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HierarchyMaintainer.hh; sourceTree = "<group>"; };
+		01C212AA1CEA07CD009E1695 /* IdsaAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IdsaAppender.hh; sourceTree = "<group>"; };
+		01C212AB1CEA07CD009E1695 /* Layout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Layout.hh; sourceTree = "<group>"; };
+		01C212AC1CEA07CD009E1695 /* LayoutAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LayoutAppender.hh; sourceTree = "<group>"; };
+		01C212AD1CEA07CD009E1695 /* LayoutsFactory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LayoutsFactory.hh; sourceTree = "<group>"; };
+		01C212AE1CEA07CD009E1695 /* LevelEvaluator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEvaluator.hh; sourceTree = "<group>"; };
+		01C212AF1CEA07CD009E1695 /* LoggingEvent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoggingEvent.hh; sourceTree = "<group>"; };
+		01C212B01CEA07CD009E1695 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		01C212B11CEA07CD009E1695 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		01C212B21CEA07CD009E1695 /* Manipulator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Manipulator.hh; sourceTree = "<group>"; };
+		01C212B31CEA07CD009E1695 /* NDC.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NDC.hh; sourceTree = "<group>"; };
+		01C212B41CEA07CD009E1695 /* NTEventLogAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NTEventLogAppender.hh; sourceTree = "<group>"; };
+		01C212B51CEA07CD009E1695 /* OstreamAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OstreamAppender.hh; sourceTree = "<group>"; };
+		01C212B61CEA07CD009E1695 /* PassThroughLayout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PassThroughLayout.hh; sourceTree = "<group>"; };
+		01C212B71CEA07CD009E1695 /* PatternLayout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PatternLayout.hh; sourceTree = "<group>"; };
+		01C212B81CEA07CD009E1695 /* Portability.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Portability.hh; sourceTree = "<group>"; };
+		01C212B91CEA07CD009E1695 /* Priority.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Priority.hh; sourceTree = "<group>"; };
+		01C212BA1CEA07CD009E1695 /* PropertyConfigurator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PropertyConfigurator.hh; sourceTree = "<group>"; };
+		01C212BB1CEA07CD009E1695 /* RemoteSyslogAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RemoteSyslogAppender.hh; sourceTree = "<group>"; };
+		01C212BC1CEA07CD009E1695 /* RollingFileAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RollingFileAppender.hh; sourceTree = "<group>"; };
+		01C212BD1CEA07CD009E1695 /* SimpleConfigurator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleConfigurator.hh; sourceTree = "<group>"; };
+		01C212BE1CEA07CD009E1695 /* SimpleLayout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleLayout.hh; sourceTree = "<group>"; };
+		01C212BF1CEA07CD009E1695 /* SmtpAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmtpAppender.hh; sourceTree = "<group>"; };
+		01C212C01CEA07CD009E1695 /* StringQueueAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringQueueAppender.hh; sourceTree = "<group>"; };
+		01C212C11CEA07CD009E1695 /* SyslogAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SyslogAppender.hh; sourceTree = "<group>"; };
+		01C212C31CEA07CD009E1695 /* BoostThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoostThreads.hh; sourceTree = "<group>"; };
+		01C212C41CEA07CD009E1695 /* DummyThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DummyThreads.hh; sourceTree = "<group>"; };
+		01C212C51CEA07CD009E1695 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		01C212C61CEA07CD009E1695 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		01C212C71CEA07CD009E1695 /* MSThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MSThreads.hh; sourceTree = "<group>"; };
+		01C212C81CEA07CD009E1695 /* OmniThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OmniThreads.hh; sourceTree = "<group>"; };
+		01C212C91CEA07CD009E1695 /* PThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PThreads.hh; sourceTree = "<group>"; };
+		01C212CA1CEA07CD009E1695 /* Threading.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Threading.hh; sourceTree = "<group>"; };
+		01C212CB1CEA07CD009E1695 /* TimeStamp.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TimeStamp.hh; sourceTree = "<group>"; };
+		01C212CC1CEA07CD009E1695 /* TriggeringEventEvaluator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TriggeringEventEvaluator.hh; sourceTree = "<group>"; };
+		01C212CD1CEA07CD009E1695 /* TriggeringEventEvaluatorFactory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TriggeringEventEvaluatorFactory.hh; sourceTree = "<group>"; };
+		01C212CE1CEA07CD009E1695 /* Win32DebugAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Win32DebugAppender.hh; sourceTree = "<group>"; };
+		01C212E31CEA07CD009E1695 /* liblog4cpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblog4cpp.a; sourceTree = "<group>"; };
+		01C212EC1CEA07CD009E1695 /* ofxLog4Cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxLog4Cpp.cpp; sourceTree = "<group>"; };
+		01C212ED1CEA07CD009E1695 /* ofxLog4Cpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLog4Cpp.h; sourceTree = "<group>"; };
+		01C212EE1CEA07CD009E1695 /* ofxLog4CppChannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxLog4CppChannel.cpp; sourceTree = "<group>"; };
+		01C212EF1CEA07CD009E1695 /* ofxLog4CppChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLog4CppChannel.h; sourceTree = "<group>"; };
 		01DAE5C2E3E0A74207B2BE49 /* saving.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = saving.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/saving.h; sourceTree = SOURCE_ROOT; };
 		021225C92E1EEDF754E178F8 /* Grabber.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Grabber.cpp; path = addons/ofxLibdc/src/Grabber.cpp; sourceTree = SOURCE_ROOT; };
 		04210C02D4BBE52ADCFE4272 /* CameraManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CameraManager.h; path = src/CameraManager.h; sourceTree = SOURCE_ROOT; };
@@ -432,6 +498,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01C212F91CEA07CD009E1695 /* liblog4cpp.a in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +542,142 @@
 			);
 			name = src;
 			path = addons/ofxInputField/src;
+			sourceTree = "<group>";
+		};
+		01C2128F1CEA07C2009E1695 /* ofxLog4Cpp */ = {
+			isa = PBXGroup;
+			children = (
+				01C212901CEA07CD009E1695 /* libs */,
+				01C212EB1CEA07CD009E1695 /* src */,
+			);
+			name = ofxLog4Cpp;
+			sourceTree = "<group>";
+		};
+		01C212901CEA07CD009E1695 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				01C212911CEA07CD009E1695 /* log4cpp */,
+			);
+			name = libs;
+			path = addons/ofxLog4Cpp/libs;
+			sourceTree = "<group>";
+		};
+		01C212911CEA07CD009E1695 /* log4cpp */ = {
+			isa = PBXGroup;
+			children = (
+				01C212921CEA07CD009E1695 /* include */,
+				01C212CF1CEA07CD009E1695 /* lib */,
+			);
+			path = log4cpp;
+			sourceTree = "<group>";
+		};
+		01C212921CEA07CD009E1695 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				01C212931CEA07CD009E1695 /* log4cpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		01C212931CEA07CD009E1695 /* log4cpp */ = {
+			isa = PBXGroup;
+			children = (
+				01C212941CEA07CD009E1695 /* AbortAppender.hh */,
+				01C212951CEA07CD009E1695 /* Appender.hh */,
+				01C212961CEA07CD009E1695 /* AppendersFactory.hh */,
+				01C212971CEA07CD009E1695 /* AppenderSkeleton.hh */,
+				01C212981CEA07CD009E1695 /* BasicConfigurator.hh */,
+				01C212991CEA07CD009E1695 /* BasicLayout.hh */,
+				01C2129A1CEA07CD009E1695 /* BufferingAppender.hh */,
+				01C2129B1CEA07CD009E1695 /* Category.hh */,
+				01C2129C1CEA07CD009E1695 /* CategoryStream.hh */,
+				01C2129D1CEA07CD009E1695 /* config-MinGW32.h */,
+				01C2129E1CEA07CD009E1695 /* config-openvms.h */,
+				01C2129F1CEA07CD009E1695 /* config-win32-stlport-boost.h */,
+				01C212A01CEA07CD009E1695 /* config-win32.h */,
+				01C212A11CEA07CD009E1695 /* config.h */,
+				01C212A21CEA07CD009E1695 /* Configurator.hh */,
+				01C212A31CEA07CD009E1695 /* convenience.h */,
+				01C212A41CEA07CD009E1695 /* Export.hh */,
+				01C212A51CEA07CD009E1695 /* FactoryParams.hh */,
+				01C212A61CEA07CD009E1695 /* FileAppender.hh */,
+				01C212A71CEA07CD009E1695 /* Filter.hh */,
+				01C212A81CEA07CD009E1695 /* FixedContextCategory.hh */,
+				01C212A91CEA07CD009E1695 /* HierarchyMaintainer.hh */,
+				01C212AA1CEA07CD009E1695 /* IdsaAppender.hh */,
+				01C212AB1CEA07CD009E1695 /* Layout.hh */,
+				01C212AC1CEA07CD009E1695 /* LayoutAppender.hh */,
+				01C212AD1CEA07CD009E1695 /* LayoutsFactory.hh */,
+				01C212AE1CEA07CD009E1695 /* LevelEvaluator.hh */,
+				01C212AF1CEA07CD009E1695 /* LoggingEvent.hh */,
+				01C212B01CEA07CD009E1695 /* Makefile.am */,
+				01C212B11CEA07CD009E1695 /* Makefile.in */,
+				01C212B21CEA07CD009E1695 /* Manipulator.hh */,
+				01C212B31CEA07CD009E1695 /* NDC.hh */,
+				01C212B41CEA07CD009E1695 /* NTEventLogAppender.hh */,
+				01C212B51CEA07CD009E1695 /* OstreamAppender.hh */,
+				01C212B61CEA07CD009E1695 /* PassThroughLayout.hh */,
+				01C212B71CEA07CD009E1695 /* PatternLayout.hh */,
+				01C212B81CEA07CD009E1695 /* Portability.hh */,
+				01C212B91CEA07CD009E1695 /* Priority.hh */,
+				01C212BA1CEA07CD009E1695 /* PropertyConfigurator.hh */,
+				01C212BB1CEA07CD009E1695 /* RemoteSyslogAppender.hh */,
+				01C212BC1CEA07CD009E1695 /* RollingFileAppender.hh */,
+				01C212BD1CEA07CD009E1695 /* SimpleConfigurator.hh */,
+				01C212BE1CEA07CD009E1695 /* SimpleLayout.hh */,
+				01C212BF1CEA07CD009E1695 /* SmtpAppender.hh */,
+				01C212C01CEA07CD009E1695 /* StringQueueAppender.hh */,
+				01C212C11CEA07CD009E1695 /* SyslogAppender.hh */,
+				01C212C21CEA07CD009E1695 /* threading */,
+				01C212CB1CEA07CD009E1695 /* TimeStamp.hh */,
+				01C212CC1CEA07CD009E1695 /* TriggeringEventEvaluator.hh */,
+				01C212CD1CEA07CD009E1695 /* TriggeringEventEvaluatorFactory.hh */,
+				01C212CE1CEA07CD009E1695 /* Win32DebugAppender.hh */,
+			);
+			path = log4cpp;
+			sourceTree = "<group>";
+		};
+		01C212C21CEA07CD009E1695 /* threading */ = {
+			isa = PBXGroup;
+			children = (
+				01C212C31CEA07CD009E1695 /* BoostThreads.hh */,
+				01C212C41CEA07CD009E1695 /* DummyThreads.hh */,
+				01C212C51CEA07CD009E1695 /* Makefile.am */,
+				01C212C61CEA07CD009E1695 /* Makefile.in */,
+				01C212C71CEA07CD009E1695 /* MSThreads.hh */,
+				01C212C81CEA07CD009E1695 /* OmniThreads.hh */,
+				01C212C91CEA07CD009E1695 /* PThreads.hh */,
+				01C212CA1CEA07CD009E1695 /* Threading.hh */,
+			);
+			path = threading;
+			sourceTree = "<group>";
+		};
+		01C212CF1CEA07CD009E1695 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				01C212E21CEA07CD009E1695 /* osx */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		01C212E21CEA07CD009E1695 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				01C212E31CEA07CD009E1695 /* liblog4cpp.a */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		01C212EB1CEA07CD009E1695 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				01C212EC1CEA07CD009E1695 /* ofxLog4Cpp.cpp */,
+				01C212ED1CEA07CD009E1695 /* ofxLog4Cpp.h */,
+				01C212EE1CEA07CD009E1695 /* ofxLog4CppChannel.cpp */,
+				01C212EF1CEA07CD009E1695 /* ofxLog4CppChannel.h */,
+			);
+			name = src;
+			path = addons/ofxLog4Cpp/src;
 			sourceTree = "<group>";
 		};
 		02F10902E070193ED805A1F6 /* ofxCv */ = {
@@ -813,6 +1016,7 @@
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
+				01C2128F1CEA07C2009E1695 /* ofxLog4Cpp */,
 				0138DBC21CE6163E00976530 /* ofxInputField */,
 				40694B518C0E85CF62A9A412 /* ofxCv */,
 				8048739552F53EBF03ECB65E /* ofxVideoRecorder */,
@@ -1484,6 +1688,7 @@
 				15DCF11A6445D447A0D48491 /* ETF.cpp in Sources */,
 				6FB779180FB3B27D323336AE /* fdog.cpp in Sources */,
 				68CF26ED86C3C10C45460C0F /* Calibration.cpp in Sources */,
+				01C212FE1CEA07CD009E1695 /* ofxLog4Cpp.cpp in Sources */,
 				93E2EE8E227D8C12E41C5F73 /* ContourFinder.cpp in Sources */,
 				28E5678DFAF9790F8DC83D29 /* Distance.cpp in Sources */,
 				B5568677EC64043366C79D29 /* Flow.cpp in Sources */,
@@ -1492,6 +1697,7 @@
 				7F26497E300D851E0CECD1BD /* ObjectFinder.cpp in Sources */,
 				49283AAADA097BC2A3726A0D /* RunningBackground.cpp in Sources */,
 				51CDEA1C59A1FB01DFE05CF4 /* Tracker.cpp in Sources */,
+				01C212FF1CEA07CD009E1695 /* ofxLog4CppChannel.cpp in Sources */,
 				0A096E7C81287CA693A6EFCA /* Utilities.cpp in Sources */,
 				AA5C0A64CB1F1CD62CC276D6 /* Wrappers.cpp in Sources */,
 				CA6167F6F32C9A340493B26A /* ofxVideoRecorder.cpp in Sources */,
@@ -1696,12 +1902,23 @@
 					addons/ofxLibwebsockets/src,
 					addons/ofxTurboJpeg/src/,
 					"addons/ofxTurboJpeg/libs/turbo-jpeg/include",
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/android/armeabi",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/android/armeabi-v7a",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/ios",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/linux",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/linux64",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/osx",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/vs",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/win_cb",
+				);
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",
@@ -1992,12 +2209,23 @@
 					addons/ofxLibwebsockets/src,
 					addons/ofxTurboJpeg/src/,
 					"addons/ofxTurboJpeg/libs/turbo-jpeg/include",
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/android/armeabi",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/android/armeabi-v7a",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/ios",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/linux",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/linux64",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/osx",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/vs",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/win_cb",
+				);
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",
@@ -2086,12 +2314,23 @@
 					addons/ofxLibwebsockets/src,
 					addons/ofxTurboJpeg/src/,
 					"addons/ofxTurboJpeg/libs/turbo-jpeg/include",
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/android/armeabi",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/android/armeabi-v7a",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/ios",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/linux",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/linux64",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/osx",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/vs",
+					"$(PROJECT_DIR)/addons/ofxLog4Cpp/libs/log4cpp/lib/win_cb",
+				);
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",

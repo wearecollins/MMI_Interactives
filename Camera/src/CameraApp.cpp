@@ -13,7 +13,6 @@ namespace mmi {
     void CameraApp::setup( bool bDoStream, string settingsFile ){
         this->bStreaming = bDoStream;
         
-        ofSetLogLevel(OF_LOG_VERBOSE);
         gui = new ofxPanel();
         gui->setup("Settings", settingsFile);
         
@@ -49,8 +48,6 @@ namespace mmi {
         for ( auto i=0; i<n;i++){
             auto n = vDir.getName(i);
             n = ofSplitString(n, ".")[0];
-            
-            cout <<"SETUP "<<n<<endl;
             
             videos[n] = ofVideoPlayer();
             videos[n].load(ofToDataPath(vDir.getPath(i)));
@@ -88,8 +85,6 @@ namespace mmi {
         
         gui->loadFromFile( ofToDataPath( settingsFile ) );
         
-        ofSetLogLevel(OF_LOG_ERROR);
-        
         currentMode = MODE_NONE;
         
         ofAddListener(ofEvents().keyPressed, this, &CameraApp::keyPressed, OF_EVENT_ORDER_BEFORE_APP);
@@ -105,7 +100,8 @@ namespace mmi {
         if ( whichSetup.get() != lastSetup ){
             auto & p = recordMgr.folderAppend;
             p.set(whichSetup.get() == 0 ? "performance" : "anythingmuppets");
-    //
+            
+            ofLogVerbose()<<"[CameraApp] switching frontend mode "<<p.get();
         }
         lastSetup = whichSetup.get();
         
@@ -135,7 +131,6 @@ namespace mmi {
         shared_ptr<mmi::Camera> camera = cameraMgr.getCamera( whichStream.get() );
         if ( this->bStreaming && camera != nullptr ){
             // try to stream all the time, image streamer will handle by framerate
-            
             if ( camera != nullptr && camera->isAllocated() ){
                 streamMgr.stream( camera->getImage() );
             }
@@ -215,7 +210,7 @@ namespace mmi {
         } else if ( e.key == 'H' ){
             string whichVideo = "black_magic";
             messageHdlr.onStartRecording.notify(whichVideo);
-        } else if ( e.key == 'R'){
+        } else if ( e.key == 'r'){
             for (auto & c : cameraMgr.getCameras() ){
                 c->reloadShader();
             }

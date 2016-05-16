@@ -46,8 +46,6 @@ namespace mmi {
                     
                     bool success = turbo.compress(img, jpegQuality.get(), out);
                     if ( success ){
-//                    out.set(reinterpret_cast<char*>(data), size);
-                    //wsServer.clearBinaryMessageQueue();
                         wsServer.sendBinary(out);
                     }
 //                    free(data);
@@ -56,7 +54,7 @@ namespace mmi {
 #endif
                     bShouldStream = false;
                 } else {
-                    ofLogVerbose()<<"[ImageStreamer] Trying to stream to soon.";
+                    ofLogVerbose()<<"[ImageStreamer] Trying to stream too soon.";
                 }
             } else {
                 ofLogError()<<"[ImageStreamer] Not connected!";

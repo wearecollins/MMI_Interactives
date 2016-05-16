@@ -37,6 +37,8 @@ namespace mmi {
         
         ofAddListener( ofEvents().update, this, &ImageStreamer::update );
         bSetup = true;
+        
+        ofLogVerbose()<<"[ImageStreamer] - Setup binary streamer at ws://"<<host<<":"<<port;
     }
     
     //--------------------------------------------------------------

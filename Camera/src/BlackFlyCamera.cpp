@@ -85,10 +85,10 @@ namespace mmi {
         openCamera();
         
         if ( isSetup() ){
-            ofLogVerbose()<<"Camera "<<this->guid.get()<<" setup";
+            ofLogVerbose()<<"[PointGrey Camera] "<<this->guid.get()<<" setup";
             return true;
         } else {
-            ofLogVerbose()<<"Camera "<<this->guid.get()<<" failed to open";
+            ofLogVerbose()<<"[PointGrey Camera] "<<this->guid.get()<<" failed to open";
         }
         
         
@@ -118,11 +118,14 @@ namespace mmi {
              DC1394_BAYER_METHOD_AHD
              */
             camera.setBayerMode(DC1394_COLOR_FILTER_RGGB, DC1394_BAYER_METHOD_NEAREST);
+            ofLogVerbose()<<"[PointGrey Camera] setup with libdc debayering";
             
             //todo: query BAYER_TILE_MAPPING (register 0x1040)
         } else {
             camera.setImageType(OF_IMAGE_GRAYSCALE);
             camera.disableBayer();
+            
+            ofLogVerbose()<<"[PointGrey Camera] setup with openCV debayering (or grayscale)";
         }
         
         camera.setFormat7(true, fmt7Mode);
@@ -133,7 +136,6 @@ namespace mmi {
         
         camera.setSize(this->width,this->height);
         
-//        ofSetLogLevel(OF_LOG_VERBOSE);
         if ( guid.get() == "" ){
             bSetup = camera.setup();
         } else {
@@ -158,12 +160,10 @@ namespace mmi {
             src = &pingPong[0];
             dst = &pingPong[1];
             
-            // yolo
             auto * c = camera.getLibdcCamera();
             dc1394video_mode_t vm = (dc1394video_mode_t) ((int) DC1394_VIDEO_MODE_FORMAT7_0 + fmt7Mode);
             
             setMaxFramerate();
-//            getTriggerMode();
             
             // this is slow & unwieldy. don't do it!
             if ( softwareTrigger ){
@@ -216,6 +216,8 @@ namespace mmi {
             camera.close();
             openCamera();
             doReset.set(false);
+            
+            ofLogVerbose()<<"[PointGrey Camera] restting camera";
         }
         
         // aspect ratio/cropping stuff
@@ -376,12 +378,10 @@ namespace mmi {
             auto wb = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_WHITE_BALANCE);
             auto sp = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_STROBE_PATTERN);
             
-//            cout <<"SHUTTER "<<sh<<endl;
-//            cout <<"GAIN "<<em<<endl;
-//            cout <<"BRIGHTNESS "<<br<<endl;
-//            cout <<"EXPOSURE "<<ex<<endl;
-//            cout <<"WHITE_BALANCE "<<wb<<endl;
-//            cout <<"STROBE "<<sp<<endl;
+            // this could be useful to print out,
+            // but assumes you've done some stuff
+            // in their separate software app.
+            // So we don't do anything here!
         }
         
         isFirstFrame = false;
@@ -498,10 +498,6 @@ namespace mmi {
     void BlackFlyCamera::onShutterUpdated( float & v ){
         if (isSetup()){
             camera.setShutter(v);
-            
-//            minValue |= 0x82000000;
-//            cout << minValue << endl;
-//            dc1394_set_control_register(c, PTGREY_SHUTTER, minValue);
         }
     }
     
@@ -582,9 +578,8 @@ namespace mmi {
             unsigned int isAbs    = readBits(shutterInq, 1, 1);
             unsigned int minValue = readBits(shutterInq, 8, 12);
             unsigned int maxValue = readBits(shutterInq, 20, 12);
-            cout << isAbs << endl;
-            cout << minValue << endl;
-            cout << maxValue << endl;
+            
+            ofLogVerbose()<<"[PointGrey Camera] - Get shutter values:: isAbs: "<<isAbs<<"; minValue: "<<minValue<<"; maxValue: "<<maxValue;
         }
     }
     

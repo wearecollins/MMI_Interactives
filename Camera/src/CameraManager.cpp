@@ -32,6 +32,7 @@ namespace mmi {
     
     //--------------------------------------------------------------
     void CameraManager::discoverCameras(){
+        ofLogVerbose()<<"[CameraManger] discovering cameras";
 #ifndef DEBUG_CAMERA
         auto v = ofxLibdc::Camera::listDevices();
         
@@ -94,6 +95,7 @@ namespace mmi {
             saveSettings();
         }
         gui->loadFromFile(settingsFile.get() + "_camera.xml");
+        ofLogVerbose()<<"[CameraManager] loading settings "<<settingsFile.get() + "_camera.xml";
     }
     
     //--------------------------------------------------------------
@@ -110,10 +112,6 @@ namespace mmi {
             case MODE_FILL_MAX:
             {
                 float scale = (float) ofGetWidth()/c->getWidth();
-//                
-//                if ( scale < 1 ){
-//                    scale = MAX(c->getWidth() / (float) ofGetWidth(), c->getHeight() /(float)  ofGetHeight());
-//                }
                 
                 w *= scale;
                 h *= scale;
@@ -123,10 +121,6 @@ namespace mmi {
             case MODE_FILL_MIN:
             {
                 float scale = (float) ofGetHeight()/c->getHeight();
-                
-//                if ( scale > 1 ){
-//                    scale = MIN(c->getWidth() / ofGetWidth(), c->getHeight() / ofGetHeight());
-//                }
                 
                 w *= scale;
                 h *= scale;

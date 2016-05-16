@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxLog4CppChannel.h"
 
 #include "CameraApp.h"
 #include "ofxCocoaGLView.h"

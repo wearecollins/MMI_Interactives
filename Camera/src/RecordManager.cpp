@@ -94,7 +94,7 @@ namespace mmi {
             }
             
             if ( t - startTime >= recordLength.get() ){
-                ofLogError()<<"STOPPING "<< t <<":"<<(t-startTime)<<":"<<recordLength<<endl;
+                ofLogVerbose()<<"[RecordManager] Stopping recoriding: "<< t <<":"<<(t-startTime)<<":"<<recordLength<<endl;
                 stopRecording();
                 return;
             }
@@ -109,8 +109,7 @@ namespace mmi {
             lastFrameAdded = t;
             
             if (!success) {
-                ofLogWarning("This frame was not added!");
-                //                stopRecording();
+                ofLogWarning()<<"[RecordManager] - This frame was not added";
             }
         }
     }
@@ -193,6 +192,8 @@ namespace mmi {
         vidRecorder.setup(currentFileName, camWidth, camHeight, 30, 0, 0, true  );
         
         vidRecorder.start();
+        
+        ofLogVerbose()<<"[RecordManager] - beginning video capture";
     }
 
     
@@ -213,6 +214,7 @@ namespace mmi {
             system( lastCmd.c_str() );
             
             auto f = ofFile();
+            
             // remove original
             if (f.open(ofToDataPath(currentFileName, true), ofFile::ReadWrite)){
                 f.remove();
@@ -226,10 +228,14 @@ namespace mmi {
             if (f.open(ofToDataPath(currentFileName, true), ofFile::ReadWrite)){
                 outputFile = ofToDataPath( folderDest.get() +"/" + folderAppend.get() );
                 f.moveTo( outputFile  );
+            } else {
+                ofLogError()<<"[RecordManager] - error moving video file :"<<outputFile;
             }
         } else {
         }
         ofNotifyEvent(onFinishedRecording, currentFileName, this);
+        
+        ofLogVerbose()<<"[RecordManager] - video completed recording :"<<currentFileName;
         
         // make a thumbnail quick
         if ( outputFile != "" ){
@@ -238,11 +244,9 @@ namespace mmi {
             string file = ofToDataPath(folderDest.get() +"/" + folderAppend.get() + "/" + fn +".png", true);
             cmd +=" -ss 00:00:" + ofToString(recordLength.get()/1000 * .5) + " -vframes 1 " + file +"'";
             system( cmd.c_str() );
-            cout << file << endl;
+            
+            ofLogVerbose()<<"[RecordManager] - video thumbnail saved :"<<file;
         }
-        
-        
-        cout <<folderDest.get()<<" IS FOLDER"<<endl;
         
         currentBgClip = "";
     }
@@ -264,8 +268,10 @@ namespace mmi {
     void RecordManager::takePhotoEvt( string & name ){
         currentFileName = name + "-" + (fileName.get() +ofGetTimestampString()+fileExtImage.get() );
         auto outputName = ofToDataPath(folderDest.get() + "/" + tempAppend.get() + "/" + currentFileName, true );
-        cout << outputName << endl;
         lastImage.save(outputName);
+        
+        ofLogVerbose()<<"[RecordManager] - temp photo saved :"<<outputName;
+        
         ofNotifyEvent(onFinishedCapture, currentFileName, this);
     }
     
@@ -274,7 +280,12 @@ namespace mmi {
         auto outputName = ofToDataPath(folderDest.get() + "/" + tempAppend.get() + "/" + currentFileName, true );
         ofFile img;
         if (img.open(outputName)){
-            img.copyTo(ofToDataPath(folderDest.get() + "/" + folderAppend.get() + "/" + currentFileName, true ));
+            string dest = ofToDataPath(folderDest.get() + "/" + folderAppend.get() + "/" + currentFileName, true );
+            img.copyTo(dest);
+            ofLogVerbose()<<"[RecordManager] - final photo saved :"<<dest;
+        } else {
+            ofLogError()<<"[RecordManager] - photo not found :"<<outputName;
+            
         }
     }
 }

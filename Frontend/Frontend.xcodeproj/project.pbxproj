@@ -30,6 +30,20 @@
 		01793FEA1CA59F1E00D8DA83 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE51CA59F1E00D8DA83 /* CameraManager.cpp */; };
 		01793FEB1CA59F1E00D8DA83 /* RecordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE71CA59F1E00D8DA83 /* RecordManager.cpp */; };
 		01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01793FED1CA59F9B00D8DA83 /* MainMenu.xib */; };
+		01B2F68B1CEA102D0065081C /* log4cpp.properties in Resources */ = {isa = PBXBuildFile; fileRef = 01B2F68A1CEA102D0065081C /* log4cpp.properties */; };
+		01B2F68C1CEA102D0065081C /* log4cpp.properties in Resources */ = {isa = PBXBuildFile; fileRef = 01B2F68A1CEA102D0065081C /* log4cpp.properties */; };
+		01C213601CEA07D3009E1695 /* Makefile.am in Resources */ = {isa = PBXBuildFile; fileRef = 01C213201CEA07D3009E1695 /* Makefile.am */; };
+		01C213611CEA07D3009E1695 /* Makefile.am in Resources */ = {isa = PBXBuildFile; fileRef = 01C213201CEA07D3009E1695 /* Makefile.am */; };
+		01C213621CEA07D3009E1695 /* Makefile.in in Resources */ = {isa = PBXBuildFile; fileRef = 01C213211CEA07D3009E1695 /* Makefile.in */; };
+		01C213631CEA07D3009E1695 /* Makefile.in in Resources */ = {isa = PBXBuildFile; fileRef = 01C213211CEA07D3009E1695 /* Makefile.in */; };
+		01C213641CEA07D3009E1695 /* Makefile.am in Resources */ = {isa = PBXBuildFile; fileRef = 01C213351CEA07D3009E1695 /* Makefile.am */; };
+		01C213651CEA07D3009E1695 /* Makefile.am in Resources */ = {isa = PBXBuildFile; fileRef = 01C213351CEA07D3009E1695 /* Makefile.am */; };
+		01C213661CEA07D3009E1695 /* Makefile.in in Resources */ = {isa = PBXBuildFile; fileRef = 01C213361CEA07D3009E1695 /* Makefile.in */; };
+		01C213671CEA07D3009E1695 /* Makefile.in in Resources */ = {isa = PBXBuildFile; fileRef = 01C213361CEA07D3009E1695 /* Makefile.in */; };
+		01C2138C1CEA07D3009E1695 /* ofxLog4Cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C2135C1CEA07D3009E1695 /* ofxLog4Cpp.cpp */; };
+		01C2138D1CEA07D3009E1695 /* ofxLog4Cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C2135C1CEA07D3009E1695 /* ofxLog4Cpp.cpp */; };
+		01C2138E1CEA07D3009E1695 /* ofxLog4CppChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C2135E1CEA07D3009E1695 /* ofxLog4CppChannel.cpp */; };
+		01C2138F1CEA07D3009E1695 /* ofxLog4CppChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C2135E1CEA07D3009E1695 /* ofxLog4CppChannel.cpp */; };
 		01C3FBE31CE2824A0005502F /* settings_am.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01C3FBE11CE2824A0005502F /* settings_am.xml */; };
 		01C3FBE41CE2824A0005502F /* settings_perf.xml in Resources */ = {isa = PBXBuildFile; fileRef = 01C3FBE21CE2824A0005502F /* settings_perf.xml */; };
 		01CD01CC1CE9341700C9CB0F /* BlackFlyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */; };
@@ -410,6 +424,69 @@
 		01793FE81CA59F1E00D8DA83 /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordManager.h; path = ../Camera/src/RecordManager.h; sourceTree = "<group>"; };
 		01793FED1CA59F9B00D8DA83 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = src/MainMenu.xib; sourceTree = "<group>"; };
 		01793FF01CA5BA7400D8DA83 /* SysCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SysCommand.h; sourceTree = "<group>"; };
+		01B2F68A1CEA102D0065081C /* log4cpp.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = log4cpp.properties; path = Resources/log4cpp.properties; sourceTree = "<group>"; };
+		01C213041CEA07D3009E1695 /* AbortAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AbortAppender.hh; sourceTree = "<group>"; };
+		01C213051CEA07D3009E1695 /* Appender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Appender.hh; sourceTree = "<group>"; };
+		01C213061CEA07D3009E1695 /* AppendersFactory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppendersFactory.hh; sourceTree = "<group>"; };
+		01C213071CEA07D3009E1695 /* AppenderSkeleton.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppenderSkeleton.hh; sourceTree = "<group>"; };
+		01C213081CEA07D3009E1695 /* BasicConfigurator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BasicConfigurator.hh; sourceTree = "<group>"; };
+		01C213091CEA07D3009E1695 /* BasicLayout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BasicLayout.hh; sourceTree = "<group>"; };
+		01C2130A1CEA07D3009E1695 /* BufferingAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BufferingAppender.hh; sourceTree = "<group>"; };
+		01C2130B1CEA07D3009E1695 /* Category.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Category.hh; sourceTree = "<group>"; };
+		01C2130C1CEA07D3009E1695 /* CategoryStream.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CategoryStream.hh; sourceTree = "<group>"; };
+		01C2130D1CEA07D3009E1695 /* config-MinGW32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-MinGW32.h"; sourceTree = "<group>"; };
+		01C2130E1CEA07D3009E1695 /* config-openvms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-openvms.h"; sourceTree = "<group>"; };
+		01C2130F1CEA07D3009E1695 /* config-win32-stlport-boost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-win32-stlport-boost.h"; sourceTree = "<group>"; };
+		01C213101CEA07D3009E1695 /* config-win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-win32.h"; sourceTree = "<group>"; };
+		01C213111CEA07D3009E1695 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		01C213121CEA07D3009E1695 /* Configurator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configurator.hh; sourceTree = "<group>"; };
+		01C213131CEA07D3009E1695 /* convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convenience.h; sourceTree = "<group>"; };
+		01C213141CEA07D3009E1695 /* Export.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Export.hh; sourceTree = "<group>"; };
+		01C213151CEA07D3009E1695 /* FactoryParams.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FactoryParams.hh; sourceTree = "<group>"; };
+		01C213161CEA07D3009E1695 /* FileAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileAppender.hh; sourceTree = "<group>"; };
+		01C213171CEA07D3009E1695 /* Filter.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Filter.hh; sourceTree = "<group>"; };
+		01C213181CEA07D3009E1695 /* FixedContextCategory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FixedContextCategory.hh; sourceTree = "<group>"; };
+		01C213191CEA07D3009E1695 /* HierarchyMaintainer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HierarchyMaintainer.hh; sourceTree = "<group>"; };
+		01C2131A1CEA07D3009E1695 /* IdsaAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IdsaAppender.hh; sourceTree = "<group>"; };
+		01C2131B1CEA07D3009E1695 /* Layout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Layout.hh; sourceTree = "<group>"; };
+		01C2131C1CEA07D3009E1695 /* LayoutAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LayoutAppender.hh; sourceTree = "<group>"; };
+		01C2131D1CEA07D3009E1695 /* LayoutsFactory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LayoutsFactory.hh; sourceTree = "<group>"; };
+		01C2131E1CEA07D3009E1695 /* LevelEvaluator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEvaluator.hh; sourceTree = "<group>"; };
+		01C2131F1CEA07D3009E1695 /* LoggingEvent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoggingEvent.hh; sourceTree = "<group>"; };
+		01C213201CEA07D3009E1695 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		01C213211CEA07D3009E1695 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		01C213221CEA07D3009E1695 /* Manipulator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Manipulator.hh; sourceTree = "<group>"; };
+		01C213231CEA07D3009E1695 /* NDC.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NDC.hh; sourceTree = "<group>"; };
+		01C213241CEA07D3009E1695 /* NTEventLogAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NTEventLogAppender.hh; sourceTree = "<group>"; };
+		01C213251CEA07D3009E1695 /* OstreamAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OstreamAppender.hh; sourceTree = "<group>"; };
+		01C213261CEA07D3009E1695 /* PassThroughLayout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PassThroughLayout.hh; sourceTree = "<group>"; };
+		01C213271CEA07D3009E1695 /* PatternLayout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PatternLayout.hh; sourceTree = "<group>"; };
+		01C213281CEA07D3009E1695 /* Portability.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Portability.hh; sourceTree = "<group>"; };
+		01C213291CEA07D3009E1695 /* Priority.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Priority.hh; sourceTree = "<group>"; };
+		01C2132A1CEA07D3009E1695 /* PropertyConfigurator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PropertyConfigurator.hh; sourceTree = "<group>"; };
+		01C2132B1CEA07D3009E1695 /* RemoteSyslogAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RemoteSyslogAppender.hh; sourceTree = "<group>"; };
+		01C2132C1CEA07D3009E1695 /* RollingFileAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RollingFileAppender.hh; sourceTree = "<group>"; };
+		01C2132D1CEA07D3009E1695 /* SimpleConfigurator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleConfigurator.hh; sourceTree = "<group>"; };
+		01C2132E1CEA07D3009E1695 /* SimpleLayout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleLayout.hh; sourceTree = "<group>"; };
+		01C2132F1CEA07D3009E1695 /* SmtpAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmtpAppender.hh; sourceTree = "<group>"; };
+		01C213301CEA07D3009E1695 /* StringQueueAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringQueueAppender.hh; sourceTree = "<group>"; };
+		01C213311CEA07D3009E1695 /* SyslogAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SyslogAppender.hh; sourceTree = "<group>"; };
+		01C213331CEA07D3009E1695 /* BoostThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoostThreads.hh; sourceTree = "<group>"; };
+		01C213341CEA07D3009E1695 /* DummyThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DummyThreads.hh; sourceTree = "<group>"; };
+		01C213351CEA07D3009E1695 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		01C213361CEA07D3009E1695 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		01C213371CEA07D3009E1695 /* MSThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MSThreads.hh; sourceTree = "<group>"; };
+		01C213381CEA07D3009E1695 /* OmniThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OmniThreads.hh; sourceTree = "<group>"; };
+		01C213391CEA07D3009E1695 /* PThreads.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PThreads.hh; sourceTree = "<group>"; };
+		01C2133A1CEA07D3009E1695 /* Threading.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Threading.hh; sourceTree = "<group>"; };
+		01C2133B1CEA07D3009E1695 /* TimeStamp.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TimeStamp.hh; sourceTree = "<group>"; };
+		01C2133C1CEA07D3009E1695 /* TriggeringEventEvaluator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TriggeringEventEvaluator.hh; sourceTree = "<group>"; };
+		01C2133D1CEA07D3009E1695 /* TriggeringEventEvaluatorFactory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TriggeringEventEvaluatorFactory.hh; sourceTree = "<group>"; };
+		01C2133E1CEA07D3009E1695 /* Win32DebugAppender.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Win32DebugAppender.hh; sourceTree = "<group>"; };
+		01C2135C1CEA07D3009E1695 /* ofxLog4Cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxLog4Cpp.cpp; sourceTree = "<group>"; };
+		01C2135D1CEA07D3009E1695 /* ofxLog4Cpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLog4Cpp.h; sourceTree = "<group>"; };
+		01C2135E1CEA07D3009E1695 /* ofxLog4CppChannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxLog4CppChannel.cpp; sourceTree = "<group>"; };
+		01C2135F1CEA07D3009E1695 /* ofxLog4CppChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLog4CppChannel.h; sourceTree = "<group>"; };
 		01C3FBE11CE2824A0005502F /* settings_am.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = settings_am.xml; path = Resources/settings_am.xml; sourceTree = "<group>"; };
 		01C3FBE21CE2824A0005502F /* settings_perf.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = settings_perf.xml; path = Resources/settings_perf.xml; sourceTree = "<group>"; };
 		01CD020A1CE9341700C9CB0F /* AnythingMuppets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnythingMuppets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1114,6 +1191,7 @@
 		01793FEC1CA59F8300D8DA83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				01B2F68A1CEA102D0065081C /* log4cpp.properties */,
 				01CD020F1CE93BCB00C9CB0F /* anythingmuppets_camera.xml */,
 				01CD02101CE93BCB00C9CB0F /* performance_camera.xml */,
 				01DADA7E1CD1635F00F1A2C3 /* anythingmuppets.xml */,
@@ -1124,6 +1202,141 @@
 				01793FED1CA59F9B00D8DA83 /* MainMenu.xib */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		01C2128E1CEA07B8009E1695 /* ofxLog4Cpp */ = {
+			isa = PBXGroup;
+			children = (
+				01C213001CEA07D3009E1695 /* libs */,
+				01C2135B1CEA07D3009E1695 /* src */,
+			);
+			name = ofxLog4Cpp;
+			sourceTree = "<group>";
+		};
+		01C213001CEA07D3009E1695 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				01C213011CEA07D3009E1695 /* log4cpp */,
+			);
+			name = libs;
+			path = ../Camera/addons/ofxLog4Cpp/libs;
+			sourceTree = "<group>";
+		};
+		01C213011CEA07D3009E1695 /* log4cpp */ = {
+			isa = PBXGroup;
+			children = (
+				01C213021CEA07D3009E1695 /* include */,
+				01C2133F1CEA07D3009E1695 /* lib */,
+			);
+			path = log4cpp;
+			sourceTree = "<group>";
+		};
+		01C213021CEA07D3009E1695 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				01C213031CEA07D3009E1695 /* log4cpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		01C213031CEA07D3009E1695 /* log4cpp */ = {
+			isa = PBXGroup;
+			children = (
+				01C213041CEA07D3009E1695 /* AbortAppender.hh */,
+				01C213051CEA07D3009E1695 /* Appender.hh */,
+				01C213061CEA07D3009E1695 /* AppendersFactory.hh */,
+				01C213071CEA07D3009E1695 /* AppenderSkeleton.hh */,
+				01C213081CEA07D3009E1695 /* BasicConfigurator.hh */,
+				01C213091CEA07D3009E1695 /* BasicLayout.hh */,
+				01C2130A1CEA07D3009E1695 /* BufferingAppender.hh */,
+				01C2130B1CEA07D3009E1695 /* Category.hh */,
+				01C2130C1CEA07D3009E1695 /* CategoryStream.hh */,
+				01C2130D1CEA07D3009E1695 /* config-MinGW32.h */,
+				01C2130E1CEA07D3009E1695 /* config-openvms.h */,
+				01C2130F1CEA07D3009E1695 /* config-win32-stlport-boost.h */,
+				01C213101CEA07D3009E1695 /* config-win32.h */,
+				01C213111CEA07D3009E1695 /* config.h */,
+				01C213121CEA07D3009E1695 /* Configurator.hh */,
+				01C213131CEA07D3009E1695 /* convenience.h */,
+				01C213141CEA07D3009E1695 /* Export.hh */,
+				01C213151CEA07D3009E1695 /* FactoryParams.hh */,
+				01C213161CEA07D3009E1695 /* FileAppender.hh */,
+				01C213171CEA07D3009E1695 /* Filter.hh */,
+				01C213181CEA07D3009E1695 /* FixedContextCategory.hh */,
+				01C213191CEA07D3009E1695 /* HierarchyMaintainer.hh */,
+				01C2131A1CEA07D3009E1695 /* IdsaAppender.hh */,
+				01C2131B1CEA07D3009E1695 /* Layout.hh */,
+				01C2131C1CEA07D3009E1695 /* LayoutAppender.hh */,
+				01C2131D1CEA07D3009E1695 /* LayoutsFactory.hh */,
+				01C2131E1CEA07D3009E1695 /* LevelEvaluator.hh */,
+				01C2131F1CEA07D3009E1695 /* LoggingEvent.hh */,
+				01C213201CEA07D3009E1695 /* Makefile.am */,
+				01C213211CEA07D3009E1695 /* Makefile.in */,
+				01C213221CEA07D3009E1695 /* Manipulator.hh */,
+				01C213231CEA07D3009E1695 /* NDC.hh */,
+				01C213241CEA07D3009E1695 /* NTEventLogAppender.hh */,
+				01C213251CEA07D3009E1695 /* OstreamAppender.hh */,
+				01C213261CEA07D3009E1695 /* PassThroughLayout.hh */,
+				01C213271CEA07D3009E1695 /* PatternLayout.hh */,
+				01C213281CEA07D3009E1695 /* Portability.hh */,
+				01C213291CEA07D3009E1695 /* Priority.hh */,
+				01C2132A1CEA07D3009E1695 /* PropertyConfigurator.hh */,
+				01C2132B1CEA07D3009E1695 /* RemoteSyslogAppender.hh */,
+				01C2132C1CEA07D3009E1695 /* RollingFileAppender.hh */,
+				01C2132D1CEA07D3009E1695 /* SimpleConfigurator.hh */,
+				01C2132E1CEA07D3009E1695 /* SimpleLayout.hh */,
+				01C2132F1CEA07D3009E1695 /* SmtpAppender.hh */,
+				01C213301CEA07D3009E1695 /* StringQueueAppender.hh */,
+				01C213311CEA07D3009E1695 /* SyslogAppender.hh */,
+				01C213321CEA07D3009E1695 /* threading */,
+				01C2133B1CEA07D3009E1695 /* TimeStamp.hh */,
+				01C2133C1CEA07D3009E1695 /* TriggeringEventEvaluator.hh */,
+				01C2133D1CEA07D3009E1695 /* TriggeringEventEvaluatorFactory.hh */,
+				01C2133E1CEA07D3009E1695 /* Win32DebugAppender.hh */,
+			);
+			path = log4cpp;
+			sourceTree = "<group>";
+		};
+		01C213321CEA07D3009E1695 /* threading */ = {
+			isa = PBXGroup;
+			children = (
+				01C213331CEA07D3009E1695 /* BoostThreads.hh */,
+				01C213341CEA07D3009E1695 /* DummyThreads.hh */,
+				01C213351CEA07D3009E1695 /* Makefile.am */,
+				01C213361CEA07D3009E1695 /* Makefile.in */,
+				01C213371CEA07D3009E1695 /* MSThreads.hh */,
+				01C213381CEA07D3009E1695 /* OmniThreads.hh */,
+				01C213391CEA07D3009E1695 /* PThreads.hh */,
+				01C2133A1CEA07D3009E1695 /* Threading.hh */,
+			);
+			path = threading;
+			sourceTree = "<group>";
+		};
+		01C2133F1CEA07D3009E1695 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				01C213521CEA07D3009E1695 /* osx */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		01C213521CEA07D3009E1695 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		01C2135B1CEA07D3009E1695 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				01C2135C1CEA07D3009E1695 /* ofxLog4Cpp.cpp */,
+				01C2135D1CEA07D3009E1695 /* ofxLog4Cpp.h */,
+				01C2135E1CEA07D3009E1695 /* ofxLog4CppChannel.cpp */,
+				01C2135F1CEA07D3009E1695 /* ofxLog4CppChannel.h */,
+			);
+			name = src;
+			path = ../Camera/addons/ofxLog4Cpp/src;
 			sourceTree = "<group>";
 		};
 		01F10D091CA5ECA7006937FA /* ofxLibwebsockets */ = {
@@ -1269,6 +1482,7 @@
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
+				01C2128E1CEA07B8009E1695 /* ofxLog4Cpp */,
 				0138DBCA1CE6249B00976530 /* ofxInputField */,
 				012A51F21CAF235A00A74858 /* ofxCv */,
 				01F10D091CA5ECA7006937FA /* ofxLibwebsockets */,
@@ -1586,13 +1800,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01C213661CEA07D3009E1695 /* Makefile.in in Resources */,
 				01DADA801CD1635F00F1A2C3 /* anythingmuppets.xml in Resources */,
+				01B2F68B1CEA102D0065081C /* log4cpp.properties in Resources */,
 				01CD02111CE93DF400C9CB0F /* anythingmuppets_camera.xml in Resources */,
 				01CD02121CE93DF600C9CB0F /* performance_camera.xml in Resources */,
 				01F8BD531CAAE3790011B550 /* clips in Resources */,
 				012A51F11CAF235600A74858 /* LICENSE in Resources */,
+				01C213621CEA07D3009E1695 /* Makefile.in in Resources */,
 				01793FEF1CA59FA400D8DA83 /* MainMenu.xib in Resources */,
 				01C3FBE41CE2824A0005502F /* settings_perf.xml in Resources */,
+				01C213601CEA07D3009E1695 /* Makefile.am in Resources */,
+				01C213641CEA07D3009E1695 /* Makefile.am in Resources */,
 				01C3FBE31CE2824A0005502F /* settings_am.xml in Resources */,
 				01DADA811CD1635F00F1A2C3 /* performance.xml in Resources */,
 			);
@@ -1602,13 +1821,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01C213671CEA07D3009E1695 /* Makefile.in in Resources */,
 				01CD02131CE93DFA00C9CB0F /* anythingmuppets_camera.xml in Resources */,
+				01B2F68C1CEA102D0065081C /* log4cpp.properties in Resources */,
 				01CD02141CE93DFC00C9CB0F /* performance_camera.xml in Resources */,
 				01CD01FF1CE9341700C9CB0F /* anythingmuppets.xml in Resources */,
 				01CD02001CE9341700C9CB0F /* clips in Resources */,
 				01CD02011CE9341700C9CB0F /* LICENSE in Resources */,
+				01C213631CEA07D3009E1695 /* Makefile.in in Resources */,
 				01CD02021CE9341700C9CB0F /* MainMenu.xib in Resources */,
 				01CD02031CE9341700C9CB0F /* settings_perf.xml in Resources */,
+				01C213611CEA07D3009E1695 /* Makefile.am in Resources */,
+				01C213651CEA07D3009E1695 /* Makefile.am in Resources */,
 				01CD02041CE9341700C9CB0F /* settings_am.xml in Resources */,
 				01CD02051CE9341700C9CB0F /* performance.xml in Resources */,
 			);
@@ -1703,6 +1927,7 @@
 				01CD01E41CE9341700C9CB0F /* Events.cpp in Sources */,
 				01CD01E51CE9341700C9CB0F /* Util.cpp in Sources */,
 				01CD01E61CE9341700C9CB0F /* Webview.mm in Sources */,
+				01C2138D1CEA07D3009E1695 /* ofxLog4Cpp.cpp in Sources */,
 				01CD01E71CE9341700C9CB0F /* ofxSliderGroup.cpp in Sources */,
 				01CD01E81CE9341700C9CB0F /* ofxToggle.cpp in Sources */,
 				01CD01E91CE9341700C9CB0F /* Connection.cpp in Sources */,
@@ -1718,6 +1943,7 @@
 				01CD01F31CE9341700C9CB0F /* Camera.cpp in Sources */,
 				01CD01F41CE9341700C9CB0F /* Reactor.cpp in Sources */,
 				01CD01F51CE9341700C9CB0F /* Grabber.cpp in Sources */,
+				01C2138F1CEA07D3009E1695 /* ofxLog4CppChannel.cpp in Sources */,
 				01CD01F61CE9341700C9CB0F /* PointGrey.cpp in Sources */,
 				01CD01F71CE9341700C9CB0F /* RunningBackground.cpp in Sources */,
 			);
@@ -1754,6 +1980,7 @@
 				01F10D241CA5ECC7006937FA /* Events.cpp in Sources */,
 				01F10D281CA5ECC7006937FA /* Util.cpp in Sources */,
 				01055C811CA9A7B800DAD4CC /* Webview.mm in Sources */,
+				01C2138C1CEA07D3009E1695 /* ofxLog4Cpp.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
 				01F10D231CA5ECC7006937FA /* Connection.cpp in Sources */,
@@ -1769,6 +1996,7 @@
 				F141C1D157E23190F96F509D /* Camera.cpp in Sources */,
 				01F10D261CA5ECC7006937FA /* Reactor.cpp in Sources */,
 				880207F50813C4DEE88C1D32 /* Grabber.cpp in Sources */,
+				01C2138E1CEA07D3009E1695 /* ofxLog4CppChannel.cpp in Sources */,
 				EF7F3FAD19AB5E3F6EA8E2FF /* PointGrey.cpp in Sources */,
 				012A52581CAF247F00A74858 /* RunningBackground.cpp in Sources */,
 			);
@@ -1840,6 +2068,7 @@
 					../Camera/addons/ofxCv/src,
 					../Camera/addons/ofxCv/libs/ofxCv/include/ofxCv,
 					../../../addons/ofxOpenCv/libs/opencv/include,
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1856,6 +2085,7 @@
 					"-framework",
 					WebKit,
 					../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
+					../Camera/addons/ofxLog4Cpp/libs/log4cpp/lib/osx/liblog4cpp.a,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1911,6 +2141,7 @@
 					../Camera/addons/ofxCv/src,
 					../Camera/addons/ofxCv/libs/ofxCv/include/ofxCv,
 					../../../addons/ofxOpenCv/libs/opencv/include,
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1927,6 +2158,7 @@
 					"-framework",
 					WebKit,
 					../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
+					../Camera/addons/ofxLog4Cpp/libs/log4cpp/lib/osx/liblog4cpp.a,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1984,6 +2216,7 @@
 					../Camera/addons/ofxCv/src,
 					../Camera/addons/ofxCv/libs/ofxCv/include/ofxCv,
 					../../../addons/ofxOpenCv/libs/opencv/include,
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -2000,6 +2233,7 @@
 					"-framework",
 					WebKit,
 					../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
+					../Camera/addons/ofxLog4Cpp/libs/log4cpp/lib/osx/liblog4cpp.a,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -2128,6 +2362,7 @@
 					../Camera/addons/ofxCv/src,
 					../Camera/addons/ofxCv/libs/ofxCv/include/ofxCv,
 					../../../addons/ofxOpenCv/libs/opencv/include,
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -2144,6 +2379,7 @@
 					"-framework",
 					WebKit,
 					../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
+					../Camera/addons/ofxLog4Cpp/libs/log4cpp/lib/osx/liblog4cpp.a,
 				);
 				PRODUCT_NAME = Performance;
 				WRAPPER_EXTENSION = app;
@@ -2344,6 +2580,7 @@
 					../Camera/addons/ofxCv/src,
 					../Camera/addons/ofxCv/libs/ofxCv/include/ofxCv,
 					../../../addons/ofxOpenCv/libs/opencv/include,
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -2360,6 +2597,7 @@
 					"-framework",
 					WebKit,
 					../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
+					../Camera/addons/ofxLog4Cpp/libs/log4cpp/lib/osx/liblog4cpp.a,
 				);
 				PRODUCT_NAME = PerformanceDebug;
 				WRAPPER_EXTENSION = app;
@@ -2412,6 +2650,7 @@
 					../Camera/addons/ofxCv/src,
 					../Camera/addons/ofxCv/libs/ofxCv/include/ofxCv,
 					../../../addons/ofxOpenCv/libs/opencv/include,
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -2428,6 +2667,7 @@
 					"-framework",
 					WebKit,
 					../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
+					../Camera/addons/ofxLog4Cpp/libs/log4cpp/lib/osx/liblog4cpp.a,
 				);
 				PRODUCT_NAME = Performance;
 				WRAPPER_EXTENSION = app;
