@@ -58,6 +58,7 @@ These instructions were current as of May 2016.
 You will need a [Facebook App](https://developers.facebook.com/apps/) to be
 able to post to Facebook. 
 * This requires you be signed in as an owner of the MMI Facebook Page
+* You will also need a Facebook Page *if* you are debugging and/or testing.
 
 Once you are signed in, you can set up the App.
 
