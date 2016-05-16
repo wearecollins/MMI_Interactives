@@ -56,6 +56,16 @@ var email_am = function(data, configHandler){
 	this.enter = function(/*evt*/){
 		shareOnlineRef = shareOnline.bind(this);
 		window.addEventListener("shareAmMMI", shareOnlineRef );
+
+		// are we a touch screen? if so, setup a keyboard
+		var isTouch = configHandler.get("isTablet", false);
+		if (isTouch){
+			MMI.show("amKeyboardContainer", "block");
+			$('#anEmEmail').keyboard();
+		} else {
+			MMI.hide("amKeyboardContainer");
+		}
+
 	};
 
 	this.exit = function(/*evt*/){

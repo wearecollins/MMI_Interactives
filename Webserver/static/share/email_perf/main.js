@@ -64,6 +64,13 @@ var email_perf = function(data, configHandler){
 		info.scrollTop = window.innerHeight * .6;
 
 		window.addEventListener("sharePerfMMI", shareOnline );
+
+		// are we a touch screen? if so, setup a keyboard
+		var isTouch = configHandler.get("isTablet", false);
+		if (isTouch){
+			$('#pEmEmail').keyboard();
+		} else {
+		}
 	};
 
 	function shareOnline() {
@@ -116,6 +123,14 @@ var email_perf = function(data, configHandler){
 		}
 		var email = input.value;
 		if ( MMI.validateEmail(email) ){
+
+			var url = configHandler.getElementById("emailURL");
+
+		    var xhttp = new XMLHttpRequest();
+		    xhttp.open("POST", url, true);
+		    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		    xhttp.send( "email=" + email + "&performance=" + currentPerf.video );
+
 			// grey out?
 			window.events.dispatchEvent( new CustomEvent("sendEmail", {detail:{"data":currentPerf, "email":email, "type":"performance"}}));
 			window.events.dispatchEvent(new Event("next"));

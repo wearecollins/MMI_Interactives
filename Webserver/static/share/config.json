@@ -10,5 +10,6 @@
   "disableKeyNext":true,
   "shareServer":"http://192.168.88.124:8013",
   "gridBackground":false,
-  "isTablet"
+  "isTablet":false,
+  "emailURL":"http://test.com"
 }

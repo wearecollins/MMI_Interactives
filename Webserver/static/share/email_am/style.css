@@ -7,7 +7,6 @@
 	animation-fill-mode:forwards;
 }
 
-
 #{{name}}{
 	animation-name: animateInLeft;
   	animation-duration: 1s;
@@ -50,6 +49,20 @@
 	height: 100%;
 }
 
+#amKeyboardContainer {
+	visibility: hidden;
+	display: none;
+}
+
+#anEmEmail_keyboard {
+    font-size: .2rem;
+    line-height: .25rem;
+    bottom: 0%;
+    top: inherit;
+    left: inherit;
+    right: 0%;
+    font-family: SouvenirLight;
+}
 
 #amEmSh.disabled {
 	opacity: .5;
