@@ -53,6 +53,7 @@ These instructions were current as of May 2016.
   - Open this file (you will edit it in the Facebook and Tumblr steps below)
 2. Set up a Facebook App ([below](#facebook)) and Tumblr App ([below](#tumblr))
 3. Follow the instructions for the [Token Fetching Service](fetchToken/)
+4. Now you are ready to [Run](#running)
 
 ### facebook
 You will need a [Facebook App](https://developers.facebook.com/apps/) to be
@@ -76,6 +77,7 @@ Once you are signed in, you can set up the App.
    0. In order to authenticate with the Sharing script, they must have a Role (_Administrator_, _Developer_, or _Tester_)
 4. From the "Dashboard" page, show the App Secret (click show)
 5. Enter the Facebook App's ID and Secret into [config.json](#configjson)
+6. Contunue [Setting up](#platformauthentication)
 
 ### tumblr
 You will need a [Tumblr app](https://www.tumblr.com/oauth/apps) to be 
@@ -95,6 +97,7 @@ able to post to Tumblr. This requires you sign in as the Museum on Tumblr.
 3. Click "Register" to finish
 4. Copy the Tumblr App's Key and Secret into [config.json](#configjson)
   - This is always accessible under your app at the [Tumblr Apps page](https://www.tumblr.com/oauth/apps)
+5. Contunue [Setting up](#platformauthentication)
 
 # configuration
 
