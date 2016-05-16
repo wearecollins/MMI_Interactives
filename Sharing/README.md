@@ -49,11 +49,8 @@ These instructions were current as of May 2016.
   - The token-fetching server binds to port 8012. Make sure requests are forwarded to the appropriate port before continuing.
   - For the Museum server, this should already be configured. For testing and/or debugging, we suggest using [usig ngrok](https://github.com/wearecollins/MMI_Interactives/#using-ngrok)
   - If your computer or network configuration make this impractical, read through [using ngrok](../Readme.md#using-ngrok)
-1. Setup a 'config.json' file by copying and renaming the config.json.sample file
+1. Setup a [config.json](#configjson) file by copying and renaming the config.json.sample file
   - Open this file (you will edit it in the Facebook and Tumblr steps below)
-  - Edit the 'netpath' value to the URL noted in '0'
-  - e.g. for the Museum server, it may look like this (the slash is necessary):
-  - ``` "netpath":"http://www.movingimage.us/" ```
 2. Set up a Facebook App ([below](#facebook)) and Tumblr App ([below](#tumblr))
 3. Follow the instructions for the [Token Fetching Service](fetchToken/)
 
@@ -81,16 +78,22 @@ Once you are signed in, you can set up the App.
 
 ### tumblr
 You will need a [Tumblr app](https://www.tumblr.com/oauth/apps) to be 
-able to post to Tumblr. 
+able to post to Tumblr. This requires you sign in as the Museum on Tumblr.
 
-The URL for accessing the server used for setting up authentication needs to 
-be set up as the _Default callback URL_ of the Tumblr App 
-(![Screenshot](tumblr_app.jpg)). If you cannot access your computer from a 
-public URL, I suggest you use [ngrok](https://ngrok.com/), in which case 
-you will need to provide their randomly-assigned url as the 
-_Default callback URL_ after you start ngrok.
-
-Enter the Tumblr App's Key and Secret into [config.json](#configjson)
+0. Navigate to [https://www.tumblr.com/oauth/apps](https://www.tumblr.com/oauth/apps)
+1. Click "+ Register Application"
+2. On the Setup screen, fill in all required fields:
+  - Application Name: 'HensonPost' or similar (up to you)
+  - Application Description: "A Tumblr app that posts content from the Jim Henson Exhibition"
+  - Website URL: see 'Default callback URL' below; it should match this.
+  - Administrative contact email: your email
+  - Default callback URL: The URL you setup above
+    0. For production, it will most likely be [http://www.movingimage.us/](http://www.movingimage.us/)
+    0. For developing using ngrok, it will be something like http://2z999999.ngrok.io
+    0. ![Screenshot](tumblr_app.jpg)
+3. Click "Register" to finish
+4. Copy the Tumblr App's Key and Secret into [config.json](#configjson)
+  - This is always accessible under your app at the [Tumblr Apps page](https://www.tumblr.com/oauth/apps)
 
 # configuration
 
@@ -103,6 +106,8 @@ A sample is in [config.json.sample](config.json.sample) with sensitive data remo
 * **media**
   - **localpath** the relative path from [server.js](server.js) to the directory where the media files are served from
   - **netpath** the web address used to reach the media files
+    - e.g. for the Museum server, it may look like this (the slash is necessary):
+    - ``` "netpath":"http://www.movingimage.us/" ```
 * **facebook**
   - **app** details of the Facebook App being used for posting
     * **id** the App ID
