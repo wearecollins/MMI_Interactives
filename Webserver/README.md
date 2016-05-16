@@ -3,9 +3,9 @@ multi-state web apps. The framework is detailed in [STRUCTURE.md](STRUCTURE.md)
 
 0. [Dependencies](#dependencies)
 0. [Setup](#setup)
-  - [Anything Muppets](#AnythingMuppets)
-  - [Performance](#Performance)
-  - [Share](#Share)
+  - [Anything Muppets](#anythingmuppets)
+  - [Performance](#performance)
+  - [Share](#share)
 0. [Running](#running)
 
 # Dependencies
