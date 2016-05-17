@@ -31,6 +31,14 @@ var admin = function(data, configHandler){
     window.events.dispatchEvent(new Event("refreshStreamMode"));
   });
 
+  function shutdown(){
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/comp/shutdown", true);
+      xhttp.send();
+  }
+
+  window.addEventListener("shutdown", shutdown);
+
   this.enter = function(){
 
     for(var configI = data.configs.length - 1;

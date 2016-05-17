@@ -17,7 +17,7 @@ ComputerControl.control = function control(){
     } else {
       if (req.path === '/shutdown'){
         logger.info('[control] shutting down computer');
-        Exec('/sbin/shutdown -h now', function shutdown(error, stdout, stderr){
+        Exec('sudo /sbin/shutdown -h now', function shutdown(error, stdout, stderr){
           if (error){
             logger.error('[shutdown] error with command',error);
           }
@@ -31,7 +31,7 @@ ComputerControl.control = function control(){
         res.sendStatus(200);
       } else if (req.path === '/restart'){
         logger.info('[control] restarting computer');
-        Exec('/sbin/shutdown -r now', function restart(error, stdout, stderr){
+        Exec('sudo /sbin/shutdown -r now', function restart(error, stdout, stderr){
           if (error){
             logger.error('[restart] error with command',error);
           }
