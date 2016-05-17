@@ -1,9 +1,9 @@
 {{#each videos}}
 <div class="centeredContainer column container shareRow {{#if_even @index}}evenRow{{/if_even}}" onclick="window.events.dispatchEvent( new CustomEvent('selectPerf', {detail:{'timestamp':'{{{timestamp}}}','video':'{{{video}}}','name':'{{{name}}}','path':'{{{path}}}' } }));">
-	<!-- <video class="srVideo" loop muted>
+	<video id='{{{name}}}' class="srVideo" preload="none" loop muted>
 		<source src="{{video}}" type="video/mp4">
-	</video> -->
-	<img src="{{thumb}}" class="srVideo" />
+	</video>
+	<img id='{{{name}}}_thumb' src="{{thumb}}" class="srImage" />
 	<div class="srType type_sm" style="">
 		<span style="text-decoration: underline;
 " class="type_mini">{{timestamp}}</span>

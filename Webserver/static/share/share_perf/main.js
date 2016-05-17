@@ -63,7 +63,8 @@ var share_perf = function(data, configHandler){
 
 	this.enter = function(/*evt*/){
 		// scroll to top
-		document.getElementById("perfContainer").scrollTop = 0;
+		var container = document.getElementById("perfContainer");
+		container.scrollTop = 0;
 
 		window.addEventListener("selectPerf", selectShare);
 
@@ -71,9 +72,75 @@ var share_perf = function(data, configHandler){
 		for ( var i=0; i<videos.length; i++ ){
 			// setTimeout(function(v){v.play()}, 0, videos[i]);
 		}
+		playVideo(videos[0]);
+
+		container.addEventListener("scroll", onScroll);
 	};
 
+	var currentVideo = null;
+	var currentImage = null;
+
+	function playVideo( video ){
+		if ( currentVideo === video ) return;
+
+		if (currentVideo !== null ){
+			currentVideo.pause();
+			currentVideo.style.visibility = "hidden";
+			currentVideo.style.display = "none";
+			currentImage.style.visibility = "visible";
+			currentImage.style.display = "block";
+		}
+		currentImage = document.getElementById(video.id+"_thumb");
+		currentVideo = video;
+		currentImage.style.visibility = "hidden";
+		currentImage.style.display = "none";
+		currentVideo.style.visibility = "visible";
+		currentVideo.style.display = "block";
+		currentVideo.play();
+	}
+
+	function ofMap(value, inputMin, inputMax, outputMin, outputMax, clamp) {
+		outVal = ((value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin);
+	
+		if( clamp ){
+			if(outputMax < outputMin){
+				if( outVal < outputMax )outVal = outputMax;
+				else if( outVal > outputMin )outVal = outputMin;
+			}else{
+				if( outVal > outputMax )outVal = outputMax;
+				else if( outVal < outputMin )outVal = outputMin;
+			}
+		}
+		return outVal;
+
+	}
+
+
+	function onScroll(){
+		// pick a video and play it
+		var c = document.getElementById("perfContainer");
+
+		var scroll = c.scrollTop;
+
+		var videos = document.querySelectorAll(".srVideo");
+		var lastVid = videos[videos.length-1].parentElement;
+		var videoHeight = lastVid.getBoundingClientRect().bottom - lastVid.getBoundingClientRect().top;
+		var videoWidth = lastVid.getBoundingClientRect().right - lastVid.getBoundingClientRect().left;
+		
+		var max = c.scrollHeight;
+
+		var incX 	= (c.getBoundingClientRect().right / videoWidth);
+		var inc 	= Math.ceil(videos.length/incX);
+		var whichY = Math.ceil(ofMap(scroll, 0, max, 0,inc, true));
+		var whichX = Math.ceil(ofMap(scroll % videoHeight, 0, videoHeight, 0, Math.floor(incX), true));
+
+		var index =  Math.floor( whichX + (whichY * incX) ) ;
+
+		playVideo( videos[index] );
+	}
+
 	this.exit = function(/*evt*/){
+		document.getElementById("perfContainer").removeEventListener("scroll", onScroll);
 		window.removeEventListener("selectPerf", selectShare);
 
 		var videos = document.querySelectorAll(".srVideo");

@@ -28,9 +28,6 @@
   	animation-duration: 1s;
   	animation-fill-mode:forwards;
   	z-index: 1;
-}
-
-#{{name}} {
 	color: black;
 }
 
@@ -38,8 +35,13 @@
 	height: 85vh;
 }
 
-.srVideo {
+.srVideo, .srImage {
 	width: 100%;
+}
+
+.srVideo {
+	visibility: hidden;
+	display: none;
 }
 
 #perfContainer {
