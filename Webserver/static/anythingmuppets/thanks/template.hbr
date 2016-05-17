@@ -1,4 +1,4 @@
-<div id='{{name}}' class='page'>
+<div id='{{name}}' class='page noselect'>
   <div class="background parchBg">
   </div>
   <div id="titleContainer" class="container fillAbs centeredContainer column fillGrey" style="z-index:2">

@@ -1,4 +1,4 @@
-<div id='{{name}}' class='page'>
+<div id='{{name}}' class='page noselect'>
   <div class='background' id="captureBgContainer"></div>
 
   <!-- Take a picture, why don't ya? -->
@@ -91,7 +91,9 @@
         <div class="type_lg">Download </div>
         <div id="shareCopy" class="topCenteredContainer type_sm">
           <div class="shareCopyBlock">
-              <strong>Download and share</strong><br>at the Museum Shop Your unique name:<br><div id="uniqueName"></div>
+              <strong>Download and share at the Museum Shop 
+              <div id="uniqueName" class="type_med"></div></strong>
+              is your unique name.<br>
           </div>
         </div>
         <div class="bottomCenteredContainer">

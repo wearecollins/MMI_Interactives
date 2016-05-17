@@ -1,4 +1,4 @@
-<div id='{{name}}' class='page'>
+<div id='{{name}}' class='page noselect'>
   <div class='background'>
       <video class="fillContainer attractVideo" autoplay loop muted>
           <source src="video/am_attract.mp4" type="video/mp4">
