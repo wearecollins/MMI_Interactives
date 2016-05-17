@@ -9,7 +9,7 @@ var share = function(data, configHandler){
     Section: Main vars
   **************************************************/
 
-  this.nRetakes = 0;
+  var nRetakes = 0;
 
   // hack for multi image problem
   var didSetImage = false;
@@ -23,13 +23,11 @@ var share = function(data, configHandler){
 
   var name = "AM 000";
 
-  // bind() creates new function refs
-  // so we need to create shared variables for adding/removing
-  // event listeners!
-  var startRef, skipRef, shareRef, shareOnlineRef, retakeRef, setImageRef;
-
   var soundTimeout, nextTimeout;
 
+  var sndFocusVo = new SoundPlayer(), 
+  sndCountdown = new SoundPlayer(),
+  sndShutter = new SoundPlayer();
 
   /**************************************************
     Section: Enter
@@ -37,31 +35,28 @@ var share = function(data, configHandler){
 
   this.enter = function(/*evt*/){
     currentImageUrl = "";
-    this.nRetakes = 0;
+    nRetakes = 0;
 
-    startRef = startCountdown.bind(this);
-    skipRef = skipToThanks.bind(this);
-    shareRef = share.bind(this);
-    shareOnlineRef = shareOnline.bind(this);
-    retakeRef = retake.bind(this);
-    setImageRef = setImage.bind(this);
+    sndFocusVo.setup("focus_vo");
+    sndCountdown.setup("snd_countdown");
+    sndShutter.setup("snd_shutter");
 
     // 'take a photo'
-    window.addEventListener("capture", startRef);
+    window.addEventListener("capture", startCountdown);
 
     // 'done'
-    window.addEventListener("skipToThanks", skipRef);
+    window.addEventListener("skipToThanks", skipToThanks);
 
     // 'capture' to 'share'
-    window.addEventListener("share", shareRef);
+    window.addEventListener("share", share);
 
     // post to fb / tumblr / etc
-    window.addEventListener("share_online", shareOnlineRef);
+    window.addEventListener("share_online", shareOnline);
 
-    window.addEventListener("retake", retakeRef);
+    window.addEventListener("retake", retake);
 
     // got image from camera app
-    window.addEventListener("imageCapture", setImageRef);
+    window.addEventListener("imageCapture", setImage);
 
     // should we go back to 'home' screen?
     window.addEventListener("shouldCancel", returnShouldCancel);
@@ -100,8 +95,7 @@ var share = function(data, configHandler){
     setTimeout(showButtons, 1000, "shareButtonContainer");
     soundTimeout = setTimeout(function(){
 
-      var sound = document.getElementById("focus_vo");
-      sound.play();
+      sndFocusVo.play();
       
     }, 500);
 
@@ -129,9 +123,7 @@ var share = function(data, configHandler){
   **************************************************/
 
   function pauseSounds(){
-    var soundA = document.getElementById("focus_vo");
-    soundA.pause();
-    soundA.currentTime = 0;
+    sndFocusVo.stop();
   }
 
   var countdownInterval = null;
@@ -146,8 +138,12 @@ var share = function(data, configHandler){
     MMI.show(("countdownContainer"), "flex");
 
     // MMI.show(("c_three"), "flex");
+    sndCountdown.play();
     cdThree.play(function(){
+      sndCountdown.play();
       cdTwo.play(function(){
+
+        sndCountdown.play();
         cdOne.play(function(){
           MMI.hide("countdownContainer");
           MMI.hide("shareButtonContainer")
@@ -158,6 +154,8 @@ var share = function(data, configHandler){
           var bg = document.getElementById("captureBgContainer");
           bg.style.backgroundColor = "white";
 
+          // play sound
+          sndShutter.play();
         });
       });
     });
@@ -178,7 +176,7 @@ var share = function(data, configHandler){
   function skipToRetake(){
   //todo: WHERE ARE THESE COUNTED 
   // & HOW DO I GET SETTING?
-    if ( this.nRetakes >= 3 ){
+    if ( nRetakes >= 3 ){
       share();
     } else {
       clearTimeout(countdownInterval);
@@ -219,7 +217,7 @@ var share = function(data, configHandler){
     xhttp.send( "filename=" + filename );
 
     // then hide the button...
-    window.removeEventListener("share_online", shareOnlineRef);
+    window.removeEventListener("share_online", shareOnline);
     var btn = document.getElementById("shareOnlineBtn");
     btn.classList.add("disabled");
 
@@ -269,7 +267,7 @@ var share = function(data, configHandler){
   }
 
   function retake(){
-    this.nRetakes++;
+    nRetakes++;
     didSetImage = false;
 
     try {
@@ -327,12 +325,12 @@ var share = function(data, configHandler){
     clearTimeout(nextTimeout);
     
     window.removeEventListener("shouldCancel", returnShouldCancel);
-    window.removeEventListener("capture", startRef);
-    window.removeEventListener("skipToThanks", skipRef);
-    window.removeEventListener("share", shareRef);
-    window.removeEventListener("share_online", shareOnlineRef);
-    window.removeEventListener("retake", retakeRef);
-    window.removeEventListener("imageCapture", setImageRef);
+    window.removeEventListener("capture", startCountdown);
+    window.removeEventListener("skipToThanks", skipToThanks);
+    window.removeEventListener("share", share);
+    window.removeEventListener("share_online", shareOnline);
+    window.removeEventListener("retake", retake);
+    window.removeEventListener("imageCapture", setImage);
 
     var bg = document.getElementById("captureBgContainer");
 

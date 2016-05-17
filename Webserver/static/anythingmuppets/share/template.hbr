@@ -11,11 +11,13 @@
             <img src="svg/__done.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">done</div>
         </div>
-          <audio src="vo/am_v05.mp3" id="focus_vo"></audio>
+        <audio src="vo/am_v05.mp3" id="focus_vo"></audio>
   </div>
 
   <!-- Countdown -->
   <div id="countdownContainer" class="fillAbs" style="z-index:2">
+    <audio src="vo/countdown.mp3" id="snd_countdown"></audio>
+    <audio src="vo/shutter_03.mp3" id="snd_shutter"></audio>
     <div class="container fillAbs centeredContainer noselect">
       <div>
         <!-- Todo: Dynamic w/h -->

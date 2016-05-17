@@ -62,6 +62,9 @@ var share_perf = function(data, configHandler){
 	}
 
 	this.enter = function(/*evt*/){
+		// scroll to top
+		document.getElementById("perfContainer").scrollTop = 0;
+
 		window.addEventListener("selectPerf", selectShare);
 
 		var videos = document.querySelectorAll(".srVideo");

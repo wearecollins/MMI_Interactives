@@ -38,7 +38,8 @@ var perform = function(data, configHandler){
 
   // voiceovers
   var soundPractice = new SoundPlayer(),
-  soundPerform = new SoundPlayer();
+  soundPerform = new SoundPlayer(),
+  soundCountdown = new SoundPlayer();
 
   // timeouts
   var timeouts = [];
@@ -87,6 +88,7 @@ var perform = function(data, configHandler){
     // build VOs
     soundPractice.setup("vo_practice");
     soundPerform.setup("vo_perform");
+    soundCountdown.setup("snd_countdown");
 
     MMI.show( "performPractice", "block" );
 
@@ -181,9 +183,14 @@ var perform = function(data, configHandler){
 
     var videoDiv = document.getElementById("perf_"+currentClip.name);
 
+    // play cound sound
+    soundCountdown.play();
+
     // play each countdown (alpha video)
     cdThree.play(function(){
+      soundCountdown.play();
       cdTwo.play(function(){
+        soundCountdown.play();
         cdOne.play(function(){
 
           // hide self, then either setup 'practice' or 'perform'

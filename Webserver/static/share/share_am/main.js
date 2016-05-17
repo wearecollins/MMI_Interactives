@@ -59,6 +59,8 @@ var share_am = function(data, configHandler){
 
 	this.enter = function(/*evt*/){
 		window.addEventListener("selectAM", selectShare);
+		// scroll to top
+		document.getElementById("amContainer").scrollTop = 0;
 	};
 	this.exit = function(/*evt*/){
 		window.removeEventListener("selectAM", selectShare);

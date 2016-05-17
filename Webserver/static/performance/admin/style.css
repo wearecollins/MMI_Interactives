@@ -11,14 +11,20 @@
 	text-align: left;
 }
 
+#{{name}} .type_sm {
+    font-size: .3rem;
+    line-height: .4rem;
+}
+
 #formContainer {
 	height: 60vh;
     width: 100%;
     flex-wrap: wrap;
 }
 
-#buttonAdminSave {
+#buttonAdminSave, #buttonAdminCancel {
   transition: opacity ease-in-out .2s;
+  text-align: center;
 }
 
 #buttonAdminSave.disabled {

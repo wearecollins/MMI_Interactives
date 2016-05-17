@@ -1,4 +1,4 @@
-<div id='{{name}}' class='page'>
+<div id='{{name}}' class='page noselect'>
   <div class='background fill blueBg'></div>
 
   <audio src="vo/Pv01.mp3" id="vo_grab"></audio>

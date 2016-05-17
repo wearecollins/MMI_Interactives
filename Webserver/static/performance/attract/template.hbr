@@ -1,4 +1,4 @@
-<div id='{{name}}' class='page'>
+<div id='{{name}}' class='page noselect'>
   <div class='background greenBg'>
       <video class="fillH attractVideo" autoplay loop muted>
           <source id="attractVideoSource" src="video/fpo_performance.mp4" type="video/mp4">

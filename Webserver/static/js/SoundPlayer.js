@@ -3,6 +3,7 @@ function SoundPlayer() {
 	this.id	 = null;
 	this.onComplete = null;	
 	this._onTimeUpdate = null;
+	this.playing = false;
 }
 
 /**
@@ -37,6 +38,11 @@ SoundPlayer.prototype.exists = function() {
  */
 SoundPlayer.prototype.play = function(onComplete) {
 	var mainScope = this;
+	if ( this.playing ){
+		this.stop();
+	}
+	
+	this.playing = true;
 
 	function onTimeUpdate(){
 		if ( this.currentTime == this.duration ){
@@ -60,6 +66,7 @@ SoundPlayer.prototype.play = function(onComplete) {
  * Stop!
  */
 SoundPlayer.prototype.stop = function() {
+	this.playing = false;
 	if ( this.div !== null ){
 		this.onComplete = null;
 		this.div.pause();

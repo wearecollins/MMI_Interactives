@@ -3,6 +3,8 @@
     <!-- This will show the live camera -->
   </div>
 
+  <audio src="vo/countdown.mp3" id="snd_countdown"></audio>
+  
   <!-- State I -->
   <div id="performPractice" class="fillAbs">
       <div class="fillAbs centeredContainer column noselect" style="z-index:2">
