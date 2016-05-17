@@ -1,6 +1,9 @@
 ###Preparation steps
-0. Make sure the scripts in this directory (primarily bootstrapping.command and visudo_edit.sh) include the appropriate username in the scripts
+0. Make sure the scripts in this directory (_03_2_visudo_edit.sh) include the appropriate username in the scripts
   - You can get the correct username via `whoami` in the terminal after logging in as the appropriate user
+  - Change "CHANGE_TO_YOUR_USERNAME" to your username, e.g. 'install'
+  - example, for username 'install':
+  - ```  echo "install ALL=NOPASSWD:/sbin/shutdown, /usr/bin/pmset" >> $1```
 0. Copy the contents of this directory to a thumb drive to run on each individual computer as you set it up
 
 ###Initial steps to run on each computer
