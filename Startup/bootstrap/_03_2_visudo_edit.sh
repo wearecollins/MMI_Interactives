@@ -4,5 +4,5 @@ if [ -z "$1" ]; then
   export EDITOR=$0 && sudo -E visudo
 else
   echo "Changing sudoers"
-  echo "user ALL=NOPASSWD:/sbin/shutdown, /usr/bin/pmset" >> $1
+  echo "CHANGE_TO_YOUR_USERNAME ALL=NOPASSWD:/sbin/shutdown, /usr/bin/pmset" >> $1
 fi
