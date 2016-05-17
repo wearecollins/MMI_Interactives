@@ -3,6 +3,10 @@ var thanks = function(/*manager*/){
 
     // should we go back to 'home' screen?
     window.addEventListener("shouldCancel", returnShouldCancel);
+
+    // round width of arrow
+    var v1 = document.getElementById("tyArrow");
+    v1.style.width = v1.style.height = Math.round(window.innerWidth * .75) + "px";
   };
 
   /**

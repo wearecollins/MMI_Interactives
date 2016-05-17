@@ -139,6 +139,7 @@ var share = function(data, configHandler){
 
     // MMI.show(("c_three"), "flex");
     sndCountdown.play();
+
     cdThree.play(function(){
       sndCountdown.play();
       cdTwo.play(function(){

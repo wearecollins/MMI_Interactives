@@ -187,6 +187,13 @@ var script = function(data){
 	}
 
 	function showOpenPrompt(){
+	    // round percentage widths
+	    // we know that button_lg in AM screen is 75vw
+	    var v1 = document.getElementById("videoArrow");
+	    v1.style.width = v1.style.height = Math.round(window.innerWidth * .75) + "px";
+	    var v2 = document.getElementById("videoSpin");
+	    v2.style.width = v2.style.height = Math.round(window.innerWidth * .75) + "px";
+
 		voIntro.stop();
 
 		var openDiv = document.getElementById("promptOpenDrawers");
