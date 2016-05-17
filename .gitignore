@@ -7,7 +7,6 @@ Webserver/static/vo
 Sharing/config.json
 Sharing/token.json
 Sharing/media
-*/log
 
 # Defaults
 .DS_Store

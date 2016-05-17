@@ -20,7 +20,7 @@ app.use(Express.static(Path.join(__dirname, 'static')));
 app.use(BodyParser.urlencoded({extended:false}));
 platforms.forEach(function(platform, index){
   var Handler = require(Path.join(__dirname, platform+'.js'));
-  var handler = new Handler(configs[platform]);
+  var handler = new Handler(configs[platform], configs.media.netpath);
   handlers.push(handler);
   app.get('/auth/'+platform+'/conf', handler.getConfs.bind(handler));
   app.get('/auth/'+platform+'/start', handler.startAuth.bind(handler));
