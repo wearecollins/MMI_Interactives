@@ -396,10 +396,6 @@ body,
     overflow: hidden;
 }
 
-.fillH{
-    height: 100vh;
-}
-
 .page {
   z-index: 1;
   pointer-events: all;

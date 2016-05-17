@@ -9,8 +9,16 @@ var share = function( data, configHandler ){
 
 	var name;
 
+	// 0 = start, 1 = share online, 2 = share local
+	var currentState = 0;
+
+	// Override timeout: instead of going back to '0',
+	// we go to 'thanks'
+	var nextTimeout;
+
 	function onTimeupdate(){
 	    if ( this.currentTime >= this.duration ){
+			document.getElementById("shareOnlineContainer").classList.remove("disabled");
 			document.getElementById("shareOnlineContainer").classList.add("enabled");
 
 			var video = document.getElementById("share_video");
@@ -65,9 +73,17 @@ var share = function( data, configHandler ){
 		}
 	    shareOnlineRef = shareOnline.bind(this);
     	window.addEventListener("share_online", shareOnlineRef);
+
+	    var to = configHandler.get('timeout', 60) * 1000;
+
+	    nextTimeout = setTimeout(function(){
+	      window.events.dispatchEvent(new Event('next'));
+	    }, to);
 	}
 
 	this.exit = function(/*evt*/){
+		clearTimeout(nextTimeout);
+
 		clearInterval(tryInterval);
     	window.removeEventListener("share_online", shareOnlineRef);
 
@@ -88,8 +104,10 @@ var share = function( data, configHandler ){
 	function cleanup() {
 		document.getElementById("shareOnlineContainer").classList.remove("enabled");
 		document.getElementById("shareLocalContainer").classList.remove("enabled");
-		document.getElementById("shareOnlineContainer").classList.remove("disabled");
-		document.getElementById("shareLocalContainer").classList.remove("disabled");
+		document.getElementById("shareOnlineContainer").classList.add("disabled");
+		document.getElementById("shareLocalContainer").classList.add("disabled");
+		document.getElementById("shareOnlineContainer").classList.remove("freezeAnim");
+		document.getElementById("shareLocalContainer").classList.remove("freezeAnim");
 
 		var cont = document.getElementById("shareBackground");
 		cont.innerHTML = "";
@@ -121,8 +139,15 @@ var share = function( data, configHandler ){
 			document.getElementById("shareOnlineContainer").classList.add("disabled");
 			setTimeout(function(){
 				document.getElementById("shareLocalContainer").classList.add("enabled");
+				document.getElementById("shareLocalContainer").classList.remove("disabled");
+
+				setTimeout(function(){
+					document.getElementById("shareLocalContainer").classList.add("freezeAnim");
+				})
+
 			}, 1000);
 	    } else {
+			document.getElementById("shareOnlineContainer").classList.add("freezeAnim");
 		    window.events.dispatchEvent( new Event("next") );
 	    }
 	  }

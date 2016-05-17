@@ -1,4 +1,4 @@
-<div id='{{name}}' class='page'>
+<div id='{{name}}' class='page noselect'>
   <div class='background blackBg' style="">
   </div>
 

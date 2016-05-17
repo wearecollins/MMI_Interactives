@@ -39,15 +39,7 @@
   top:100vh;
 }
 
-#{{name}}.disabled .shareAnimateContainer{
-  animation-name: hide;
-  animation-duration: 1s;
-  animation-fill-mode:forwards;
-  animation-delay: 1s;
-  z-index: 0;
-}
-
-#{{name}} .shareAnimateContainer.enabled{
+.shareAnimateContainer.enabled{
   animation-name: animateUpScreen;
   animation-duration: 1s;
   animation-fill-mode:forwards;
@@ -56,11 +48,20 @@
   height: 100vh;
 }
 
-#{{name}} .shareAnimateContainer.disabled{
+.shareAnimateContainer.disabled{
   animation-name: animateOffBotton;
   animation-duration: 1s;
   animation-fill-mode:forwards;
   animation-delay: 0s;
   z-index: 1;
   height: 100vh;
+}
+
+#{{name}}.disabled .shareAnimateContainer.disabled, #{{name}}.disabled .shareAnimateContainer.enabled {
+  animation-name: none;
+  animation-duration: 0s;
+}
+
+.freezeAnim {
+  top: 0vh;
 }
