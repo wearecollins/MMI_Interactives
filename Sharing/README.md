@@ -156,18 +156,29 @@ This file should not be created or edited manually. Use the [fetchToken](fetchTo
 
 start this server with `npm start`.
 It will start an HTTP server on port 8013. 
-The Sharing server itself does not need to be accessible from the internet, 
-but the media files you want to post will need to be.
 
 In production this will probably be set up to start on boot using Upstart 
 or init.d in which case you will configure those services to execute 
 `/PATH/TO/node /PATH/TO/REPO/Sharing/server.js ./config.json` 
 where _/PATH/TO/node_ can be determined by running `which node`.
 
+The Sharing server itself does not need to be accessible from the internet, 
+but the media files you want to post will need to be because they are downloaded
+by Facebook and Tumblr.
+
 If the computer you are working from cannot serve files to the internet, 
-you can use ngrok and a static server to open a tunnel to the media directory 
-(**media.localpath** in _config.json_). 
-Follow the instructions in [#setup-ngrok]() 
+you can use [ngrok](../Readme.md#using-ngrok) and a static server to open 
+a tunnel to the media directory (**media.localpath** in _config.json_). 
+
+As a static server (to which ngrok forwards connections), you can use anything.
+Suggestions include:
+
+* Python's SimpleHTTPServer module
+    - `python -m SimpleHTTPServer 8012`
+* Node.js' http-server module
+    - `http-server . --enable-cors -p 8012`
+        * after `npm install -g http-server`
+	* if you are testing the Sharing interface, CORS must be enabled to allow the images and videos to be viewable on the iPad.
 
 ## endpoints
 

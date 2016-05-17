@@ -17,9 +17,9 @@ var TumblrPoster = function(a_configFilename){
                          'https://www.tumblr.com/oauth/access_token',
                          this.configs.tumblr.app.key,
                          this.configs.tumblr.app.secret,
-                         "1.0A",
-                         "http://momi-auth.ngrok.io/auth/tumblr/done",
-                         "HMAC-SHA1");
+                         '1.0A',
+                         this.configs.media.netpath + 'auth/tumblr/done',
+                         'HMAC-SHA1');
   this.logger.debug('initialized');
 };
 

@@ -9,15 +9,15 @@ var OAuth = require('oauth').OAuth;
 var logger = Logger.getLogger('tumblr');
 var oauthTokens = {};
 
-var tumblAuth = function(configs){
+var tumblAuth = function(configs, netpath){
   this.configs = configs;
   this.oauth = new OAuth('https://www.tumblr.com/oauth/request_token',
                          'https://www.tumblr.com/oauth/access_token',
                          this.configs.app.key,
                          this.configs.app.secret,
-                         "1.0A",
-                         "http://momi-auth.ngrok.io/auth/tumblr/done",
-                         "HMAC-SHA1");
+                         '1.0A',
+                         netpath + 'auth/tumblr/done',
+                         'HMAC-SHA1');
 };
 
 tumblAuth.prototype.startAuth = function startAuth(req, res, next){
