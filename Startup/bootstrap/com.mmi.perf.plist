@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.collins.muppets.Frontend</string>
+	<string>com.mmi.perf.Frontend</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Users/brettrenfer/Dropbox/MMI-Henson/code/openFrameworks/apps/MMI_Interactives/Startup/startup_perf.sh</string>
+		<string>/Users/install/Documents/MMI_Interactives/Startup/startup_perf.command</string>
 	</array>
 	<key>KeepAlive</key>
 	<true/>
