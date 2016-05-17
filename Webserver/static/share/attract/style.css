@@ -10,6 +10,11 @@ div {
                                   not supported by any browser */
 }
 
+#adminSwipe {
+  visibility: hidden;
+  display: none;
+}
+
 .button_mini {
     width: auto;
     height: 100%;
