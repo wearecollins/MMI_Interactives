@@ -12,11 +12,11 @@ trap '
   if ! "$gotsigchld"; then
     gotsigchld=true
     ((${#pids[@]})) && kill "${pids[@]}" 2> /dev/null
+	killall Terminal
   fi
 ' CHLD
 
 sh "$DIR/am_launch.sh" & pids+=($!)
-sleep 1
 sh "$DIR/frontend_am_launch.sh" & pids+=($!)
 # sleep 3 & pids+=($!)
 
