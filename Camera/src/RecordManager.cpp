@@ -227,6 +227,10 @@ namespace mmi {
             
             if (f.open(ofToDataPath(currentFileName, true), ofFile::ReadWrite)){
                 outputFile = ofToDataPath( folderDest.get() +"/" + folderAppend.get() );
+                ofDirectory outDir(outputFile);
+                if ( !outDir.exists() ){
+                    outDir.create();
+                }
                 f.moveTo( outputFile  );
             } else {
                 ofLogError()<<"[RecordManager] - error moving video file :"<<outputFile;
