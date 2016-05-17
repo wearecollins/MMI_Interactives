@@ -65,6 +65,8 @@ namespace mmi {
         
         void reloadShader(){};
         
+        virtual void setDefaultSettings( string preset ){};
+        
     protected:
         ofImage buffer;
         string guid;

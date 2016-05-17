@@ -39,6 +39,8 @@ public:
     
     void reloadShader();
     
+    void setDefaultSettings( string preset );
+    
 protected:
     ofxLibdc::Camera camera;
     bool bSetup;

@@ -52,6 +52,7 @@ namespace mmi {
         } xml.setToParent();
         xml.save(settingsFile.get() + ".xml");
 #endif
+        gui->loadFromFile(settingsFile.get() + "_camera.xml");
     }
     
     //--------------------------------------------------------------
@@ -71,6 +72,9 @@ namespace mmi {
                 shared_ptr<Camera> camera = make_shared<Camera>();
                 string guid = settings.getValue("guid");
                 ofLogVerbose()<<"[CameraManager] Setting up camera "<<guid;
+                
+                // attempt to load default settings, if they exit
+                camera->setDefaultSettings( settingsFile.get() );
                 
                 auto bOpen = camera->setup(guid, this->lowRes.get() ? 1040 : 2080 );
                 if ( bOpen ){

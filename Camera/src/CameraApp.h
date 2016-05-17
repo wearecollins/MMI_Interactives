@@ -18,7 +18,7 @@
 #include "MessageHandler.h"
 
 // comment out to turn off keyboard debugging!
-#define DEBUG_ZONE
+//#define DEBUG_ZONE
 
 #ifdef FRONTEND_AM
 #define SETTINGS_FILE "settings_am.xml"

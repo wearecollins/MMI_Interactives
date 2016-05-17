@@ -34,7 +34,7 @@ namespace mmi {
         this->params.add(this->brightness.set("Brightness", .5, 0., 1.0));
         this->params.add(this->gamma.set("gamma", .5, 0., 1.0));
         this->params.add(this->gain.set("gain", .5, 0., 1.0));
-        this->params.add(this->exposure.set("exposure", .5, 0., 1.0));
+//        this->params.add(this->exposure.set("exposure", .5, 0., 1.0));
         this->params.add(this->shutter.set("shutter", .5, 0., 1.0));
         this->params.add(this->doReset.set( "Reset camera", false ));
         this->params.add(this->imageColor.set("Color/BW", true));
@@ -192,6 +192,38 @@ namespace mmi {
     
     //--------------------------------------------------------------
     void BlackFlyCamera::reloadShader(){
+    }
+    
+    //--------------------------------------------------------------
+    void BlackFlyCamera::setDefaultSettings( string preset ){
+        if ( preset == "anythingmuppets" ){
+            
+            this->resMode.set( 1 );
+            this->gpuBayer.set( 0 );
+            this->brightness.set(.1);
+            this->gamma.set(1.0);
+            this->gain.set(1.0);
+            this->shutter.set(1.0);
+            this->imageColor.set(true);
+            this->mirror.set(true);
+            this->aspect_x.set(9);
+            this->aspect_y.set(16);
+            
+        } else if ( preset == "performance" ){
+            
+            this->resMode.set( 1 );
+            this->gpuBayer.set(1);
+            this->brightness.set(.1);
+            this->gamma.set(1.0);
+            this->gain.set(1.0);
+            this->shutter.set(1.0);
+            this->imageColor.set(false);
+            this->mirror.set(true);
+            this->aspect_x.set(0);
+            this->aspect_y.set(0);
+        } else {
+            ofLogWarning()<<"[Point Grey Camera] Trying to load preset that doesn't exist:"<<preset;
+        }
     }
     
     //--------------------------------------------------------------
