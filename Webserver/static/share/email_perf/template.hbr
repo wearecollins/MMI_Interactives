@@ -13,11 +13,13 @@
     </div>
     <div id="pEmEm" class="whiteBg leftContainer column">
       <div style="width:100%" class="leftContainer container">
-        <div onclick="document.getElementById('pEmEmail').focus();" style="width: 100%;">
+        <div onclick="document.getElementById('pEmEmail').focus();" style="width: 80%;">
           <div class="type_med">Share</div>
           <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
-          <input class="type_sm" placeholder="you@domain.com" type="email" id="pEmEmail" style="width: 100%;" />
-          <span id="pEmError" class="hidden type_sm">Invalid email. Please try again!</span>
+          <form action="javascript:window.events.dispatchEvent(new Event('sharepEmail'));">
+            <input class="type_sm" placeholder="you@domain.com" type="email" id="pEmEmail" style="width: 100%;" />
+          </form>
+          <span id="pEmError" class="hidden type_mini">Invalid email. Please try again!</span>
         </div>
         <div class="topCenteredContainer" style="align-items:center; width:auto" onclick="window.events.dispatchEvent(new Event('sharepEmail'));">
           <img src="svg/__select.svg" class="button_mini" />

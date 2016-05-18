@@ -54,6 +54,7 @@ var email_am = function(data, configHandler){
 	var shareOnlineRef;
 
 	this.enter = function(/*evt*/){
+		MMI.show("email_am", "block");
 		shareOnlineRef = shareOnline.bind(this);
 		window.addEventListener("shareAmMMI", shareOnlineRef );
 
@@ -63,7 +64,14 @@ var email_am = function(data, configHandler){
 			MMI.show("amKeyboardContainer", "block");
 			$('#anEmEmail').keyboard();
 		} else {
-			MMI.hide("amKeyboardContainer");
+			MMI.hide("amKeyboardContainer");	
+
+			var input = document.getElementById("anEmEmail");
+			input.onfocusin = function(){
+				console.log('yes')
+				console.log(input.getBoundingClientRect().top);
+				document.body.scrollTop = input.getBoundingClientRect().top - 50;
+			}
 		}
 
 	};
@@ -78,6 +86,7 @@ var email_am = function(data, configHandler){
 		    btn.classList.remove("disabled");
 
 		    document.getElementById("amEmSh").classList.add("disabled");
+			MMI.hide("email_am");
 		}, 1000);
 	};
 
@@ -113,6 +122,15 @@ var email_am = function(data, configHandler){
 		}
 		var email = input.value;
 		if ( MMI.validateEmail(email) ){
+			var url = configHandler.get("emailURL");
+
+		    var xhttp = new XMLHttpRequest();
+		    xhttp.open("POST", url, true);
+		    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		    xhttp.send( "email=" + email + "&anythingmuppets=" + currentAM.image );
+
+		    input.blur();
+
 			// grey out?
 			window.events.dispatchEvent( new CustomEvent("sendEmail", {detail:{"data":currentAM, "email":email, "type":"performance"}}));
 			window.events.dispatchEvent(new Event("next"));

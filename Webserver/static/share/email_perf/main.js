@@ -60,6 +60,7 @@ var email_perf = function(data, configHandler){
 	window.addEventListener("selectPerf", getCanShare);
 
 	this.enter = function(/*evt*/){
+		MMI.show("email_perf", "block");
 		var info = document.getElementById("pEmInfo");
 		info.scrollTop = window.innerHeight * .6;
 
@@ -70,6 +71,13 @@ var email_perf = function(data, configHandler){
 		if (isTouch){
 			$('#pEmEmail').keyboard();
 		} else {
+			
+			var input = document.getElementById("pEmEmail");
+			input.onfocusin = function(){
+				console.log('yes')
+				console.log(input.getBoundingClientRect().top);
+				document.body.scrollTop = input.getBoundingClientRect().top - 50;
+			}
 		}
 	};
 
@@ -104,6 +112,7 @@ var email_perf = function(data, configHandler){
 		    btn.classList.remove("disabled");
 		    
     		document.getElementById("pEmSh").classList.add("disabled");
+			MMI.hide("email_perf");
 		}, 1000);
 	};
 
@@ -124,12 +133,14 @@ var email_perf = function(data, configHandler){
 		var email = input.value;
 		if ( MMI.validateEmail(email) ){
 
-			var url = configHandler.getElementById("emailURL");
+			var url = configHandler.get("emailURL");
 
 		    var xhttp = new XMLHttpRequest();
 		    xhttp.open("POST", url, true);
 		    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		    xhttp.send( "email=" + email + "&performance=" + currentPerf.video );
+
+		    input.blur();
 
 			// grey out?
 			window.events.dispatchEvent( new CustomEvent("sendEmail", {detail:{"data":currentPerf, "email":email, "type":"performance"}}));

@@ -64,6 +64,7 @@ var share_perf = function(data, configHandler){
 	}
 
 	this.enter = function(/*evt*/){
+		MMI.show("share_perf", "block");
 		whichVideo = 0;
 		// scroll to top
 		var container = document.getElementById("perfContainer");
@@ -156,6 +157,10 @@ var share_perf = function(data, configHandler){
 		for ( var i=0; i<videos.length; i++ ){
 			// setTimeout(function(v){v.pause()}, 0, videos[i]);
 		}
+
+		setTimeout(function(){
+			MMI.hide("share_perf");
+		}, 1000)
 	};
 
 	function reloadList() {

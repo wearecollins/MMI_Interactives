@@ -58,12 +58,17 @@ var share_am = function(data, configHandler){
 	}
 
 	this.enter = function(/*evt*/){
+		MMI.show("share_am", "block");
 		window.addEventListener("selectAM", selectShare);
 		// scroll to top
 		document.getElementById("amContainer").scrollTop = 0;
 	};
 	this.exit = function(/*evt*/){
 		window.removeEventListener("selectAM", selectShare);
+
+		setTimeout(function(){
+			MMI.hide("share_am");
+		}, 1000)
 	};
 
 	function reloadList() {

@@ -12,10 +12,12 @@
     <div id="amEmInfo" style="overflow:scroll">
       <div id="amEmEm" class="whiteBg container">
         <div onclick="document.getElementById('anEmEmail').focus();">
-          <div class="type_med">Share</div>
+          <div class="type_med" >Share</div>
           <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
-          <input class="type_sm" placeholder="you@domain.com" type="email" id="anEmEmail" />
-          <span id="amEmError" class="hidden type_sm">Invalid email. Please try again!</span>
+          <form action="javascript:window.events.dispatchEvent(new Event('shareAmEmail'));">
+            <input class="type_sm" placeholder="you@domain.com" type="email" id="anEmEmail" />
+          </form>
+          <span id="amEmError" class="hidden type_mini">Invalid email. Please try again!</span>
         </div>
         <div class="topCenteredContainer" style="width:30%" onclick="window.events.dispatchEvent(new Event('shareAmEmail'));">
           <img src="svg/__select.svg" class="button_mini" />
