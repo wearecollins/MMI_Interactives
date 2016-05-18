@@ -21,9 +21,8 @@ var share = function( data, configHandler ){
 			document.getElementById("shareOnlineContainer").classList.remove("disabled");
 			document.getElementById("shareOnlineContainer").classList.add("enabled");
 
-			video.removeEventListener("timeupdate", onTimeupdate);
-			
 			var video = document.getElementById("share_video");
+			video.removeEventListener("timeupdate", onTimeupdate);
 			video.currentTime = 0;
 			video.play();
 	    }
