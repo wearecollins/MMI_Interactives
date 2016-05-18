@@ -78,6 +78,7 @@ var share = function( data, configHandler ){
 		}
 	    shareOnlineRef = shareOnline.bind(this);
     	window.addEventListener("share_online", shareOnlineRef);
+    	window.addEventListener("share_done", shareDone);
 
 	    var to = configHandler.get('timeout', 60) * 1000;
 
@@ -91,6 +92,7 @@ var share = function( data, configHandler ){
 
 		clearInterval(tryInterval);
     	window.removeEventListener("share_online", shareOnlineRef);
+    	window.removeEventListener("share_done", shareDone);
 
 		var video = document.getElementById("share_video");
 		if ( video ){
@@ -119,6 +121,26 @@ var share = function( data, configHandler ){
 
 	    var btn = document.getElementById("shareOnlineBtn");
 	    btn.classList.remove("disabled");
+	}
+
+	function shareDone(){
+		var showLocalShare = configHandler.get("showLocalShare", false);
+	    if ( showLocalShare ){
+			document.getElementById("shareOnlineContainer").classList.remove("enabled");
+			document.getElementById("shareOnlineContainer").classList.add("disabled");
+			setTimeout(function(){
+				document.getElementById("shareLocalContainer").classList.add("enabled");
+				document.getElementById("shareLocalContainer").classList.remove("disabled");
+
+				setTimeout(function(){
+					document.getElementById("shareLocalContainer").classList.add("freezeAnim");
+				})
+
+			}, 1000);
+	    } else {
+			document.getElementById("shareOnlineContainer").classList.add("freezeAnim");
+		    window.events.dispatchEvent( new Event("next") );
+	    }
 	}
 
 	function shareOnline() {

@@ -52,6 +52,8 @@ var share = function(data, configHandler){
 
     // post to fb / tumblr / etc
     window.addEventListener("share_online", shareOnline);
+    window.addEventListener("share_done", shareDone);
+
 
     window.addEventListener("retake", retake);
 
@@ -207,6 +209,27 @@ var share = function(data, configHandler){
     }, 1000 )
   }
 
+
+  function shareDone(){
+    var showLocalShare = configHandler.get("showLocalShare", false);
+    if ( showLocalShare ){
+        document.getElementById("shareOnlineContainer").classList.remove("enabled");
+        document.getElementById("shareOnlineContainer").classList.add("disabled");
+        setTimeout(function(){
+          document.getElementById("shareLocalContainer").classList.add("enabled");
+          document.getElementById("shareLocalContainer").classList.remove("disabled");
+
+          setTimeout(function(){
+            document.getElementById("shareLocalContainer").classList.add("freezeAnim");
+          })
+
+        }, 1000);
+    } else {
+        document.getElementById("shareOnlineContainer").classList.add("freezeAnim");
+        window.events.dispatchEvent( new Event("next") );
+    }
+  }
+
   function shareOnline() {
     var shareServer = configHandler.get('shareServer', "http://localhost:8013");
     var url = shareServer + "/photo";
@@ -330,6 +353,7 @@ var share = function(data, configHandler){
     window.removeEventListener("skipToThanks", skipToThanks);
     window.removeEventListener("share", share);
     window.removeEventListener("share_online", shareOnline);
+    window.removeEventListener("share_done", shareDone);
     window.removeEventListener("retake", retake);
     window.removeEventListener("imageCapture", setImage);
 

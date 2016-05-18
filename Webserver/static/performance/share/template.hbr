@@ -11,19 +11,19 @@
   <!-- State II: Share online -->
   <div id="shareOnlineContainer" class="shareAnimateContainer fillAbs disabled">
     <div class="fillAbs bottomCenteredContainer" style="z-index:1">
-      <div class="fillContainer column container fillGrey whiteBgTrans">
-        <div class="type_lg">Share</div>
-        <div id="shareCopy" class="topCenteredContainer type_sm padding_sm">
-          <div class="shareCopyBlock">
+      <div class="centeredContainer fillContainer container fillGrey whiteBgTrans">
+        <div>
+          <div class="type_lg">Share</div>
+          <div id="shareCopy" class="type_sm padding_sm">
               <strong>Post your video</strong><br>Optionally share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.
           </div>
-        </div>
-        <div class="bottomCenteredContainer">
-          <div id="shareOnlineBtn" onclick="window.events.dispatchEvent(new Event('share_online'));">
-            <img src="svg/__select.svg" class="button_sm padding_sm" />
-            <div class="type_med">share</div>
+          <div class="bottomCenteredContainer">
+            <div id="shareOnlineBtn" onclick="window.events.dispatchEvent(new Event('share_online'));">
+              <img src="svg/__select.svg" class="button_sm padding_sm" />
+              <div class="type_med">share</div>
+            </div>
           </div>
-          <div onclick="document.getElementById('shareOnlineContainer').classList.add('freezeAnim'); window.events.dispatchEvent(new Event('next'));">
+          <div onclick="document.getElementById('shareOnlineContainer').classList.add('freezeAnim'); window.events.dispatchEvent(new Event('share_done'));">
             <img src="svg/__done.svg" class="button_sm padding_sm" />
             <div class="type_med">done</div>
           </div>
@@ -38,7 +38,7 @@
     <div class="fillAbs bottomCenteredContainer" style="z-index:1">
       <div class="centeredContainer fillContainer container fillGrey whiteBgTrans">
         <div>
-          <div class="type_lg">Download </div>
+          <div class="type_lg">Download</div>
           <div id="shareCopy" class="type_sm padding_sm">
               <strong>Download and share at the Museum Shop 
               <div id="uniqueName" class="type_med"></div></strong>
@@ -53,6 +53,5 @@
         </div>
       </div>
     </div>
-
   </div> <!-- End shareAnimateContainer -->
 </div>
