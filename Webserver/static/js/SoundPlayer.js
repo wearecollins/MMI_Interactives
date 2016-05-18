@@ -45,7 +45,7 @@ SoundPlayer.prototype.play = function(onComplete) {
 	this.playing = true;
 
 	function onTimeUpdate(){
-		if ( this.currentTime == this.duration ){
+		if ( this.currentTime >= this.duration ){
 			if ( mainScope.onComplete !== null ) mainScope.onComplete();
 			mainScope.onComplete = null;
     		mainScope.div.removeEventListener("timeupdate", mainScope._onTimeUpdate);
