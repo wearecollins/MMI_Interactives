@@ -1,6 +1,9 @@
 <div id='{{name}}' class='page greenBg fillWhite'>
   <div class='background'>
   </div>
+
+  <audio src="vo/perf_vo_07.mp3" id="vo_thank_you"></audio>
+
   <div class="bottomCenteredContainer container fillAbs column" style="z-index:1">
       <div class="type_lg padding_sm">Thank you<br />for sharing</div>
       <div class="type_med padding_sm">Please place the puppets <br>back where you found them</div>

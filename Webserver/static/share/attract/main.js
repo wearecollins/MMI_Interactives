@@ -2,7 +2,7 @@ var attract = function(data, configHandler){
 	
 	// rate at which to refresh all data
 	var lastRefreshed = 0;//Date().now();
-	var refreshRate	  = 60 * 5 * 1000; // every 5 minutes
+	var refreshRate	  = 60 * 1 * 1000; // every 5 minutes
 
 	// Config on whether to show image grid
 	// (Off by default)
@@ -60,7 +60,6 @@ var attract = function(data, configHandler){
 		var now = Date.now();
 		if (lastRefreshed == 0 || now -lastRefreshed > refreshRate ){
 			refreshData();
-			
 			lastRefreshed = now;
 		} else {
 			var videos = document.querySelectorAll(".introVideo");
