@@ -79,6 +79,15 @@ var perform = function(data, configHandler){
     if ( index > 1000 ){
       index = 0;
     }
+
+    if ( index.length == 1 ){
+      index = "000" + index;
+    } else if ( index.length == 2 ){
+      index = "00" + index;
+    } else if ( index.length == 3 ){
+      index = "0" + index;
+    }
+    
     configHandler.set({'currentName':index});
     name = index;
 

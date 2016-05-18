@@ -131,14 +131,16 @@ var share = function( data, configHandler ){
 			setTimeout(function(){
 				document.getElementById("shareLocalContainer").classList.add("enabled");
 				document.getElementById("shareLocalContainer").classList.remove("disabled");
+				document.getElementById("shareOnlineContainer").classList.add("freezeAnim")
 
 				setTimeout(function(){
 					document.getElementById("shareLocalContainer").classList.add("freezeAnim");
-				})
+				}, 1000)
 
 			}, 1000);
 	    } else {
 			document.getElementById("shareOnlineContainer").classList.add("freezeAnim");
+			document.getElementById("shareLocalContainer").classList.add("freezeAnim");
 		    window.events.dispatchEvent( new Event("next") );
 	    }
 	}
@@ -167,14 +169,16 @@ var share = function( data, configHandler ){
 			setTimeout(function(){
 				document.getElementById("shareLocalContainer").classList.add("enabled");
 				document.getElementById("shareLocalContainer").classList.remove("disabled");
+				document.getElementById("shareOnlineContainer").classList.add("freezeAnim");
 
 				setTimeout(function(){
 					document.getElementById("shareLocalContainer").classList.add("freezeAnim");
-				})
+				}, 1000)
 
 			}, 1000);
 	    } else {
 			document.getElementById("shareOnlineContainer").classList.add("freezeAnim");
+			document.getElementById("shareLocalContainer").classList.add("freezeAnim");
 		    window.events.dispatchEvent( new Event("next") );
 	    }
 	  }

@@ -91,6 +91,15 @@ var share = function(data, configHandler){
       index = 0;
     }
     configHandler.set({'currentName':index});
+
+    if ( index.length == 1 ){
+      index = "000" + index;
+    } else if ( index.length == 2 ){
+      index = "00" + index;
+    } else if ( index.length == 3 ){
+      index = "0" + index;
+    }
+
     name = "AM_"+ index;
 
     // show buttons after 1 second
@@ -218,14 +227,16 @@ var share = function(data, configHandler){
         setTimeout(function(){
           document.getElementById("shareLocalContainer").classList.add("enabled");
           document.getElementById("shareLocalContainer").classList.remove("disabled");
+          document.getElementById("shareOnlineContainer").classList.add("freezeAnim")
 
           setTimeout(function(){
             document.getElementById("shareLocalContainer").classList.add("freezeAnim");
-          })
+          }, 1000)
 
         }, 1000);
     } else {
         document.getElementById("shareOnlineContainer").classList.add("freezeAnim");
+        document.getElementById("shareLocalContainer").classList.add("freezeAnim");
         window.events.dispatchEvent( new Event("next") );
     }
   }
@@ -254,11 +265,18 @@ var share = function(data, configHandler){
       // show 'local'
       setTimeout(function(){
         document.getElementById("shareLocalContainer").classList.add("enabled");
+        document.getElementById("shareOnlineContainer").classList.add("freezeAnim");
+
+        setTimeout(function(){
+          document.getElementById("shareLocalContainer").classList.add("freezeAnim")
+        }, 1000)
+
         MMI.hide(("shareOnlineContainer"), "flex");
       }, 1000);
+
     } else {
-      // document.getElementById("shareOnlineContainer").classList.remove("enabled");
-      // document.getElementById("shareOnlineContainer").classList.add("disabled");
+      document.getElementById("shareOnlineContainer").classList.add("freezeAnim");
+      document.getElementById("shareLocalContainer").classList.add("freezeAnim");
       window.events.dispatchEvent( new Event("next") );
     }
   }
