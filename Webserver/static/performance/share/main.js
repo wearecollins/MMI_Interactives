@@ -16,13 +16,16 @@ var share = function( data, configHandler ){
 	// we go to 'thanks'
 	var nextTimeout;
 
+	var haveShownShare = false;
+
 	function onTimeupdate(){
 	    if ( this.currentTime >= this.duration ){
-			document.getElementById("shareOnlineContainer").classList.remove("disabled");
-			document.getElementById("shareOnlineContainer").classList.add("enabled");
-
+	    	if (haveShownShare === false ){
+	    		haveShownShare = true;
+				document.getElementById("shareOnlineContainer").classList.remove("disabled");
+				document.getElementById("shareOnlineContainer").classList.add("enabled");
+			}
 			var video = document.getElementById("share_video");
-			video.removeEventListener("timeupdate", onTimeupdate);
 			video.currentTime = 0;
 			video.play();
 	    }
@@ -68,6 +71,7 @@ var share = function( data, configHandler ){
 	window.addEventListener("videoRecorded", setVideo);
 
 	this.enter = function(){
+		haveShownShare = false;
 		if ( currentVideo === null ){
 			// show 'saving'
 			MMI.show("shareSaving", "flex");
