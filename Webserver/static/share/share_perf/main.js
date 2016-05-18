@@ -13,6 +13,8 @@ var share_perf = function(data, configHandler){
 		var base_path  = paths[0].webPath + "/performance";
 
 		var videoList = e.detail;
+		videoList.reverse();
+		
 		currentData.videos = [];
 		for ( var i in videoList ){
 			var path = videoList[i];
@@ -62,6 +64,7 @@ var share_perf = function(data, configHandler){
 	}
 
 	this.enter = function(/*evt*/){
+		whichVideo = 0;
 		// scroll to top
 		var container = document.getElementById("perfContainer");
 		container.scrollTop = 0;
@@ -74,19 +77,24 @@ var share_perf = function(data, configHandler){
 		}
 		playVideo(videos[0]);
 
-		container.addEventListener("scroll", onScroll);
+		// this was an idea, but it didn't work so well...
+		//container.addEventListener("scroll", onScroll);
 	};
 
 	var currentVideo = null;
 	var currentImage = null;
 
 	function playVideo( video ){
-		if ( currentVideo === video ) return;
+		if ( currentVideo === video ){
+			currentVideo.play();
+			return;
+		}
 
 		if (currentVideo !== null ){
 			currentVideo.pause();
 			currentVideo.style.visibility = "hidden";
 			currentVideo.style.display = "none";
+			currentVideo.autoplay = false;
 			currentImage.style.visibility = "visible";
 			currentImage.style.display = "block";
 		}
@@ -96,6 +104,7 @@ var share_perf = function(data, configHandler){
 		currentImage.style.display = "none";
 		currentVideo.style.visibility = "visible";
 		currentVideo.style.display = "block";
+		currentVideo.load();
 		currentVideo.play();
 	}
 

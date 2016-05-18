@@ -4,7 +4,7 @@
   "continuousMode":false,
   "additionalStatic":[
   {
-    "diskPath":"/Users/brettrenfer/Dropbox/MMI-Henson/code/openFrameworks/apps/MMI_Interactives/Webserver/static/output/",
+    "diskPath":"/Volumes/Documents/MMI_Interactives/media/",
     "webPath":"/media"
   }],
   "disableKeyNext":true,

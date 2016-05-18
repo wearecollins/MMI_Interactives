@@ -1,4 +1,4 @@
 {
 	"name":"share_perf",
-	"disableTimeout":true
+	"disableTimeout":false
 }
