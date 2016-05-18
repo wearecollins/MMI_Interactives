@@ -1,6 +1,6 @@
 {
   "countdownTime":3,
-  "timeout":30,
+  "timeout":120,
   "continuousMode":false,
   "additionalStatic":[
   {

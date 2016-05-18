@@ -1,4 +1,4 @@
 {
 	"name":"email_perf",
-	"disableTimeout":true
+	"disableTimeout":false
 }

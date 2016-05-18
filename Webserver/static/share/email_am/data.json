@@ -1,4 +1,4 @@
 {
 	"name":"email_am",
-	"disableTimeout":true
+	"disableTimeout":false
 }
