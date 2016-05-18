@@ -1,6 +1,9 @@
 <div id='{{name}}' class='page noselect'>
   <div class="background parchBg">
   </div>
+
+  <audio src="vo/am_vo_06.mp3" id="vo_spin_back"></audio>
+
   <div id="titleContainer" class="container fillAbs centeredContainer column fillGrey" style="z-index:2">
       <div class="type_lg padding_sm">{{{thankyou}}}</div>
       <video id="tyArrow" class="button_lg padding_sm" autoplay loop>

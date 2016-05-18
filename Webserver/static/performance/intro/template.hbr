@@ -1,7 +1,7 @@
 <div id='{{name}}' class='page noselect'>
   <div class='background fill blueBg'></div>
 
-  <audio src="vo/Pv01.mp3" id="vo_grab"></audio>
+  <audio src="vo/perf_vo_01.mp3" id="vo_grab"></audio>
 
   <div class="container fillAbs centeredContainer column container" style="">
     <div id="sbContInternal" class="column" onclick="window.events.dispatchEvent(new Event('next'));">

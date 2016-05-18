@@ -9,37 +9,43 @@
 			"name":"Design an <strong>Old Lady</strong> who loves tongue-twisters",
 			"name_clean":"old",
 			"text":"<em>Old Lady Muppet enters right with heavy canvas sack over her shoulder. The Old Lady Muppet addresses Gordon:</em><br><br><span class='hang_punctuation'>&ldquo;Hey, Sonny.&rdquo;</span>",
-			"img":"img/old_lady.jpg"
+			"img":"img/old_lady.jpg",
+			"vo":"vo/am_vo_01_oldlady.mp3"
 		},
 		{
 			"name":"Design a farmgirl named <strong>Young Macdonald</strong>",
 			"name_clean":"ym",
 			"text":"<em>An outgoing farmgirl with a Scottish accent</em>",
-			"img":"img/young_mac.jpg"
+			"img":"img/young_mac.jpg",
+			"vo":"vo/am_vo_01_youngmac.mp3"
 		},
 		{
 			"name":"Design an enthusiastic <strong>Boy</strong> named Max",
 			"name_clean":"max",
 			"text":"<em>Cheerful, enthusiastic; a nice child; Mickey Rooney-ish</em><br><br><span class='hang_punctuation'>&ldquo;You can call me Max&rdquo;</span>",
-			"img":"img/am_boy.jpg"
+			"img":"img/am_boy.jpg",
+			"vo":"vo/am_vo_01_max.mp3"
 		},
 		{
 			"name":"Design a <strong>French Businessman</strong>",
 			"name_clean":"french",
 			"text":"<span class='hang_punctuation'>&ldquo;The sign says ‘Win a free lunch!’...I thought there was no such thing as a free lunch.&rdquo;</span>",
-			"img":"img/french.jpg"
+			"img":"img/french.jpg",
+			"vo":"vo/am_vo_01_french.mp3"
 		},
 		{
 			"name":"Design a <strong>Girl</strong> with computer trouble",
 			"name_clean":"little_girl",
 			"text":"<em>AM Girl in her living room. She is in front of a computer.</em><br/><br/><span class='hang_punctuation'>&ldquo;Oh no! My computer isn’t working!&rdquo;</span>",
-			"img":"img/am_girl.jpg"
+			"img":"img/am_girl.jpg",
+			"vo":"vo/am_vo_01_girl.mp3"
 		},
 		{
 			"name":"Design a <strong>Vacuum Cleaner Salesman</strong>",
 			"name_clean":"salesman",
 			"text":"<em>An AM Man enters dressed as a salesman, carrying his briefcase. The AM Man is in his thirties, has brown hair, a pointy nose, a friendly face, and speaks with a kind of nasal, slightly annoying voice.</em>",
-			"img":"img/salesman.jpg"
+			"img":"img/salesman.jpg",
+			"vo":"vo/am_vo_01_salesman.mp3"
 		}
 	]
 }

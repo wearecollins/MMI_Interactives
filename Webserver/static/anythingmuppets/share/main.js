@@ -37,7 +37,7 @@ var share = function(data, configHandler){
     currentImageUrl = "";
     nRetakes = 0;
 
-    sndFocusVo.setup("focus_vo");
+    sndFocusVo.setup("vo_focus");
     sndCountdown.setup("snd_countdown");
     sndShutter.setup("snd_shutter");
 

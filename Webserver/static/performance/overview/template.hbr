@@ -7,6 +7,6 @@
   Change 'src' to whatever final VO is. As long as
   ids stay the same, it will play/switch automatically.
   -->
-  <audio src="vo/Pv02.mp3" id="camera_front"></audio>
-  <audio src="vo/Pv03.mp3" id="camera_side"></audio>
+  <audio src="vo/perf_vo_02.mp3" id="camera_front"></audio>
+  <audio src="vo/perf_vo_03.mp3" id="camera_side"></audio>
 </div>

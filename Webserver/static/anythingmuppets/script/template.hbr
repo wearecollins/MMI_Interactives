@@ -5,11 +5,9 @@
         <source src="video/am_script.mp4" type="video/mp4">
     </video>
   {{/if}}
-  <!-- Optional voiceover -->
-  <audio src="vo/am_v02.mp3" id="vo_script"></audio>
-
-  <!-- Optional 'done' VO -->
-<!--   <audio src="vo/am_v04.mp3" id="vo_done"></audio> -->
+  <!-- Optional 'generic' voiceover -->
+  <!-- <audio src="vo/am_vo_01_generic.mp3" id="vo_script"></audio> -->
+  
   </div>
 
   {{!-- This is the main scripts container --}}
@@ -39,6 +37,7 @@
                     <!-- {{{ text }}} -->
                 </div>
             </div>
+            <audio src="{{{vo}}}" id="vo_script_{{{name_clean}}}"></audio>
         </div>
     </div>
     {{/each}}
@@ -57,6 +56,8 @@
           <img src="svg/__get_started.svg" class="button_sm padding_sm" />
           <div class="type_med padding_sm">done building</div>
       </div>
+      <!-- 'Try out features/done VO' -->
+      <audio src="vo/am_vo_03.mp3" id="vo_done"></audio>
     </div>
 
 {{!-- This is the 'drawer overlay' container --}}
@@ -68,7 +69,7 @@
             </video>
             <div class="fillGreen type_med padding_sm">{{{prompt_open}}}</div>
         </div>
-        <audio src="vo/am_v03.mp3" id="vo_drawer"></audio>
+        <audio src="vo/am_vo_02_drawers.mp3" id="vo_drawer"></audio>
     </div>
 
 {{!-- This is the 'spin overlay' container --}}
@@ -79,7 +80,7 @@
               <source src="video/arrow_ccw.mp4" type="video/mp4">
             </video>
 
-            <audio src="vo/am_v04.mp3" id="vo_spin"></audio>
+            <audio src="vo/am_vo_04.mp3" id="vo_spin"></audio>
             <div class="fillGreen type_med padding_sm">{{{prompt_spin}}}</div>
         </div>
     </div>

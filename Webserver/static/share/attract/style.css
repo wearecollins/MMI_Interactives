@@ -1,5 +1,11 @@
 /* Reset styles for whole app */
 
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 div {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */

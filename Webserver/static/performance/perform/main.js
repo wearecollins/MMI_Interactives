@@ -95,12 +95,15 @@ var perform = function(data, configHandler){
     // Option 1: VO -- Show 'get ready', start countdown after VO
     
     if ( soundPractice.exists() ){
-      // play takes a 'onComplete' parameter,
-      // so countdown will automatically occurr after VO
-      soundPractice.play( function(){
-          MMI.hide( "performPractice" );
-          startCountdown(false); 
-      });
+      // wait for animate in
+      setTimeout(function(){
+        // play takes a 'onComplete' parameter,
+        // so countdown will automatically occurr after VO
+        soundPractice.play( function(){
+            MMI.hide( "performPractice" );
+            startCountdown(false); 
+        });
+      }, 1000)
     } 
 
     // Option 2: VO -- No VO, just go into countdown 
@@ -139,6 +142,7 @@ var perform = function(data, configHandler){
           if ( soundPerform.exists() ){
             // play takes a 'onComplete' parameter,
             // so countdown will automatically occurr after VO
+            // 
             soundPerform.play( function(){
                 MMI.hide( "performPerform" );
                 startCountdown(true); 

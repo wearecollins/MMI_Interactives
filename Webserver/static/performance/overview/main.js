@@ -23,14 +23,12 @@ var overview = function( data, configHandler){
     }
 
     // play sounds
-    // var soundA = document.getElementById("camera_front");
-    // var soundB = document.getElementById("camera_side");
-
-    // soundA.addEventListener("timeupdate", onTimeUpdateA);
-    // soundA.currentTime = 0;
-    if ( soundPlayerA.exists() ){
-      soundPlayerA.play( showSideCamera );
-    }
+    // play after animate
+    setTimeout(function(){
+      if ( soundPlayerA.exists() ){
+        soundPlayerA.play( showSideCamera );
+      }
+    }, 1000)
   };
 
   function onTimeUpdateA( e ){

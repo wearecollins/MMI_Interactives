@@ -15,17 +15,17 @@
         <div>
           <div class="type_lg">Share</div>
           <div id="shareCopy" class="type_sm padding_sm">
-              <strong>Post your video</strong><br>Optionally share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.
+              <strong>Post your video</strong><br>Optionally share your creation with the world <br>on the Museum’s Facebook &amp; Tumblr <br>@movingimagenyc.
           </div>
           <div class="bottomCenteredContainer">
             <div id="shareOnlineBtn" onclick="window.events.dispatchEvent(new Event('share_online'));">
               <img src="svg/__select.svg" class="button_sm padding_sm" />
               <div class="type_med">share</div>
             </div>
-          </div>
-          <div onclick="document.getElementById('shareOnlineContainer').classList.add('freezeAnim'); window.events.dispatchEvent(new Event('share_done'));">
-            <img src="svg/__done.svg" class="button_sm padding_sm" />
-            <div class="type_med">done</div>
+            <div onclick="document.getElementById('shareOnlineContainer').classList.add('freezeAnim'); window.events.dispatchEvent(new Event('share_done'));">
+              <img src="svg/__done.svg" class="button_sm padding_sm" />
+              <div class="type_med">done</div>
+            </div>
           </div>
         </div>
       </div>

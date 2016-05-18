@@ -23,6 +23,12 @@ var script = function(data){
 	var voDone = new SoundPlayer();
 	var voSpin = new SoundPlayer();
 
+	// the 'voIntro' is a generic clip.
+	// if it is not commented out in the template.hbr,
+	// it will play. if it is, it will play a character-specific
+	// VO, which is setup in the data.json
+	var voScript = new SoundPlayer();
+
 	/**************************************************
 		Section: Enter
 	**************************************************/
@@ -71,6 +77,10 @@ var script = function(data){
 
 				if ( voIntro.exists() ){
 					voIntro.play();
+				} else {
+					var vo = "vo_script_"+currentScriptObject.name_clean;
+					voScript.setup(vo);
+					voScript.play();
 				}
 
 				var dest = currentScript.getElementsByClassName("scriptText")[0];
@@ -130,6 +140,7 @@ var script = function(data){
 		voDrawer.stop();
 		voDone.stop();
 		voSpin.stop();
+		voScript.stop();
 	};
 
 	/**************************************************
@@ -187,6 +198,9 @@ var script = function(data){
 	}
 
 	function showOpenPrompt(){
+		voIntro.stop();
+		voScript.stop();
+
 	    // round percentage widths
 	    // we know that button_lg in AM screen is 75vw
 	    var v1 = document.getElementById("videoArrow");
@@ -195,6 +209,7 @@ var script = function(data){
 	    v2.style.width = v2.style.height = Math.round(window.innerWidth * .75) + "px";
 
 		voIntro.stop();
+		voScript.stop();
 
 		var openDiv = document.getElementById("promptOpenDrawers");
 		// show(openDiv);
@@ -238,6 +253,8 @@ var script = function(data){
 	}
 
 	function showSpinPrompt(){
+		voDrawer.stop();
+		voDone.stop();
 		var spinDiv = document.getElementById("promptSpinPuppet");
 		// show(spinDiv);
 		spinDiv.classList.remove("hideMe");

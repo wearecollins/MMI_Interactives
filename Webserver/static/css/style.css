@@ -367,9 +367,7 @@ body,
 }
 
 .shareCopyBlock {
-    min-height:20vh;
     width:50%;
-    padding: 3vw;
 }
 
 /* Performance */

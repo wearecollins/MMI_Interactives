@@ -14,7 +14,7 @@
   </div>
 
   <!-- Voiceover: Practice -->
-  <audio src="vo/Pv05.mp3" id="vo_practice"></audio>
+  <audio src="vo/perf_vo_05.mp3" id="vo_practice"></audio>
 
   <!-- State III -->
   <div id="performPerform" class="fillAbs">
@@ -25,7 +25,7 @@
   </div>
 
   <!-- Voiceover: Practice -->
-  <audio src="vo/Pv05.mp3" id="vo_perform"></audio>
+  <audio src="vo/perf_vo_06.mp3" id="vo_perform"></audio>
 
   <div id="hiddenVideos">
     {{#each videos}}

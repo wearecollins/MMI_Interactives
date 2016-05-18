@@ -17,7 +17,9 @@ var intro = function(/*manager*/){
 
 			// doing this instead will kick to the next screen
 			// when the VO is done
-			soundPlayer.play( function(){ window.events.dispatchEvent( new Event("next"))});
+			setTimeout(function(){
+				soundPlayer.play( function(){ window.events.dispatchEvent( new Event("next"))});
+			}, 1000)
 		}
 	};
 	this.exit = function(/*evt*/){

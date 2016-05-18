@@ -52,12 +52,14 @@ var select = function(data){
 		var overlay = document.getElementById("select_intro");
 		overlay.classList.remove("disabled");
 
-		// play voiceover
-		if ( soundPlayer.exists() ){
-			soundPlayer.play( function(){
-				// trigger stuff, if you'd like
-			});
-		}
+		// play voiceover after animate in
+		setTimeout(function(){
+			if ( soundPlayer.exists() ){
+				soundPlayer.play( function(){
+					// trigger stuff, if you'd like
+				});
+			}
+		}, 1000)
 
 		// listen to buttons
 		window.addEventListener("selectClip", selectClip );

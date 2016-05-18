@@ -11,7 +11,7 @@
             <img src="svg/__done.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">done</div>
         </div>
-        <audio src="vo/am_v05.mp3" id="focus_vo"></audio>
+        <audio src="vo/am_vo_05.mp3" id="vo_focus"></audio>
   </div>
 
   <!-- Countdown -->
@@ -89,7 +89,7 @@
     <div class="fillAbs bottomCenteredContainer" style="z-index:1">
       <div class="fillContainer column container fillGrey whiteBgTrans">
         <div class="type_lg">Download </div>
-        <div id="shareCopy" class="topCenteredContainer type_sm">
+        <div id="shareCopy" class="topCenteredContainer type_sm padding_sm">
           <div class="shareCopyBlock">
               <strong>Download and share at the Museum Shop 
               <div id="uniqueName" class="type_med"></div></strong>
