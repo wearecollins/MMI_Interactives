@@ -1,5 +1,5 @@
 {
-  "source":"/media/quin/data1/appsubu/openFrameworks_master/apps/MMI_Interactives/Webserver/static/output/",
-  "destination":"/media/quin/data1/docs/collins/muppets/repo/media/",
+  "source":"/Users/install/Documents/MMI_Interactives/Webserver/static/output/",
+  "destination":"/Users/install/Documents/MMI_Interactives/media/",
   "cleanupMins":30
 }
