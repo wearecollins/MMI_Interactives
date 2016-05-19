@@ -184,7 +184,7 @@ function Manager(states, transitions){
 
   function initAdminSwipe(){
     var hammertime = new Hammer(document.getElementById("adminSwipe"), {});
-    hammertime.get('swipe').set( { direction: Hammer.DIRECTION_LEFT } );
+    hammertime.get('swipe').set( { direction: Hammer.DIRECTION_RIGHT } );
 
     hammertime.on('swipe', function(ev) {
       window.events.dispatchEvent(new Event('admin'));
