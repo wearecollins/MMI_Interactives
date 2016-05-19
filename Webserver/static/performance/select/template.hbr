@@ -1,6 +1,9 @@
 <div id='{{name}}' class='page noselect'>
   <div class='background blackBg' style="">
   </div>
+  <!-- 'start over' -->
+  <div class="container type_sm leftContainer fillGrey" style="position: absolute; z-index:15;" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
+  Start over</div>
 
   <!-- Overlay container -->
   <div class="fillAbs" style="z-index:12;">

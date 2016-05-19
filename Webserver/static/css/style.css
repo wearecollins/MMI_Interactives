@@ -60,10 +60,10 @@ body,
 #adminSwipe {
   z-index: 100000;
   position: absolute;
-  left:0px;
+  right:0px;
   top:0px;
   height: 10vh;
-  width: 100%;
+  width: 80%;
 }
 
 /* Shared Animations */
@@ -420,7 +420,7 @@ body,
 }
 
 .fillContainerH {
-    height: 100vw;
+    height: 100vh;
 }
 
 .rightContainer {

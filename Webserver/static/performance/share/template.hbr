@@ -1,6 +1,5 @@
 <div id='{{name}}' class='page noselect'>
   <div id="shareBackground" class='background'>
-      
   </div>
 
   <!-- State I: 'Saving' -->

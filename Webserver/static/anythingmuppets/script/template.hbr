@@ -10,6 +10,11 @@
   
   </div>
 
+
+  <!-- 'start over' -->
+  <div class="container type_sm leftContainer fillWhite" style="position: absolute; z-index:15; opacity:.75;" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
+  Start over</div>
+
   {{!-- This is the main scripts container --}}
   <div id="scipts" class='fillAbs'>
   {{!-- 
