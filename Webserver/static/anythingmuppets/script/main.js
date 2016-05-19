@@ -9,12 +9,21 @@
 
  * @param  {Object} data JSON from data.json, including
  * all script info
+ * @param  {ConfigHandler} configHandler incoming object from global confighandler
  */
-var script = function(data){
+var script = function(data, configHandler){
 	var scriptData = data.scripts;
 
 	var currentScript = null;
 	var currentScriptObject = null;
+
+	/**
+	 * Set this to true to use a 'typing' effect
+	 * to build in script excerpt. This is
+	 * set by a config from data.json
+	 * @type {Boolean}
+	 */
+	var typeInText = false;
 
 	var buildTimeout;
 
@@ -35,6 +44,8 @@ var script = function(data){
 
 	this.enter = function(/*evt*/){
 		clearTimeout(buildTimeout);
+
+		typeInText = configHandler.get("typeInText", false);
 
 		MMI.show( "start", "block" );
 		MMI.show( "done", "block" );
@@ -84,7 +95,12 @@ var script = function(data){
 				}
 
 				var dest = currentScript.getElementsByClassName("scriptText")[0];
-				typeString(currentScriptObject.text, dest, showButtons);
+
+				if ( typeInText ){
+					typeString(currentScriptObject.text, dest, showButtons);
+				} else {
+					showButtons();
+				}
 			}, 1000);
 
 		}, 1500);

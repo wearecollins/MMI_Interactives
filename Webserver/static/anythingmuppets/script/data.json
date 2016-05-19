@@ -1,5 +1,6 @@
 {
 	"name":"script",
+	"typeInText":false,
 	"disableTimeout":false,
 	"useVideo":false,
  	"prompt_open":"open the drawers <br>and start building",

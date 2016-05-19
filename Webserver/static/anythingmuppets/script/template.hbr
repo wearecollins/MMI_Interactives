@@ -32,9 +32,14 @@
                     <span class="type_lg">{{{ name }}}</span>
                     <br><br>
                     <!-- <div class="type_sm"><strong>Script Excerpt</strong></div> -->
-                    <div class="scriptText"></div>
-                    <!-- Uncomment this to smash in text from template -->
-                    <!-- {{{ text }}} -->
+                    <div class="scriptText">
+                      {{#if typeInText}}
+                      <!-- silent, filled in via javascript -->
+                      {{else}}
+                      <!-- don't type in, just drop in direct -->
+                      {{{ text }}}
+                      {{/if}}
+                    </div>
                 </div>
             </div>
             <audio src="{{{vo}}}" id="vo_script_{{{name_clean}}}"></audio>
