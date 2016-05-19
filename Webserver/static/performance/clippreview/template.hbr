@@ -1,0 +1,19 @@
+<div id='{{name}}' class='page'>
+  <!-- <audio src="vo/countdown.mp3" id="snd_countdown"></audio> -->
+
+  <!-- Show preview -->
+  <div id="previewTitle" class="fillAbs">
+      <div class="fillAbs centeredContainer column noselect">
+          <div class="type_lg noselect">Preview</div>
+      </div>
+  </div>
+
+  <div id="prevVideoCont" class="fillAbs" syle="z-index:0">
+    {{#each videos}}
+      <video id="preview_{{name}}" class="hiddenVideo fillAbs" preload="none">
+          <source src="{{src}}" type="video/mp4">
+      </video>
+    {{/each}}
+  </div>
+
+</div>

@@ -1,0 +1,39 @@
+#{{name}}.disabled{
+  display:flex;
+  animation-name: animateOff;
+  /* animation-name: hide; */
+  /* animation-delay: 1s; */
+  /* animation-duration:0s; */
+  animation-fill-mode:forwards;
+}
+
+#{{name}}{
+  animation-name: animateIn;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+  z-index: 0;
+}
+
+.hiddenVideo {
+	visibility: hidden;
+	display: none;
+  top:0px;
+  left:0px;
+  height: 100vh;
+  background: black;
+}
+
+#prevVideoCont {
+  top:0px;
+  left:0px;
+}
+
+#previewTitle {
+  transition: opacity ease-in-out .5s;
+  opacity: 1;
+  z-index: 3;
+}
+
+#previewTitle.disabled {
+  opacity: 0;
+}
