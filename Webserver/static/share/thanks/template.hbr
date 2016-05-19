@@ -1,5 +1,6 @@
 <div id='{{name}}' class='page'>
   <div class="fillAbs centeredContainer column blackBg">
-    <div class="type_lg">Thank You for Sharing.</div>
+    <div class="type_lg">Thank You for Sharing.<br>
+    You will be able to access your creation for the next {{shareTimeout}}</div>
   </div>
 </div>

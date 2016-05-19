@@ -7,7 +7,7 @@
   <div class="bottomCenteredContainer container fillAbs column" style="z-index:1">
       <div class="type_lg padding_sm">Thank you<br />for sharing</div>
       <div class="type_med padding_sm">Please place the puppets <br>back where you found them</div>
-      <div onclick="window.events.dispatchEvent(new Event('next'));" class="column">
+      <div ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));" class="column">
             <img src="svg/__start_over.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">start over</div>
         </div>

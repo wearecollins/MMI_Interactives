@@ -7,7 +7,7 @@
     <div id="overlayContainer" class="fillAbs bottomCenteredContainer">
       <div style="width:60%; height:calc(100vh/4);" class="container centeredContainer">
         {{#each videos}}
-        <div class="videoContainer disabled" onclick="window.events.dispatchEvent(new CustomEvent('previewClip', {'detail':'{{{name}}}'}));">
+        <div class="videoContainer disabled" ondragstart='return false;' onclick="window.events.dispatchEvent(new CustomEvent('previewClip', {'detail':'{{{name}}}'}));">
             <video class="selectVideo" id="{{name}}" autoplay loop muted>
                 <source src="{{src}}" type="video/mp4">
             </video>
@@ -35,7 +35,7 @@
   </div>
 
   <div id="selectButtons" class="fillAbs bottomCenteredContainer container" style="z-index:13; height:calc(100vh * 3/4);">
-    <div class="column" onclick="window.events.dispatchEvent(new Event('selectClip'));">
+    <div class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('selectClip'));">
         <img src="svg/__select.svg" class="button_sm padding_sm">
         <div class="type_med">select</div>
     </div>

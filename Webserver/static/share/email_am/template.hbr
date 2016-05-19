@@ -1,17 +1,22 @@
 <div id='{{name}}' class='page'>
+  <!-- Header -->
   <div class="container header leftContainer blackBg">
-    <div class="logoContainer" onclick="window.events.dispatchEvent(new Event('prev'));">
+    <div class="logoContainer" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('prev'));">
       <img src="svg/__back_white.svg" class="button_mini" />
     </div>
     <div class="type_med">Share <span id="amEmName">Anything Muppet 1</span></div>
   </div>
+
+  <!-- Container: Image + Share stuff -->
   <div class="leftContainer fillAbs">
     <div id="amEmShare" class="container greyBg">
       <img id="amEmImg" />
     </div>
+
     <div id="amEmInfo" style="overflow:scroll">
       <div id="amEmEm" class="whiteBg container">
-        <div onclick="document.getElementById('anEmEmail').focus();">
+      <!-- Email form -->
+        <div ondragstart='return false;' onclick="document.getElementById('anEmEmail').focus();">
           <div class="type_med" >Share</div>
           <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
           <form action="javascript:window.events.dispatchEvent(new Event('shareAmEmail'));">
@@ -19,10 +24,12 @@
           </form>
           <span id="amEmError" class="hidden type_mini">Invalid email. Please try again!</span>
         </div>
-        <div class="topCenteredContainer" style="width:30%" onclick="window.events.dispatchEvent(new Event('shareAmEmail'));">
+        <div class="topCenteredContainer" style="width:30%" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('shareAmEmail'));">
           <img src="svg/__select.svg" class="button_mini" />
         </div>
       </div>
+
+      <!-- 'Share online' form -->
       <div id="amEmSh" class="greyBg container leftContainer disabled">
         <div style="flex-shrink:1">
           <div class="type_med" style="width:auto">Post Online</div>
@@ -30,7 +37,7 @@
             Optionally, share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.
           </div>
         </div>
-        <div id="amOnlineBtn" class="topCenteredContainer" style="padding-left: 4vw; height:19vh;" onclick="window.events.dispatchEvent(new Event('shareAmMMI'));">
+        <div id="amOnlineBtn" class="topCenteredContainer" style="padding-left: 4vw; height:19vh;" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('shareAmMMI'));">
           <img src="svg/__share.svg" class="button_mini" />
         </div>
       </div>

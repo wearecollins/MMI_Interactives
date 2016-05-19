@@ -1,5 +1,10 @@
+<!-- This loops through each image, and makes a shareable div out of it -->
 {{#each images}}
-<div class="leftContainer container shareRow column {{#if_even @index}}evenRow{{/if_even}}" onclick="window.events.dispatchEvent( new CustomEvent('selectAM', {detail:{'timestamp':'{{{timestamp}}}','image':'{{{image}}}', 'path':'{{{path}}}', 'name':'{{{name}}}' } }));">
+<!-- 
+This is dense! Essentially, it ensures that when you click it,
+it notifies which image, title, and timestamp you've selected.
+ -->
+<div class="leftContainer container shareRow column {{#if_even @index}}evenRow{{/if_even}}" ondragstart='return false;' onclick="window.events.dispatchEvent( new CustomEvent('selectAM', {detail:{'timestamp':'{{{timestamp}}}','image':'{{{image}}}', 'path':'{{{path}}}', 'name':'{{{name}}}' } }));">
 	<img class="srImage" src="{{image}}" />
 	<div class="srType type_sm" style="width:100%">
 		<span style="text-decoration: underline;
@@ -7,8 +12,5 @@
 		<br>
 		"{{{name}}}"
 	</div>
-<!-- 	<div class="srButton">
-		<img class="button_mini" src="svg/__share.svg"  />
-	</div> -->
 </div>
 {{/each}}

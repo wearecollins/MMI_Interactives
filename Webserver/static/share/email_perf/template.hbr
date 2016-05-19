@@ -1,19 +1,24 @@
 <div id='{{name}}' class='page'>
+  <!-- Header -->
   <div class="container header leftContainer blackBg">
-    <div class="logoContainer" onclick="window.events.dispatchEvent(new Event('prev'));">
+    <div class="logoContainer" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('prev'));">
       <img src="svg/__back_white.svg" class="button_mini" />
     </div>
     <div class="type_med">Share Performance <span id="pEmName">Performance 1</span></div>
   </div>
   <div id="pEmInfo" class="leftContainer fillAbs">
+
+    <!-- Video -->
     <div id="pEmVideo" class="container greyBg">
       <video autoplay loop muted>
         <source id="pEmImg" src="" type="video/mp4">
       </video>    
     </div>
+
+    <!-- Container: Email + share online -->
     <div id="pEmEm" class="whiteBg leftContainer column">
       <div style="width:100%" class="leftContainer container">
-        <div onclick="document.getElementById('pEmEmail').focus();" style="width: 80%;">
+        <div ondragstart='return false;' onclick="document.getElementById('pEmEmail').focus();" style="width: 80%;">
           <div class="type_med">Share</div>
           <span class="type_mini"><u>Enter Your Email Address:</u></span><br>
           <form action="javascript:window.events.dispatchEvent(new Event('sharepEmail'));">
@@ -21,7 +26,7 @@
           </form>
           <span id="pEmError" class="hidden type_mini">Invalid email. Please try again!</span>
         </div>
-        <div class="topCenteredContainer" style="align-items:center; width:auto" onclick="window.events.dispatchEvent(new Event('sharepEmail'));">
+        <div class="topCenteredContainer" style="align-items:center; width:auto" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('sharepEmail'));">
           <img src="svg/__select.svg" class="button_mini" />
         </div>
       </div>
@@ -32,7 +37,7 @@
             Optionally, share your creation with the world on the Museum’s Facebook &amp; Tumblr @movingimagenyc.
           </div>
         </div>
-        <div id="shareEmOnlineBtn" class="topCenteredContainer" onclick="window.events.dispatchEvent(new Event('sharePerfMMI'));">
+        <div id="shareEmOnlineBtn" class="topCenteredContainer" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('sharePerfMMI'));">
           <img src="svg/__share.svg" class="button_mini" />
         </div>
       </div>

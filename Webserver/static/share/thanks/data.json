@@ -1,4 +1,5 @@
 {
 	"name":"thanks",
-	"disableTimeout":true
+	"disableTimeout":true,
+	"shareTimeout":"30 days"
 }

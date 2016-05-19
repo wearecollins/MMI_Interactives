@@ -1,8 +1,4 @@
 {
 	"name":"thanks",
-  	"buttons":[
-    ],
-    "disableTimeout":true,
-    "thankyou":"Thank you<br />for sharing",
-    "prompt":"<strong>please spin the puppet around</strong><br> and return features to drawers<br> to start over"
+    "disableTimeout":true
 }

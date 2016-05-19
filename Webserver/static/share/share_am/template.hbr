@@ -1,10 +1,12 @@
 <div id='{{name}}' class='page'>
   <div class="container header leftContainer blackBg">
-    <div class="logoContainer" onclick="window.events.dispatchEvent(new Event('prev'));">
+    <div class="logoContainer" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('prev'));">
       <img src="svg/__back_white.svg" class="button_mini" />
     </div>
     <div class="type_med">Share your Anything Muppet</div>
   </div>
+
+  <!-- This is filled in javascript with the 'entries.hbr' template -->
   <div id="amContainer" class='fillAbs leftContainer'>
   </div>
 </div>

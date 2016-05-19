@@ -10,7 +10,7 @@
       <div id="sharePerfBg" class="fillHalfW greenBg">
       </div>
       <div class="fillHalfW centeredContainer">
-        <div class="column" style="width: 50%;" onclick="window.events.dispatchEvent(new Event('next'));">
+        <div class="column" style="width: 50%;" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
             <img src="svg/__share_lg.svg" class="button_med padding_sm" />
             <div class="type_sm padding_sm">share your<br> performance</div>
         </div>
@@ -21,7 +21,7 @@
       </div>
 
       <div class="fillHalfW centeredContainer">
-        <div class="column" style="width: 50%;" onclick="window.events.dispatchEvent(new Event('cancel'));">
+        <div class="column" style="width: 50%;" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
               <img src="svg/__share_lg.svg" class="button_med padding_sm" />
               <div class="type_sm padding_sm">share your <br>anything muppet</div>
         </div>

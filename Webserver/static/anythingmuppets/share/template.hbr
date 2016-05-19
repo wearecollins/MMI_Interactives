@@ -3,11 +3,11 @@
 
   <!-- Take a picture, why don't ya? -->
   <div id="shareButtonContainer" class="container fillAbs bottomCenteredContainer disabled noselect" style="z-index:2">
-        <div class="column" onclick="window.events.dispatchEvent(new Event('capture'));">
+        <div class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('capture'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">take a photo</div>
         </div>
-        <div class="column" onclick="window.events.dispatchEvent(new Event('skipToThanks'));">
+        <div class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('skipToThanks'));">
             <img src="svg/__done.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">done</div>
         </div>
@@ -47,11 +47,11 @@
 
   <!-- Retake -->
   <div id="retakeContainer" class="container fillAbs bottomCenteredContainer disabled noselect" style="z-index:2">
-        <div class="column" onclick="window.events.dispatchEvent(new Event('share'));">
+        <div class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('share'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">continue</div>
         </div>
-        <div class="column" onclick="window.events.dispatchEvent(new Event('retake'));">
+        <div class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('retake'));">
             <img src="svg/__done.svg" class="button_sm padding_sm" />
             <div class="type_med padding_sm">retake</div>
         </div>
@@ -70,11 +70,11 @@
           </div>
         </div>
         <div class="bottomCenteredContainer">
-          <div id="shareOnlineBtn" onclick="window.events.dispatchEvent(new Event('share_online'));">
+          <div id="shareOnlineBtn" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('share_online'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med">share</div>
           </div>
-          <div onclick="window.events.dispatchEvent(new Event('share_done'));">
+          <div ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('share_done'));">
             <img src="svg/__done.svg" class="button_sm padding_sm" />
             <div class="type_med">done</div>
           </div>
@@ -97,7 +97,7 @@
           </div>
         </div>
         <div class="bottomCenteredContainer">
-          <div onclick="window.events.dispatchEvent(new Event('next'));">
+          <div ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
             <img src="svg/__select.svg" class="button_sm padding_sm" />
             <div class="type_med">continue</div>
           </div>

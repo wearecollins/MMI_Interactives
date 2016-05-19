@@ -31,7 +31,7 @@
                 <!-- <div class="column_23"> -->
                     <span class="type_lg">{{{ name }}}</span>
                     <br><br>
-                    <div class="type_sm"><strong>Script Excerpt</strong></div>
+                    <!-- <div class="type_sm"><strong>Script Excerpt</strong></div> -->
                     <div class="scriptText"></div>
                     <!-- Uncomment this to smash in text from template -->
                     <!-- {{{ text }}} -->
@@ -44,7 +44,7 @@
 
     <!-- Start building button -->
     <div id="scriptButtonContainer" class='container fillAbs bottomCenteredContainer disabled noselect' style="z-index:3">
-      <div id="start" class="column" onclick="window.events.dispatchEvent(new Event('start'));">
+      <div id="start" class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('start'));">
           <img src="svg/__get_started.svg" class="button_sm padding_sm" />
           <div class="type_med padding_sm">start building</div>
       </div>
@@ -52,7 +52,7 @@
 
     <!-- Done building button -->
     <div id="scriptButtonDoneContainer" class='container fillAbs bottomCenteredContainer disabled' style="z-index:3">
-      <div id="done" class="column" onclick="window.events.dispatchEvent(new Event('done'));">
+      <div id="done" class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('done'));">
           <img src="svg/__get_started.svg" class="button_sm padding_sm" />
           <div class="type_med padding_sm">done building</div>
       </div>
@@ -61,7 +61,7 @@
     </div>
 
 {{!-- This is the 'drawer overlay' container --}}
-    <div id="promptOpenDrawers" class="parchBg bottomCenteredContainer fillAbs" style="z-index:4" onclick="window.events.dispatchEvent(new Event('openDone'));">
+    <div id="promptOpenDrawers" class="parchBg bottomCenteredContainer fillAbs" style="z-index:4" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('openDone'));">
         <div class="centeredContainer column fillAbs" style="left:0px">
             <!-- <img src="svg/__open_drawers.svg" class="button_lg padding_sm" /> -->
             <video id="videoArrow" class="button_lg padding_sm" autoplay loop>
