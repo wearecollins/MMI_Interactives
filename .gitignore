@@ -8,6 +8,7 @@ Sharing/config.json
 Sharing/token.json
 Sharing/media
 media
+npm-debug.log.*
 
 # Defaults
 .DS_Store
