@@ -131,4 +131,15 @@ There will be as many of these groups as there are cameras
 
 ## Section overview
 
+![am_01](screenshots/ams/am_01.png)
+![am_02](screenshots/ams/am_02.png)
+![am_03](screenshots/ams/am_03.png)
+![am_04](screenshots/ams/am_04.png)
+![am_05](screenshots/ams/am_05.png)
+![am_06](screenshots/ams/am_06.png)
+![am_07](screenshots/ams/am_07.png)
+![am_08](screenshots/ams/am_08.png)
+![am_09](screenshots/ams/am_09.png)
+![am_10](screenshots/ams/am_10.png)
+
 ## Troubleshooting
