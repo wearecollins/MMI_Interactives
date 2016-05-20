@@ -27,8 +27,10 @@ Follow these steps for setting up everything:
   - I set up my _media/_ directory parallel to the cloned repository.
 2. Set up a server to serve files from your _media/_ directory.
   - I set up the server to use port 8012. Suggestions include:
-    * python&apos;s (SimpleHTTPServer)[https://docs.python.org/2/library/simplehttpserver.html] `python -m SimpleHTTPServer 8012`
-    * Node&apos;s (http-server)[https://www.npmjs.com/package/http-server] `http-server -p 8014`
+    * python&apos;s [SimpleHTTPServer](https://docs.python.org/2/library/simplehttpserver.html) 
+    `python -m SimpleHTTPServer 8012`
+    * Node&apos;s [http-server](https://www.npmjs.com/package/http-server)
+    * `http-server -p 8014`
 3. Ensure your _media/_ server is accessible from the internet
     * if your computer or network configuration makes this impossible, I suggest using [ngrok](#using-ngrok) to tunnel internet traffic to the media server you have running.
         - `./ngrok http 8012`
