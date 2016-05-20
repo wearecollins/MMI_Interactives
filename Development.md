@@ -46,10 +46,10 @@ Firstly, clone this repository. We recommend cloning into ~Documents.
 2. Download [openFrameworks 0.9.3](http://openframeworks.cc/versions/v0.9.3/of_v0.9.3_osx_release.zip)
 3. Unzip openFrameworks and place in your Documents folder
 4. Clone this repository into openFrameworks/apps (including all submodules)
-	```
+```
 	$ cd ~/Documents/openFrameworks/apps
 	$ git clone --recursive https://github.com/wearecollins/MMI_Interactives.git
-	```
+```
 5. Build in Xcode
  * Open [Frontend/Frontend.xcodeproj]
  * Build the Anthing Muppets and Performance interactives by selecting Product/Build (or pressing command + b)
