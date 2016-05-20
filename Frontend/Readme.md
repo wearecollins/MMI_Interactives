@@ -1,12 +1,28 @@
 #Frontend
 * _Brief_: This application wraps a WebKit frontend, a light webserver, and native code (via openFrameworks) to merge a web-based GUI with advanced functionality such as speaking to industrial cameras and creating videos.
-
+* The application will automatically connect to a webpage hosted at http://localhost:8080, which the [Webserver](../Webserver/Readme.md) provides. 
+  * If it does not load the page, it will automatically try to reload every three seconds.
+  * Once the page loads, the app will enter fullscreen mode (if it hasn't already)
+  
 ## Setup Development
 * Please see the [Development](Development.md) document for details on setting up a development environment. 
 
-## Configure App
+### Projects and files
+* This application shares code with the [Camera app](../Camera/Readme.md). If you are looking for a particular file, it most likely lives there!
+* The main Xcode project in this folder (Frontend.xcodeproj) builds BOTH applications: AnythingMuppets.app and Performance.app
+* The Frontend_DEBUG.xcodeproj compiles a generic Frontend app that connects to USB webcameras instead of a industrial camera(s)
+* Basic settings files are located in the "Resources" folder
+  * When the applications compile, they are copied into the app
+  * To edit the 'live' settings, right click on the application and select 'show package contents'; navigate to 'Resources', and you will see a set of XML files
+    * anythingmuppets_camera.xml - Default 'live' settings for a specific Anything Muppets camera
+    * anythingmuppets.xml - Written by application; only sets how many cameras to open, and what their UUIDs are
+    * log4cpp.properties - Settings for the amount of logging, and where logging happens. See [Log4cpp](http://log4cpp.sourceforge.net/) for more details
+    * performance_camera.xml - Default 'live' settings for a specific Performance camera
+    * performance.xml - Written by application; only sets how many cameras to open, and what their UUIDs are
+    * settings_am.xml - Overall settings for Anything Muppets app. Usually overwritten by app, but provides defaults on first run.
+    * settings_perf.xml - Overall settings for Performance app. Usually overwritten by app, but provides defaults on first run.
 
-## Cameras
+## Setup Cameras
 Each installation uses 1-2 [Point Grey Flea](https://www.ptgrey.com/flea3-32-mp-color-usb3-vision-sony-imx036-camera) cameras, each with a [Fujifilm 2.8-8mm zoom lens](https://www.ptgrey.com/fujinon-yv28x28sa-2-hd-vari-focal-lens-3)
 
 ## Configuring the app
@@ -94,3 +110,4 @@ There will be as many of these groups as there are cameras
     - Target aspect ratio of cropped image
     - Set this with Aspect y to crop to a specific ratio, e.g. 16 (x) by 9 (y)
     - Set to 0 to turn off cropping
+
