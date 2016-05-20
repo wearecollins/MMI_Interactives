@@ -11,7 +11,7 @@
 
 ## Overview
 
-![Rendering](screenshots/render_performance.png)
+![Rendering](screenshots/render_am.png)
 
 ## Overview
 A touchpoint where people are given the chance to learn the Henson performance method. The performance is recorded and the user can retrieve it later from the sharing station. 
