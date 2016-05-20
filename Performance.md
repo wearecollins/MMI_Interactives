@@ -126,4 +126,16 @@ There will be as many of these groups as there are cameras
 
 ## Section overview
 
+![intro](screenshots/performance/p_01_intro.png)
+![intro](screenshots/performance/p_02_grab.png)
+![intro](screenshots/performance/p_03_select.png)
+![intro](screenshots/performance/p_04_select_2.png)
+![intro](screenshots/performance/p_05_1_preview.png)
+![intro](screenshots/performance/p_05_2_practice.png)
+![intro](screenshots/performance/p_06_save.png)
+![intro](screenshots/performance/p_07_preview.png)
+![intro](screenshots/performance/p_08_share_1.png)
+![intro](screenshots/performance/p_08_share_2.png)
+![intro](screenshots/performance/p_09_thank.png)
+
 ## Troubleshooting
