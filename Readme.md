@@ -1,119 +1,98 @@
-1. [Introduction](#MMI---The-Jim-Henson-Exhibition)
+# MMI - The Jim Henson Exhibition
+
+## Table of Contents
+
+1. [Introduction](#Introduction)
   1. [Performance](#performance)
   2. [Anything Muppet](#anything-muppet)
   3. [Sharing Station](#sharing-station)
 2. [Setup](#setup)
+  1. [Overview](#hardware-overview)
   1. [Production](#production)
-  2. [Development](#development)
-  3. [Using ngrok](#using-ngrok)
+3. [Running](#running)
 
-# MMI - The Jim Henson Exhibition
+* * *
 
-This repo contains digital portions of a Jim Henson exhibit for the [Museum of the Moving Image](http://www.movingimage.us/) 
+# Introduction
 
-There are two touchpoints in this repo. They both share a lot of backend infrastructure.
+This repository contains digital portions of a Jim Henson Exhibition for the [Museum of the Moving Image](http://www.movingimage.us/)  There are three touchpoints in this repo. They both share a lot of backend infrastructure.
+
+This document will guide you through the overall [setup](#Setup) for the installation, and a general guide to [running](#running) the installation.
+
+There are separate Reamde files for each installation (see below) and for setting up a [Development](Development.md) environment.
 
 ## Performance
 
-A touchpoint where people are given the chance to control a muppet along to an audiotrack. The performance is recorded and the user can retrieve it later from the sharing station.
+A touchpoint where people are given the chance to learn the Henson performance method. The performance is recorded and the user can retrieve it later from the sharing station. 
 
-## Anything Muppet
+Please see the [Performance](Performance.md) guide for details on setting up, running, and troubleshooting the Performance interactive.
 
-A touchpoint where visitors can create a unique muppet to match a given script. A muppet "blank" is provided with drawers full of eyes, hair, noses, etc. The user can take a picture of their creation and retrieve it later from the sharing station.
+## Anything Muppets
+
+A touchpoint where visitors can create a unique Anything Muppet to match a given script. A muppet "blank" is provided with drawers full of eyes, hair, noses, etc. The user can take a picture of their creation and retrieve it later from the sharing station.
+
+Please see the [Anything Muppets](AnythingMuppets.md) guide for details on setting up, running, and troubleshooting the Anything Muppets interactive.
 
 ## Sharing Station
 
 An interface for people to find their picture or video and send it to themselves via e-mail.
 
+* * *
+
 # Setup
 
-## Production
+## Hardware overview
 
 There are 4 computers involved with this whole installation:
 
 * Central Server
-  - serves files to the internet from a _Public Media Directory_
-  - hosts the webserver for the Sharing iPad interface
-  - runs webservices for sending e-mails and posting to MotMI&apos;s social network pages
+  - Serves files to the internet from a _Public Media Directory_
+  - Hosts the webserver for the Sharing iPad interface
+  - Runs webservices for sending e-mails and posting to MMI&apos;s social network pages
 * Anything Muppet Computer
-  - the computer that the Anything Muppet touchpoint runs on including
-    * interfacing with industrial camera
-    * hosting webserver for graphic interface
-    * interfacing with Arduino
-    * syncing pictures to Central Server
+  - Computer that the Anything Muppet touchpoint runs on including
+    * Interfacing with industrial camera
+    * Hosting webserver for graphic interface
+    * Interfacing with 'spin' sensor
+    * Syncing pictures to Central Server
 * Performance Computer
-  - the computer that the Performance touchpoint runs on including
-    * interfacing with two industrial cameras
-    * hosting webserver for graphic interface
-    * syncing videos to Central Server
+  - The computer that the Performance touchpoint runs on including
+    * Interfacing with two industrial cameras
+    * Hosting webserver for graphic interface
+    * Syncing videos to Central Server
 * Sharing Frontend (iPad/touchscreen)
-  - displays Sharing graphic interface from Central Server
+  - Displays Sharing graphic interface from Central Server
 
-Follow these steps for setting up everything:
+## Production
 
-0. Bootstrap the Anything Muppet and Performance computers using the scripts in [bootstrapping](Startup/bootstrap/)
+Follow these general steps for setting up all interactives:
+
+0. Download the latest [release](https://github.com/wearecollins/MMI_Interactives/releases) of this code.
+0. Follow the [bootstrapping](Startup/bootstrap/) guide to setup each machine.
 1. Setup the [Sharing](Sharing/) webservice on the Central Server
-2. Setup the [Share Frontend Webserver](Webserver/README.md#share) on the Central Server
-  - including setting up the iPad to be pinned to the Share UI
-3. Setup the [Performance Frontend](Frontend/Readme.md#performance) on the Performance computer
-4. Setup the [Anything Muppet Frontend](Frontend/Readme.md#anything-muppet) on the Anything Muppet computer
+2. Setup the [Performance Frontend](Performance.md) on the Performance computer
+3. Setup the [Anything Muppet Frontend](AnythingMuppets.md) on the Anything Muppet computer
 5. Setup the [Sync](Sync/) service on both the Performance and Anything Muppet computers
+6. Setup the [Share Frontend Webserver](Webserver/README.md#share) on the Central Server
+  - including setting up the iPad to be pinned to the Share UI
 
-## Development
+* * *
 
-These instructions assume you are testing everything on one computer. It should be relatively straight-forward to adapt to a multiple-computer setup.
+# Running
 
-There are usually 7 processes which should be run:
+In the bootstrapping steps, you may setup each interactive to run automatically when a user logs in. If not–or to manually run each touchpoint–follow the steps below.
 
-* A simple webserver to serve media files for sharing
-* [ngrok](https://ngrok.com/) to make your simple server accessible via the internet
-  - Unless your development machine has a publicly-accessible web address already
-* A [Sync](Sync/) service to sync Anything Muppet images to your _media/_ directory
-* A [Sync](Sync/) service to sync Performance videos to your _media/_ directory
-* A [Webserver](Webserver/) instance to host whichever frontend you are testing
-* The [Frontend](Frontend/) app for interfacing with cameras and displaying the Performance or Anything Muppet frontend
-  - Or [Camera](Camera/) app and separate web browser directed at [http://localhost:8080/?stream=true]() if not on OSX
-* The [Sharing](Sharing/) webservice to enable posting to social media
+## Anything Muppets
+* Double-click the [startup command](Startup/startup_am.command) in Startup/startup_am.command
+* This will launch a Terminal window (running the [Webserver](Webserver)) and an instance of the [Anything Muppets Frontend](Frontend)
+* You can close the app by quitting the Frontend (command + q OR selecting File/Quit from top menu)
 
-Follow these steps for setting up everything:
+## Peformance
+* Double-click the [startup command](Startup/startup_perf.command) in Startup/startup_perf.command
+* This will launch a Terminal window (running the [Webserver](Webserver)) and an instance of the [Performance Frontend](Frontend)
+* You can close the app by quitting the Frontend (command + q OR selecting File/Quit from top menu)
 
-1. create a _media/_ directory to serve media files for sharing.
-  - This directory should have two subdirectories: _performance/_ and _anythingmuppets/_
-  - I set up my _media/_ directory parallel to the cloned repository.
-2. set up a server to serve files from your _media/_ directory.
-  - I set up the server to use port 8014. Suggestions include:
-    * python&apos;s (SimpleHTTPServer)[https://docs.python.org/2/library/simplehttpserver.html] `python -m SimpleHTTPServer 8014`
-    * Node&apos;s (http-server)[https://www.npmjs.com/package/http-server] `http-server -p 8014`
-3. Ensure your _media/_ server is accessible from the internet
-    * if your computer or network configuration makes this impossible, I suggest using [ngrok](#using-ngrok) to tunnel internet traffic to the media server you have running.
-        - `./ngrok http 8014`
-5. [Configure your Sync services](Sync/README.md#configure)
-6. run sync services
-  1. `node loop.js anythingmuppet.json`
-  2. `node loop.js performance.json`
-7. [Configure your Webserver](Webserver/README.md#configure)
-8. run the webserver
-  - `npm start -- --station [STATION]` where _[STATION]_ is one of `performance`, `anythingmuppets`, or `share`
-9. If testing the Performance or Anything Muppet stations, configure/compile/run the [Frontend app](Frontend/)
-  - or [Camera app](Camera/) if you are not on OSX
-
-## using [ngrok](https://ngrok.com/)
-
-ngrok is used for accessing local servers from the internet. 
-
-An altertative to using ngrok would be to use a domain you own, 
-and host the server at that address.
-
-After downloading and unzipping ngrok, you can run in using 
-`./ngrok http [PORT]` where _[PORT]_ is the port number you want to forward 
-requests to. If you are running a server on your computer attached to port 
-8080, then you would run `./ngrok http 8080`. Once ngrok is running it will 
-display (among other things) the _Forwarding_ address that can be used to 
-access your server from the internet. This address will be referred to in the 
-rest of the documentation as your **Public URL** ([Screenshot](ngrok.png)).
-
-Every time you run ngrok it will provide you with a new randomized 
-**Public URL**.
-
-### Prototypes
-* Prototypes for this and other exhibits are hosted [here](https://github.com/wearecollins/MMI-Prototypes.git)
+## Sharing 
+* The Sharing app should be running on the Central Server (see 'Hardware Overview' above)
+* You can access the Sharing app via a web browser at http://IP.ADDRESS.OF.SERVER:8080
+* We recommend pinning this URL to the home screen of your iPad, or setting it as your homescreen (if installation is a touch screen)
