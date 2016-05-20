@@ -15,7 +15,7 @@ To configure the application, open the Frontend application (either Performance.
 
 ### App configuration
 Tap 'm' to open up the configuration mode. You may have to click/tap on the screen one or more times before it recognizes the keyboard. It should look like this (cropped for ease-of-use):
-![Cfg](screenshots/performance/p_cfg_01.png)
+![Cfg](../screenshots/performance/p_cfg_01.png)
 
 0. Top right:
   - Refresh - Reload settings (set to defaults)
@@ -52,7 +52,7 @@ These are all read-only, and can be set by editing the settings XML file _inside
 
 ### Camera configuration
 Type 'm' again to open up Camera settings
-![Cfg_02](screenshots/performance/p_cfg_02.png)
+![Cfg_02](../screenshots/performance/p_cfg_02.png)
 
 0. Top right - Refresh and save (see above)
   - These save to Contents/Resources/performance_camera.xml
