@@ -1,0 +1,12 @@
+{
+  "name": "mmi_readme_to_pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "markdown-pdf": "^7.0.0"
+  }
+}
