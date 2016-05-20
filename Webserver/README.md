@@ -1,5 +1,9 @@
-A Node.js® server and frontend framework for making single-page, 
-multi-state web apps. The framework is detailed in [STRUCTURE.md](STRUCTURE.md)
+#Webserver 
+
+A Node.js® server and frontend framework for making single-page,multi-state web apps. The framework is detailed in [STRUCTURE.md](STRUCTURE.md)
+
+This server contains code for **all** installations, in the 'static' folder: Anything Muppets, Performance, and Sharing. 
+It also contains examples for how to create new applications ('blank' and 'demo') and a suite of test scripts ('test' folder).
 
 0. [Dependencies](#dependencies)
 0. [Setup](#setup)
@@ -22,7 +26,9 @@ developed/tested/used with
 
 # Setup
 
-0. `npm install`
+0. In terminal, `cd` to this directory. 
+1. Run the oh-so-simple setup command:
+  - `npm install`
 
 ## Anything Muppets
 - All configurations in the Anything Muppets app can be set in the Admin interface
@@ -47,3 +53,4 @@ The station this instance is hosting is passed in via a _--station_ parameter.
 * open frontend
   - if using the [Frontend App](../Frontend/), just run that app and it will load the webpage.
   - otherwise, start up the [Camera App](../Camera/) and open your browser to [http://localhost:8080/?stream=true]()
+
