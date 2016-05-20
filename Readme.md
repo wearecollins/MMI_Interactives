@@ -10,14 +10,17 @@
   1. [Overview](#hardware-overview)
   1. [Production](#production)
 3. [Running](#running)
+4. [This Folder](#this-folder)
 
 * * *
 
 # Introduction
 
-This repository contains digital portions of a Jim Henson Exhibition for the [Museum of the Moving Image](http://www.movingimage.us/)  There are three touchpoints in this repo. They both share a lot of backend infrastructure.
+This repository contains digital portions of a Jim Henson Exhibition for the [Museum of the Moving Image](http://www.movingimage.us/). There are three touchpoints in this repo. They both share a lot of backend infrastructure.
 
-This document will guide you through the overall [setup](#Setup) for the installation, and a general guide to [running](#running) the installation.
+This document will guide you through the overall [setup](#Setup) for the installation, and a general guide to [running](#running) the installation. 
+
+Please see ["This folder"](#this-folder) below for a further guide to other files in this folder.
 
 There are separate Reamde files for each installation (see below) and for setting up a [Development](Development.md) environment.
 
@@ -96,3 +99,27 @@ In the bootstrapping steps, you may setup each interactive to run automatically 
 * The Sharing app should be running on the Central Server (see 'Hardware Overview' above)
 * You can access the Sharing app via a web browser at http://IP.ADDRESS.OF.SERVER:8080
 * We recommend pinning this URL to the home screen of your iPad, or setting it as your homescreen (if installation is a touch screen)
+
+* * * 
+
+# This folder
+* AM_Input
+ * Arduino code for [Adafruit Feather](https://www.adafruit.com/product/2771) interface for Anything Muppet Table
+* Camera
+ * Stand-alone application for connecting to and streaming cameras for installation
+ * Not in use in final installation–recommended only for testing on non-Mac computers
+* Frontend
+ * Application that bundles a web browser into openFrameworks, shows interactive frontends, and connects to cameras 
+* Screenshots
+ * Images for documentation
+* Sharing
+ * Scripts for connecting to Facebook and Tumblr (and information on how to setup/connect to each of these)
+* Startup
+ * Scripts for bootstrapping and running each machine and touchpoint (respectively)
+* Sync
+ * Scripts for syncing files from each touchpoint computer to the Central Server
+* Utilities
+ * Scripts for a) creating a 'Release' zip to be uploaded and b) creating a PDF of Readme documentation
+* Webserver
+ * All files for application Frontends, including server-side and frontend scripts
+ * Does NOT include media files–these are only available via Releases (above) or [Dropbox](https://www.dropbox.com/sh/43la3h7bfgfy4du/AAA9zxHBUFdrLhJ2XLEarvERa?dl=0)
