@@ -75,9 +75,12 @@ FBPoster.prototype.postVideo = function(item, apiData){
     {access_token:             apiData.page.token,
      //no_story seems to have no affect when published: false
      no_story:                 true,
-     published:                false,
-     unpublished_content_type: 'DRAFT',
      file_url:                 this.configs.media.netpath + item.filename};
+
+  if (this.configs.facebook.draft){
+    options.published = false;
+    options.unpublished_content_type = 'DRAFT';
+  }
 
   //cannot load videos directly to list
   this.logger.debug('[postVideo] to page');
@@ -170,9 +173,12 @@ FBPoster.prototype.postImage = function(item, apiData){
     {access_token:             apiData.page.token,
      //no_story seems to have no affect when published: false
      no_story:                 true,
-     published:                false,
-     unpublished_content_type: 'DRAFT',
      url:                      this.configs.media.netpath + item.filename};
+
+  if (this.configs.facebook.draft){
+    options.published = false;
+    options.unpublished_content_type = 'DRAFT';
+  }
 
   var rootId;
   //if we have an Album ID, upload to the Album

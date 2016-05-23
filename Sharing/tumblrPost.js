@@ -80,7 +80,7 @@ TumblrPoster.prototype.postImage = function(item, apiData){
                     apiData.accessToken,
                     apiData.accessSecret,
                     {type:  'photo',
-                     state: 'draft',
+                     state: (this.configs.tumblr.draft ? 'draft' : 'published'),
                      source: this.configs.media.netpath + item.filename},
                     function(err, data){
                       if (err){
@@ -112,13 +112,16 @@ TumblrPoster.prototype.postVideo = function(item, apiData){
                       apiData.accessToken,
                       apiData.accessSecret,
                       {type:  'video',
-                       state: 'draft',
+                       state: (this.configs.tumblr.draft ? 
+                                'draft' : 
+                                'published'),
                        embed: embed},
                       function(err, data){
                         if (err){
-                          this.logger.debug('[postVideo] error from Tumblr for', 
-                                            url,
-                                            err);
+                          this.logger.debug(
+                            '[postVideo] error from Tumblr for', 
+                            item.filename,
+                            err);
                           item.result.error = err;
                           reject(item);
                         } else {

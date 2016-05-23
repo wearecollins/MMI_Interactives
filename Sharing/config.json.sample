@@ -9,12 +9,14 @@
     "app":{
       "id":"1703243309914146",
       "secret":"APP_SECRET"
-    }
+    },
+    "draft":true
   },
   "tumblr":{
     "app":{
       "key":"APP_KEY",
       "secret":"APP_SECRET"
-    }
+    },
+    "draft":true
   }
 }

@@ -179,15 +179,16 @@ Poster.prototype.cleanQueue = function(numItems){
                         postee.getFilename());
       this.queue.splice(posteeI, 1);
       this.updateNotifiers(postee.getFilename(), 'posted');
-    }
-    //if this item has failed too many times, remove it from the queue
-    postee.attempts++;
-    if (postee.attempts >= this.maxAttempts){
-      this.logger.warn('[Poster::cleanQueue]',
-                       'file failed to upload too many times',
-                       postee.getFilename());
-      this.queue.splice(posteeI, 1);
-      this.updateNotifiers(postee.getFilename(), 'failed');
+    } else {
+      //if this item has failed too many times, remove it from the queue
+      postee.attempts++;
+      if (postee.attempts >= this.maxAttempts){
+        this.logger.warn('[Poster::cleanQueue]',
+                         'file failed to upload too many times',
+                         postee.getFilename());
+        this.queue.splice(posteeI, 1);
+        this.updateNotifiers(postee.getFilename(), 'failed');
+      }
     }
   }
 };

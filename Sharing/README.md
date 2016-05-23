@@ -116,10 +116,12 @@ A sample is in [config.json.sample](config.json.sample) with sensitive data remo
   - **app** details of the Facebook App being used for posting
     * **id** the App ID
     * **secret** the App Secret
+  - **draft** whether to post as a draft (to allow review before publicly posting)
 * **tumblr**
   - **app** details of the Tumblr App being used for posting
     * **key** OAuth consumer key
     * **secret** OAuth consumer secret
+  - **draft** whether to post as a draft (to allow review before publicly posting)
 
 ### notes
 
