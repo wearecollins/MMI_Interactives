@@ -103,34 +103,45 @@ TumblrPoster.prototype.postImage = function(item, apiData){
  */
 TumblrPoster.prototype.postVideo = function(item, apiData){
   return new Promise(function(resolve, reject){
-    if (!item.item.fbEmbed){
-      item.result.error = 'not uploaded to FB';
-      reject(item);
-    } else {
-      var embed = item.item.fbEmbed;//this.configs.media.netpath + item.filename
-      this.oauth.post('https://api.tumblr.com/v2/blog/'+apiData.blog+'/post',
-                      apiData.accessToken,
-                      apiData.accessSecret,
-                      {type:  'video',
-                       state: (this.configs.tumblr.draft ? 
-                                'draft' : 
-                                'published'),
-                       embed: embed},
-                      function(err, data){
-                        if (err){
-                          this.logger.debug(
-                            '[postVideo] error from Tumblr for', 
-                            item.filename,
+    FileSystem.readFile(
+      this.configs.media.localpath + item.filename,
+      function(err, data){
+        if (err){
+          this.logger.debug('[postVideo] error loading video',
                             err);
-                          item.result.error = err;
-                          reject(item);
-                        } else {
-                          this.logger.debug('[postVideo] posted');
-                          item.result.success = data;
-                          resolve(item);
-                        }
-                      }.bind(this));
-    }
+          item.result.error = err;
+          reject(item);
+        } else {
+          this.logger.debug('[postVideo] loaded');
+          var dataString = data.toString('base64');
+          this.logger.trace('[postVideo] encoded from',
+                            data.length,'to',dataString.length);
+          
+          this.oauth.post('https://api.tumblr.com/v2/blog/'+
+                            apiData.blog+'/post',
+                          apiData.accessToken,
+                          apiData.accessSecret,
+                          {type:  'video',
+                           state: (this.configs.tumblr.draft ? 
+                                    'draft' : 
+                                    'published'),
+                           data64: dataString},
+                          function(err, data){
+                            if (err){
+                              this.logger.debug(
+                                '[postVideo] error from Tumblr for', 
+                                item.filename,
+                                err);
+                              item.result.error = err;
+                              reject(item);
+                            } else {
+                              this.logger.debug('[postVideo] posted', data);
+                              item.result.success = data;
+                              resolve(item);
+                            }
+                          }.bind(this));
+        }
+      }.bind(this));
   }.bind(this));
 };
 
