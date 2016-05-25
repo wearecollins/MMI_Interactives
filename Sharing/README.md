@@ -11,6 +11,7 @@ This Node.js® server posts videos and photos to the Museum's Facebook and Tumbl
   3. [tumblrToken.json](#tumblrtokenjson)
 0. [Running](#running)
   0. [Endpoints](#endpoints)
+0. [Limitations](#limitations)
 0. [Troubleshooting](#troubleshooting)
 
 # dependencies
@@ -200,6 +201,14 @@ of the photo to `/photo` like so:
     * _STATE_ will be either `unknown`, `posting`, `posted`, or `failed`
       - _unknown_ means the file was never submitted for posting, or it has since been deleted from the server.
       - _failed_ means the file failed to post too many times. It can be re-submitted for posting.
+
+# Limitations
+
+The Tumblr posting service currently uploads videos directly to Tumblr. We originally tried embedding the FB videos in Tumblr, but people could only see them if they were logged into FB. Tumblr has a number of posting limits:
+
+   * max 250 posts per day
+   * max 5 minutes of uploaded video per day
+   * max 100 MB uploaded video per day
 
 # Troubleshooting
 
