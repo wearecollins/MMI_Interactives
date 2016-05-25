@@ -53,9 +53,13 @@ _index.js_ uses a configuration file. There is a sample included in the
 repository at [configs.json.sample](configs.json.sample). 
 The name of the configuration file is provided when you run the script.
 
-* **source** The source directory to copy files from. This should be an absolute path _with_ a trailing slash.
-* **destination** The directory to copy files to. This should be an absolute path _without_ a trailing slash.
-* **cleanupMins** Number of minutes to leave files in the _source_ directory before cleaning them up. The modified time is used to determine file age.
+* **sync**
+  * **source** The source directory to copy files from. This should be an absolute path _with_ a trailing slash.
+  * **destination** The directory to copy files to. This should be an absolute path _without_ a trailing slash.
+  * **exclude** An array of relative paths (from **sync.source**) to ignore during sync. do not include trailing or leading slashes.
+* **cleanup**
+  * **mins** Number of minutes to leave files in the _source_ directory before cleaning them up. The modified time is used to determine file age.
+  * **exclude** An array of relative paths (from **sync.source**) to ignore during cleanup. do not include trailing or leading slashes.
 
 ## loop_conf.json
 There is also a configuration file for the loop script. The loop script is meant to be used only in development.

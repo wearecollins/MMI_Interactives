@@ -1,5 +1,11 @@
 {
-  "source":"/Users/install/Documents/MMI_Interactives/Webserver/static/output/",
-  "destination":"/Users/install/Documents/MMI_Interactives/media/",
-  "cleanupMins":30
+  "sync":{
+    "source":"/Users/install/Documents/MMI_Interactives/Webserver/static/output/",
+    "destination":"/Users/install/Documents/MMI_Interactives/media/",
+    "exclude":[]
+  },
+  "cleanup":{
+    "mins":30,
+    "exclude":[]
+  }
 }

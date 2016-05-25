@@ -4,7 +4,7 @@ var ChildProcess = require('child_process');
 
 var configs = require(Path.join(__dirname, 'loop_conf.json'));
 
-var interval = setInterval(launchChild, configs.intervalMillis);
+/*var interval = */setInterval(launchChild, configs.intervalMillis);
 launchChild();
 
 function launchChild(){

@@ -50,9 +50,9 @@ function writePID(){
 
 //check that both source and destination are accessible
 function checkAccessibility(){
-  Promise.all([checkPathAccessibility(configs.source, 
+  Promise.all([checkPathAccessibility(configs.sync.source, 
                                       'source directory'), 
-               checkPathAccessibility(configs.destination, 
+               checkPathAccessibility(configs.sync.destination, 
                                       'destination directory')]).
     then(function resolved(/*results*/){
       logger.debug('[checkAccessibility] directories accessible');
@@ -63,53 +63,95 @@ function checkAccessibility(){
     });
 }
 
+/**
+ * @returns {Promise<[string]>}
+ */
+function getFileList(basePath, excludePaths, relativePath){
+  relativePath = relativePath || '';
+  excludePaths = excludePaths || [];
+  var fullPath = Path.join(basePath, relativePath);
+  return new Promise(function (resolve/*, reject*/){
+    var files = [];
+    FileSystem.readdir(fullPath, function(err, filenames){
+      if (err){
+        logger.error('[getFileList] error getting',fullPath,'listing', err);
+        resolve(files);
+      } else {
+        logger.debug('[getFileList]',fullPath,'has',
+                     filenames.length,'contents');
+        var statPromises = [];
+        var subdirPromises = [];
+        filenames.forEach(function(filename){
+          var relativeFilename = Path.join(relativePath, filename);
+          statPromises.push(new Promise(function(resolve/*, reject*/){
+            FileSystem.stat(
+              Path.join(basePath, relativeFilename), 
+              function(err, stats){
+                if (err){
+                  logger.error('[getFileList] error getting file', 
+                               relativeFilename,'stats',err);
+                } else {
+                  if (stats.isFile()){
+                    files.push({filename: relativeFilename,
+                                modified: stats.mtime.getTime()});
+                  } else if (stats.isDirectory()){
+                    if (excludePaths.indexOf(relativeFilename) >= 0){
+                      logger.debug('[getFileList] excluding',relativeFilename);
+                    } else {
+                      subdirPromises.push(
+                        getFileList(basePath, 
+                                    excludePaths,
+                                    Path.join(relativePath, filename)));
+                    }
+                  } else {
+                    logger.debug('[getFileList]',
+                                 relativeFilename,'not file or directory');
+                  }
+                }
+                resolve();
+              });
+          }));
+        });
+        Promise.all(statPromises).
+          then(() => Promise.all(subdirPromises)).
+          then( subFilenames => files.concat.apply(files, subFilenames)).
+          then( allFiles => resolve(allFiles)).
+          catch( reason => {
+            logger.error('[getFileList] problem resolving',reason);
+            resolve(files);
+          });
+      }
+    });
+  });
+}
+
 //cache file info
 var files = [];
 function cacheLatest(){
-  FileSystem.readdir(configs.source, function(err, filenames){
-    if (err){
-      logger.error('[cacheLatest] error getting directory listing', err);
-      doRsync();
-    } else {
-      logger.debug('[cacheLatest] got listing of',filenames.length,'files');
-      var promises = [];
-      filenames.forEach(function(filename){
-        promises.push(new Promise(function(resolve/*, reject*/){
-          FileSystem.stat(
-            Path.join(configs.source, filename), 
-            function(err, stats){
-              if (err){
-                logger.error('[cacheLatest] error getting file', 
-                             filename,'stats',err);
-              } else {
-                files.push({filename: filename,
-                            modified: stats.mtime.getTime()});
-              }
-              resolve();
-            });
-        }));
+  getFileList(configs.sync.source, configs.sync.exclude).
+    then( function(fileList){
+      logger.debug('[cacheLatest] sorting',fileList.length,'file stats');
+      files = fileList;
+      //sort files most recent first
+      files.sort(function(a, b){
+        return b.modified - a.modified;
       });
-      Promise.all(promises).
-        then(function(){
-          logger.debug('[cacheLatest] sorting file stats');
-          //sort files most recent first
-          files.sort(function(a, b){
-            return b.modified - a.modified;
-          });
-          doRsync();
-        });
-    }
-  });
+      doRsync();
+    });
 }
 
 //rsync files
 function doRsync(){
   var rsync = new Rsync();
   rsync.
-    source(configs.source).
-    destination(configs.destination).
+    source(configs.sync.source).
+    destination(configs.sync.destination).
     recursive().
     quiet();
+
+  if (configs.sync.exclude){
+    rsync.exclude(configs.sync.exclude);
+  }
 
   rsync.execute(function(err, code, cmd){
     logger.debug('[doRsync] executed',cmd);
@@ -125,11 +167,11 @@ function doRsync(){
 //check that cached filename was synched
 function checkCopy(){
   if (files.length === 0){
-    logger.info('[checkCopy] no files to check/clean');
-    finish();
+    logger.info('[checkCopy] no files to check');
+    removeOld();
   } else {
     checkPathAccessibility(
-        Path.join(configs.destination, files[0].filename), 
+        Path.join(configs.sync.destination, files[0].filename), 
         files[0].filename).
       then(function resolved(){
         logger.info('[checkCopy] copy appears to be successful');
@@ -144,22 +186,28 @@ function checkCopy(){
 //cleanup old files
 function removeOld(){
   var numRemoved = 0;
-  var oldest = new Date().getTime() - configs.cleanupMins * 60000;
-  var promises = [];
-  files.forEach(function(item){
-    if (item.modified < oldest){
-      promises.push(removePath(Path.join(configs.source, item.filename), 
-                               item.filename).
-        then(() => numRemoved++,
-             () => {/*convert failed promises to resolved promises*/}));
-    }
-  });
-  Promise.all(promises).
-    then(() => {
-      logger.info('[removeOld] removed',numRemoved);
-      finish();
-    },
-    () => logger.error('[removeOld] Promises should not be able to reject'));
+  var oldest = new Date().getTime() - configs.cleanup.mins * 60000;
+  getFileList(configs.sync.source, configs.cleanup.exclude).
+    then( function(files){
+      logger.debug('[removeOld] checking',files.length,'files');
+      var promises = [];
+      files.forEach(function(item){
+        if (item.modified < oldest){
+          promises.push(removePath(Path.join(configs.sync.source, 
+                                             item.filename), 
+                                   item.filename).
+            then(() => numRemoved++,
+                 () => {/*convert failed promises to resolved promises*/}));
+        }
+      });
+      Promise.all(promises).
+        then(() => {
+          logger.info('[removeOld] removed',numRemoved);
+          finish();
+        },
+        () => logger.error(
+                '[removeOld] Promises should not be able to reject'));
+    });
 }
 
 //clean up PID file
