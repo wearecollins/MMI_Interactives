@@ -2,11 +2,14 @@
 *.mov
 *.mp4
 */node_modules
+*/*/node_modules
 Webserver/static/output
 Webserver/static/vo
 Sharing/config.json
 Sharing/token.json
 Sharing/media
+Cmaera/bin/data/anythingmuppets/
+Cmaera/bin/data/performance
 media
 npm-debug.log.*
 
