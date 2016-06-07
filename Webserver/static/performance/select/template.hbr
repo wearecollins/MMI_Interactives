@@ -26,7 +26,6 @@
 
   <div id="select_intro" class="fillAbs">
     <div id="selectTextContainer" class='container fillAbs centeredContainer column' style="height:calc(100vh * 3/4);">
-      <div id="selectText"  class="type_lg">Select a Clip</div>
     </div>
     {{#each videos}}
     <div id="{{name}}_big" class="bigVideoCont fillAbs centeredContainer column" style="height:calc(100vh * 3/4);">
@@ -40,7 +39,7 @@
   <div id="selectButtons" class="fillAbs bottomCenteredContainer container" style="z-index:13; height:calc(100vh * 3/4);">
     <div class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('selectClip'));">
         <img src="svg/__select.svg" class="button_sm padding_sm">
-        <div class="type_med">select</div>
+        <!-- <div class="type_med">select</div> -->
     </div>
   </div>
 </div>

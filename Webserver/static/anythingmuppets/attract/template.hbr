@@ -13,7 +13,7 @@
   <div class="container fillAbs bottomCenteredContainer noselect" style="z-index:2">
     <div id="sbContInternal" class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
         <img src="svg/__get_started.svg" class="button_sm padding_sm" />
-        <div class="type_med padding_sm">Get Started</div>
+        <div class="type_med padding_sm">start</div>
     </div>
   </div>
 </div>
