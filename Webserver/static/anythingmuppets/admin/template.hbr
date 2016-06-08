@@ -14,6 +14,16 @@
           </form>
       </div>
 
+      <div class="adminEl">
+          <div class="type_sm padding_sm">Number of retakes</div>
+          <form oninput="x.value=parseFloat(config_numRetakes.value)" class="type_sm">
+            .5m
+            <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" type="range" id="config_numRetakes" name="a" value="0" step="1" min="0" max="3">
+            15m
+            <output name="x" for="config_numRetakes"></output>
+          </form>
+      </div>
+
       <div class="adminEl centeredContainer">
         <div class="type_sm" style="padding-right:.5rem">Mode (frontend/stream)</div>
         <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_doStream" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />

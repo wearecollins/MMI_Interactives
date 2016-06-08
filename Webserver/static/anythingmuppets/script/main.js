@@ -26,10 +26,9 @@ var script = function(data, configHandler){
 	var typeInText = false;
 
 	var buildTimeout;
+	var spinTimeout;
 
 	var voIntro = new SoundPlayer();
-	var voDrawer = new SoundPlayer();
-	var voDone = new SoundPlayer();
 	var voSpin = new SoundPlayer();
 
 	// the 'voIntro' is a generic clip.
@@ -44,11 +43,9 @@ var script = function(data, configHandler){
 
 	this.enter = function(/*evt*/){
 		clearTimeout(buildTimeout);
+		clearTimeout(spinTimeout);
 
 		typeInText = configHandler.get("typeInText", false);
-
-		MMI.show( "start", "block" );
-		MMI.show( "done", "block" );
 
 		// show a random script
 		var parent = document.getElementById("script");
@@ -65,17 +62,12 @@ var script = function(data, configHandler){
 			log.error("Script: no divs found");
 		}
 
-		// listen for "start" and "done" events
-		window.addEventListener("start", showOpenPrompt);
-		window.addEventListener("openDone", hideOpenPrompt);
 		window.addEventListener("done", showSpinPrompt);
 
 		window.currentScriptObject = currentScriptObject;
 
 		// setup VOs
 		voIntro.setup("vo_script");
-		voDrawer.setup("vo_drawer");
-		voDone.setup("vo_done");
 		voSpin.setup("vo_spin");
 
 		// build stuff in
@@ -98,9 +90,11 @@ var script = function(data, configHandler){
 
 				if ( typeInText ){
 					typeString(currentScriptObject.text, dest, showButtons);
-				} else {
-					showButtons();
 				}
+
+				// set timeout to show spin
+				spinTimeout = setTimeout(showSpinPrompt, 30 * 1000 );
+
 			}, 1000);
 
 		}, 1500);
@@ -112,6 +106,7 @@ var script = function(data, configHandler){
 
 	this.exit = function(/*evt*/){
 		clearTimeout(buildTimeout);
+		clearTimeout(spinTimeout);
 
 		setTimeout( function(){
 			MMI.hide(currentScript.id);
@@ -120,21 +115,8 @@ var script = function(data, configHandler){
 			spinDiv.classList.add("hideMe");
 			spinDiv.classList.remove("visible");
 
-			var openDiv = document.getElementById("promptOpenDrawers");
-			// hide(openDiv);
-			openDiv.classList.remove("visible");
-			openDiv.classList.add("hideMe");
-
 			var container = currentScript.getElementsByClassName("scriptInfoContainer")[0];
 			container.classList.add("disabled");
-
-			var btnContainer = document.getElementById("scriptButtonContainer");
-			btnContainer.classList.remove("enabled");
-			btnContainer.classList.add("disabled");
-
-			btnContainer = document.getElementById("scriptButtonDoneContainer");
-			btnContainer.classList.remove("enabled");
-			btnContainer.classList.add("disabled");
 
 			var scriptText = currentScript.getElementsByClassName("scriptText")[0];
 			scriptText.innerHTML = "";
@@ -142,19 +124,12 @@ var script = function(data, configHandler){
 			currentScript = null;
 			currentScriptObject = null;
 
-			MMI.show( ("start"), "block"  );
-			MMI.show( ("done"), "block"  );
-
 		}, 1000);
 
 		//cleanup
-		window.removeEventListener("start", showOpenPrompt);
-		window.removeEventListener("openDone", hideOpenPrompt);
 		window.removeEventListener("done", showSpinPrompt);
 
 		voIntro.stop();
-		voDrawer.stop();
-		voDone.stop();
 		voSpin.stop();
 		voScript.stop();
 	};
@@ -207,70 +182,7 @@ var script = function(data, configHandler){
 
 	var promptTimeout;
 
-	function showButtons(){
-		var btnContainer = document.getElementById("scriptButtonContainer");
-		btnContainer.classList.remove("disabled");
-		btnContainer.classList.add("enabled");
-	}
-
-	function showOpenPrompt(){
-		voIntro.stop();
-		voScript.stop();
-
-	    // round percentage widths
-	    // we know that button_lg in AM screen is 75vw
-	    var v1 = document.getElementById("videoArrow");
-	    v1.style.width = v1.style.height = Math.round(window.innerWidth * .75) + "px";
-	    var v2 = document.getElementById("videoSpin");
-	    v2.style.width = v2.style.height = Math.round(window.innerWidth * .75) + "px";
-
-		voIntro.stop();
-		voScript.stop();
-
-		var openDiv = document.getElementById("promptOpenDrawers");
-		// show(openDiv);
-		openDiv.classList.remove("hideMe");
-		openDiv.classList.add("visible");
-		
-		if ( voDrawer.exists() ){
-			voDrawer.play();
-		}
-
-		setTimeout(function(){
-			MMI.hide( "start");
-			MMI.show( "done", "block"  );
-
-		}, 1000);
-
-		// timeout prompt
-		// 1000 = fade in
-		promptTimeout = setTimeout(hideOpenPrompt, 1000 + 10000);
-	}
-
-	function hideOpenPrompt(){
-		clearTimeout(promptTimeout);
-
-		voDrawer.stop();
-
-		var openDiv = document.getElementById("promptOpenDrawers");
-		// hide(openDiv);
-		openDiv.classList.remove("visible");
-		openDiv.classList.add("hideMe");
-
-		setTimeout(function(){
-			var btnContainer = document.getElementById("scriptButtonDoneContainer");
-			btnContainer.classList.remove("disabled");
-			btnContainer.classList.add("enabled");
-
-			if ( voDone.exists() ){
-				voDone.play();
-			}
-		}, 1000);
-	}
-
 	function showSpinPrompt(){
-		voDrawer.stop();
-		voDone.stop();
 		var spinDiv = document.getElementById("promptSpinPuppet");
 		// show(spinDiv);
 		spinDiv.classList.remove("hideMe");

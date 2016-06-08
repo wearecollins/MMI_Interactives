@@ -3,6 +3,7 @@
  	"disableTimeout":true,
  	"configs":[
  		{"type":"number","key":"timeout"},
+ 		{"type":"number", "key":"numRetakes"},
         {"type":"boolean","key":"doStream"},
         {"type":"boolean","key":"showLocalShare"},
         {"type":"string", "key":"shareServer"}

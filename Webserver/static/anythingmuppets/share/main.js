@@ -10,6 +10,7 @@ var share = function(data, configHandler){
   **************************************************/
 
   var nRetakes = 0;
+  var maxRetakes = 0;
 
   // hack for multi image problem
   var didSetImage = false;
@@ -36,6 +37,8 @@ var share = function(data, configHandler){
   this.enter = function(/*evt*/){
     currentImageUrl = "";
     nRetakes = 0;
+
+    maxRetakes = configHandler.get("numRetakes", 0);
 
     sndFocusVo.setup("vo_focus");
     sndCountdown.setup("snd_countdown");
@@ -188,7 +191,7 @@ var share = function(data, configHandler){
   function skipToRetake(){
   //todo: WHERE ARE THESE COUNTED 
   // & HOW DO I GET SETTING?
-    if ( nRetakes >= 3 ){
+    if ( nRetakes >= maxRetakes ){
       share();
     } else {
       clearTimeout(countdownInterval);

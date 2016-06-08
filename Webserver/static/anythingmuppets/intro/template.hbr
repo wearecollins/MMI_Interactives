@@ -1,4 +1,9 @@
 <div id='{{name}}' class='page noselect'>
+
+  <!-- 'start over' -->
+  <div class="container type_sm leftContainer fillWhite" style="position: absolute; z-index:15; opacity:.75;" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
+  Start over</div>
+  
   <div class='background topL'>
     <video id="video" class="fillContainer introVideo">
         <source src="video/am_intro.mp4" type="video/mp4">
