@@ -1,5 +1,11 @@
 {
-  "source":"/Users/collinsbrix1/Dropbox/Code/OF/of_v0.X.X_github/apps/MMI_Interactives/Webserver/static/output/performance/",
-  "destination":"/Users/collinsbrix1/Dropbox/Code/OF/of_v0.X.X_github/apps/MMI_Interactives/Sharing/media/performance",
-  "cleanupMins":30
+  "sync":{
+    "source":"/Users/quin/Documents/of_v0.9.8/apps/MMI_Interactives/Webserver/static/output/performance/",
+    "destination":"/Users/quin/Documents/collins/muppets/media/performance",
+    "exclude":[]
+  },
+  "cleanup":{
+    "mins":30,
+    "exclude":[]
+  }
 }
