@@ -2,24 +2,27 @@ This is a Node.js® script which uses rsync to copy files between two directorie
 
 1. [dependencies](#dependencies)
 2. [setup](#setup)
-  1. [production](#production)
+   1. [production](#production)
 3. [running in development](#running-in-development)
 4. [configuration](#configuration)
-  1. [Sync configuration file](#sync-configuration-file)
-  2. [loop_conf.json](#loop_confjson)
+   1. [Sync configuration file](#sync-configuration-file)
+   2. [loop_conf.json](#loop_confjson)
 5. [Troubleshooting](#troubleshooting)
 
 # dependencies
 developed/tested/used with 
 
 * Node.js
+  - 6.10.0 (LTS)
   - 5.9.1 
   - 4.3.1
 * npm 
+  - 3.10.10
   - 3.7.3
 * -nix OS
   - Ubuntu 14.04
   - OSX 10.11
+  - OSX 10.12.3
 
 # setup
 * `npm install`

@@ -2,8 +2,8 @@
 
 1. [Overview](#overview)
 1. [Setting Up](#setting-up)
- 1. [Setup Development](#setup-Development)
- 1. [Cameras](#cameras)
+   1. [Setup Development](#setup-Development)
+   1. [Cameras](#cameras)
 1. [Running](#running)
 1. [Section overview](#section-overview)
 1. [Troubleshooting](#troubleshooting)
@@ -50,49 +50,49 @@ Tap 'm' to open up the configuration mode. You may have to click/tap on the scre
 ![Cfg](screenshots/performance/p_cfg_01.png)
 
 0. Top right:
-  - Refresh - Reload settings (set to defaults)
-  - Disk - Save settings
-   - The settings files are _inside_ the application: 
-    - Right click and select 'Show package contents'
-    - Navigate to Contents/Resources
-    - 'settings_perf.xml' is the XML file for this GUI
+   - Refresh - Reload settings (set to defaults)
+   - Disk - Save settings
+     - The settings files are _inside_ the application: 
+       - Right click and select 'Show package contents'
+       - Navigate to Contents/Resources
+       - 'settings_perf.xml' is the XML file for this GUI
 0. Performance or AM - Slider
-  - Slide this to '0' to tell the Frontend this is a 'performance' installation
-  - Slide to '1' to say it's the Anything Muppets installation
-  - (this is mostly used for testing!)
+   - Slide this to '0' to tell the Frontend this is a 'performance' installation
+   - Slide to '1' to say it's the Anything Muppets installation
+   - (this is mostly used for testing!)
 0. Reload cameras - Button
-  - Re-connect to cameras. Use this if you've unplugged a camera, or are exeriencing general problems. You shouldn't have to use this often!
+   - Re-connect to cameras. Use this if you've unplugged a camera, or are exeriencing general problems. You shouldn't have to use this often!
 0. Discover cameras - Button
-  - Find any connected Point Grey Cameras. Do this the first time you plug in your cameras.
-  - This will open and _save over_ any existing settings! It will also set the default settings of the camera based on which installation you are running.
-  - This saves to 'performance.xml' inside the app (see 'Save' above)
+   - Find any connected Point Grey Cameras. Do this the first time you plug in your cameras.
+   - This will open and _save over_ any existing settings! It will also set the default settings of the camera based on which installation you are running.
+   - This saves to 'performance.xml' inside the app (see 'Save' above)
 0. Which camera top - Slider
-  - Use this to set which camera– 0 or 1–is the 'top' camera. 
+   - Use this to set which camera– 0 or 1–is the 'top' camera. 
 0. Recording Params - section
-  - This is an advanced section! Only edit this if you absolutely have to
+   - This is an advanced section! Only edit this if you absolutely have to
    0. Camera switch interval - slider
-    - How often it edits between the two cameras - in milliseconds
-    - Default - 3 seconds (3000)
+      - How often it edits between the two cameras - in milliseconds
+      - Default - 3 seconds (3000)
    1. Recording length - slider
-    - How long the recordings are at maximum (failsafe)
-    - Note: the frontend sends a 'done' event, so this is really based on the length of your movie clips
+      - How long the recordings are at maximum (failsafe)
+      - Note: the frontend sends a 'done' event, so this is really based on the length of your movie clips
 0. Advanced params - section
 These are all read-only, and can be set by editing the settings XML file _inside the application_ (see 'Save' above)
-  0. Output folder - text input
-  0. Stream which camera - slider
-   - Read-only value of what camera is currently showing up in the frontend
+   0. Output folder - text input
+   0. Stream which camera - slider
+      - Read-only value of what camera is currently showing up in the frontend
 
 #### Camera configuration
 Type 'm' again to open up Camera settings
 ![Cfg_02](screenshots/performance/p_cfg_02.png)
 
 0. Top right - Refresh and save (see above)
-  - These save to Contents/Resources/performance_camera.xml
+   - These save to Contents/Resources/performance_camera.xml
 0. Mode - slider
    - This sets how the camera draws to the frontend:
-    0. Scale to height
-    1. Scale to width
-    2. Draw without scaling
+     0. Scale to height
+     1. Scale to width
+     2. Draw without scaling
 1. Camera ____ (where ___ is the camera GUID)
 There will be as many of these groups as there are cameras
 

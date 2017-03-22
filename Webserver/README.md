@@ -3,22 +3,25 @@ multi-state web apps. The framework is detailed in [STRUCTURE.md](STRUCTURE.md)
 
 0. [Dependencies](#dependencies)
 0. [Setup](#setup)
-  - [Anything Muppets](#anythingmuppets)
-  - [Performance](#performance)
-  - [Share](#share)
+   - [Anything Muppets](#anythingmuppets)
+   - [Performance](#performance)
+   - [Share](#share)
 0. [Running](#running)
 
 # Dependencies
 developed/tested/used with 
 
 * Node.js
+  - 6.10.0 (LTS)
   - 5.9.1 
   - 4.3.1
 * npm 
+  - 3.10.10
   - 3.7.3
 * -nix OS
   - Ubuntu 14.04
   - OSX 10.11
+  - OSX 10.12.3
 
 # Setup
 
@@ -37,12 +40,13 @@ developed/tested/used with
 - Open Webserver/static/share/config.json
   - Edit "diskPath": The _absolute path_ to the 'media' folder managed by the [Sync](https://github.com/wearecollins/MMI_Interactives/Sync) service
   - Edit "shareServer": The _URL_ to the [Sharing service](https://github.com/wearecollins/MMI_Interactives/Sharing)
+  - TODO: document using "emailURL" with ngrok
 
 # Running
 The station this instance is hosting is passed in via a _--station_ parameter.
 
 * `npm start -- --station [STATION]` where _[STATION]_ is one of `share`, `anythingmuppets`, or `performance`
-  - yes, there is an extra _--_ when running via _npm_
+  - yes, there is an extra `--` when running via _npm_
   - without npm: `node server.js --station [STATION]`
 * open frontend
   - if using the [Frontend App](../Frontend/), just run that app and it will load the webpage.

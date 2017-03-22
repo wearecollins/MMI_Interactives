@@ -3,12 +3,12 @@
 ## Table of Contents
 
 1. [Introduction](#Introduction)
-  1. [Performance](#performance)
-  2. [Anything Muppet](#anything-muppet)
-  3. [Sharing Station](#sharing-station)
+   1. [Performance](#performance)
+   2. [Anything Muppet](#anything-muppet)
+   3. [Sharing Station](#sharing-station)
 2. [Setup](#setup)
-  1. [Overview](#hardware-overview)
-  1. [Production](#production)
+   1. [Overview](#hardware-overview)
+   1. [Production](#production)
 3. [Running](#running)
 4. [This Folder](#this-folder)
 
@@ -16,7 +16,7 @@
 
 # Introduction
 
-This repository contains digital portions of a Jim Henson Exhibition for the [Museum of the Moving Image](http://www.movingimage.us/). There are three touchpoints in this repo. They both share a lot of backend infrastructure.
+This repository contains digital portions of a Jim Henson Exhibition for the [Museum of the Moving Image](http://www.movingimage.us/). There are three touchpoints in this repo. They all share a lot of backend infrastructure.
 
 This document will guide you through the overall [setup](#Setup) for the installation, and a general guide to [running](#running) the installation. 
 
@@ -77,7 +77,7 @@ Follow these general steps for setting up all interactives:
 3. Setup the [Anything Muppet Frontend](AnythingMuppets.md) on the Anything Muppet computer
 5. Setup the [Sync](Sync/) service on both the Performance and Anything Muppet computers
 6. Setup the [Share Frontend Webserver](Webserver/README.md#share) on the Central Server
-  - including setting up the iPad to be pinned to the Share UI
+   - including setting up the iPad to be pinned to the Share UI
 
 * * *
 
@@ -104,22 +104,22 @@ In the bootstrapping steps, you may setup each interactive to run automatically 
 
 # This folder
 * AM_Input
- * Arduino code for [Adafruit Feather](https://www.adafruit.com/product/2771) interface for Anything Muppet Table
+  - Arduino code for [Adafruit Feather](https://www.adafruit.com/product/2771) interface for Anything Muppet Table
 * Camera
- * Stand-alone application for connecting to and streaming cameras for installation
- * Not in use in final installation–recommended only for testing on non-Mac computers
+  - Stand-alone application for connecting to and streaming cameras for installation
+  - Not in use in final installation–recommended only for testing on non-Mac computers
 * Frontend
- * Application that bundles a web browser into openFrameworks, shows interactive frontends, and connects to cameras 
+  - Application that bundles a web browser into openFrameworks, shows interactive frontends, and connects to cameras 
 * Screenshots
- * Images for documentation
+  - Images for documentation
 * Sharing
- * Scripts for connecting to Facebook and Tumblr (and information on how to setup/connect to each of these)
+  - Scripts for connecting to Facebook and Tumblr (and information on how to setup/connect to each of these)
 * Startup
- * Scripts for bootstrapping and running each machine and touchpoint (respectively)
+  - Scripts for bootstrapping and running each machine and touchpoint (respectively)
 * Sync
- * Scripts for syncing files from each touchpoint computer to the Central Server
+  - Scripts for syncing files from each touchpoint computer to the Central Server
 * Utilities
- * Scripts for a) creating a 'Release' zip to be uploaded and b) creating a PDF of Readme documentation
+  - Scripts for a) creating a 'Release' zip to be uploaded and b) creating a PDF of Readme documentation
 * Webserver
- * All files for application Frontends, including server-side and frontend scripts
- * Does NOT include media files–these are only available via Releases (above) or [Dropbox](https://www.dropbox.com/sh/43la3h7bfgfy4du/AAA9zxHBUFdrLhJ2XLEarvERa?dl=0)
+  - All files for application Frontends, including server-side and frontend scripts
+  - Does NOT include media files–these are only available via Releases (above) or [Dropbox](https://www.dropbox.com/sh/43la3h7bfgfy4du/AAA9zxHBUFdrLhJ2XLEarvERa?dl=0)

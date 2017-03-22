@@ -2,15 +2,15 @@ This Node.js® server posts videos and photos to the Museum's Facebook and Tumbl
 
 0. [dependencies](#dependencies)
 0. [setup](#setup)
-  0. [platform authentication](#platform-authentication)
-    1. [facebook](#facebook)
-    2. [tumblr](#tumblr)
+   0. [platform authentication](#platform-authentication)
+      1. [facebook](#facebook)
+      2. [tumblr](#tumblr)
 0. [configuration](#configuration)
-  1. [config.json](#configjson)
-  2. [facebookToken.json](#facebooktokenjson)
-  3. [tumblrToken.json](#tumblrtokenjson)
+   1. [config.json](#configjson)
+   2. [facebookToken.json](#facebooktokenjson)
+   3. [tumblrToken.json](#tumblrtokenjson)
 0. [Running](#running)
-  0. [Endpoints](#endpoints)
+   0. [Endpoints](#endpoints)
 0. [Limitations](#limitations)
 0. [Troubleshooting](#troubleshooting)
 
@@ -18,13 +18,16 @@ This Node.js® server posts videos and photos to the Museum's Facebook and Tumbl
 developed/tested/used with
 
 * Node.js
+  - 6.10.0 (LTS)
   - 5.9.1 
   - 4.3.1
 * npm 
+  - 3.10.10
   - 3.7.3
 * -nix OS
   - Ubuntu 14.04
   - OSX 10.11
+  - OSX 10.12.3
 * [Facebook app](https://developers.facebook.com/apps/) setup directions [below](#facebook)
 * [Tumblr app](https://www.tumblr.com/oauth/apps) setup directions [below](#tumblr)
 * server for serving images and videos to the internet
@@ -38,7 +41,7 @@ media to the internet.
 
 1. Open Terminal
 2. Navigate to where you installed the MMI_Interactives code, and to the Sharing folder inside
-  * ```cd /path/to/MMI_Interactives/Sharing```
+   * ```cd /path/to/MMI_Interactives/Sharing```
 3. `npm install` to download all Node.js dependencies
 4. go through [Platform Authentication](#platform-authentication)
 
@@ -47,11 +50,11 @@ First we need to set up the ability to post media to Tumblr and Facebook.
 These instructions were current as of May 2016.
 
 0. Ensure your server has a publicly-accessible URL
-  - The token-fetching server binds to port 8012. Make sure requests are forwarded to the appropriate port before continuing.
-  - For the Museum server, this should already be configured. For testing and/or debugging, we suggest using [usig ngrok](https://github.com/wearecollins/MMI_Interactives/#using-ngrok)
-  - If your computer or network configuration make this impractical, read through [using ngrok](../Readme.md#using-ngrok)
+   - The token-fetching server binds to port 8012. Make sure requests are forwarded to the appropriate port  before continuing.
+   - For the Museum server, this should already be configured. For testing and/or debugging, we suggest using [ usig ngrok](https://github.com/wearecollins/MMI_Interactives/#using-ngrok)
+   - If your computer or network configuration make this impractical, read through [using ngrok](../ Readme.md#using-ngrok)
 1. Setup a [config.json](#configjson) file by copying and renaming the config.json.sample file
-  - Open this file (you will edit it in the Facebook and Tumblr steps below)
+   - Open this file (you will edit it in the Facebook and Tumblr steps below)
 2. Set up a Facebook App ([below](#facebook)) and Tumblr App ([below](#tumblr))
 3. Follow the instructions for the [Token Fetching Service](fetchToken/)
 4. Now you are ready to [Run](#running)
@@ -70,9 +73,9 @@ Once you are signed in, you can set up the App.
    0. First, click "+ Add Platform"
    1. Select "Website"
    2. In "App Domains" (under settings) and "Site URL" (under 'Website'), enter your public-facing URL
-     0. For production, it will most likely be [http://www.movingimage.us/](http://www.movingimage.us/)
-     0. For developing using ngrok, it will be something like http://2z999999.ngrok.io
-     0. ![Screenshot](facebook_app.jpg) 
+      0. For production, it will most likely be [http://www.movingimage.us/](http://www.movingimage.us/)
+      0. For developing using ngrok, it will be something like http://2z999999.ngrok.io
+      0. ![Screenshot](facebook_app.jpg) 
    3. Click "Save Changes"
 3. You may add other users via the _Roles_ tab
    0. In order to authenticate with the Sharing script, they must have a Role (_Administrator_, _Developer_, or _Tester_)
@@ -87,17 +90,17 @@ able to post to Tumblr. This requires you sign in as the Museum on Tumblr.
 0. Navigate to [https://www.tumblr.com/oauth/apps](https://www.tumblr.com/oauth/apps)
 1. Click "+ Register Application"
 2. On the Setup screen, fill in all required fields:
-  - Application Name: 'HensonPost' or similar (up to you)
-  - Application Description: "A Tumblr app that posts content from the Jim Henson Exhibition"
-  - Website URL: see 'Default callback URL' below; it should match this.
-  - Administrative contact email: your email
-  - Default callback URL: The URL you setup above
-    0. For production, it will most likely be [http://www.movingimage.us/](http://www.movingimage.us/)
-    0. For developing using ngrok, it will be something like http://2z999999.ngrok.io
-    0. ![Screenshot](tumblr_app.jpg)
+   - Application Name: 'HensonPost' or similar (up to you)
+   - Application Description: "A Tumblr app that posts content from the Jim Henson Exhibition"
+   - Website URL: see 'Default callback URL' below; it should match this.
+   - Administrative contact email: your email
+   - Default callback URL: The URL you setup above
+     0. For production, it will most likely be [http://www.movingimage.us/](http://www.movingimage.us/)
+     0. For developing using ngrok, it will be something like http://2z999999.ngrok.io
+     0. ![Screenshot](tumblr_app.jpg)
 3. Click "Register" to finish
 4. Copy the Tumblr App's Key and Secret into [config.json](#configjson)
-  - This is always accessible under your app at the [Tumblr Apps page](https://www.tumblr.com/oauth/apps)
+   - This is always accessible under your app at the [Tumblr Apps page](https://www.tumblr.com/oauth/apps)
 5. Contunue [Setting up](#platformauthentication)
 
 # configuration

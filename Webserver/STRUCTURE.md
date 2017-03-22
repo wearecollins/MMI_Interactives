@@ -2,10 +2,10 @@
 0. [Structure](#structure)
 0. [Configuration](#configuration)
 0. [Modules](#modules)
-  0. [Log4Javascript to Log4js](#log4javascript-to-log4js)
-  0. [Configer](#configer)
-  0. [Dirlister](#dirlister)
-  0. [Computer Control](#computer-control)
+   0. [Log4Javascript to Log4js](#log4javascript-to-log4js)
+   0. [Configer](#configer)
+   0. [Dirlister](#dirlister)
+   0. [Computer Control](#computer-control)
 0. [Endpoints](#endpoints)
 
 ## Instructions
@@ -19,13 +19,13 @@ The design is as follows:
 
 * [main.js](static/js/main.js) manages the core setup, event management, and websocket communication functionality
 * the starting html file (specified using the _--station_ parameter, defaulting to [demo.html](static/demo.html)) contains a small script element that defines 
-    - a list of "pages" to be loaded
-    - a set of custom transitions for various modes
+  - a list of "pages" to be loaded
+  - a set of custom transitions for various modes
 * for each "page" (with path <PagePath>) defined in the starting html file, there is expected to be the following subdirectory structure:
-    - <PagePath>/main.js
-    - <PagePath>/style.css
-    - <PagePath>/template.hbr
-    - <PagePath>/data.json
+  - <PagePath>/main.js
+  - <PagePath>/style.css
+  - <PagePath>/template.hbr
+  - <PagePath>/data.json
 
 ## Configuration
 
@@ -40,7 +40,7 @@ protecting the server from remote shutdowns.
 * **additionalStatic** set to an array of objects, each with _diskPath_ 
 and _webPath_ keys, to allow additional directories to be served via the
 static server and listed via the [directory lister](#dirlister).
-    - for example: `"additionalStatic":[{"diskPath":"/Users/user/docs/",
+  - for example: `"additionalStatic":[{"diskPath":"/Users/user/docs/",
 "webPath":"/docs"}]` will allow the specified _diskPath_ to be accessible from 
 the _/docs_ endpoint of the server.
 
