@@ -31,7 +31,7 @@ developed/tested/used with
 
 0. In terminal, `cd` to this directory. 
 1. Run the oh-so-simple setup command:
-  - `npm install`
+   - `npm install`
 
 ## Anything Muppets
 - All configurations in the Anything Muppets app can be set in the Admin interface
