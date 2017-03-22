@@ -19,6 +19,7 @@
 		1D5F3298C2FA073628012944 /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DE5C29BDBD2CAA1DD0021 /* ofxCvContourFinder.cpp */; };
 		250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C7160245B19131DAE6128 /* ofxCvColorImage.cpp */; };
 		28E5678DFAF9790F8DC83D29 /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60BDE2BF33A93F75F7131A09 /* Distance.cpp */; };
+		3443BE461E7B6D8800DD7AA0 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3443BE451E7B6D8700DD7AA0 /* jsoncpp.cpp */; };
 		36AF18B699A55C9F97AD9E9C /* PointGrey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC7AA847396B8D43A9B6FAD6 /* PointGrey.cpp */; };
 		3FDE7D001F6924EB84D8CFA2 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C645B202DE455B10F793B7A /* Events.cpp */; };
 		40624A49E19C4E5E9664082E /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D39EFAEA1F4F93424480956 /* Client.cpp */; };
@@ -235,6 +236,9 @@
 		3320E3391BCC52FB025EF699 /* warp_shuffle.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = warp_shuffle.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/cuda/warp_shuffle.hpp; sourceTree = SOURCE_ROOT; };
 		33FAD1336E9D266254C08C44 /* warp_reduce.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = warp_reduce.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/cuda/warp_reduce.hpp; sourceTree = SOURCE_ROOT; };
 		33FF03222909C1A0ECE43753 /* cv.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = cv.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/cv.h; sourceTree = SOURCE_ROOT; };
+		3443BE431E7B6D8700DD7AA0 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
+		3443BE441E7B6D8700DD7AA0 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		3443BE451E7B6D8700DD7AA0 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		36D705C8BE762967278AF471 /* Server.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Server.h; path = addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets/Server.h; sourceTree = SOURCE_ROOT; };
 		36F0FF7F8D7342D220CC6319 /* dummy.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = dummy.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/dummy.h; sourceTree = SOURCE_ROOT; };
 		378BC045EE22F31A93209D1F /* types.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = types.h; path = addons/ofxLibdc/libs/dc1394/include/dc1394/types.h; sourceTree = SOURCE_ROOT; };
@@ -831,6 +835,25 @@
 			name = shape;
 			sourceTree = "<group>";
 		};
+		3443BE411E7B6D8700DD7AA0 /* jsoncpp */ = {
+			isa = PBXGroup;
+			children = (
+				3443BE421E7B6D8700DD7AA0 /* json */,
+				3443BE451E7B6D8700DD7AA0 /* jsoncpp.cpp */,
+			);
+			name = jsoncpp;
+			path = addons/ofxLibwebsockets/libs/jsoncpp;
+			sourceTree = "<group>";
+		};
+		3443BE421E7B6D8700DD7AA0 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				3443BE431E7B6D8700DD7AA0 /* json-forwards.h */,
+				3443BE441E7B6D8700DD7AA0 /* json.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
 		38D119387412EF71F9FAA033 /* videostab */ = {
 			isa = PBXGroup;
 			children = (
@@ -1132,6 +1155,7 @@
 		7FB879F3ADB226C4FE1B6053 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				3443BE411E7B6D8700DD7AA0 /* jsoncpp */,
 				B064C14BC2EBBCDFF2F62BA9 /* libwebsockets */,
 				788B9E2BDE441F18048B8F48 /* ofxLibwebsockets */,
 			);
@@ -1686,6 +1710,7 @@
 				63020F16C7E8DED980111241 /* ofxCvImage.cpp in Sources */,
 				D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */,
 				15DCF11A6445D447A0D48491 /* ETF.cpp in Sources */,
+				3443BE461E7B6D8800DD7AA0 /* jsoncpp.cpp in Sources */,
 				6FB779180FB3B27D323336AE /* fdog.cpp in Sources */,
 				68CF26ED86C3C10C45460C0F /* Calibration.cpp in Sources */,
 				01C212FE1CEA07CD009E1695 /* ofxLog4Cpp.cpp in Sources */,

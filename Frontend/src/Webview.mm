@@ -17,7 +17,7 @@
 {
     [super initWithFrame:frameRect];
     
-    localMonitorHandler = [NSEvent addLocalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent *e) {
+    localMonitorHandler = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskMouseMoved handler:^(NSEvent *e) {
         [self _mouseMoved:e];
         return e;
     }];
@@ -50,15 +50,16 @@ static int conv_button_number(int n)
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    
     NSPoint p = [self getCurrentMousePos];
-    
+
     [self beginWindowEvent];
     
     int b = conv_button_number([theEvent buttonNumber]);
     ofEvents().notifyMousePressed(p.x, p.y, b);
     
     [self endWindowEvent];
+    
+    [super mouseDown:theEvent];
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent
@@ -76,7 +77,6 @@ static int conv_button_number(int n)
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-    
     NSPoint p = [self getCurrentMousePos];
     
     [self beginWindowEvent];
@@ -85,6 +85,8 @@ static int conv_button_number(int n)
     ofEvents().notifyMouseReleased(p.x, p.y, b);
     
     [self endWindowEvent];
+    
+    [super mouseUp:theEvent];
 }
 
 - (void)_mouseMoved:(NSEvent *)theEvent
@@ -142,16 +144,16 @@ static int conv_button_number(int n)
     
     NSEventModifierFlags flags = [theEvent modifierFlags];
     
-    if( flags & NSCommandKeyMask ){
+    if( flags & NSEventModifierFlagCommand ){
         ofEvents().notifyKeyPressed(OF_KEY_SUPER);
         
-    } else if( flags & NSShiftKeyMask ){
+    } else if( flags & NSEventModifierFlagShift ){
         ofEvents().notifyKeyPressed(OF_KEY_SHIFT);
         
-    } else if( flags & NSControlKeyMask ){
+    } else if( flags & NSEventModifierFlagControl ){
         ofEvents().notifyKeyPressed(OF_KEY_CONTROL);
         
-    }   else if( flags & NSAlternateKeyMask ){
+    }   else if( flags & NSEventModifierFlagOption ){
         ofEvents().notifyKeyPressed(OF_KEY_ALT);
         
     } else {
@@ -227,6 +229,8 @@ static int conv_button_number(int n)
     ofEvents().notifyKeyPressed(key);
     
     [self endWindowEvent];
+    
+    [super keyDown:theEvent];
 }
 
 - (void)keyUp:(NSEvent *)theEvent
@@ -265,6 +269,8 @@ static int conv_button_number(int n)
     ofEvents().notifyKeyReleased(key);
     
     [self endWindowEvent];
+    
+    [super keyUp:theEvent];
 }
 
 - (void)beginWindowEvent {}

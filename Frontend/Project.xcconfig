@@ -11,4 +11,4 @@ ICON_NAME_RELEASE = icon.icns
 ICON_FILE_PATH =
 
 OTHER_LDFLAGS = $(OF_CORE_LIBS) $(OF_CORE_FRAMEWORKS) "../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a" "../Camera/addons/ofxLog4Cpp/libs/log4cpp/lib/osx/liblog4cpp.a"
-HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS) "../Camera/addons/ofxLog4Cpp/libs/log4cpp/include"
+HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS) "../Camera/addons/ofxLog4Cpp/libs/log4cpp/include" "../Camera/addons/ofxLibwebsockets/libs/jsoncpp/json"

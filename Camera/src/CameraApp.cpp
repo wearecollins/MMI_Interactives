@@ -17,7 +17,7 @@ namespace mmi {
         gui->setup("Settings", settingsFile);
         
         gui->registerMouseEvents();
-        gui->add(whichSetup.set("Performance or AM ", 0, 0, 1 ));
+        gui->add(whichSetup.set("Performance or AM", 0, 0, 1 ));
         gui->add(reloadCameras.set("Reload cameras", false));
         gui->add(discoverCameras.set("Discover cameras", false));
         gui->add(cameraTop.set("Which camera top", 0, 0, 1));
@@ -26,7 +26,7 @@ namespace mmi {
         ofXml settings;
         string xml = "anythingmuppets";
         if ( settings.load( ofToDataPath( settingsFile ) ) ){
-            int mode = settings.getValue("Mode", 0);
+            int mode = settings.getValue(whichSetup.getEscapedName(), 0);
             if ( mode == 0 ){
                 xml = "performance";
             } else {
@@ -204,7 +204,10 @@ namespace mmi {
         
         // Debugging
     #ifdef DEBUG_ZONE
-        if ( e.key == 's' ){
+        if (e.key == 'f'){
+            gui->saveToFile(ofToDataPath( "settings_out.xml" ));
+        }
+        else if ( e.key == 's' ){
             int whichCamera = whichStream.get() == 0 ? 1 : 0;
             messageHdlr.onSwitchCamera.notify(whichCamera);
         } else if ( e.key == 'H' ){

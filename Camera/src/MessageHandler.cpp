@@ -35,25 +35,25 @@ namespace mmi {
         if ( !bConnected && ofGetElapsedTimeMillis() - lastTimeTriedConnect > reconnectInterval ){
             lastTimeTriedConnect = ofGetElapsedTimeMillis();
             connect();
-            ofLogVerbose()<<"[MessageHanlder] - Disconnected from Frontend. Trying reconnect";
+            ofLogVerbose()<<"[MessageHandler] - Disconnected from Frontend. Trying reconnect";
         }
     };
     
     //--------------------------------------------------------------
     void MessageHandler::onMessage( ofxLibwebsockets::Event & e ){
-        if ( !e.json.is_null() ){
+        if ( !e.json.isNull() ){
             
             // state event
-            if ( !e.json["state"].is_null() ){
+            if ( !e.json["state"].isNull() ){
                 
             // event event
-            } else if ( !e.json["event"].is_null() ){
+            } else if ( !e.json["event"].isNull() ){
                 auto n = e.json["event"]["name"];
                 if ( n == "take_photo" ){
-                    string n = e.json["event"]["detail"];
+                    string n = e.json["event"]["detail"].asString();
                     ofNotifyEvent( onCaptureImage, n );
                 } else if ( n == "confirm_photo" ){
-                    string n = e.json["event"]["detail"];
+                    string n = e.json["event"]["detail"].asString();
                     ofNotifyEvent( onConfirmImage, n );
                 } else if (n == "camera_front"){
                     int whichCamera = 0;
@@ -62,8 +62,8 @@ namespace mmi {
                     int whichCamera = 1;
                     ofNotifyEvent( onSwitchCamera, whichCamera );
                 } else if (n == "record_video"){
-                    string v = e.json["event"]["detail"]["clip"];
-                    string n = e.json["event"]["detail"]["name"];
+                    string v = e.json["event"]["detail"]["clip"].asString();
+                    string n = e.json["event"]["detail"]["name"].asString();
                     string s = v +":"+ n;
                     // pack video and name into : separated streing
                     ofNotifyEvent( onStartRecording, s );
@@ -71,32 +71,32 @@ namespace mmi {
             }
             
             if ( e.json["type"] == "event" ){
-                int whichCamera = e.json["data"];
+                int whichCamera = e.json["data"].asInt();
                 ofNotifyEvent( onSwitchCamera, whichCamera );
             }
         }
-        ofLogVerbose()<<"[MessageHanlder] - Recieved message from Frontend: "<< e.message;
+        ofLogVerbose()<<"[MessageHandler] - Recieved message from Frontend: "<< e.message;
     }
     
     
     //--------------------------------------------------------------
     void MessageHandler::onVideoRecorded( string & file ){
-        ofJson json;
-        json["event"] = ofJson::object();
+        Json::Value json;
         json["event"]["name"] = "videoRecorded";
         json["event"]["detail"] = file;
         
-        wsClient->send( json.dump() );
+        Json::FastWriter writer;
+        wsClient->send( writer.write(json) );
     }
     
     //--------------------------------------------------------------
     void MessageHandler::onImageCaptured( string & file ){
-        ofJson json;
-        json["event"] = ofJson::object();
+        Json::Value json;
         json["event"]["name"] = "imageCapture";
         json["event"]["detail"] = file;
         
-        wsClient->send( json.dump() );
+        Json::FastWriter writer;
+        wsClient->send( writer.write(json) );
     }
     
 #pragma mark ofxLibwebsockets Events

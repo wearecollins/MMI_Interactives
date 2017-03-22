@@ -27,16 +27,11 @@ namespace mmi {
         params.setName("Recording params");
         params.add(recordInterval.set("Camera switch interval", 5000, 0, 15000));
         params.add(recordLength.set("Recording length", 15000, 1, 60000));
-//        params.add(camWidth.set("Video width", 1040, 1, 2080) );
-//        params.add(camHeight.set("Video height", 776, 1, 1552) );
-        advancedParams.add(bitrate.set("Bitrate",800, 1, 10000));
         
         advancedParams.setName("Advanced params");
-//        advancedParams.add(folderDest.set("Output Folder","../../../data"));
+        advancedParams.add(bitrate.set("Bitrate",800, 1, 10000));
         advancedParams.add(folderAppend.set("Install folder","performance"));
         advancedParams.add(tempAppend.set("Temp folder","temp"));
-//        advancedParams.add(fileName.set("File name",""));
-        
         // this is now automagic
         //advancedParams.add(pixFmt.set("Pixel Format","rgb24"));
         advancedParams.add(fileExt.set("File extension",".mp4"));
@@ -283,9 +278,9 @@ namespace mmi {
     void RecordManager::confirmPhotoEvt( string & baseName ){
         auto outputName = ofToDataPath(folderDest.get() + "/" + tempAppend.get() + "/" + currentFileName, true );
         ofFile img;
-        if (img.open(outputName)){
+        if (img.open(outputName, ofFile::Mode::ReadOnly, true)){
             string dest = ofToDataPath(folderDest.get() + "/" + folderAppend.get() + "/" + currentFileName, true );
-            img.copyTo(dest);
+            img.copyTo(dest, false);
             ofLogVerbose()<<"[RecordManager] - final photo saved :"<<dest;
         } else {
             ofLogError()<<"[RecordManager] - photo not found :"<<outputName;

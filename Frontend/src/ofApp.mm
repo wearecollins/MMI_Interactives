@@ -34,29 +34,8 @@ static void setupEventHelper(ofApp *app)
 
 - (void)setup
 {
-    // attach OF event helper
-    setupEventHelper(self);
-    ofAddListener(ofEvents().keyPressed, eventHelper.get(), &EventHelper::keyReleased);
-    
-    // attach log4cpp
-    // channels can be configured in bin/data/log4cpp.properties
-    shared_ptr<ofxLog4CppChannel> log(new ofxLog4CppChannel());
-    ofSetLoggerChannel(log);
-    
-    id globalKey = [NSEvent addGlobalMonitorForEventsMatchingMask:NSKeyUpMask handler:^(NSEvent *e) {
-        [self keyUp:e];
-    }];
-    
     /**************************************
-        SET GL
-     *************************************/
-    ofSetFrameRate(60);
-    ofBackground(ofColor(255,255,255,0));
-    
-    ofGetGLRenderer()->setOrientation(OF_ORIENTATION_DEFAULT, true);
-    
-    /**************************************
-        Serve/load from Resources
+     Serve/load from Resources
      *************************************/
     
     // this code is amazing, and from here:
@@ -74,6 +53,27 @@ static void setupEventHelper(ofApp *app)
     }
     CFRelease(bundleURL_);
     
+    // attach log4cpp
+    // channels can be configured in Resources/log4cpp.properties
+    shared_ptr<ofxLog4CppChannel> log(new ofxLog4CppChannel());
+    ofSetLoggerChannel(log);
+    
+    // attach OF event helper
+    setupEventHelper(self);
+    ofAddListener(ofEvents().keyPressed, eventHelper.get(), &EventHelper::keyReleased);
+    
+    id globalKey = [NSEvent addGlobalMonitorForEventsMatchingMask:NSEventMaskKeyUp handler:^(NSEvent *e) {
+        [self keyUp:e];
+    }];
+    
+    /**************************************
+        SET GL
+     *************************************/
+    ofSetFrameRate(60);
+    ofBackground(ofColor(255,255,255,0));
+    
+    ofGetGLRenderer()->setOrientation(OF_ORIENTATION_DEFAULT, true);
+    
     /**************************************
         Build WKWebView
      *************************************/
@@ -90,7 +90,9 @@ static void setupEventHelper(ofApp *app)
     [self loadURL];
     
     [webView setWantsLayer:YES];
-    [webView setValue:@YES forKey:@"drawsTransparentBackground"];
+    // drawsTransparentBackground is deprecated, I think drawsBackground is the new key
+    //[webView setValue:@(YES) forKey:@"drawsTransparentBackground"];
+    [webView setValue:@(NO) forKey:@"drawsBackground"];
     
     [[self superview] addSubview:webView positioned:NSWindowAbove relativeTo:nil];
     
@@ -125,7 +127,7 @@ static void setupEventHelper(ofApp *app)
 
 - (void) goFullscreen
 {
-    if ( (([[self window] styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask) ) return;
+    if ( (([[self window] styleMask] & NSWindowStyleMaskFullScreen) == NSWindowStyleMaskFullScreen) ) return;
     
     [[self window] toggleFullScreen:nil];
     

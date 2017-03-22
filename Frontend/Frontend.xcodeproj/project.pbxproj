@@ -116,6 +116,8 @@
 		01F10D281CA5ECC7006937FA /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F10D211CA5ECC7006937FA /* Util.cpp */; };
 		01F8BD531CAAE3790011B550 /* clips in Resources */ = {isa = PBXBuildFile; fileRef = 01F8BD521CAAE3790011B550 /* clips */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
+		34AA18C31E7B27290066CC93 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34AA18C21E7B27290066CC93 /* jsoncpp.cpp */; };
+		34AA18C41E7B27290066CC93 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34AA18C21E7B27290066CC93 /* jsoncpp.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		5039C0C54BD5189DAAD33A9A /* ofxCocoaGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9317C7C01D7880E4E996E041 /* ofxCocoaGLView.mm */; };
 		5841DDD6B5D9E3D03AACEFCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C49E9FA2A6A7B1D1F3601A /* main.m */; };
@@ -532,6 +534,9 @@
 		2834D88A62CD23F3DE2C47D1 /* ofxButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxButton.h; path = ../../../addons/ofxGui/src/ofxButton.h; sourceTree = SOURCE_ROOT; };
 		2CE1CB5DCF4228611BA16CB7 /* AppDelegate.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AppDelegate.h; path = src/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		2F346019990F7A5F805DB80D /* dc1394.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = dc1394.h; path = ../Camera/addons/ofxLibdc/libs/dc1394/include/dc1394/dc1394.h; sourceTree = SOURCE_ROOT; };
+		34AA18C01E7B27290066CC93 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
+		34AA18C11E7B27290066CC93 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		34AA18C21E7B27290066CC93 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		35497228582B8F1FE162B7F2 /* capture.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = capture.h; path = ../Camera/addons/ofxLibdc/libs/dc1394/include/dc1394/capture.h; sourceTree = SOURCE_ROOT; };
 		3C98EDF07D70CFB010FD17CC /* control.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = control.h; path = ../Camera/addons/ofxLibdc/libs/dc1394/include/dc1394/control.h; sourceTree = SOURCE_ROOT; };
 		52AFA1F08C420992CAAAE648 /* ofxSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSlider.h; path = ../../../addons/ofxGui/src/ofxSlider.h; sourceTree = SOURCE_ROOT; };
@@ -1360,6 +1365,7 @@
 		01F10D0E1CA5ECBB006937FA /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				34AA18BE1E7B27290066CC93 /* jsoncpp */,
 				01F10D101CA5ECC7006937FA /* ofxLibwebsockets */,
 				01F10D0F1CA5ECBE006937FA /* libwebsockets */,
 			);
@@ -1452,6 +1458,25 @@
 				01793FE61CA59F1E00D8DA83 /* CameraManager.h */,
 			);
 			name = Camera;
+			sourceTree = "<group>";
+		};
+		34AA18BE1E7B27290066CC93 /* jsoncpp */ = {
+			isa = PBXGroup;
+			children = (
+				34AA18BF1E7B27290066CC93 /* json */,
+				34AA18C21E7B27290066CC93 /* jsoncpp.cpp */,
+			);
+			name = jsoncpp;
+			path = ../Camera/addons/ofxLibwebsockets/libs/jsoncpp;
+			sourceTree = "<group>";
+		};
+		34AA18BF1E7B27290066CC93 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				34AA18C01E7B27290066CC93 /* json-forwards.h */,
+				34AA18C11E7B27290066CC93 /* json.h */,
+			);
+			path = json;
 			sourceTree = "<group>";
 		};
 		3E5FF14091943815A875388E /* libs */ = {
@@ -1909,6 +1934,7 @@
 				01CD01D21CE9341700C9CB0F /* main.m in Sources */,
 				01CD01D31CE9341700C9CB0F /* Distance.cpp in Sources */,
 				01CD01D41CE9341700C9CB0F /* CameraApp.cpp in Sources */,
+				34AA18C41E7B27290066CC93 /* jsoncpp.cpp in Sources */,
 				01CD01D51CE9341700C9CB0F /* ofxBaseGui.cpp in Sources */,
 				01CD01D61CE9341700C9CB0F /* Flow.cpp in Sources */,
 				01CD01D71CE9341700C9CB0F /* ofxButton.cpp in Sources */,
@@ -1962,6 +1988,7 @@
 				5841DDD6B5D9E3D03AACEFCF /* main.m in Sources */,
 				012A52531CAF247F00A74858 /* Distance.cpp in Sources */,
 				01F10D071CA5EBBD006937FA /* CameraApp.cpp in Sources */,
+				34AA18C31E7B27290066CC93 /* jsoncpp.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
 				012A52541CAF247F00A74858 /* Flow.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
@@ -2295,7 +2322,7 @@
 					../../../addons/ofxOpenCv/libs/opencv/include,
 				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-mtune=native",
@@ -2354,7 +2381,9 @@
 					../Camera/addons/ofxLibwebsockets/src/,
 					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/,
 					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/,
-					../Cameraaddons/ofxLibwebsockets/libs/libwebsockets/include/,
+					../Camera/addons/ofxLibwebsockets/libs/jsoncpp/,
+					../Camera/addons/ofxLibwebsockets/libs/jsoncpp/json/,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/include/,
 					../Camera/addons/ofxCv/libs/CLD/include,
 					../Camera/addons/ofxCv/libs/ofxCv/include,
 					../Camera/addons/ofxCv/libs/ofxCv/src,
@@ -2369,7 +2398,7 @@
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",
@@ -2440,7 +2469,7 @@
 					../../../addons/ofxOpenCv/libs/opencv/include,
 				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
@@ -2514,7 +2543,7 @@
 					../../../addons/ofxOpenCv/libs/opencv/include,
 				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-mtune=native",
@@ -2572,7 +2601,9 @@
 					../Camera/addons/ofxLibwebsockets/src/,
 					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/,
 					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/,
-					../Cameraaddons/ofxLibwebsockets/libs/libwebsockets/include/,
+					../Camera/addons/ofxLibwebsockets/libs/jsoncpp/,
+					../Camera/addons/ofxLibwebsockets/libs/jsoncpp/json/,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/include/,
 					../Camera/addons/ofxCv/libs/CLD/include,
 					../Camera/addons/ofxCv/libs/ofxCv/include,
 					../Camera/addons/ofxCv/libs/ofxCv/src,
@@ -2587,7 +2618,7 @@
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",
@@ -2642,7 +2673,9 @@
 					../Camera/addons/ofxLibwebsockets/src/,
 					../Camera/addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/,
 					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/,
-					../Cameraaddons/ofxLibwebsockets/libs/libwebsockets/include/,
+					../Camera/addons/ofxLibwebsockets/libs/jsoncpp/,
+					../Camera/addons/ofxLibwebsockets/libs/jsoncpp/json/,
+					../Camera/addons/ofxLibwebsockets/libs/libwebsockets/include/,
 					../Camera/addons/ofxCv/libs/CLD/include,
 					../Camera/addons/ofxCv/libs/ofxCv/include,
 					../Camera/addons/ofxCv/libs/ofxCv/src,
@@ -2657,7 +2690,7 @@
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",

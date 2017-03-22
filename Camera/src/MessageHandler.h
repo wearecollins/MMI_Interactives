@@ -9,6 +9,7 @@
 #pragma once
 
 #include "ofxLibwebsockets.h"
+#include "json.h"
 
 namespace mmi {    
 
