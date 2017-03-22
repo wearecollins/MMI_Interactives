@@ -1,6 +1,6 @@
 function SoundPlayer() {
 	this.div = null;
-	this.id	 = null;
+	this.id  = null;
 	this.onComplete = null;	
 	this._onTimeUpdate = null;
 	this.playing = false;
@@ -46,9 +46,12 @@ SoundPlayer.prototype.play = function(onComplete) {
 
 	function onTimeUpdate(){
 		if ( this.currentTime >= this.duration ){
-			if ( mainScope.onComplete !== null ) mainScope.onComplete();
+			if ( mainScope.onComplete != null
+					&& typeof(mainScope.onComplete) == "function" ){
+				mainScope.onComplete();
+			}
 			mainScope.onComplete = null;
-    		mainScope.div.removeEventListener("timeupdate", mainScope._onTimeUpdate);
+			mainScope.div.removeEventListener("timeupdate", mainScope._onTimeUpdate);
 		}
 	}
 
@@ -58,7 +61,7 @@ SoundPlayer.prototype.play = function(onComplete) {
 		this.onComplete = onComplete;
 		this.div.currentTime = 0;
 		this.div.play();
-    	this.div.addEventListener("timeupdate", this._onTimeUpdate);
+		this.div.addEventListener("timeupdate", this._onTimeUpdate);
 	}
 };
 
@@ -71,6 +74,6 @@ SoundPlayer.prototype.stop = function() {
 		this.onComplete = null;
 		this.div.pause();
 		this.div.currentTime = 0;
-    	this.div.removeEventListener("timeupdate", this._onTimeUpdate);
+		this.div.removeEventListener("timeupdate", this._onTimeUpdate);
 	}
 };
