@@ -1,0 +1,21 @@
+<div id='{{name}}' class='page noselect'>
+  <div class='background' id="captureBgContainer"></div>
+
+  <div id="promptContainer" class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
+    <div class="type_lg title">
+      Still Designing?<br />
+      <div class="type_med" style="margin-top:.2rem;">
+        If others are waiting please<br />
+        give the next person a turn
+      </div>
+    </div>
+    <div id="{{name}}Buttons">
+      <div id="{{name}}Prev" class="type_med button button_wide" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('prev'));">
+          Yes
+      </div>
+      <div id="{{name}}Next" class="type_med button button_wide" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
+          I'm Finished
+      </div>
+    </div>
+  </div>
+</div>

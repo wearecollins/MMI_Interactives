@@ -1,5 +1,15 @@
 #{{name}} .background {
-  background: white;
+  background: rgb(45, 34, 70);
+}
+
+#{{name}} .title{
+  padding-bottom: 0;
+  color: white;
+}
+
+#breakButton.{{name}} {
+  animation-name:animateBreakOn;
+  animation-duration:1s;
 }
 
 .scriptContainer {
@@ -18,7 +28,7 @@
 }
 
 #scriptButtonContainer.disabled, #scriptButtonDoneContainer.disabled {
-  animation-name: animateOffBotton;
+  animation-name: animateOffBottom;
   animation-duration:1s;
   animation-fill-mode:forwards;
 }

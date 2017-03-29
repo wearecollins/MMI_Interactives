@@ -1,7 +1,7 @@
 {
-	"name":"script",
-	"disableTimeout":false,
-	"useVideo":false,
+	"name":"spin",
+	"disableTimeout":true,
+	"showStream":true,
 	"breakButton":{
 		"text":"Start Over",
 		"event":"cancel"}

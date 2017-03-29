@@ -1,4 +1,7 @@
 {
 	"name":"thanks",
-    "disableTimeout":true
+	"disableTimeout":true,
+	"breakButton":{
+		"text":"Start Over",
+		"event":"cancel"}
 }

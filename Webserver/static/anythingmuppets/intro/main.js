@@ -10,13 +10,14 @@ var intro = function(/*manager*/){
   	videoDiv = me.getElementsByClassName("introVideo")[0];
     videoDiv.addEventListener("timeupdate", onTimeupdate);
 
+    videoDiv.muted = false;
   	videoDiv.play();
 
-    setTimeout(function(){
-      var d = document.getElementById("introButtons");
-      d.classList.remove("disabled");
-      d.classList.add("enabled");
-    }, 1000);
+    // setTimeout(function(){
+    //   var d = document.getElementById("introButtons");
+    //   d.classList.remove("disabled");
+    //   d.classList.add("enabled");
+    // }, 1000);
   };
 
   function onTimeupdate(){
@@ -27,15 +28,16 @@ var intro = function(/*manager*/){
   }
 
   this.exit = function(/*evt*/){
+    videoDiv.muted = true;
     videoDiv.removeEventListener("timeupdate", onTimeupdate);
 
     pauseT = setTimeout(function(){
       videoDiv.pause();
       videoDiv.currentTime = 0;
-      var d = document.getElementById("introButtons");
-      d.classList.remove("enabled");
-      d.classList.add("disabled");
-    }, 1000);
+      // var d = document.getElementById("introButtons");
+      // d.classList.remove("enabled");
+      // d.classList.add("disabled");
+    }, 2000);
     
   };
 };

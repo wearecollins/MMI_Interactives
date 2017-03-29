@@ -12,18 +12,6 @@
  * @param  {ConfigHandler} configHandler incoming object from global confighandler
  */
 var script = function(data, configHandler){
-	var scriptData = data.scripts;
-
-	var currentScript = null;
-	var currentScriptObject = null;
-
-	/**
-	 * Set this to true to use a 'typing' effect
-	 * to build in script excerpt. This is
-	 * set by a config from data.json
-	 * @type {Boolean}
-	 */
-	var typeInText = false;
 
 	var buildTimeout;
 	var spinTimeout;
@@ -45,26 +33,7 @@ var script = function(data, configHandler){
 		clearTimeout(buildTimeout);
 		clearTimeout(spinTimeout);
 
-		typeInText = configHandler.get("typeInText", false);
-
-		// show a random script
-		var parent = document.getElementById("script");
-		var scripts = parent.getElementsByClassName("scriptContainer");
-		
-		if ( scripts.length > 0 ){
-			var idx = Math.floor(Math.random() * scripts.length);
-			currentScript = scripts[idx];
-			currentScriptObject = scriptData[idx];
-
-			// show the script content
-			MMI.show(currentScript.id, "block");
-		} else {
-			log.error("Script: no divs found");
-		}
-
 		window.addEventListener("done", showSpinPrompt);
-
-		window.currentScriptObject = currentScriptObject;
 
 		// setup VOs
 		voIntro.setup("vo_script");
@@ -84,12 +53,6 @@ var script = function(data, configHandler){
 					var vo = "vo_script_"+currentScriptObject.name_clean;
 					voScript.setup(vo);
 					voScript.play();
-				}
-
-				var dest = currentScript.getElementsByClassName("scriptText")[0];
-
-				if ( typeInText ){
-					typeString(currentScriptObject.text, dest, showButtons);
 				}
 
 				// set timeout to show spin

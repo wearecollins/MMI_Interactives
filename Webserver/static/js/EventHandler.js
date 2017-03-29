@@ -11,6 +11,7 @@ function EventHandler(){
     stateHandler = a_stateHandler;
     configHandler = a_configHandler;
     registerAllEvents();
+    registerButtonEvents();
 
     var useKey = !(configHandler.get("disableKeyNext", false));
     if (useKey){
@@ -73,6 +74,11 @@ function EventHandler(){
     }
   }
 
+  function registerButtonEvents(){
+    var brk = document.getElementById("breakButton");
+    brk.onclick = stateHandler.triggerBreak;
+  }
+
   function handleEvent(eventType, evt){
     //clean up timeouts
     while(activeTimeouts.length > 0){
@@ -114,6 +120,8 @@ function EventHandler(){
     // DEBUG
     if ( keychar == 'N' ){
       window.events.dispatchEvent(new Event('next'));
+    } else if (keychar == 'P'){
+      window.events.dispatchEvent(new Event('prev'));
     }
 
     // Special cases for AnythingMuppets

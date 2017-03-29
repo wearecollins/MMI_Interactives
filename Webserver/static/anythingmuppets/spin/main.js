@@ -1,30 +1,18 @@
 /**
- * Page: share screen
+ * Page: spin screen
  * @param  {Object} data          incoming JSON from data.json
  * @param  {ConfigHandler} configHandler incoming object from global confighandler
  */
-var share = function(data, configHandler){
+var spin = function(data, configHandler){
 
   /**************************************************
     Section: Main vars
   **************************************************/
 
-  var nRetakes = 0;
-  var maxRetakes = 0;
+  // alpha spin
+  var spin = null;
 
-  // hack for multi image problem
-  var didSetImage = false;
-  var capturedImage = null;
-  var currentImageUrl = "";
-
-  // alpha countdown
-  var cdOne = null, 
-  cdTwo = null, 
-  cdThree = null;
-
-  var name = "AM 000";
-
-  var soundTimeout, nextTimeout;
+  var soundTimeout, nextTimeout, spinStopTimeout;
 
   var sndFocusVo = new SoundPlayer(), 
   sndCountdown = new SoundPlayer(),
@@ -35,89 +23,26 @@ var share = function(data, configHandler){
   **************************************************/
 
   this.enter = function(/*evt*/){
-    currentImageUrl = "";
-    nRetakes = 0;
+    clearTimeout(spinStopTimeout);
 
-    maxRetakes = configHandler.get("numRetakes", 0);
+    // // are we live streaming, or within Frontend app?
+    // var doStream = configHandler.get('doStream', false);
+    // if (doStream == "true" || doStream == true ){
+    //     manager.getStreamHandler().showStream();
+    // }
 
-    sndFocusVo.setup("vo_focus");
-    sndCountdown.setup("snd_countdown");
-    sndShutter.setup("snd_shutter");
+    // var to = configHandler.get('timeout', 60) * 1000;
 
-    // 'take a photo'
-    window.addEventListener("capture", startCountdown);
-
-    // 'done'
-    window.addEventListener("skipToThanks", skipToThanks);
-
-    // 'capture' to 'share'
-    window.addEventListener("share", share);
-
-    // post to fb / tumblr / etc
-    window.addEventListener("share_online", shareOnline);
-    window.addEventListener("share_done", shareDone);
-
-
-    window.addEventListener("retake", retake);
-
-    // got image from camera app
-    window.addEventListener("imageCapture", setImage);
-
-    // should we go back to 'home' screen?
-    window.addEventListener("shouldCancel", returnShouldCancel);
-
-    // build countdowns
-    if (cdOne == null ){
-      cdOne = new AlphaVideo();
-      cdOne.setup("countdownInput","countdownOutput", "c_one_v", 600, 600);
-      cdTwo = new AlphaVideo();
-      cdTwo.setup("countdownInput","countdownOutput", "c_two_v", 600, 600);
-      cdThree = new AlphaVideo();
-      cdThree.setup("countdownInput","countdownOutput", "c_three_v", 600, 600);
-    }
-    
-    didSetImage = false;
-
-    // are we live streaming, or within Frontend app?
-    var doStream = configHandler.get('doStream', false);
-    if (doStream == "true" || doStream == true ){
-        manager.getStreamHandler().showStream();
+    if (spin == null){
+      spin = new AlphaVideo();
+      spin.setup("spinInput", "spinOutput", "spinVideo", 600, 600, true);
     }
 
-    // set next name
-    var index = configHandler.get('currentName', 0);
-    index++;
-    
-    // this could be reset daily, or just when it hits
-    // a threshold
-    if ( index > 1000 ){
-      index = 0;
-    }
-    configHandler.set({'currentName':index});
-
-    if ( index.length == 1 ){
-      index = "000" + index;
-    } else if ( index.length == 2 ){
-      index = "00" + index;
-    } else if ( index.length == 3 ){
-      index = "0" + index;
-    }
-
-    name = "AM_"+ index;
-
-    // show buttons after 1 second
-    setTimeout(showButtons, 1000, "shareButtonContainer");
-    soundTimeout = setTimeout(function(){
-
-      sndFocusVo.play();
-      
-    }, 500);
-
-    var to = configHandler.get('timeout', 60) * 1000;
+    spin.play(undefined, true);
 
     nextTimeout = setTimeout(function(){
       window.events.dispatchEvent(new Event('next'));
-    }, to);
+    }, 7000);
   };
 
   /**************************************************
@@ -366,23 +291,24 @@ var share = function(data, configHandler){
   }
 
   this.exit = function(/*evt*/){
-    clearTimeout(countdownInterval);
+    //clearTimeout(countdownInterval);
     clearTimeout(nextTimeout);
+    spinStopTimeout = setTimeout(spin.stop.bind(spin), 2000);
     
-    window.removeEventListener("shouldCancel", returnShouldCancel);
-    window.removeEventListener("capture", startCountdown);
-    window.removeEventListener("skipToThanks", skipToThanks);
-    window.removeEventListener("share", share);
-    window.removeEventListener("share_online", shareOnline);
-    window.removeEventListener("share_done", shareDone);
-    window.removeEventListener("retake", retake);
-    window.removeEventListener("imageCapture", setImage);
+    // window.removeEventListener("shouldCancel", returnShouldCancel);
+    // window.removeEventListener("capture", startCountdown);
+    // window.removeEventListener("skipToThanks", skipToThanks);
+    // window.removeEventListener("share", share);
+    // window.removeEventListener("share_online", shareOnline);
+    // window.removeEventListener("share_done", shareDone);
+    // window.removeEventListener("retake", retake);
+    // window.removeEventListener("imageCapture", setImage);
 
-    var bg = document.getElementById("captureBgContainer");
+    // var bg = document.getElementById("captureBgContainer");
 
-    setTimeout(cleanUp, 1500);
+    // setTimeout(cleanUp, 1500);
 
-    clearTimeout(soundTimeout);
-    pauseSounds();
+    // clearTimeout(soundTimeout);
+    // pauseSounds();
   };
 };

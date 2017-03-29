@@ -4,6 +4,7 @@ function AlphaVideo() {
 	var video;
 	var pRef, sRef;
 	var width, height;
+	var overlaidAlpha;
 
 	/**
 	 * @param  {String} bufferCanvasID ID of DOM element (real)
@@ -12,9 +13,10 @@ function AlphaVideo() {
 	 * @param  {Number} inWidth        Width of video
 	 * @param  {Number} inHeight       *Final* height of video
 	 */
-	this.setup = function( bufferCanvasID, outputCanvasID, videoID, inWidth, inHeight ) {
+	this.setup = function( bufferCanvasID, outputCanvasID, videoID, inWidth, inHeight, _overlaidAlpha ) {
 		width = inWidth,
 		height = inHeight;
+		overlaidAlpha = _overlaidAlpha || false;
 
 		// get stuff from DOM
 		video = document.getElementById( videoID );
@@ -49,7 +51,12 @@ function AlphaVideo() {
 	    var image = bufferCtx.getImageData(0, 0, width, height);
 
 	    var imageData = image.data;
-	    var alphaData = bufferCtx.getImageData(0, height, width, height).data;
+	    var alphaData;
+	    if (overlaidAlpha){
+	    	alphaData = bufferCtx.getImageData(0, 0, width, height).data;
+	    } else {
+	    	alphaData = bufferCtx.getImageData(0, height, width, height).data;
+	    }
 	 
 	    for (var i = 3, len = imageData.length; i < len; i = i + 4) {
 	    	imageData[i] = alphaData[i-1];
@@ -57,15 +64,15 @@ function AlphaVideo() {
 	 
 		outputCtx.putImageData(image, 0, 0, 0, 0, width, height);
 		
-		// failsafe to check against 'ended' not firing
-		if ( video.currentTime > 1.0 ){
-			if ( looping ){
-				video.currentTime = 0;
-			} else {
-				this.stop();
-				return;
-			}
-		}
+		// // failsafe to check against 'ended' not firing
+		// if ( video.currentTime > 1.0 ){
+		// 	if ( looping ){
+		// 		video.currentTime = 0;
+		// 	} else {
+		// 		this.stop();
+		// 		return;
+		// 	}
+		// }
 
 		window.requestAnimationFrame(pRef);
 	}

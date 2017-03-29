@@ -124,6 +124,7 @@ function StateHandler(){
       }
       notifyTransition(activeStateI, targetStateI);
       manageStream(activeStateI, targetStateI);
+      manageBreakButton(activeStateI, targetStateI);
       activeStateI = targetStateI;
 
       // there is certainly a more graceful way to do this?
@@ -135,6 +136,10 @@ function StateHandler(){
     }
   };
 
+  this.triggerBreak = function triggerBreak(/*evt*/){
+    pages[activeStateI].triggerBreak();
+  };
+
   /**
    * check if the stream should be shown or hidden, 
    *  and notify relevant consumers
@@ -144,13 +149,44 @@ function StateHandler(){
   function manageStream(fromStateI, toStateI){
     var didShow = pages[fromStateI].shouldShowStream();
     var shouldShow = pages[toStateI].shouldShowStream();
-    if (didShow !== shouldShow){
+
+    //if we were not showing the stream, but should
+    // then display it immediately
+    if (!didShow && shouldShow){
       for(var notifierI = streamNotifiers.length - 1;
           notifierI >= 0;
           notifierI--){
         streamNotifiers[notifierI](shouldShow);
       }
+    //if we are showing the stream, but shouldn't
+    // then wait a little bit before hiding it
+    // so the new backgronud can transition in first
+    } else if (didShow && !shouldShow){
+      setTimeout(updateStream, 2000);
     }
+  }
+
+  /**
+   * show or hide the steam based on the settings for
+   *  the currently active state
+   */
+  function updateStream(){
+    var shouldShow = pages[activeStateI].shouldShowStream();
+      for(var notifierI = streamNotifiers.length - 1;
+          notifierI >= 0;
+          notifierI--){
+        streamNotifiers[notifierI](shouldShow);
+      }
+  }
+
+  function manageBreakButton(activeStateI, targetStateI){
+    var btn = document.getElementById('breakButton');
+    var targetText = pages[targetStateI].getBreakText();
+    if (targetText){
+      btn.children[0].textContent = targetText; 
+    }
+    btn.classList.remove(pages[activeStateI].getName());
+    btn.classList.add(pages[targetStateI].getName());
   }
 
   /**

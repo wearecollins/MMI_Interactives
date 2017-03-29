@@ -5,16 +5,28 @@
 <head>
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
   <meta content="utf-8" http-equiv="encoding">
-  <link rel='stylesheet' type='text/css' href='style.css'>
+  <link rel='stylesheet' type='text/css' href='css/normalize.css'>
+  <link rel='stylesheet' type='text/css' href='css/style.css'>
   <script type='text/javascript' src='js/vendor/handlebars.min-v4.0.5.js'>
   </script>
+  <script type='text/javascript' src='js/vendor/hammer.min.js'></script>
   <script type='text/javascript' src='js/Transitions.js'></script>
   <script type='text/javascript' src='js/Loader.js'></script>
+  <script type='text/javascript' src='js/AlphaVideo.js'></script>
+  <script type='text/javascript' src='js/SoundPlayer.js'></script>
   <script type='text/javascript' src='js/main.js'></script>
   <script type='text/javascript'>
-    var pages = ['demo/freeplay','demo/attract','demo/intro','demo/view',
-                 'demo/countdown',/*'demo/capture','demo/review',*/
-                 'demo/admin'];
+    var pages = [
+      'demo/freeplay',
+      'demo/attract',
+      'demo/intro',
+      'demo/view',
+      'demo/countdown',
+      //'demo/capture',
+      //'demo/review',
+      'demo/admin'
+    ];
+    
     var customTransitions = new Transitions();
 
     var defaultMode = customTransitions.getDefaultMode();

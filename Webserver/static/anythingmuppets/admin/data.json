@@ -7,5 +7,6 @@
         {"type":"boolean","key":"doStream"},
         {"type":"boolean","key":"showLocalShare"},
         {"type":"string", "key":"shareServer"}
-    ]
+    ],
+    "breakButton":false
 }

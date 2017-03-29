@@ -69,7 +69,7 @@
 }
 
 #selectBtnsDown.disabled {
-  animation-name: animateOffBotton;
+  animation-name: animateOffBottom;
 }
 
 #selectBtnsDown {

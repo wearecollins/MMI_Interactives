@@ -1,7 +1,7 @@
 {
-	"name":"script",
+	"name":"adjust",
 	"disableTimeout":false,
-	"useVideo":false,
+	"showStream":true,
 	"breakButton":{
 		"text":"Start Over",
 		"event":"cancel"}

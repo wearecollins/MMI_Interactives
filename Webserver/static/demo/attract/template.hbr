@@ -1,6 +1,6 @@
 <div id='{{name}}' class='page'>
   <div class='background'></div>
-  <div class='container'>
+  <div class='container' style="z-index:2">
     <div class='content'>
       {{#each animatedText}}
         <div>{{text}}</div>

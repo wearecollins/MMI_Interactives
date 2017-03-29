@@ -97,6 +97,8 @@ function Page(){
     if(domElem){
       domElem.classList.remove('disabled');
       domElem.classList.remove('canceled');
+      domElem.classList.add('enabled');
+
       for ( var i in toRemove ){
         domElem.classList.remove( toRemove[i] );
       }
@@ -117,6 +119,7 @@ function Page(){
     if(domElem){
       domElem.classList.remove('disabled');
       domElem.classList.remove('canceled');
+      domElem.classList.add('enabled');
 
       for ( var i in toRemove ){
         domElem.classList.remove( toRemove[i] );
@@ -137,6 +140,7 @@ function Page(){
   this.exit = function exit( evt ){
     if(domElem){
       domElem.classList.remove('fromPrev');
+      domElem.classList.remove('enabled');
       domElem.classList.add('disabled');
 
       for ( var i in toRemove ){
@@ -157,6 +161,7 @@ function Page(){
    */
   this.exitPrev = function exitPrev(){
     if(domElem){
+      domElem.classList.remove('enabled');
       domElem.classList.add('disabled');
       domElem.classList.add('canceled');
 
@@ -203,6 +208,29 @@ function Page(){
     var propValue = true;
     return (data.hasOwnProperty(propName) &&
             (data[propName] === propValue));
+  };
+
+  this.triggerBreak = function triggerBreak(){
+    var propName = 'breakButton';
+    var subProp = 'event';
+    if (data.hasOwnProperty(propName) &&
+        data[propName] &&
+        data[propName][subProp]){
+      window.events.dispatchEvent(
+        new Event(data[propName][subProp]));
+    } 
+  };
+
+  this.getBreakText = function getBreakText(){
+    var propName = 'breakButton';
+    var subProp = 'text';
+    var text = undefined;
+
+    if (data.hasOwnProperty(propName) &&
+        data[propName]){
+      text = data[propName][subProp];
+    }
+    return text;
   };
 
   /**

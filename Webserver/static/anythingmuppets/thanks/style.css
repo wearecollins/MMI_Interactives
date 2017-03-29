@@ -3,14 +3,29 @@
   /* animation-name: {{name}}animateOff; */
   animation-name: hide;
   animation-delay: 1s;
-  animation-duration:0s;
+  animation-duration:1s;
   animation-fill-mode:forwards;
 }
 
 
+#breakButton.{{name}} {
+  animation-name:animateBreakOn;
+  animation-duration:1s;
+}
+
 #{{name}}{
   animation-name: animateIn;
+  animation-delay: 1s;
   animation-duration: 1s;
-  animation-fill-mode:forwards;
+  animation-fill-mode:both;
   /* z-index: 0; */
+}
+
+#{{name}} .background {
+  background: rgb(45, 34, 70);
+}
+
+#{{name}} .title{
+  padding-bottom: 0;
+  color: white;
 }

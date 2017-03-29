@@ -1,68 +1,19 @@
 <div id='{{name}}' class='page noselect'>
-  <div class="background">
-  {{#if useVideo}}
-    <video class="fillContainer" autoplay loop muted>
-        <source src="video/am_script.mp4" type="video/mp4">
-    </video>
-  {{/if}}
-  <!-- Optional 'generic' voiceover -->
-  <!-- <audio src="vo/am_vo_01_generic.mp3" id="vo_script"></audio> -->
-  
+
+  <div class='background'>
+    <audio src="vo/am_vo_01_generic.mp3" id="vo_script"></audio>
   </div>
 
-
-  <!-- 'start over' -->
-  <div class="container type_sm leftContainer fillWhite" style="position: absolute; z-index:15; opacity:.75;" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
-  Start over</div>
-
-  {{!-- This is the main scripts container --}}
-  <div id="scipts" class='fillAbs'>
-  {{!-- 
-    This loops through each 'script' in the data.json, and creates a div for it
-  --}}
-    {{#each scripts}}
-    <div id="{{name_clean}}" class="fillAbs scriptContainer">
-
-          {{#if useVideo}}
-            <div class="fillAbs centeredContainer" style="z-index:2"></div>
-          {{else}}
-          <div class="fillAbs centeredContainer" style="z-index:2">
-            <img src="anythingmuppets/script/{{img}}" />
-          </div>
-          {{/if}}
-          <div class="fillAbs centeredContainer scriptInfoContainer" style="z-index:3">
-            <div class="scriptTextContainer fill type_sm container noselect">
-                <div class="">
-                <!-- <div class="column_23"> -->
-                    <span class="type_lg">{{{ name }}}</span>
-                    <br><br>
-                    <!-- <div class="type_sm"><strong>Script Excerpt</strong></div> -->
-                    <div class="scriptText">
-                      {{#if typeInText}}
-                      <!-- silent, filled in via javascript -->
-                      {{else}}
-                      <!-- don't type in, just drop in direct -->
-                      {{{ text }}}
-                      {{/if}}
-                    </div>
-                </div>
-            </div>
-            <audio src="{{{vo}}}" id="vo_script_{{{name_clean}}}"></audio>
-        </div>
+  <div class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
+    <div class="type_lg title">
+      Choose a Sesame Street script<br />
+      <div class="type_med" style="margin-top:.2rem;">
+        for inspiration and use the features to start designing your Anything Muppet character
+      </div>
     </div>
-    {{/each}}
-
-{{!-- This is the 'spin overlay' container --}}
-    <div id="promptSpinPuppet" class="parchBg bottomCenteredContainer fillAbs" style="z-index:4">
-        <div class="centeredContainer column fillAbs" style="left:0px"><!-- 
-            <img src="svg/__spin_puppet.svg" class="button_lg padding_sm" /> -->
-            <video id="videoSpin" class="button_lg padding_sm" autoplay loop>
-              <source src="video/arrow_ccw.mp4" type="video/mp4">
-            </video>
-
-            <audio src="vo/am_vo_04.mp3" id="vo_spin"></audio>
-            <div class="fillGreen type_med padding_sm">{{{prompt_spin}}}</div>
-        </div>
+    <div id="sbContInternal" class="type_med button button_lg" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
+        Screen Test Your Character
     </div>
   </div>
+
 </div>

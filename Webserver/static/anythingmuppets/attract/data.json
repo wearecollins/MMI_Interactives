@@ -1,4 +1,6 @@
 {
 	"name":"attract",
-	"disableTimeout":true
+	"disableTimeout":true,
+	"buttons":[{"type":"next","text":"Start"}],
+	"breakButton":false
 }
