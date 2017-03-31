@@ -37,6 +37,8 @@
     
     //we don't want the last state to go to freeplay
     defaultMode.addTransition('performance/thanks', 'next', 'performance/attract');
+    //we can skip over the intro/overview screens
+    defaultMode.addTransition('performance/intro', 'cancel', 'performance/select');
 
     var continuousMode = customTransitions.createMode('continuous');
     continuousMode.addGlobalTransition('cancel', 'performance/freeplay');

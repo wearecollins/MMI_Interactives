@@ -185,6 +185,13 @@ function StateHandler(){
     if (targetText){
       btn.children[0].textContent = targetText; 
     }
+    if (pages[targetStateI].showBreakButton()){
+      btn.classList.remove('disabled');
+      btn.classList.add('enabled');
+    } else {
+      btn.classList.remove('enabled');
+      btn.classList.add('disabled');
+    }
     btn.classList.remove(pages[activeStateI].getName());
     btn.classList.add(pages[targetStateI].getName());
   }

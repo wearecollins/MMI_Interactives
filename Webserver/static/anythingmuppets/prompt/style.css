@@ -15,12 +15,12 @@
   animation-delay: 2s;
   animation-fill-mode: both;
 }
-
+/*
 #breakButton.{{name}} {
   animation-name:animateBreakOn;
   animation-duration:1s;
 }
-
+*/
 #{{name}}Prev{
   margin-bottom: .5rem;
 }

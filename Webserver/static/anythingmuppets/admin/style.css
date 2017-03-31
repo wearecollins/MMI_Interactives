@@ -14,10 +14,11 @@
 #buttonAdminSave.disabled {
   opacity: .4;
 }
-
+/*
 #breakButton.{{name}} {
   animation-name:animateBreakOff;
   animation-duration:1s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in;
 }
+*/

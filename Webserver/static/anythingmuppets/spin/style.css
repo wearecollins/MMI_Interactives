@@ -20,12 +20,12 @@
   visibility: hidden;
   display: none;
 }
-
+/*
 #breakButton.{{name}} {
   animation-name:animateBreakOn;
   animation-duration:1s;
 }
-
+*/
 /* for debuggin */
 #captureBgContainer {
 	/* background-color:rgba(0,0,0,.5); */

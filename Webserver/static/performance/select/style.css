@@ -15,24 +15,37 @@
 }
 
 #{{name}} video {
-    width: {{math 100 "/" videos.length}}%;
-    margin: .5%;
+    /*width: {{math 100 "/" videos.length}}%;*/
+    /*margin: .5%;*/
     transition: all ease-in-out .25s;
     position: relative;
 }
 
+#{{name}} .button{
+  color: rgb(0, 183, 59);
+  margin-bottom: 7vh;
+  opacity: 0;
+}
+
+#{{name}} .button .enabled{
+  opacity: 1;
+  animation-duration: 1s;
+}
+
 .selectOverlay {
   height: 100%;
-  background: #56b79e;
-  opacity: .7;
   position: absolute;
   width: 100%;
   top: 0px;
   left: 0px;
+  margin:-.5vh;
+  border-style: solid;
+  border-width:.5vh;
+  border-color: rgb(0, 183, 59);
 }
 
 #overlayContainer video {
-  width:100%;
+  height:100%;
   margin: 0;
 }
 
@@ -53,10 +66,21 @@
 }
 
 .videoContainer {
-  position: relative;
-  margin: .5%;
+  height:90%;
+  top:5%;
+  /*padding:1%;*/
+  /*margin: .75%;*/
   transition: all ease-in-out .25s;
   position: relative;
+  float:left;
+  flex-grow:0;
+  flex: 0 1;
+}
+
+.videoSep{
+  height:100%;
+  width:1vh;
+  float:left;
 }
 
 .bigVideoCont{
@@ -98,10 +122,10 @@
 	display: flex;
 	align-items: flex-end;
 }
-
+/*
 #{{name}} .button {
 	height:20vh;
 	display: flex;
 	align-items: flex-start;
   pointer-events:all;
-}
+}*/

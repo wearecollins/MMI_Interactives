@@ -1,4 +1,8 @@
 {
 	"name":"overview",
-	"disableTimeout":true
+	"disableTimeout":true,
+	"breakButton":{
+		"text":"Skip Intro",
+		"event":"next"
+	}
 }

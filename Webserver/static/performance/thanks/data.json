@@ -1,4 +1,5 @@
 {
 	"name":"thanks",
-	"disableTimeout":false
+	"disableTimeout":false,
+	"breakButton":false
 }

@@ -1,12 +1,12 @@
 #{{name}} .background{
 	background-color: rgba(0,0,0,50);
 }
-
+/*
 #breakButton.{{name}} {
   animation-name:animateBreakOn;
   animation-duration:1s;
 }
-
+*/
 /* Transition off */
 #{{name}}.disabled{
   display:flex;

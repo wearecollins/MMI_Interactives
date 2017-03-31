@@ -7,6 +7,9 @@
 	animation-fill-mode:forwards;
 }
 
+#{{name}} .background {
+  background: rgb(45, 34, 70);
+}
 
 #{{name}}{
 	animation-name: animateIn;

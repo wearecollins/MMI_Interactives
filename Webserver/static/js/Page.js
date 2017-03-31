@@ -221,6 +221,16 @@ function Page(){
     } 
   };
 
+  this.showBreakButton = function showBreakButton(){
+    var propName = 'breakButton';
+    if (data.hasOwnProperty(propName) &&
+        data[propName]) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   this.getBreakText = function getBreakText(){
     var propName = 'breakButton';
     var subProp = 'text';

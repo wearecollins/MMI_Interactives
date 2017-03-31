@@ -26,7 +26,8 @@ html, body {
 /* Performance */
 @media (max-height: 1024px) {
   html, body {
-    font-size: 100px;
+    font-size: 125px;
+    /* overriding 140px font-size set above */
   }
 }
 
@@ -247,6 +248,26 @@ body,
   padding: .3rem;
 }
 
+#breakButton div{
+  width: 2.5rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#breakButton.disabled {
+  animation-name:animateBreakOff;
+  animation-duration:1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+#breakButton.enabled {
+  animation-name:animateBreakOn;
+  animation-duration:1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
 /*#breakButton div{
   background-color: white;
   color: rgb(45, 34, 70);
@@ -259,15 +280,21 @@ body,
   line-height: .34rem;
 }*/
 
+#performance .button{
+  font-size: .205rem;
+  line-height: .32rem;
+  width: 1.85rem;
+  border-radius: .5rem;
+  padding: .1rem 0;
+}
+
 .button{
   background-color: white;
   color: rgb(45, 34, 70);
 }
 
 .button_sm{
-  width: 2.5rem;
-  padding-top: .15rem;
-  padding-bottom: .15rem;
+  padding: .15rem .3rem;
   border-radius: .5rem;
   text-align: center;
 }
@@ -343,7 +370,7 @@ body,
     height: 75vw;
 }
 
-#performance .button_lg {
+/*#performance .button_lg {
   width: 60vh;
   height: 60vh;
 }
@@ -362,7 +389,7 @@ body,
         width: 600px;
         height: 600px;
     }
-}
+}*/
 
 .padding_sm {
     padding-bottom: 3vh;

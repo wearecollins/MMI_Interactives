@@ -7,6 +7,13 @@
   animation-fill-mode:forwards;
 }
 
+#{{name}} .background {
+  background: rgb(45, 34, 70);
+}
+
+#{{name}} .title{
+  padding-bottom: 0;
+}
 
 #{{name}}{
   animation-name: animateIn;

@@ -7,12 +7,12 @@
   animation-fill-mode:forwards;
 }
 
-
+/*
 #breakButton.{{name}} {
   animation-name:animateBreakOn;
   animation-duration:1s;
 }
-
+*/
 #{{name}}{
   animation-name: animateIn;
   animation-delay: 1s;

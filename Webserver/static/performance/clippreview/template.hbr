@@ -1,9 +1,5 @@
 <div id='{{name}}' class='page'>
   <!-- <audio src="vo/countdown.mp3" id="snd_countdown"></audio> -->
-
-  <!-- start over -->
-  <div class="container type_sm leftContainer fillGrey" style="position: absolute; z-index:15" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
-  Start over</div>
   
   <!-- Show preview -->
   <div id="previewTitle" class="fillAbs">

@@ -1,18 +1,11 @@
 <div id='{{name}}' class='page noselect'>
-  <div class='background fill blueBg'></div>
+  <div class='background fill'></div>
 
   <audio src="vo/perf_vo_01.mp3" id="vo_grab"></audio>
 
-  <div class="container fillAbs centeredContainer column container" style="">
-    <div id="sbContInternal" class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-        <!-- <img src="svg/__select_a_puppet.svg" class="button_lg padding_sm" /> -->
-        <!-- Todo: Dynamic w/h -->
-        <canvas width="600" height="1200" id="leftInput"></canvas>
-        <canvas id="leftOutput" class="button_lg padding_sm"></canvas>
-        <video id="l_arrow">
-          <source src="video/arrow_l_a.mp4" type="video/mp4" />
-        </video>
+  <div class="container fillAbs centeredContainer column" style="z-index:2; justify-content:space-around;">
+    <div class="type_lg title">
+      Choose a Puppet
     </div>
-    <div class="type_med padding_sm">Grab a Puppet</div>
   </div>
 </div>

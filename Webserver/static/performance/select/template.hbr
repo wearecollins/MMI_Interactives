@@ -1,45 +1,42 @@
 <div id='{{name}}' class='page noselect'>
   <div class='background blackBg' style="">
   </div>
-  <!-- 'start over' -->
-  <div class="container type_sm leftContainer fillGrey" style="position: absolute; z-index:15;" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
-  Start over</div>
-
-  <!-- Overlay container -->
-  <div class="fillAbs" style="z-index:12;">
-    <div id="overlayContainer" class="fillAbs bottomCenteredContainer">
-      <div style="width:60%; height:calc(100vh/4);" class="container centeredContainer">
-        {{#each videos}}
-        <div class="videoContainer disabled" ondragstart='return false;' onclick="window.events.dispatchEvent(new CustomEvent('previewClip', {'detail':'{{{name}}}'}));">
-            <video class="selectVideo" id="{{name}}" autoplay loop muted>
-                <source src="{{src}}" type="video/mp4">
-            </video>
-            <div id="{{name}}_overlay" class="selectOverlay disabled"></div>
-        </div>
-        {{/each}}
-      </div>
-    </div>
-  </div>
 
   <!-- Voiceover -->
   <audio src="vo/perf_vo_04.mp3" id="vo_select"></audio>
 
-  <div id="select_intro" class="fillAbs">
-    <div id="selectTextContainer" class='container fillAbs centeredContainer column' style="height:calc(100vh * 3/4);">
+  <div class="fillAbs">
+    <div style="height:75%; width:100%; background-color: rgb(30, 30, 30);">
+      <div class='type_lg' style="position:absolute; height:65vh; width:100%; padding:5vh 0; display:flex; flex-direction:column; justify-content:center; ">
+        Preview &amp;<br />
+        Select a Clip
+      </div>
+      {{#each videos}}
+      <div id="{{name}}_big" class="bigVideoCont fillAbs centeredContainer column" style="height:65vh; padding:5vh 0;">
+          <video id="{{name}}_big_video" class="mainVideo" autoplay loop muted>
+              <source src="{{src}}" type="video/mp4">
+          </video>
+      </div>
+      {{/each}}
+      <div class='fillAbs' style="position:absolute; height:65vh; width:100vw; padding:5vh 0; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+        <div></div>
+        <div id='selectButtons' class="button" onclick="window.events.dispatchEvent(new Event('selectClip'));">
+          Select
+        </div>
+      </div>
     </div>
-    {{#each videos}}
-    <div id="{{name}}_big" class="bigVideoCont fillAbs centeredContainer column" style="height:calc(100vh * 3/4);">
-        <video id="{{name}}_big_video" class="mainVideo" autoplay loop muted>
-            <source src="{{src}}" type="video/mp4">
-        </video>
-    </div>
-    {{/each}}
-  </div>
-
-  <div id="selectButtons" class="fillAbs bottomCenteredContainer container" style="z-index:13; height:calc(100vh * 3/4);">
-    <div class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('selectClip'));">
-        <img src="svg/__select.svg" class="button_sm padding_sm">
-        <!-- <div class="type_med">select</div> -->
+    <div style="height:25%; justify-content:center; background-color:black; display:inline-block;">
+      {{#each videos}}
+      <div class="videoContainer disabled" ondragstart='return false;' onclick="window.events.dispatchEvent(new CustomEvent('previewClip', {'detail':'{{{name}}}'}));">
+          <video class="selectVideo" style="height:100%;" id="{{name}}" autoplay loop muted>
+              <source src="{{src}}" type="video/mp4">
+          </video>
+          <div id="{{name}}_overlay" class="selectOverlay disabled"></div>
+      </div>
+        {{#unless @last}}
+          <div class="videoSep"></div>
+        {{/unless}}
+      {{/each}}
     </div>
   </div>
 </div>

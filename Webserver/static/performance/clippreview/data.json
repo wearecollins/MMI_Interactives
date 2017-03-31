@@ -14,5 +14,9 @@
 			"name":"horse_named_bill",
 			"src":"video/horse_named_bill.mp4"
 		}
-	]
+	],
+	"breakButton":{
+		"text":"Start Over",
+		"event":"cancel"
+	}
 }

@@ -48,9 +48,9 @@ var select = function(data){
 			}
 		}
 
-		// Setup chain of animations
-		var overlay = document.getElementById("select_intro");
-		overlay.classList.remove("disabled");
+		// // Setup chain of animations
+		// var overlay = document.getElementById("select_intro");
+		// overlay.classList.remove("disabled");
 
 		// play voiceover after animate in
 		setTimeout(function(){

@@ -6,12 +6,12 @@
   padding-bottom: 0;
   color: white;
 }
-
+/*
 #breakButton.{{name}} {
   animation-name:animateBreakOn;
   animation-duration:1s;
 }
-
+*/
 .scriptContainer {
 	visibility: hidden;
 	display: none;

@@ -1,4 +1,5 @@
 {
 	"name":"attract",
-	"disableTimeout":true
+	"disableTimeout":true,
+	"breakButton":false
 }
