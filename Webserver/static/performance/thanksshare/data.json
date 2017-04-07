@@ -1,0 +1,9 @@
+{
+	"name":"thanksshare",
+	"disableTimeout":false,
+	"breakButton":false,
+	"copy":{
+		"top":"You Will Receive an Email With<br />A Link to Your Performance",
+		"bottom":"Please Return the Puppets<br />To the Stand"
+	}
+}

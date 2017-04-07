@@ -1,14 +1,15 @@
 <div id='{{name}}' class='page noselect'>
   <div class='background fill'></div>
 
-  <audio src="{{audio}}" id="vo_grab"></audio>
-
   <div class="container fillAbs centeredContainer column" style="z-index:2; justify-content:space-around;">
     <div class="type_lg title">
-      {{{copy}}}
+      {{{copy.top}}}
+    </div>
+    <div class='type_lg title'>
+      {{{copy.bottom}}}
     </div>
     <div id="{{name}}NextBtn" class="button" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-      Continue
+      Start Over
     </div>
   </div>
 </div>

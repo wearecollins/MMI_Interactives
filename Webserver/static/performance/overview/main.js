@@ -2,6 +2,7 @@ var overview = function( data, configHandler){
 
   var soundPlayerA = null, 
   soundPlayerB = null;
+  var soundTimeout;
 
   this.enter = function(/*evt*/){
 
@@ -24,7 +25,7 @@ var overview = function( data, configHandler){
 
     // play sounds
     // play after animate
-    setTimeout(function(){
+    soundTimeout = setTimeout(function(){
       if ( soundPlayerA.exists() ){
         soundPlayerA.play( showSideCamera );
       }
@@ -78,6 +79,7 @@ var overview = function( data, configHandler){
     // soundA.currentTime = 0;
     // soundB.currentTime = 0;
 
+    clearTimeout(soundTimeout);
     //stop sounds
     soundPlayerA.stop();
     soundPlayerB.stop();

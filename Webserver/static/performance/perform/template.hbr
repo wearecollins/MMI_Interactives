@@ -3,33 +3,23 @@
     <!-- This will show the live camera -->
   </div>
 
-  <audio src="vo/countdown.mp3" id="snd_countdown"></audio>
-  
-  <!-- start over -->
-  <div class="container type_sm leftContainer fillGrey" style="position: absolute; z-index:15" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
-  Start over</div>
+  <audio src="{{audio.countdown}}" id="snd_countdown"></audio>
 
   <!-- State I -->
-  <div id="performPractice" class="fillAbs">
-      <div class="fillAbs centeredContainer column noselect" style="z-index:2">
-          <div class="type_lg noselect">Practice</div>
-          <div class="type_med noselect">Get Ready!</div>
-      </div>
+  <div id="performPractice" class="type_lg over_video" style='z-index:2'>
+    Practice
   </div>
 
   <!-- Voiceover: Practice -->
-  <audio src="vo/perf_vo_05.mp3" id="vo_practice"></audio>
+  <audio src="{{audio.practice}}" id="vo_practice"></audio>
 
   <!-- State III -->
-  <div id="performPerform" class="fillAbs">
-      <div class="fillAbs centeredContainer column noselect" style="z-index:2">
-          <div class="type_lg noselect">Perform</div>
-          <div class="type_med noselect">Get Ready!</div>
-      </div>
+  <div id="performPerform" class="type_lg over_video" style="z-index:2">
+    Perform
   </div>
 
-  <!-- Voiceover: Practice -->
-  <audio src="vo/perf_vo_06.mp3" id="vo_perform"></audio>
+  <!-- Voiceover: Perform -->
+  <audio src="{{audio.perform}}" id="vo_perform"></audio>
 
   <div id="hiddenVideos">
     {{#each videos}}
@@ -42,23 +32,8 @@
   <!-- Countdown -->
   <div id="countdownContainer" class="fillAbs">
     <div class="container fillAbs centeredContainer">
-      <div>
-        <!-- Todo: Dynamic w/h -->
-        <canvas width="600" height="1200" id="countdownInput"></canvas>
-        <canvas width="600" height="600" id="countdownOutput" class="button_lg padding_sm"></canvas>  
-      </div>
+      <div id='countdownNumber' class='over_video'></div>
     </div>
-    <!-- <img src="svg/__count_3.svg" class="button_lg padding_sm" /> -->
-    <video id="c_three_v">
-      <source src="video/mmi_count_3_s.mp4" type="video/mp4" />
-    </video>
-    <!-- <img src="svg/__count_2.svg" class="button_lg padding_sm" /> -->
-    <video id="c_two_v">
-      <source src="video/mmi_count_2_s.mp4" type="video/mp4" />
-    </video>
-    <video id="c_one_v">
-      <source src="video/mmi_count_1_s.mp4" type="video/mp4" />
-    </video>
   </div>
 
   <!-- Counter -->

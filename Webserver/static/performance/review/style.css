@@ -1,0 +1,45 @@
+#{{name}}.disabled{
+  display:flex;
+  /* animation-name: {{name}}animateOff; */
+  animation-name: hide;
+  animation-delay: 1s;
+  animation-duration:0s;
+  animation-fill-mode:forwards;
+}
+
+#{{name}}{
+  animation-name: animateIn;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+  z-index: 0;
+}
+
+#videoReview {
+  position: relative;
+  margin: 7vh;
+  flex-shrink: 0;
+}
+
+#videoReviewContainer.share #videoReview{
+  height:40vh;
+  transition: height 1s;
+}
+
+#videoReviewContainer{
+  background: rgb(45, 34, 70);
+}
+
+#{{name}}Text{
+  flex-shrink: 0;
+}
+
+#{{name}}Buttons{
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: flex-start;
+}
+
+#{{name}} #{{name}}Buttons .buttonSpacer{
+  width: 5vw;
+}

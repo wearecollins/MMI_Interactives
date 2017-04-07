@@ -3,22 +3,21 @@
   </div>
 
   <!-- Voiceover -->
-  <audio src="vo/perf_vo_04.mp3" id="vo_select"></audio>
+  <audio src="{{audio}}" id="vo_select"></audio>
 
-  <div class="fillAbs">
+  <div class="fillAbs"><!-- style='height:1024px;'>-->
     <div style="height:75%; width:100%; background-color: rgb(30, 30, 30);">
-      <div class='type_lg' style="position:absolute; height:65vh; width:100%; padding:5vh 0; display:flex; flex-direction:column; justify-content:center; ">
-        Preview &amp;<br />
-        Select a Clip
+      <div id='selectClipText' class='type_lg' style="position:absolute; height:65%; width:100%; padding:5% 0; display:flex; flex-direction:column; justify-content:center; ">
+        {{{copy}}}
       </div>
       {{#each videos}}
-      <div id="{{name}}_big" class="bigVideoCont fillAbs centeredContainer column" style="height:65vh; padding:5vh 0;">
+      <div id="{{name}}_big" class="bigVideoCont fillAbs centeredContainer column" style="height:65%; padding:5% 0;">
           <video id="{{name}}_big_video" class="mainVideo" autoplay loop muted>
               <source src="{{src}}" type="video/mp4">
           </video>
       </div>
       {{/each}}
-      <div class='fillAbs' style="position:absolute; height:65vh; width:100vw; padding:5vh 0; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+      <div class='fillAbs' style="position:absolute; height:65%; width:100%; padding:5% 0; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
         <div></div>
         <div id='selectButtons' class="button" onclick="window.events.dispatchEvent(new Event('selectClip'));">
           Select

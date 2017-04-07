@@ -32,6 +32,11 @@
   animation-duration: 1s;
 }
 
+#{{name}}ClipText.disabled{
+  opacity: 0;
+  animation-duration:1s;
+}
+
 .selectOverlay {
   height: 100%;
   position: absolute;

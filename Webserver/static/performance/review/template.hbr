@@ -1,0 +1,25 @@
+<div id='{{name}}' class='page'>
+  <!-- <audio src="vo/countdown.mp3" id="snd_countdown"></audio> -->
+
+  <div id="videoReviewContainer" class="fillAbs centeredContainer column" syle="z-index:0">
+  	<div id='{{name}}Text' class="type_lg">
+      {{{copy}}}
+    </div>
+    <video id="videoReview" class="fillAbs" preload="none">
+        <source src="" type="video/mp4">
+    </video>
+    <div id='{{name}}Buttons'>
+
+	    <div id="{{name}}NextBtn" class="button" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
+        Yes
+    	</div>
+    	<div class='buttonSpacer type_lg'>
+        &nbsp;
+      </div>
+	    <div id="{{name}}CancelBtn" class="button" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('special'));">
+        No
+    	</div>
+    </div>
+  </div>
+
+</div>

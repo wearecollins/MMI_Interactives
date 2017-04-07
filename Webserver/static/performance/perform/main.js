@@ -25,11 +25,6 @@ var perform = function(data, configHandler){
     Section: Main variables
   **************************************************/
 
-  // alpha countdown
-  var cdOne = null, 
-  cdTwo = null, 
-  cdThree = null;
-
 	// 0 = start, 1 = practice, 2 = perform
 	var state = 0;
 
@@ -44,22 +39,15 @@ var perform = function(data, configHandler){
   // timeouts
   var timeouts = [];
 
+  var cdDiv = document.getElementById('countdownNumber');
+  cdDiv.addEventListener( 'animationend', continueCountdown);
+
   /**************************************************
    * Enter: called automatically when page builds
   **************************************************/
 
 	this.enter = function(/*evt*/){
 		state = 0;
-
-    // build countdown videos
-    if (cdOne == null ){
-      cdOne = new AlphaVideo();
-      cdOne.setup("countdownInput","countdownOutput", "c_one_v", 600, 600);
-      cdTwo = new AlphaVideo();
-      cdTwo.setup("countdownInput","countdownOutput", "c_two_v", 600, 600);
-      cdThree = new AlphaVideo();
-      cdThree.setup("countdownInput","countdownOutput", "c_three_v", 600, 600);
-    }
 
 		// show camera if streaming
 		var doStream = configHandler.get('doStream', false);
@@ -99,7 +87,10 @@ var perform = function(data, configHandler){
     soundPerform.setup("vo_perform");
     soundCountdown.setup("snd_countdown");
 
+    MMI.hide( 'performPerform' );
     MMI.show( "performPractice", "block" );
+    var t = document.getElementById('performPractice');
+    t.classList.remove('watermark');
 
     // Option 1: VO -- Show 'get ready', start countdown after VO
     
@@ -109,8 +100,13 @@ var perform = function(data, configHandler){
         // play takes a 'onComplete' parameter,
         // so countdown will automatically occurr after VO
         soundPractice.play( function(){
-            MMI.hide( "performPractice" );
-            startCountdown(false); 
+          //var t = document.getElementById('performPractice');
+          t.classList.add('watermark');
+            //MMI.hide( "performPractice" );
+            setTimeout(function(){
+              startCountdown(false);
+            },
+            1000);
         });
       }, 1000)
     } 
@@ -120,10 +116,15 @@ var perform = function(data, configHandler){
 
     else {
       // timeout 1 - "get ready" -> countdown
-      var t =setTimeout( 
+      setTimeout( 
         function(){
-          MMI.hide( "performPractice" );
-          startCountdown(false); 
+          //var t = document.getElementById('performPractice');
+          t.classList.add('watermark');
+          //MMI.hide( "performPractice" );
+            setTimeout(function(){
+              startCountdown(false);
+            },
+            1000);
         }, 
         1000 + 500
       );
@@ -144,8 +145,10 @@ var perform = function(data, configHandler){
           // same as above: see if VO exists, and either
           // a) play it and wait or b) set a timeout to
           // start the countdown again
-
+          MMI.hide( 'performPractice');
           MMI.show( "performPerform", "block" );
+          var t = document.getElementById('performPerform');
+          t.classList.remove('watermark');
 
           // a) VO
           if ( soundPerform.exists() ){
@@ -153,16 +156,24 @@ var perform = function(data, configHandler){
             // so countdown will automatically occurr after VO
             // 
             soundPerform.play( function(){
-                MMI.hide( "performPerform" );
-                startCountdown(true); 
+                t.classList.add('watermark');
+                //MMI.hide( "performPerform" );
+                setTimeout(function(){
+                  startCountdown(true);
+                },
+                1000);
             });
 
           // b) timeout
           } else {
             setTimeout( 
               function(){ 
-                MMI.hide( "performPerform" );
-                startCountdown(true);
+                t.classList.add('watermark');
+                //MMI.hide( "performPerform" );
+                setTimeout(function(){
+                  startCountdown(true);
+                },
+                1000);
               }, 1000
             );
           }
@@ -186,6 +197,25 @@ var perform = function(data, configHandler){
   **************************************************/
 
   var countdownInterval = null;
+  var countdownTimeout = null;
+  var cancelCountdown = false;
+
+  function continueCountdown(){
+    var countdownNum = Number.parseInt(cdDiv.innerText);
+    countdownNum--;
+    if (countdownNum === 0){
+      finishCountdown();
+    } else {
+      soundCountdown.play();
+      cdDiv.innerText = ('' + countdownNum);
+      cdDiv.classList.remove('countdownFade');
+      countdownTimeout = setTimeout(function(){
+        if (!cancelCountdown){
+          cdDiv.classList.add('countdownFade');
+        }
+      }, 200);
+    }
+  }
 
   /**
    * Start countdown (practice and perform)
@@ -194,47 +224,42 @@ var perform = function(data, configHandler){
   function startCountdown( shootVideo ){
     MMI.show(("countdownContainer"), "flex");
 
+    cancelCountdown = false;
+    cdDiv.innerText = '' + 4;
+    continueCountdown();
+  }
+
+    
+  function finishCountdown(){
+
     var videoDiv = document.getElementById("perf_"+currentClip.name);
+    // hide self, then either setup 'practice' or 'perform'
 
-    // play cound sound
-    soundCountdown.play();
+    MMI.hide(("countdownContainer"), "flex");
+    state++;
+    var shootVideo = (state == 2);
 
-    // play each countdown (alpha video)
-    cdThree.play(function(){
-      soundCountdown.play();
-      cdTwo.play(function(){
-        soundCountdown.play();
-        cdOne.play(function(){
+    if ( shootVideo ){
+      var detail = {
+        "detail":{
+          "clip":currentClip.name,
+          "name":""+name
+        }
+      }
+      // this tells OF to capture
+      window.events.dispatchEvent(new CustomEvent('record_video', detail));
 
-          // hide self, then either setup 'practice' or 'perform'
+      // video plays in OF to match up sound better
+      videoDiv.volume = 0;
 
-          MMI.hide(("countdownContainer"), "flex");
-          state++;
+    } else {
+      videoDiv.volume = 1;
+    }
 
-          if ( shootVideo ){
-            var detail = {
-              "detail":{
-                "clip":currentClip.name,
-                "name":""+name
-              }
-            }
-            // this tells OF to capture
-            window.events.dispatchEvent(new CustomEvent('record_video', detail));
+    // play bg video, which gets 'oncomplete'
+    // from this.enter() going
+    videoDiv.play();
 
-            // video plays in OF to match up sound better
-            videoDiv.volume = 0;
-
-          } else {
-            videoDiv.volume = 1;
-          }
-
-          // play bg video, which gets 'oncomplete'
-          // from this.enter() going
-          videoDiv.play();
-
-        });
-      });
-    });
   }
 
   /**************************************************
@@ -248,9 +273,8 @@ var perform = function(data, configHandler){
       videoDiv.pause();
 
       // just in case
-      cdThree.stop();
-      cdTwo.stop();
-      cdOne.stop();
+      clearTimeout(countdownTimeout);
+      cancelCountdown = true;
       soundPractice.stop();
       soundPerform.stop();
     } catch(e){

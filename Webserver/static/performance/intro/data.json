@@ -2,6 +2,9 @@
 	"name":"intro",
 	"breakButton":{
 		"text":"Skip Intro",
-		"event":"cancel"
-	}
+		"event":"special"
+	},
+	"audio":"vo/perf_vo_01.m4a",
+	"copy":"Choose a Puppet",
+	"disableTimeout":false
 }

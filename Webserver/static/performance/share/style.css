@@ -1,10 +1,15 @@
 #{{name}}.disabled{
-  display:flex;
-  /* animation-name: {{name}}animateOff; */
-  animation-name: hide;
+  display: block;
+  animation-name: animateOffBottom;
   animation-delay: 1s;
-  animation-duration:0s;
+  animation-duration:1s;
   animation-fill-mode:forwards;
+}
+
+#{{name}}.disabled #textContainer{
+  margin-bottom: 200vh;
+  margin-top: -100vh;
+  transition: margin 1s;
 }
 
 #{{name}}{
@@ -14,14 +19,139 @@
   z-index: 0;
 }
 
-#{{name}} .type_sm {
-    font-size: .2rem;
-    line-height: .25rem;
+#{{name}} .background {
+  background: rgb(45, 34, 70);
 }
 
-#shareSaving, #shareBackground {
-  background: black;
+#{{name}}Buttons{
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
 }
+
+#{{name}} #{{name}}Buttons .buttonSpacer{
+  width: 5vw;
+}
+
+/*#{{name}} .type_sm {
+    font-size: .2rem;
+    line-height: .25rem;
+}*/
+
+#{{name}} #textContainer{
+  height:55%;
+  z-index:2;
+  position:relative;
+  justify-content: space-around;
+}
+
+#emailDisplay{
+  width:75%;
+  border-bottom-style: solid;
+  border-bottom-width: thick;
+  padding-bottom: .1rem;
+}
+#keyboardWrapper{
+  height:45%;
+  background:rgb(26, 26, 26);
+  z-index:2;
+  position:relative;
+}
+#keyboardContainer{
+margin: 0 auto;
+padding-top: 5.5vh;
+width: 75vw;
+}
+#keyboard {
+margin: 0;
+padding: 0;
+list-style: none;
+font-size: .5rem;
+color: white;
+}
+    #keyboard li {
+    float: left;
+    margin: 0 .6% .6% 0;
+    width: 8.5465%;
+    padding-bottom: 8.5465%;
+    line-height: .65rem;
+    text-align: center;
+    background-color: rgb(51, 51, 51);
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    height: 0;
+    }
+        #keyboard li.newline{
+          clear:left;
+        }
+        #keyboard li.two_wide{
+          width: 17.693%;
+        }
+        #keyboard li.three_wide{
+          width: 26.8359%;
+        }
+        #keyboard li.four_wide{
+          width: 35.986%;
+        }
+        #keyboard li.five_wide{
+          width: 45.1325%;
+        }
+        #keyboard li.six_wide{
+          width: 54.279%;
+        }
+        #keyboard li.seven_wide{
+          width: 63.4255%;
+        }
+        #keyboard li.eight_wide{
+          width: 72.572%;
+        }
+        #keyboard li.lastitem {
+        margin-right: 0;
+        }
+        #keyboard li.one_before {
+          margin-left: 9.1465%;
+        }
+        #keyboard li.two_before {
+          margin-left: 18.293%;
+        }
+        #keyboard li.three_before {
+          margin-left: 27.4395%;
+        }
+        .uppercase {
+        text-transform: uppercase;
+        }
+        #keyboard .on {
+        display: none;
+        }
+        #keyboard.show_symbols .on{
+          display: inline;
+        }
+        #keyboard.show_symbols .off{
+          display: none;
+        }
+        #keyboard.show_symbols .shift{
+          background-color: rgb(30, 30, 30);
+          color: rgb(51, 51, 51);
+        }
+        .symbols {
+          font-size: .3rem;
+        }
+        .delete, .shift {
+          font-size: .4rem;
+        }
+        .enter {
+          font-size: .25rem;
+        }
+        #keyboard li.shift.active {
+          background-color: mediumpurple;
+        }
+        #keyboard li:hover {
+        position: relative;
+        top: 1px;
+        left: 1px;
+        border-color: #e5e5e5;
+        cursor: pointer;
+        }
 
 .whiteBgTrans {
   background: rgba(255,255,255,.8);
@@ -39,7 +169,7 @@
   top:100vh;
 }
 
-.shareAnimateContainer.enabled{
+/*.shareAnimateContainer.enabled{
   animation-name: animateUpScreen;
   animation-duration: 1s;
   animation-fill-mode:forwards;
@@ -64,4 +194,4 @@
 
 .freezeAnim {
   top: 0vh;
-}
+}*/

@@ -7,6 +7,7 @@ var select = function(data){
 	 * @type {SoundPlayer}
 	 */
 	var soundPlayer = null;
+	var soundPlayTimeout;
 
 	var videos = data.videos;
 	var videoDivs = [];
@@ -53,13 +54,13 @@ var select = function(data){
 		// overlay.classList.remove("disabled");
 
 		// play voiceover after animate in
-		setTimeout(function(){
+		soundPlayTimeout = setTimeout(function(){
 			if ( soundPlayer.exists() ){
 				soundPlayer.play( function(){
 					// trigger stuff, if you'd like
 				});
 			}
-		}, 1000)
+		}, 1000);
 
 		// listen to buttons
 		window.addEventListener("selectClip", selectClip );
@@ -94,8 +95,10 @@ var select = function(data){
 	var buttonTimeout = null;
 
 	function previewClip( e ){
-		// stop VO if still playing]
+		// stop VO if still playing
 		if ( soundPlayer.exists() ){
+			//cancel starting of clip if it has not started yet
+			clearTimeout(soundPlayTimeout);
 			soundPlayer.stop();
 		}
 
@@ -106,6 +109,9 @@ var select = function(data){
 		// hide buttons
 		var b = document.getElementById("selectButtons");
 		b.classList.remove("enabled");
+		//hide prompt text
+		var t = document.getElementById('selectClipText');
+		t.classList.add('disabled');
 
 		currentClip  = e.detail;
 		var whichDiv = e.detail + "_big";
@@ -153,8 +159,10 @@ var select = function(data){
 			// clipIsSelected = true;
 		}
 
-		// stop VO if still playing]
+		// stop VO if still playing
 		if ( soundPlayer.exists() ){
+			//cancel starting of clip if it has not started yet
+			clearTimeout(soundPlayTimeout);
 			soundPlayer.stop();
 		}
 
@@ -169,6 +177,8 @@ var select = function(data){
 
 		var btns = document.getElementById("selectButtons");
 		btns.classList.remove("enabled");
+		var t = document.getElementById('selectClipText');
+		t.classList.remove('disabled');
 
 
 		for ( var v in videoDivs ){

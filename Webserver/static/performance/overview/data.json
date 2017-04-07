@@ -4,5 +4,9 @@
 	"breakButton":{
 		"text":"Skip Intro",
 		"event":"next"
+	},
+	"audio":{
+		"front":"vo/perf_vo_02.m4a",
+		"side":"vo/perf_vo_03.m4a"
 	}
 }

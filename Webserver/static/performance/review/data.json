@@ -1,0 +1,9 @@
+{
+	"name":"review",
+	"disableTimeout":false,
+	"breakButton":{
+		"text":"Start Over",
+		"event":"cancel"
+	},
+	"copy":"Email Your Video?"
+}

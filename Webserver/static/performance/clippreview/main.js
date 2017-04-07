@@ -7,6 +7,7 @@ var clippreview = function(data, configHandler){
   **************************************************/
 
 	var currentClip = null;
+  var clipPlayTimeout;
 
 	function setClip(e){
 		for ( var i in videos ){
@@ -30,7 +31,7 @@ var clippreview = function(data, configHandler){
 
 	this.enter = function(/*evt*/){
     var previewTitle = document.getElementById("previewTitle");
-    previewTitle.classList.remove("disabled");
+    previewTitle.classList.remove("watermark");
 
     // -----------------------------------------------
     // Setup Videoplayer: once it ends, go to next state
@@ -43,11 +44,13 @@ var clippreview = function(data, configHandler){
         window.events.dispatchEvent( new Event("next") );
   	};
 
-    setTimeout(function(){
-      previewTitle.classList.add("disabled");
-      videoDiv.play();
-    }, 2000)
-	} 
+    clipPlayTimeout = setTimeout(function(){
+      previewTitle.classList.add("watermark");
+      clipPlayTimeout = setTimeout(function(){
+        videoDiv.play();
+      }, 500);
+    }, 2000);
+	}
 
   /**************************************************
     Exit: called automatically when page closes
@@ -55,6 +58,8 @@ var clippreview = function(data, configHandler){
 
   this.exit = function(/*evt*/){
     try {
+      //don't start the clip if it hasn't already!
+      clearTimeout(clipPlayTimeout);
       var videoDiv = document.getElementById("preview_"+currentClip.name);
       videoDiv.pause();
       setTimeout(function(){

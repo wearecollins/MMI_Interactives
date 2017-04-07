@@ -1,0 +1,28 @@
+#{{name}}.disabled{
+  display:flex;
+  /* animation-name: {{name}}animateOff; */
+  animation-name: hide;
+  animation-delay: 1s;
+  animation-duration:0s;
+  animation-fill-mode:forwards;
+}
+
+#{{name}}{
+  animation-name: animateIn;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+  z-index: 0;
+}
+
+#{{name}} .background {
+  background: rgb(45, 34, 70);
+}
+
+#{{name}} .title{
+  padding-bottom: 0;
+}
+
+#{{name}} .type_lg{
+    font-size: .70rem;
+    line-height: .84rem;
+}

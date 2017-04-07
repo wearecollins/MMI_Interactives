@@ -14,9 +14,11 @@
 			"src":"video/horse_named_bill.mp4"
 		}
 	],
-	"disableTimeout":true,
+	"disableTimeout":false,
 	"breakButton":{
 		"text":"Start Over",
 		"event":"cancel"
-	}
+	},
+	"audio":"vo/perf_vo_04.m4a",
+	"copy":"Preview &amp;<br />Select a Clip"
 }

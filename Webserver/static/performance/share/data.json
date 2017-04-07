@@ -1,4 +1,6 @@
 {
 	"name":"share",
-	"disableTimeout":true
+	"disableTimeout":true,
+	"breakButton":false,
+	"copy":"Enter Your Email Address:"
 }

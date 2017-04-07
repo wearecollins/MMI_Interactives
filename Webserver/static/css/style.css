@@ -203,6 +203,25 @@ body,
     }
 }
 
+@keyframes watermark{
+  to{
+    top:3vh;
+    left:3vh;
+    transform: translateX(0%) translateY(0%);
+    font-size: .35rem;
+    line-height: .44rem;
+  }
+}
+
+@keyframes fadeOut{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+
 /* Top-level pages */
 
 #liveView{
@@ -411,6 +430,10 @@ body,
 }
 
 /* 1080 x 1920 */
+
+.over_video{
+  text-shadow: black 0.02em 0.05em;
+}
 
 .type_micro {
     font-size: .1rem;

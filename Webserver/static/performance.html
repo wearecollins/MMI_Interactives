@@ -25,8 +25,11 @@
       'performance/select',
       'performance/clippreview', // comment this out to take out the full-clip 'preview'
       'performance/perform',
+      'performance/wait',
+      'performance/review',
       'performance/share',
-      'performance/thanks',
+      'performance/thanksshare',
+      'performance/thanksplain',
       'performance/admin'
     ];
 
@@ -36,9 +39,14 @@
     defaultMode.addGlobalTransition('cancel', 'performance/attract');
     
     //we don't want the last state to go to freeplay
-    defaultMode.addTransition('performance/thanks', 'next', 'performance/attract');
+    defaultMode.addTransition('performance/thanksshare', 'next', 'performance/attract');
+    defaultMode.addTransition('performance/thanksplain', 'next', 'performance/attract');
     //we can skip over the intro/overview screens
-    defaultMode.addTransition('performance/intro', 'cancel', 'performance/select');
+    defaultMode.addTransition('performance/intro', 'special', 'performance/select');
+    //the review screen has an alternate "next" screen
+    defaultMode.addTransition('performance/review', 'special', 'performance/thanksplain');
+    //cancelling on the share screen prompts you to return the puppets
+    defaultMode.addTransition('performance/share', 'cancel', 'performance/thanksplain');
 
     var continuousMode = customTransitions.createMode('continuous');
     continuousMode.addGlobalTransition('cancel', 'performance/freeplay');

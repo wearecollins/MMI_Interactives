@@ -1,5 +1,6 @@
 {
 	"name":"attract",
 	"disableTimeout":true,
-	"breakButton":false
+	"breakButton":false,
+	"copy":"Perform a<br />Puppet on Screen"
 }
