@@ -69,7 +69,7 @@ var admin = function(data, configHandler){
       div.value = tValue;
       //and set the readout
       var val = document.getElementById('config_output_timeout');
-      val.value = tValue + 'm';
+      val.value = (+(tValue.toFixed(2))) + 'm';
     } catch(e){}
 
     // setup save button

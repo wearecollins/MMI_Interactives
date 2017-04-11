@@ -14,6 +14,30 @@
 #buttonAdminSave.disabled {
   opacity: .4;
 }
+
+form#config_form_timeout{
+  display:flex;
+  justify-content: space-between;
+}
+
+div#config_range_wrapper_timeout{
+  flex-grow:1;
+  flex-basis:auto;
+  display:flex;
+}
+
+#config_timeout{
+  flex-basis:auto;
+  flex-grow:1;
+}
+
+#config_output_timeout{
+  color:grey;
+  flex-grow:0;
+  width:3em;
+  text-align:center;
+}
+
 /*
 #breakButton.{{name}} {
   animation-name:animateBreakOff;
