@@ -3,11 +3,10 @@
 
   <div id="continueContainer" class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
     <div></div>
-    <div id="{{name}}Text" class="type_lg title">
-      Keep Adjusting<br />
+    <div id="{{name}}Text" class="type_lg title over_video">
+      {{{copy.large}}}
       <div class="type_med" style="margin-top:.2rem;">
-        the features until your character<br />
-        is camera ready
+        {{{copy.small}}}
       </div>
     </div>
   </div>

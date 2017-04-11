@@ -6,8 +6,8 @@
   </div>
   <div class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
 
-    <div id="{{name}}Text" class="type_lg title disabled">
-      Design an<br />Anything Muppet<br />Character
+    <div id="{{name}}Text" class="type_lg title over_video disabled">
+      {{{copy}}}
     </div>
 
     <div id="{{name}}NextBtn" class="type_med button button_lg" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">

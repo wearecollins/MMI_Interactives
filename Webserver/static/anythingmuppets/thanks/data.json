@@ -3,5 +3,6 @@
 	"disableTimeout":true,
 	"breakButton":{
 		"text":"Start Over",
-		"event":"cancel"}
+		"event":"cancel"},
+	"copy":"Please Place The Features Back In the Tray"
 }

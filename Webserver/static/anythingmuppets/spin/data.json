@@ -4,5 +4,6 @@
 	"showStream":true,
 	"breakButton":{
 		"text":"Start Over",
-		"event":"cancel"}
+		"event":"cancel"},
+	"copy":"Spin the Puppet<br />to see your character on screen"
 }

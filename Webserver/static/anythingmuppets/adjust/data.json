@@ -4,5 +4,9 @@
 	"showStream":true,
 	"breakButton":{
 		"text":"Start Over",
-		"event":"cancel"}
+		"event":"cancel"},
+	"copy":{
+		"large":"Keep Adjusting<br />",
+		"small":"the features until your character<br />is camera ready"
+	}
 }

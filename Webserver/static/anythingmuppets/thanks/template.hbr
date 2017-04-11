@@ -5,7 +5,7 @@
 
   <div class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
     <div class="type_lg title">
-      Please Place The Features Back In the Tray
+      {{{copy}}}
     </div>
     <div></div>
   </div>

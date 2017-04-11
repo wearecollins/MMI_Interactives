@@ -2,5 +2,6 @@
 	"name":"attract",
 	"disableTimeout":true,
 	"buttons":[{"type":"next","text":"Start"}],
-	"breakButton":false
+	"breakButton":false,
+	"copy":"Design an<br />Anything Muppet<br />Character"
 }

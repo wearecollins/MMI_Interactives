@@ -4,5 +4,9 @@
 	"useVideo":false,
 	"breakButton":{
 		"text":"Start Over",
-		"event":"cancel"}
+		"event":"cancel"},
+	"copy":{
+		"large":"Choose a Sesame Street script<br />",
+		"small":"for inspiration and use the features to start designing your Anything Muppet character"
+	}
 }

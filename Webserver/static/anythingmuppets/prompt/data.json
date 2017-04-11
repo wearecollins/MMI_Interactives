@@ -4,5 +4,9 @@
 	"showStream":true,
 	"breakButton":{
 		"text":"Start Over",
-		"event":"cancel"}
+		"event":"cancel"},
+	"copy":{
+		"large":"Still Designing?<br />",
+		"small":"If others are waiting please<br />give the next person a turn"
+	}
 }

@@ -2,9 +2,8 @@
   <div class='background' id="captureBgContainer"></div>
 
   <div id="spinContainer" class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
-    <div class="type_lg title">
-      Spin the Puppet<br />
-      to see your character on screen
+    <div class="type_lg title over_video">
+      {{{copy}}}
     </div>
     <div id="spinPlayer">
       <canvas width="600" height="1200" id="spinInput"></canvas>
