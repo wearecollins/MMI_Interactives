@@ -20,19 +20,22 @@ var review = function( data, configHandler ){
 
 	function onTimeupdate(){
 	    if ( this.currentTime >= this.duration ){
-	    	console.log('showed video, trigger share query');
-			var vidElem = document.getElementById('videoReview');
-	    	if (haveShownShare === false ){
-	    		haveShownShare = true;
-	    		var container = document.getElementById('videoReviewContainer');
-	    		container.classList.add('share');
-				var btn = document.getElementById('breakButton');
-      			btn.classList.remove('enabled');
-      			btn.classList.add('disabled');
-      			vidElem.mute();
-			}
-			vidElem.currentTime = 0;
-			vidElem.play();
+    		if (configHandler.get('showLocalShare')){
+				var vidElem = document.getElementById('videoReview');
+		    	if (haveShownShare === false ){
+		    		haveShownShare = true;
+		    		var container = document.getElementById('videoReviewContainer');
+		    		container.classList.add('share');
+					var btn = document.getElementById('breakButton');
+	      			btn.classList.remove('enabled');
+	      			btn.classList.add('disabled');
+	      			vidElem.mute();
+				}
+				vidElem.currentTime = 0;
+				vidElem.play();
+    		} else {
+    			window.events.dispatchEvent(new Event('special'));
+    		}
 	    }
 	}
 
