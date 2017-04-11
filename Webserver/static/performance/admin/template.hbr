@@ -6,11 +6,13 @@
     <div id="formContainer" class="centeredContainer column">
       <div class="adminEl">
           <div class="type_sm padding_sm">Startover timeout (minutes)</div>
-          <form oninput="x.value=parseFloat(config_timeout.value)" class="type_sm">
-            0.5m
-            <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" type="range" id="config_timeout" name="a" value="1" step="0.5" min="0.5" max="15">
-            15m
-            <output name="x" for="config_timeout"></output>
+          <form oninput="x.value=parseFloat(config_timeout.value) + 'm'" class="type_sm" id="config_form_timeout">
+            <div id='config_range_wrapper_timeout'>
+              0.5m
+              <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" type="range" id="config_timeout" name="a" value="1" step="0.5" min="0.5" max="15">
+              15m
+            </div>
+            <output id="config_output_timeout" name="x" for="config_timeout"></output>
           </form>
       </div>
 
@@ -27,7 +29,7 @@
       </div>
 
       <div class="adminEl">
-        <div class="type_sm padding_sm">Share Server Address</div>
+        <div class="type_sm padding_sm">Share Server Local Address</div>
         <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_shareServer" class="borderInput type_sm" />
       </div>
 
@@ -43,13 +45,13 @@
       </div>
     </div>
 
-    <div class="bottomCenteredContainer noselect" style="z-index:2; height:30vh; bottom:0">
+    <div class="bottomCenteredContainer noselect" style="z-index:2; height:20vh; bottom:0; width: 50%; justify-content:space-around;">
         <div id="buttonAdminSave" class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('saveAdmin'));">
-            <img src="svg/__select.svg" class="button_sm padding_sm" />
+            <img src="svg/__select.svg" style="width: 10vw; height: 10vw;" />
             <div class="type_sm padding_sm">save</div>
         </div>
         <div id="buttonAdminCancel" class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
-            <img src="svg/__done.svg" class="button_sm padding_sm" />
+            <img src="svg/__done.svg" style="width: 10vw; height: 10vw;" />
             <div class="type_sm padding_sm">cancel</div>
         </div>
     </div>
