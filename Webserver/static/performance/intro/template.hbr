@@ -3,7 +3,7 @@
 
   <audio src="{{audio}}" id="vo_grab"></audio>
 
-  <div class="container fillAbs centeredContainer column" style="z-index:2; justify-content:space-around;">
+  <div class="container fillAbs centeredContainer column">
     <div class="type_lg title">
       {{{copy}}}
     </div>

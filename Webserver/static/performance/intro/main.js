@@ -1,22 +1,25 @@
-var intro = function(/*manager*/){
+var intro = function(/* data, configHandler */){
 
-	var soundPlayer = new SoundPlayer();
-	var soundTimeout;
+  var soundPlayer = new SoundPlayer();
+  var soundTimeout;
 
-	this.enter = function(/*evt*/){
+  this.enter = function(/*evt*/){
 
-		// if VO is not commented out, play it!
-		soundPlayer.setup("vo_grab");
-		if ( soundPlayer.exists() ){
+    // if VO is not commented out, play it!
+    soundPlayer.setup('vo_grab');
+    if ( soundPlayer.exists() ){
 
-			soundTimeout = setTimeout(function(){
-				soundPlayer.play();
-			}, 1000)
-		}
-	};
+      //wait for the screen to transition in before starting VO
+      soundTimeout = setTimeout(function(){
+        soundPlayer.play();
+      }, 1000);
+    }
+  };
 
-	this.exit = function(/*evt*/){
-		clearTimeout(soundTimeout);
-		soundPlayer.stop();
-	};
-}
+  this.exit = function(/*evt*/){
+    //don't play the audio if it has not started already
+    clearTimeout(soundTimeout);
+    //or stop the audio if it already started
+    soundPlayer.stop();
+  };
+};

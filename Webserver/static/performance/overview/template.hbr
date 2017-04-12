@@ -4,8 +4,7 @@
   </div>
 
   <!-- 
-  Change 'src' to whatever final VO is. As long as
-  ids stay the same, it will play/switch automatically.
+  As long as ids stay the same, it will play/switch automatically.
   -->
   <audio src="{{audio.front}}" id="camera_front"></audio>
   <audio src="{{audio.side}}" id="camera_side"></audio>

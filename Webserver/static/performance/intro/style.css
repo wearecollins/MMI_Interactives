@@ -1,10 +1,11 @@
 #{{name}}.disabled{
   display:flex;
   animation-name: animateOff;
-  /* animation-name: hide; */
-  /* animation-delay: 1s; */
-  /* animation-duration:0s; */
   animation-fill-mode:forwards;
+}
+
+#{{name}}.disabled.special{
+  animation-delay:1s;
 }
 
 #{{name}} .background {
@@ -22,10 +23,7 @@
   z-index: 0;
 }
 
-#leftInput, #l_arrow {
-  visibility: hidden;
-  display: none; 
+#{{name}} .container{
+	z-index:2; 
+	justify-content:space-around;
 }
-/* leftOutput {
-
-} */

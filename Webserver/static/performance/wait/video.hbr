@@ -1,3 +1,0 @@
-<video id="share_video" class="fillContainerH attractVideo">
-  <source id="shareSource" src="{{video}}" type="video/mp4">
-</video>

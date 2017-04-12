@@ -1,9 +1,6 @@
 #{{name}}.disabled{
   display:flex;
   animation-name: animateOff;
-  /* animation-name: hide; */
-  /* animation-delay: 1s; */
-  /* animation-duration:0s; */
   animation-fill-mode:forwards;
 }
 
@@ -37,22 +34,7 @@
 
 #{{name}} .watermark {
   animation-name: watermark;
-  /*top:3vh;
-  left:3vh;
-  transform: translateX(0%) translateY(0%);*/
   animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
-  /*
-  position: absolute;
-  z-index:15;
-  top:0;
-  left:0;
-  padding: .3rem;
-  animation-duration: 1s;
-  font-size: .35rem;
-  line-height: .44rem;
-  width: initial;
-  height: initial;
-  */
 }

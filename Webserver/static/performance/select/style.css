@@ -1,9 +1,8 @@
 #{{name}}.disabled{
   display:flex;
   animation-name: animateOff;
-  /* animation-name: hide; */
-  /* animation-delay: 1s; */
   animation-duration:1s;
+  animation-delay:1s;
   animation-fill-mode:forwards;
 }
 
@@ -15,8 +14,6 @@
 }
 
 #{{name}} video {
-    /*width: {{math 100 "/" videos.length}}%;*/
-    /*margin: .5%;*/
     transition: all ease-in-out .25s;
     position: relative;
 }
@@ -73,8 +70,6 @@
 .videoContainer {
   height:90%;
   top:5%;
-  /*padding:1%;*/
-  /*margin: .75%;*/
   transition: all ease-in-out .25s;
   position: relative;
   float:left;
@@ -127,10 +122,3 @@
 	display: flex;
 	align-items: flex-end;
 }
-/*
-#{{name}} .button {
-	height:20vh;
-	display: flex;
-	align-items: flex-start;
-  pointer-events:all;
-}*/

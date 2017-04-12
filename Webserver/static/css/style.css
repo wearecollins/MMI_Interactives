@@ -218,6 +218,17 @@ body,
 
 /* Top-level pages */
 
+/* Include lots of selectors to override other styling */
+div#previewTitle.staticWatermark,
+div#performPractice.staticWatermark,
+div#performPerform.staticWatermark{
+    top:3vh;
+    left:3vh;
+    transform: translateX(0%) translateY(0%);
+    font-size: .35rem;
+    line-height: .44rem;
+}
+
 #liveView{
   display:block;
   align-items:center;

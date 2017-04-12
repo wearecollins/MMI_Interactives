@@ -26,7 +26,7 @@
     <video id="perf_{{name}}">
         <source src="{{src}}" type="video/mp4">
     </video>
-  {{/each}}
+    {{/each}}
   </div>
 
   <!-- Countdown -->

@@ -33,24 +33,9 @@
 
 #{{name}} .watermark {
   animation-name: watermark;
-  /*top:3vh;
-  left:3vh;
-  transform: translateX(0%) translateY(0%);*/
   animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
-  /*
-  position: absolute;
-  z-index:15;
-  top:0;
-  left:0;
-  padding: .3rem;
-  animation-duration: 1s;
-  font-size: .35rem;
-  line-height: .44rem;
-  width: initial;
-  height: initial;
-  */
 }
 
 #countdownNumber {
@@ -68,11 +53,6 @@
 }
 
 #countdownInput {
-  visibility: hidden;
-  display: none;
-}
-
-#c_three_v, #c_two_v, #c_one_v {
   visibility: hidden;
   display: none;
 }
