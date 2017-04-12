@@ -19,15 +19,18 @@
 0. Download all code from the [releases section](https://github.com/wearecollins/MMI_Interactives/releases), and copy to _~/Documents/MMI_Interactives_
    - Note: if setting up via `git` instead, you must still download the _media_ directory and copy files into place
 0. Copy the appropriate _Frontend plist_ to _~/Library/LaunchAgents/_
-   - Edit the destination path (`/Users/install/Documents/...`) to match your user account
+   - You may need to create the _LaunchAgents_ directory
+   - Edit the executable path inside the plist (`/Users/install/Documents/...`) to match your user account
    - Anything Muppets: _com.mmi.am.plist_
    - Performance for the Screen: _com.mmi.perf.plist_
 0. Install [Node.js](https://nodejs.org/en/download/)
+   - If you would rather use a Node version manager, some of the startup scripts may need to be updated since they assume Node and NPM are in `/usr/local/bin/`
 0. Run `sudo launchctl config user path /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin`
-0. Run `npm install` from the Webserver directory
-   - should prompt you to install XCode command-line tools
+   - This fixes the PATH for Launch Agents
+0. Run `xcode-select --install` and select _Install_ on the resulting popup to install Xcode command-line tools
+0. Run `npm install` from the _~/Documents/MMI_Interactives/Webserver/_ directory
 0. Configure the Sync service as a cron job as specified [here](../../Sync/README.md#setup)
 0. Configure the computers for automatic shutdown/startup as preferred.
    - This step is optional
 0. reboot computer
-   - This is necessary to load the new PATH into launchd
+   - This is necessary to load the new PATH into launchd, and launch the Frontend
