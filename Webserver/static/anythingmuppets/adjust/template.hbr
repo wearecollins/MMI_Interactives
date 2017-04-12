@@ -1,5 +1,5 @@
 <div id='{{name}}' class='page noselect'>
-  <div class='background' id="captureBgContainer"></div>
+  <div class='background' id="{{name}}BgContainer"></div>
 
   <div id="continueContainer" class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
     <div></div>

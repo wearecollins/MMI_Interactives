@@ -1,24 +1,16 @@
 #{{name}}.disabled{
   display:flex;
-  /* animation-name: {{name}}animateOff; */
   animation-name: hide;
   animation-delay: 1s;
   animation-duration:1s;
   animation-fill-mode:forwards;
 }
 
-/*
-#breakButton.{{name}} {
-  animation-name:animateBreakOn;
-  animation-duration:1s;
-}
-*/
 #{{name}}{
   animation-name: animateIn;
   animation-delay: 1s;
   animation-duration: 1s;
   animation-fill-mode:both;
-  /* z-index: 0; */
 }
 
 #{{name}} .background {

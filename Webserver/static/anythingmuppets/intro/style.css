@@ -1,16 +1,10 @@
 #{{name}} .background{
 	background-color: rgba(0,0,0,50);
 }
-/*
-#breakButton.{{name}} {
-  animation-name:animateBreakOn;
-  animation-duration:1s;
-}
-*/
+
 /* Transition off */
 #{{name}}.disabled{
   display:flex;
-  /* animation-name: {{name}}animateOff; */
   animation-name: hide;
   animation-delay: 1s;
   animation-duration:0s;
@@ -29,20 +23,6 @@
 /* Main animation in */
 #{{name}} {
   animation-name: animateIn;
-  animation-duration: 1s;
-  animation-fill-mode:forwards;
-}
-
-/* Animate buttons in/out */
-
-#{{name}}Buttons.disabled {
-  animation-name: animateOffTop;
-  animation-duration:1s;
-  animation-fill-mode:forwards;
-}
-
-#{{name}}Buttons.enabled {
-  animation-name: animateDownTop;
   animation-duration: 1s;
   animation-fill-mode:forwards;
 }

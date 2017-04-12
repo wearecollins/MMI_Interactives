@@ -1,7 +1,9 @@
 /**
  * Page: adjust screen
- * @param  {Object} data          incoming JSON from data.json
- * @param  {ConfigHandler} configHandler incoming object from global confighandler
+ * @param  {Object} data
+ *   incoming JSON from data.json
+ * @param  {ConfigHandler} configHandler
+ *   incoming object from global confighandler
  */
 var adjust = function(data, configHandler){
 
@@ -9,92 +11,55 @@ var adjust = function(data, configHandler){
     Section: Main vars
   **************************************************/
 
-
-  // hack for multi image problem
-  var didSetImage = false;
-  var capturedImage = null;
-  var currentImageUrl = "";
-
-  // alpha countdown
-  var cdOne = null, 
-  cdTwo = null, 
-  cdThree = null;
-
-  var soundTimeout, nextTimeout;
-
-  var sndFocusVo = new SoundPlayer(), 
-  sndCountdown = new SoundPlayer(),
-  sndShutter = new SoundPlayer();
+  var nextTimeout;
 
   /**************************************************
     Section: Enter
   **************************************************/
 
   this.enter = function(/*evt*/){
-    
-    soundTimeout = setTimeout(function(){
 
-      sndFocusVo.play();
-      
-    }, 500);
+    var timeoutTime = getTimeout(20000);
 
-    var to = configHandler.get('timeout', 60) * 1000;
-
+    //auto-next after proportional timeout
     nextTimeout = setTimeout(function(){
       window.events.dispatchEvent(new Event('next'));
-    }, to / 2);
+    }, timeoutTime);
   };
+
+  /**
+   *  Get this page's timeout based on what is configured
+   *  @param {number} default 
+   *                  The default timeout to use if nothing is configured
+   */
+  function getTimeout(time){
+    try {
+      //read timeout from Page's config file
+      // using a fall-back of 1 second
+      var timeout = time;
+      if (data.timeout){
+        if (data.timeout.millis){
+          // if a raw time is configured, then use that
+          timeout = parseInt(data.timeout.millis);
+        } else if (data.timeout.proportional){
+          // if a proportional time is configured,
+          // it is proportional to the global timeout
+          var to = configHandler.get('timeout', 60) * 1000;
+          timeout = to * parseFloat(data.timeout.proportional);
+        }
+      }
+
+      return timeout;
+    } catch(e) {
+      return time;
+    }
+  }
 
   /**************************************************
     Section: EXIT!
   **************************************************/
 
-  function cleanUp(){
-    try {
-      var bg = document.getElementById("captureBgContainer");
-      bg.removeChild(capturedImage);
-      bg.style.backgroundColor = "";
-
-      document.getElementById("shareLocalContainer").classList.remove("enabled");
-      document.getElementById("shareOnlineContainer").classList.remove("enabled");
-      document.getElementById("shareLocalContainer").classList.remove("disabled");
-      document.getElementById("shareOnlineContainer").classList.remove("disabled");
-  
-    } catch(e){
-
-    }
-
-    bg.innerHTML = "";
-    MMI.show(("captureContainer"), "flex");
-    MMI.hide(("retakeContainer"));
-    MMI.show(("shareOnlineContainer"), "flex");
-    MMI.show(("shareLocalContainer"), "flex");
-    MMI.show("shareButtonContainer", "flex");
-
-    manager.getStreamHandler().hideStream();
-    
-    var btn = document.getElementById("shareOnlineBtn");
-    btn.classList.remove("disabled");
-  }
-
   this.exit = function(/*evt*/){
-    //clearTimeout(countdownInterval);
     clearTimeout(nextTimeout);
-    
-    // window.removeEventListener("shouldCancel", returnShouldCancel);
-    // window.removeEventListener("capture", startCountdown);
-    // window.removeEventListener("skipToThanks", skipToThanks);
-    // window.removeEventListener("share", share);
-    // window.removeEventListener("share_online", shareOnline);
-    // window.removeEventListener("share_done", shareDone);
-    // window.removeEventListener("retake", retake);
-    // window.removeEventListener("imageCapture", setImage);
-
-    // var bg = document.getElementById("captureBgContainer");
-
-    // setTimeout(cleanUp, 1500);
-
-    // clearTimeout(soundTimeout);
-    // pauseSounds();
   };
 };

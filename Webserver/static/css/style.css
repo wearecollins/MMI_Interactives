@@ -15,7 +15,6 @@ html, body {
     font-family: BrandonText;
     width: 100vw;
     height: 100vh;
-    /* overflow: hidden; */
     font-size: 140px;
     background: rgba(0,0,0,0);
     line-height: 1.1rem;
@@ -52,10 +51,6 @@ body,
   position:absolute;
   width: 100vw;
   height: 100vh;
-}
-
-.hang_punctuation {
-  margin-left: -.5em;
 }
 
 #adminSwipe {
@@ -188,7 +183,6 @@ body,
         z-index: 0;
     }
     to {
-        /* display:none; */
         height:0%;
         z-index: 0;
     }
@@ -287,18 +281,6 @@ body,
   animation-timing-function: ease-out;
 }
 
-/*#breakButton div{
-  background-color: white;
-  color: rgb(45, 34, 70);
-  width: 2.5rem;
-  padding-top: .15rem;
-  padding-bottom: .15rem;
-  border-radius: .5rem;
-  font-size: .25rem;
-  text-align: center;
-  line-height: .34rem;
-}*/
-
 #performance .button{
   font-size: .205rem;
   line-height: .32rem;
@@ -389,27 +371,6 @@ body,
     width: 75vw;
     height: 75vw;
 }
-
-/*#performance .button_lg {
-  width: 60vh;
-  height: 60vh;
-}
-
-#performance .button_sm {
-    width: 16vh;
-    height: 16vh;
-}
-
-@media (max-height: 1024px) {
-    .button_sm {
-        width: 160px;
-        height: 160px;
-    }
-    .button_lg {
-        width: 600px;
-        height: 600px;
-    }
-}*/
 
 .padding_sm {
     padding-bottom: 3vh;

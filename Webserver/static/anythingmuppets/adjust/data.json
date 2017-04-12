@@ -1,6 +1,8 @@
 {
 	"name":"adjust",
 	"disableTimeout":false,
+	"timeout":{
+		"proportional":0.5},
 	"showStream":true,
 	"breakButton":{
 		"text":"Start Over",

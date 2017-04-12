@@ -1,5 +1,4 @@
 #{{name}} .title{
-  /*text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3);*/
   padding-bottom: 0;
 }
 
@@ -20,58 +19,20 @@
   visibility: hidden;
   display: none;
 }
-/*
-#breakButton.{{name}} {
-  animation-name:animateBreakOn;
-  animation-duration:1s;
-}
-*/
+
 /* for debuggin */
-#captureBgContainer {
+#{{name}}BgContainer {
 	/* background-color:rgba(0,0,0,.5); */
   transition: background-color ease-in-out .25s;
 }
 
-#captureBgContainer img {
+#{{name}}BgContainer img {
   height: 100%;
-}
-
-#shareContainer, #retakeContainer, #countdownContainer {
-	visibility: hidden;
-	display: none;
-}
-
-#shareButtonContainer.disabled, #retakeContainer.disabled  {
-  animation-name: animateOffBottom;
-  animation-duration:1s;
-  animation-fill-mode:forwards;
-}
-
-#shareButtonContainer.enabled, #retakeContainer.enabled  {
-  animation-name: animateUpScreen;
-  animation-duration: 1s;
-  animation-fill-mode:forwards;
-}
-
-#shareBg {
-  background: rgba(255,255,255,.5);
-}
-
-#c_three, #c_two, #c_one {
-	visibility: hidden;
-	display: none;
-}
-
-.shareCopyBlock {
-  text-align: left;
-  font-size: .25rem;
-  line-height: .3rem;
 }
 
 #{{name}}.disabled{
   height: 100vh;
   display:flex;
-  /* animation-name: {{name}}animateOff; */
   animation-name: hide;
   animation-delay: 1s;
   animation-duration:0s;
@@ -86,54 +47,4 @@
   animation-delay: 1s;
   animation-fill-mode:forwards;
   /* z-index: 0; */
-}
-
-.shareAnimateContainer {
-  top:100vh;
-}
-
-.whiteBgTrans {
-  background: rgba(255,255,255,.8);
-}
-
-#{{name}}.disabled .shareAnimateContainer.enabled{
-  height: 100vh;
-  z-index: 1;
-  top:0vh;
-  animation-duration: 0s;
-}
-
-
-.shareAnimateContainer.enabled{
-  animation-name: animateUpScreen;
-  animation-duration: 1s;
-  animation-fill-mode:forwards;
-  animation-delay: 0s;
-  z-index: 1;
-  height: 100vh;
-}
-
-.shareAnimateContainer.disabled{
-  animation-name: animateOffBottom;
-  animation-duration: 1s;
-  animation-fill-mode:forwards;
-  animation-delay: 0s;
-  z-index: 1;
-  height: 100vh;
-}
-
-#shareOnlineBtn {
-  transition: opacity ease-in-out .2s;
-}
-
-#shareOnlineBtn.disabled {
-  opacity: .4;
-}
-
-#countdownInput {
-  visibility: hidden;
-  display: none;
-}
-
-#countdownOutput{
 }

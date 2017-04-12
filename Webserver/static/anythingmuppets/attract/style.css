@@ -1,6 +1,5 @@
 #{{name}}.disabled{
 	display:flex;
-	  /* animation-name: {{name}}animateOff; */
     animation-name: hide;
     animation-delay: 1s;
 	animation-duration:0s;
@@ -19,31 +18,8 @@
 	animation-name: animateIn;
   	animation-duration: 1s;
   	animation-fill-mode:forwards;
-  	/* z-index: 1; */
 }
 
 #{{name}} .title{
-	/*text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3);*/
 	padding-bottom: 0;
 }
-/*
-#breakButton.{{name}} {
-  animation-name:animateBreakOff;
-  animation-duration:1s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in;
-}
-*/
-/*
-#{{name}}.disabled #{{name}}NextBtn {
-  animation-name: animateApart;
-  animation-duration:1s;
-  animation-fill-mode:forwards;
-}
-
-#{{name}}.enabled #{{name}}NextBtn {
-  animation-name: animateTogether;
-  animation-duration: 1s;
-  animation-fill-mode:forwards;
-}
-*/

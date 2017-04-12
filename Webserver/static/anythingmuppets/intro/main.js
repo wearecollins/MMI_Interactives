@@ -1,42 +1,32 @@
-var intro = function(/*manager*/){
-	var videoDiv;
-	var me;
+var intro = function(/*data, configHandler*/){
+  var videoDiv;
   var pauseT;
 
   this.enter = function(/*evt*/){
     clearTimeout(pauseT);
 
-    var me = document.getElementById("intro");;
-  	videoDiv = me.getElementsByClassName("introVideo")[0];
-    videoDiv.addEventListener("timeupdate", onTimeupdate);
+    var me = document.getElementById('intro');
+    videoDiv = me.getElementsByClassName('introVideo')[0];
+    videoDiv.addEventListener('timeupdate', onTimeupdate);
 
     videoDiv.muted = false;
-  	videoDiv.play();
-
-    // setTimeout(function(){
-    //   var d = document.getElementById("introButtons");
-    //   d.classList.remove("disabled");
-    //   d.classList.add("enabled");
-    // }, 1000);
+    videoDiv.play();
   };
 
   function onTimeupdate(){
     if ( videoDiv.currentTime >= videoDiv.duration ){
-      videoDiv.removeEventListener("timeupdate", onTimeupdate);
+      videoDiv.removeEventListener('timeupdate', onTimeupdate);
       window.events.dispatchEvent( new Event('next') );
     }
   }
 
   this.exit = function(/*evt*/){
     videoDiv.muted = true;
-    videoDiv.removeEventListener("timeupdate", onTimeupdate);
+    videoDiv.removeEventListener('timeupdate', onTimeupdate);
 
     pauseT = setTimeout(function(){
       videoDiv.pause();
       videoDiv.currentTime = 0;
-      // var d = document.getElementById("introButtons");
-      // d.classList.remove("enabled");
-      // d.classList.add("disabled");
     }, 2000);
     
   };

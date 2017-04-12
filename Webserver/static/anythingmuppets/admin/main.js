@@ -4,12 +4,13 @@ var admin = function(data, configHandler){
   window.addEventListener('saveAdmin', function(/*evt*/){
     if ( adminButtonEnabled ) return;
 
+    var elem;
     var configUpdate = {};
     for(var configI = data.configs.length - 1;
         configI >= 0;
         configI--){
       var configData = data.configs[configI];
-      var elem = document.getElementById('config_'+configData.key);
+      elem = document.getElementById('config_'+configData.key);
       if (configData.type === 'number'){
         configUpdate[configData.key] = parseFloat(elem.value);
       } else if (configData.type === 'boolean'){
@@ -19,27 +20,29 @@ var admin = function(data, configHandler){
 
     // special values
 
-    var elem = document.getElementById("config_timeout");
+    elem = document.getElementById('config_timeout');
     try {
-      configUpdate["timeout"] = parseFloat(elem.value) * 60;
-    } catch(e){}
+      configUpdate['timeout'] = parseFloat(elem.value) * 60;
+    } catch(e){
+      //empty
+    }
 
     configHandler.set(configUpdate);
     disableButton();
   
     // are we streaming now?
-    window.events.dispatchEvent(new Event("refreshStreamMode"));
+    window.events.dispatchEvent(new Event('refreshStreamMode'));
   });
 
   function shutdown(){
-      var xhttp = new XMLHttpRequest();
-      xhttp.open("POST", "/comp/shutdown", true);
-      xhttp.send();
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/comp/shutdown', true);
+    xhttp.send();
   }
 
-  window.addEventListener("shutdown", shutdown);
+  window.addEventListener('shutdown', shutdown);
 
-  this.enter = function(){
+  this.enter = function enter(){
 
     for(var configI = data.configs.length - 1;
         configI >= 0;
@@ -53,43 +56,52 @@ var admin = function(data, configHandler){
           elem.checked = configHandler.get(configData.key);
         } 
       } catch(e){
-
+        //empty
       }
     }
 
     // special cases
     // timeout: more readable in minutes
-    var tValue = configHandler.get("timeout");
+    var tValue = configHandler.get('timeout');
     tValue = parseFloat(tValue) / 60;
-    var div = document.getElementById("config_timeout");
+    var div = document.getElementById('config_timeout');
     try {
       div.value = tValue;
       //and set the readout
       var val = document.getElementById('config_output_timeout');
       val.value = (+(tValue.toFixed(2))) + 'm';
-    } catch(e){}
+    } catch(e){
+      //empty
+    }
 
     // setup save button
     disableButton();
-    window.addEventListener("aElementUpdated", unDisableButton);
+    window.addEventListener('aElementUpdated', unDisableButton);
   };
 
-
+  /**
+   * disable the Save button after saving
+   */
   function disableButton(){
-    var btn = document.getElementById("buttonAdminSave");
-    btn.classList.add("disabled");
+    var btn = document.getElementById('buttonAdminSave');
+    btn.classList.add('disabled');
     adminButtonEnabled = true;
   }
 
+  /**
+   * enable the Save button when any configuration changes
+   */
   function unDisableButton(){
-    var btn = document.getElementById("buttonAdminSave");
+    var btn = document.getElementById('buttonAdminSave');
     try {
-      btn.classList.remove("disabled");
-    } catch(e){}
+      btn.classList.remove('disabled');
+    } catch(e){
+      //empty
+    }
     adminButtonEnabled = false;
   }
 
   this.exit = function(){
-    window.removeEventListener("aElementUpdated", unDisableButton);
+    window.removeEventListener('aElementUpdated', unDisableButton);
   };
 };

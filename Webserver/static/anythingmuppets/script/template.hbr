@@ -1,7 +1,6 @@
 <div id='{{name}}' class='page noselect'>
 
   <div class='background'>
-    <audio src="vo/am_vo_01_generic.mp3" id="vo_script"></audio>
   </div>
 
   <div class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">

@@ -1,6 +1,8 @@
 {
 	"name":"spin",
 	"disableTimeout":true,
+	"timeout":{
+		"millis":7000},
 	"showStream":true,
 	"breakButton":{
 		"text":"Start Over",
