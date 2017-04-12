@@ -5,6 +5,8 @@ function AlphaVideo() {
 	var pRef, sRef;
 	var width, height;
 	var overlaidAlpha;
+	var dropshadowX, dropshadowY;
+	var animFrameID;
 
 	/**
 	 * @param  {String} bufferCanvasID ID of DOM element (real)
@@ -13,10 +15,12 @@ function AlphaVideo() {
 	 * @param  {Number} inWidth        Width of video
 	 * @param  {Number} inHeight       *Final* height of video
 	 */
-	this.setup = function( bufferCanvasID, outputCanvasID, videoID, inWidth, inHeight, _overlaidAlpha ) {
+	this.setup = function( bufferCanvasID, outputCanvasID, videoID, inWidth, inHeight, _overlaidAlpha, _dropshadowX, _dropshadowY ) {
 		width = inWidth,
 		height = inHeight;
 		overlaidAlpha = _overlaidAlpha || false;
+		dropshadowY = _dropshadowY || 0;
+		dropshadowX = _dropshadowX || 0;
 
 		// get stuff from DOM
 		video = document.getElementById( videoID );
@@ -43,7 +47,7 @@ function AlphaVideo() {
 			video.addEventListener( "ended", sRef );
 
 		_onEnded = onEnded;
-		window.requestAnimationFrame(pRef);
+		animFrameID = window.requestAnimationFrame(pRef);
 	}
 
 	this.update = function(){
@@ -61,6 +65,14 @@ function AlphaVideo() {
 	    for (var i = 3, len = imageData.length; i < len; i = i + 4) {
 	    	imageData[i] = alphaData[i-1];
 	    }
+
+	    if (dropshadowX > 0 || dropshadowY > 0){
+	    	for(var i = ((dropshadowX + (dropshadowY * width)) * 4) + 3, j = 2;
+	    		i < len;
+	    		i = i + 4, j = j + 4){
+	    		imageData[i] = Math.max(imageData[i], alphaData[j]);
+	    	}
+	    }
 	 
 		outputCtx.putImageData(image, 0, 0, 0, 0, width, height);
 		
@@ -74,7 +86,7 @@ function AlphaVideo() {
 		// 	}
 		// }
 
-		window.requestAnimationFrame(pRef);
+		animFrameID = window.requestAnimationFrame(pRef);
 	}
 
 	this.stop = function(){
@@ -88,6 +100,6 @@ function AlphaVideo() {
 
 		video.pause();
 		video.currentTime = 0;
-		window.cancelAnimationFrame(pRef);
+		window.cancelAnimationFrame(animFrameID);
 	}
 }

@@ -18,7 +18,9 @@ function StreamHandler(){
 
   this.hideStream = function hideStream(){
     active = false;
-    newURL('');
+    if (prevURL){
+      newURL('');
+    }
     MMI.hide( domDestination.id );
   };
 
@@ -31,7 +33,7 @@ function StreamHandler(){
       var url = window.URL.createObjectURL(blob);
       newURL(url);
     }
-  };      
+  };
 
   var aspect      = 9/16;
   var aspect_inv  = 16/9;
@@ -46,7 +48,7 @@ function StreamHandler(){
   }
 
   this.setAutosize  = function (trueFalse) {
-    autoSize =trueFalse;
+    autoSize = trueFalse;
   }
 
   function newURL(url){
