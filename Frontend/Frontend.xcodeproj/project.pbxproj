@@ -537,6 +537,7 @@
 		34AA18C01E7B27290066CC93 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
 		34AA18C11E7B27290066CC93 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		34AA18C21E7B27290066CC93 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
+		34C51C291E980E0200D0C4E3 /* DebugCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugCamera.h; sourceTree = "<group>"; };
 		35497228582B8F1FE162B7F2 /* capture.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = capture.h; path = ../Camera/addons/ofxLibdc/libs/dc1394/include/dc1394/capture.h; sourceTree = SOURCE_ROOT; };
 		3C98EDF07D70CFB010FD17CC /* control.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = control.h; path = ../Camera/addons/ofxLibdc/libs/dc1394/include/dc1394/control.h; sourceTree = SOURCE_ROOT; };
 		52AFA1F08C420992CAAAE648 /* ofxSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSlider.h; path = ../../../addons/ofxGui/src/ofxSlider.h; sourceTree = SOURCE_ROOT; };
@@ -1448,6 +1449,7 @@
 		01F8BD511CAADBB20011B550 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				34C51C291E980E0200D0C4E3 /* DebugCamera.h */,
 				0112C6E41CA5F17E00972C53 /* ImageStreamer.cpp */,
 				0112C6E51CA5F17E00972C53 /* ImageStreamer.h */,
 				01793FE31CA59F1E00D8DA83 /* BlackFlyCamera.cpp */,

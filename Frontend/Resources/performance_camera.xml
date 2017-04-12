@@ -1,7 +1,7 @@
 <group>
     <Mode>1</Mode>
-    <Camera_b09d0100ed9281>
-        <Guid>b09d0100ed9281</Guid>
+    <Camera_b09d0100ed927f>
+        <Guid>b09d0100ed927f</Guid>
         <Hi-res_lo-res>1</Hi-res_lo-res>
         <Bayer_cv_off>1</Bayer_cv_off>
         <Brightness>0.5</Brightness>
@@ -14,7 +14,7 @@
         <Mirror_on_off>1</Mirror_on_off>
         <Aspect_x>0</Aspect_x>
         <Aspect_y>0</Aspect_y>
-    </Camera_b09d0100ed9281>
+    </Camera_b09d0100ed927f>
     <Camera_b09d0100ed9281>
         <Guid>b09d0100ed9281</Guid>
         <Hi-res_lo-res>1</Hi-res_lo-res>
