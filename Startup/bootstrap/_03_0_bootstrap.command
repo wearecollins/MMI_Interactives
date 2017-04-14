@@ -113,7 +113,7 @@ defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool NO
 killall Finder
 
 #add shutdown & pmset as passwordless
-$DIR/_03_2_visudo_edit.sh
+sudo $DIR/_03_2_visudo_edit.sh
 
 #install chrome
 ### this didn't work, you will need to install Chrome manually
