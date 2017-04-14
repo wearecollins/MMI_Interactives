@@ -29,7 +29,7 @@ developed/tested/used with
 * create _configs.json_ based on [configs.json.sample](configs.json.sample)
   - the actual name of the file can be different since it is passed in as a
 command-line parameter
-  - documentation [below](#configsjson)
+  - documentation [below](#sync-configuration-file)
 
 ## production
 This will be set up as a CRON job.
