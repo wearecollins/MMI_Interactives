@@ -10,10 +10,13 @@
 #include "SysCommand.h"
 
 @interface ofApp : ofxCocoaGLView <WKNavigationDelegate> {
+    ofLogLevel(OF_LOG_VERBOSE);
     Webview * webView;
     mmi::CameraApp cameraApp;
     bool isLoaded;
     bool isFullscreen;
+    uint64_t startupState;
+    uint64_t nextStateTransition;
     
     // in case frontend starts before webserver
     uint64_t lastReloaded, reloadInterval;

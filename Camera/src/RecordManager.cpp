@@ -45,6 +45,7 @@ namespace mmi {
         params.add(advancedParams);
 
         bRecording = false;
+        bStitched = true;
         currentBgClip = "";
         
         frameRate = 1000./30.;
@@ -77,9 +78,10 @@ namespace mmi {
         lastCamWidth = realWidth;
         lastCamHeight = realHeight;
         
+        auto t = ofGetElapsedTimeMillis();
+        
         // recording time!
         if(bRecording){
-            auto t = ofGetElapsedTimeMillis();
             
             //            if ( t - lastFrameAdded < frameRate ) return;
             
@@ -89,7 +91,7 @@ namespace mmi {
             }
             
             if ( t - startTime >= recordLength.get() ){
-                ofLogVerbose()<<"[RecordManager] Stopping recoriding: "<< t <<":"<<(t-startTime)<<":"<<recordLength<<endl;
+                ofLogNotice("Camera.RecordManager")<<"Stopping recording: "<< t <<":"<<(t-startTime)<<":"<<recordLength<<endl;
                 stopRecording();
                 return;
             }
@@ -104,8 +106,11 @@ namespace mmi {
             lastFrameAdded = t;
             
             if (!success) {
-                ofLogWarning()<<"[RecordManager] - This frame was not added";
+                ofLogWarning("Camera.RecordManager")<<"This frame was not added";
             }
+        } else if (!bStitched && t >= stitchTime){
+            bStitched = true;
+            stitchFile();
         }
     }
 
@@ -160,13 +165,14 @@ namespace mmi {
         }
         this->startRecording(strs[0], strs[1]);
     }
+    
     //--------------------------------------------------------------
     void RecordManager::startRecording( string backgroundClip, string fileStart ){
         
         this->currentFileStart = fileStart;
         
         if ( bRecording ){
-            ofLogWarning()<<"Already recording, try again in "<<((ofGetElapsedTimeMillis()-startTime)/1000.)<<" seconds";
+            ofLogWarning("Camera.RecordManager")<<"Already recording, try again in "<<((ofGetElapsedTimeMillis()-startTime)/1000.)<<" seconds";
             return;
         }
         
@@ -188,12 +194,11 @@ namespace mmi {
         
         vidRecorder.start();
         
-        ofLogVerbose()<<"[RecordManager] - beginning video capture";
+        ofLogNotice("Camera.RecordManager")<<"beginning video capture";
     }
-
     
-    //--------------------------------------------------------------
-    void RecordManager::onFileComplete( ofxVideoRecorderOutputFileCompleteEventArgs & args ){
+    void RecordManager::stitchFile(){
+        ofLogNotice("Camera.RecordManager")<<"begin video stitching :"<<currentFileName;
         string outputFile = "";
         if ( currentBgClip != "" ){
             auto fileSplit = ofSplitString(currentFileName, ".");
@@ -228,13 +233,13 @@ namespace mmi {
                 }
                 f.moveTo( outputFile  );
             } else {
-                ofLogError()<<"[RecordManager] - error moving video file :"<<outputFile;
+                ofLogError("Camera.RecordManager")<<"error moving video file :"<<outputFile;
             }
+            
+            ofLogNotice("Camera.RecordManager")<<"video completed stitching :"<<currentFileName;
         } else {
         }
         ofNotifyEvent(onFinishedRecording, currentFileName, this);
-        
-        ofLogVerbose()<<"[RecordManager] - video completed recording :"<<currentFileName;
         
         // make a thumbnail quick
         if ( outputFile != "" ){
@@ -244,10 +249,19 @@ namespace mmi {
             cmd +=" -ss 00:00:" + ofToString(recordLength.get()/1000 * .5) + " -vframes 1 " + file +"'";
             system( cmd.c_str() );
             
-            ofLogVerbose()<<"[RecordManager] - video thumbnail saved :"<<file;
+            ofLogNotice("Camera.RecordManager")<<"video thumbnail saved :"<<file;
         }
         
         currentBgClip = "";
+    }
+
+    
+    //--------------------------------------------------------------
+    void RecordManager::onFileComplete( ofxVideoRecorderOutputFileCompleteEventArgs & args ){
+        ofLogNotice("Camera.RecordManager")<<"video completed recording :"<<currentFileName;
+        //stitch one second from now
+        stitchTime = ofGetElapsedTimeMillis() + 1000;
+        bStitched = false;
     }
     
     //--------------------------------------------------------------
@@ -269,7 +283,7 @@ namespace mmi {
         auto outputName = ofToDataPath(folderDest.get() + "/" + tempAppend.get() + "/" + currentFileName, true );
         lastImage.save(outputName);
         
-        ofLogVerbose()<<"[RecordManager] - temp photo saved :"<<outputName;
+        ofLogNotice("Camera.RecordManager")<<"temp photo saved :"<<outputName;
         
         ofNotifyEvent(onFinishedCapture, currentFileName, this);
     }
@@ -281,9 +295,9 @@ namespace mmi {
         if (img.open(outputName, ofFile::Mode::ReadOnly, true)){
             string dest = ofToDataPath(folderDest.get() + "/" + folderAppend.get() + "/" + currentFileName, true );
             img.copyTo(dest, false);
-            ofLogVerbose()<<"[RecordManager] - final photo saved :"<<dest;
+            ofLogNotice("Camera.RecordManager")<<"final photo saved :"<<dest;
         } else {
-            ofLogError()<<"[RecordManager] - photo not found :"<<outputName;
+            ofLogError("Camera.RecordManager")<<"photo not found :"<<outputName;
             
         }
     }

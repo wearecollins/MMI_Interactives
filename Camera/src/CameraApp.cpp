@@ -101,7 +101,7 @@ namespace mmi {
             auto & p = recordMgr.folderAppend;
             p.set(whichSetup.get() == 0 ? "performance" : "anythingmuppets");
             
-            ofLogVerbose()<<"[CameraApp] switching frontend mode "<<p.get();
+            ofLogNotice("Camera.CameraApp")<<"switching frontend mode "<<p.get();
         }
         lastSetup = whichSetup.get();
         
@@ -235,6 +235,7 @@ namespace mmi {
         video = ofSplitString(video, ":")[0];
         if ( videos.count(video) > 0 ){
             videos[video].play();
+            ofLogNotice("Camera.CameraApp")<<"beginning audio playback";
         }
     }
 }

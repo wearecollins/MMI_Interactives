@@ -34,6 +34,11 @@ static void setupEventHelper(ofApp *app)
 
 - (void)setup
 {
+    //initialize to "startup" state
+    self->startupState = 0;
+    //transition to "fullscreen" state in a second
+    self->nextStateTransition = ofGetElapsedTimeMillis() + 2000;
+    
     /**************************************
      Serve/load from Resources
      *************************************/
@@ -87,7 +92,8 @@ static void setupEventHelper(ofApp *app)
     self->lastReloaded = ofGetElapsedTimeMillis();
     self->reloadInterval = 5000;
     
-    [self loadURL];
+    //delay loading URL until we are fullscreen and stabilized
+    //[self loadURL];
     
     [webView setWantsLayer:YES];
     // drawsTransparentBackground is deprecated, I think drawsBackground is the new key
@@ -109,9 +115,8 @@ static void setupEventHelper(ofApp *app)
 {
     if ( self->isLoaded) return;
     self->isLoaded = true;
-    [self goFullscreen];
     
-    ofLogVerbose()<<"[ofApp] - frontend loaded";
+    ofLogNotice("Frontend")<<"frontend loaded";
 }
 
 
@@ -136,13 +141,25 @@ static void setupEventHelper(ofApp *app)
 
 - (void)update
 {
-    // something happened in load/reload?
-    if ( !self->isLoaded ){
-        
-        auto t = ofGetElapsedTimeMillis();
+    auto t = ofGetElapsedTimeMillis();
+    if (self->startupState != 2){
+        if (t >= self->nextStateTransition){
+            if (self->startupState == 0){
+                ofLogNotice("Frontend")<<"going fullscreen";
+                [self goFullscreen];
+                self->startupState = 1;
+                self->nextStateTransition = (t + 2000);
+            } else if (self->startupState == 1){
+                ofLogNotice("Frontend")<<"requesting webpage";
+                [self loadURL];
+                self->startupState = 2;
+                self->lastReloaded = t;
+            }
+        }
+    } else if ( !self->isLoaded ){
         if ( t - self->lastReloaded > self->reloadInterval ){
             self->lastReloaded = t;
-            ofLogVerbose()<<"[ofApp] - frontend not loaded. Trying reload";
+            ofLogNotice("Frontend")<<"frontend not loaded. Trying reload";
             [webView stopLoading];
             [self loadURL];
         }

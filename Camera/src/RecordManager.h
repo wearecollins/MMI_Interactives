@@ -68,9 +68,11 @@ namespace mmi {
         // recording
         ofxVideoRecorder    vidRecorder;
         bool bRecording;
+        bool bStitched;
         void onFileComplete( ofxVideoRecorderOutputFileCompleteEventArgs & args );
+        void stitchFile();
         
-        uint64_t startTime, lastTime;
+        uint64_t startTime, lastTime, stitchTime;
         int whichCamera;
         
         float frameRate;
