@@ -26,12 +26,3 @@
   animation-duration: 1s;
   animation-fill-mode:forwards;
 }
-
-/* Video: lock to size */
-.introVideo {
-  /* 
-  The video is 1080x1920; will scale up but 
-  shouldn't scale down below its default size
-   */
-  min-width: 1080px;
-}
