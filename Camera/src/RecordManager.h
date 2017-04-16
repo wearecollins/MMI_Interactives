@@ -31,7 +31,7 @@ namespace mmi {
         void updatePixelFormat( const ofPixels & camera );
         
         void startRecordingEvt( string & backgroundClipAndName );
-        void startRecording( string backgroundClip = "", string baseName = "");
+        void startRecording(/* string backgroundClip = "", string baseName = ""*/);
         void stopRecording();
         void close();
         

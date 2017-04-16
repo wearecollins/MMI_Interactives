@@ -154,7 +154,10 @@ namespace mmi {
             }
             
             camera.setDeviceID(uid);
-            bSetup = camera.setup(width,height);
+            //overriding width/height settings
+            // because my webcams are mis-matched
+            // which creates bad recordings
+            bSetup = camera.setup(1280, 720);//width,height);
             return bSetup;
         }
         

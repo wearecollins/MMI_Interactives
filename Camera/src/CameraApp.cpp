@@ -124,6 +124,29 @@ namespace mmi {
             cameraMgr.setupCameras();
         }
         
+        //check playback state
+        if (!videoRolling && playingVideo != NULL){
+            playingVideo->update();
+            ofLogNotice("Camera.CameraApp") <<
+                "checking playback - " <<
+                "isFrameNew: " << playingVideo->isFrameNew() <<
+                " currentFrame: " << playingVideo->getCurrentFrame();
+            if (playingVideo->isFrameNew()){
+                ofLogNotice("Camera.CameraApp") << "new frame";
+            }
+            //If we have played this video file before, it will
+            // report the first frame number as
+            // the last frame of the video.
+            // so checking >0 does not work.
+            if (playingVideo->getCurrentFrame() == 1){
+                ofLogNotice("Camera.CameraApp") <<
+                    "frame " <<
+                    playingVideo->getCurrentFrame();
+                videoRolling = true;
+                recordMgr.startRecording();
+            }
+        }
+        
         for ( auto & c : cameraMgr.getCameras()){
             c->update();
         }
@@ -234,8 +257,10 @@ namespace mmi {
         // this comes in as video:name
         video = ofSplitString(video, ":")[0];
         if ( videos.count(video) > 0 ){
+            playingVideo = &(videos[video]);
+            videoRolling = false;
             videos[video].play();
-            ofLogNotice("Camera.CameraApp")<<"beginning audio playback";
+            ofLogNotice("Camera.CameraApp")<<"beginning audio playback from " << video;
         }
     }
 }

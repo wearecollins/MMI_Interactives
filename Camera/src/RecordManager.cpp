@@ -163,13 +163,15 @@ namespace mmi {
         } else if (strs.size() < 2 ){
             strs.push_back("");
         }
-        this->startRecording(strs[0], strs[1]);
+        currentBgClip = strs[0];
+        currentFileStart = strs[1];
+        //this->startRecording(strs[0], strs[1]);
     }
     
     //--------------------------------------------------------------
-    void RecordManager::startRecording( string backgroundClip, string fileStart ){
+    void RecordManager::startRecording(/* string backgroundClip, string fileStart */){
         
-        this->currentFileStart = fileStart;
+        //this->currentFileStart = fileStart;
         
         if ( bRecording ){
             ofLogWarning("Camera.RecordManager")<<"Already recording, try again in "<<((ofGetElapsedTimeMillis()-startTime)/1000.)<<" seconds";
@@ -188,7 +190,7 @@ namespace mmi {
         
         currentFileName = currentFileStart +"-"+ (fileName.get() +ofGetTimestampString()+fileExt.get() );
         
-        currentBgClip = backgroundClip;
+        //currentBgClip = backgroundClip;
         
         vidRecorder.setup(currentFileName, camWidth, camHeight, 30, 0, 0, true  );
         

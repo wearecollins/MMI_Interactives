@@ -58,6 +58,8 @@ namespace mmi {
         ofParameter<int> whichStream;
         
         map<string,ofVideoPlayer> videos;
+        ofVideoPlayer * playingVideo;
+        bool videoRolling;
         
         void startRecordingEvt( string & video );
         

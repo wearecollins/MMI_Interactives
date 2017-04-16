@@ -71,7 +71,7 @@ namespace mmi {
                 
                 shared_ptr<Camera> camera = make_shared<Camera>();
                 string guid = settings.getValue("guid");
-                ofLogVerbose()<<"[CameraManager] Setting up camera "<<guid;
+                ofLogNotice("Camera.CameraManager")<<"Setting up camera "<<guid;
                 
                 // attempt to load default settings, if they exit
                 camera->setDefaultSettings( settingsFile.get() );
