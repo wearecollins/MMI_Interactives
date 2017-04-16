@@ -54,16 +54,16 @@ Tap 'm' to open up the configuration mode. You may have to click/tap on the scre
    - Use this to set which camera– 0 or 1–is the 'top' camera. 
 0. Recording Params - section
    - This is an advanced section! Only edit this if you absolutely have to
-   0. Camera switch interval - slider
-      - How often it edits between the two cameras - in milliseconds
-      - Default - 3 seconds (3000)
-   1. Recording length - slider
-      - How long the recordings are at maximum (failsafe)
-      - Note: the frontend sends a 'done' event, so this is really based on the length of your movie clips
+     1. Camera switch interval - slider
+        - How often it edits between the two cameras - in milliseconds
+        - Default - 3 seconds (3000)
+     2. Recording length - slider
+        - How long the recordings are at maximum (failsafe)
+        - Note: the frontend sends a 'done' event, so this is really based on the length of your movie clips
 0. Advanced params - section
    These are all read-only, and can be set by editing the settings XML file _inside the application_ (see 'Save' above)
-   0. Output folder - text input
-   0. Stream which camera - slider
+   1. Output folder - text input
+   1. Stream which camera - slider
       - Read-only value of what camera is currently showing up in the frontend
 
 ### Camera configuration
@@ -74,10 +74,10 @@ Type 'm' again to open up Camera settings
    - These save to Contents/Resources/performance_camera.xml
 0. Mode - slider
    - This sets how the camera draws to the frontend:
-     0. Scale to height
-     1. Scale to width
-     2. Draw without scaling
-1. Camera ____ (where ___ is the camera GUID)
+     - **0**: Scale to height
+     - **1**: Scale to width
+     - **2**: Draw without scaling
+1. Camera ____ (where ____ is the camera GUID)
    There will be as many of these groups as there are cameras
    - Guid - read-only ID of camera
    - Hi-res/lo-res - slider
@@ -97,8 +97,8 @@ Type 'm' again to open up Camera settings
      - Do this if you are seeing any visual glitches
      - You may need to do this if/when you switch between Color and Black-and-white
    - Color/BW - toggle
-     0. Show a color image - make sure 'Bayer' is set to '0' 
-     1. Show a black-and-white image
+     - **false** Show a color image - make sure 'Bayer' is set to '0' 
+     - **true** Show a black-and-white image
    - Mirror on/off - toggle
      - Turn horizontal mirroring on or off
    - Aspect x - slider
