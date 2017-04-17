@@ -45,6 +45,7 @@ var share = function( data, configHandler ){
    * Delete a character from the displayed e-mail address
    */
   function deleteCharacter(){
+    showNotice(false);
     var display = document.getElementById('emailDisplay');
     if (display.innerText.length > 1){
       display.innerText = display.innerText.slice(0, -1);
@@ -80,6 +81,7 @@ var share = function( data, configHandler ){
    * Add a character to the e-mail field
    */
   function addCharacter(char){
+    showNotice(false);
     var emailDisplay = document.getElementById('emailDisplay');
     emailDisplay.innerHTML += char;
     if (getSize(emailDisplay) > emailDisplayStartSize){
@@ -130,6 +132,20 @@ var share = function( data, configHandler ){
     }, nextDelay);
   }
 
+  /**
+   * Show or hide the e-mail invalid notice
+   * @param {boolean} val Whether to show the notice text
+   */
+  function showNotice(val){
+    var notice = document.getElementById('emailInvalidNotice');
+    if (val){
+      notice.classList.add('invalid');
+    } else {
+      notice.classList.remove('invalid');
+    }
+  }
+
+  //attach the keyboard key handler to click events on the keyboard
   document.getElementById('keyboard').onclick = keyboardPressed;
 
   /**
@@ -147,8 +163,7 @@ var share = function( data, configHandler ){
       window.events.dispatchEvent(new Event('next'));
       return true;
     } else {
-      console.log('error with e-mail address');
-      //TODO: display warning?
+      showNotice(true);
       return false;
     }
   }
@@ -171,12 +186,21 @@ var share = function( data, configHandler ){
    * Check to ensure that the provided e-mail address is valid
    */
   function checkEmail(email){
-    //we'll bypass validating e-mail addresses for now
-    return true;
-    //only validate the web address portion (after the `@`)
-    // the portion before the `@` can basically contain any characters
-    var valid = /^.+@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-    return valid;
+    //if we have already warned the user 
+    // that their e-mail might not be correct
+    // let them continue
+    var notice = document.getElementById('emailInvalidNotice');
+    if (notice.classList.contains('invalid')){
+      return true;
+    }
+    else {
+      //overly strict validation from w3resources.
+      // I feel like this is only appropriate 
+      // since we are treating invalid e-mails as a warning
+      // rather than an error
+      var valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+      return valid;
+    }
   }
 
   /**
@@ -225,6 +249,7 @@ var share = function( data, configHandler ){
 
   this.exit = function(/*evt*/){
     clearTimeout(nextTimeout);
+    showNotice(false);
   };
 
 };

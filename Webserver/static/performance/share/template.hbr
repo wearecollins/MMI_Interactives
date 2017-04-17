@@ -9,6 +9,9 @@
     <div id='emailDisplay' class='type_med'>
       &nbsp;
     </div>
+    <div id='emailInvalidNotice' class='type_sm'>
+      Please Make Sure Your E-mail Address is Correct
+    </div>
     <div id='{{name}}Buttons'>
 
       <div id="{{name}}NextBtn" class="button" ondragstart='return false;'>

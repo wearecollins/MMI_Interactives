@@ -40,6 +40,16 @@
   justify-content: space-around;
 }
 
+#emailInvalidNotice{
+  opacity: 0;
+  color:red;
+  transition: opacity 1s;
+}
+
+#emailInvalidNotice.invalid{
+  opacity:1;
+}
+
 #emailDisplay{
   width:75%;
   border-bottom-style: solid;
