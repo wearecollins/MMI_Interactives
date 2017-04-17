@@ -36,8 +36,8 @@ var perform = function(data, configHandler){
       //replace the watermark animation with a static watermark definition
       // In Safari, the Animation was re-triggering 
       // when the Page was marked disabled
-      elem.classList.remove('watermark');
-      elem.classList.add('staticWatermark');
+      e.target.classList.remove('watermark');
+      e.target.classList.add('staticWatermark');
     });
   }
 
@@ -79,25 +79,7 @@ var perform = function(data, configHandler){
     window.events.dispatchEvent(new Event('camera_front'));
 
     // setup current unique name
-    var index = configHandler.get('currentName', 0);
-    index++;
-    
-    // this could be reset daily, or just when it hits
-    // a threshold
-    if ( index > 1000 ){
-      index = 0;
-    }
-
-    if ( index.length == 1 ){
-      index = '000' + index;
-    } else if ( index.length == 2 ){
-      index = '00' + index;
-    } else if ( index.length == 3 ){
-      index = '0' + index;
-    }
-    
-    configHandler.set({'currentName':index});
-    name = index;
+    name = getName();
 
     // -----------------------------------------------
     // Kickoff build / events
@@ -111,6 +93,7 @@ var perform = function(data, configHandler){
     MMI.show( 'performPractice', 'block' );
     var t = document.getElementById('performPractice');
     t.classList.remove('watermark');
+    t.classList.remove('staticWatermark');
 
     //If there is a Practice VO, 
     // then start the countdown after the VO plays
@@ -156,58 +139,93 @@ var perform = function(data, configHandler){
 
     var videoDiv = document.getElementById('perf_'+currentClip.name);
 
-    videoDiv.onended = function onended(){
-      switch( state ){
-        case 1:
-          // same as above: see if VO exists, and either
-          // a) play it and wait or b) set a timeout to
-          // start the countdown again
-          MMI.hide( 'performPractice');
-          MMI.show( 'performPerform', 'block' );
-          var t = document.getElementById('performPerform');
-          t.classList.remove('watermark');
+    videoDiv.onended = videoEnded.bind(this);
 
-          // a) VO
-          if ( soundPerform.exists() ){
-            // play takes a 'onComplete' parameter,
-            // so countdown will automatically occurr after VO
-            // 
-            soundPerform.play( function(){
-              //after sound plays, animate text to corner
+  };
+
+  /**
+   * Called when the audio-source video finishes playing.
+   * If in state 1, transition to performance mode
+   * If in state 2, exit screen
+   */
+  function videoEnded(){
+    switch( state ){
+      case 1:
+        // same as above: see if VO exists, and either
+        // a) play it and wait or b) set a timeout to
+        // start the countdown again
+        MMI.hide( 'performPractice');
+        MMI.show( 'performPerform', 'block' );
+        var t = document.getElementById('performPerform');
+        t.classList.remove('watermark');
+        t.classList.remove('staticWatermark');
+
+        // a) VO
+        if ( soundPerform.exists() ){
+          // play takes a 'onComplete' parameter,
+          // so countdown will automatically occurr after VO
+          // 
+          soundPerform.play( function(){
+            //after sound plays, animate text to corner
+            t.classList.add('watermark');
+            //once text is done animating, start countdown
+            countdownTimeout = setTimeout(function(){
+              startCountdown(true);
+            },
+            1000);
+          });
+
+        // b) timeout
+        } else {
+          //if there is no VO, then just let text dwell a moment 
+          // before animating away
+          countdownTimeout = setTimeout( 
+            function(){ 
               t.classList.add('watermark');
-              //once text is done animating, start countdown
               countdownTimeout = setTimeout(function(){
                 startCountdown(true);
               },
               1000);
-            });
+            }, 1000
+          );
+        }
+        break;
 
-          // b) timeout
-          } else {
-            //if there is no VO, then just let text dwell a moment 
-            // before animating away
-            countdownTimeout = setTimeout( 
-              function(){ 
-                t.classList.add('watermark');
-                countdownTimeout = setTimeout(function(){
-                  startCountdown(true);
-                },
-                1000);
-              }, 1000
-            );
-          }
-          break;
+      case 2:
+        //we are done with both stages
+        // so just go to next screen
+        window.events.dispatchEvent( new Event('next') );
+        break;
+    }
+  }
 
-        case 2:
-          //we are done with both stages
-          // so just go to next screen
-          window.events.dispatchEvent( new Event('next') );
-          break;
-      }
+  /**
+   * Get the unique name for this recording.
+   * This will also update the persistent storage
+   * with the next unique name in the sequence.
+   * @returns {Number} the current name to use
+   */
+  function getName(){
+    var index = configHandler.get('currentName', 0);
+    index++;
+    
+    // this could be reset daily, or just when it hits
+    // a threshold
+    if ( index > 1000 ){
+      index = 0;
+    }
 
-    }.bind(this);
-
-  };
+    if ( index.length == 1 ){
+      index = '000' + index;
+    } else if ( index.length == 2 ){
+      index = '00' + index;
+    } else if ( index.length == 3 ){
+      index = '0' + index;
+    }
+    
+    configHandler.set({'currentName':index});
+    return index;
+  }
 
   /**************************************************
    * Start 3-2-1 Countdown

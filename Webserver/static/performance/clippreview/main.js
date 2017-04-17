@@ -34,8 +34,8 @@ var clippreview = function(data/*, configHandler*/){
       //replace the watermark animation with a static watermark definition
       // In Safari, the Animation was re-triggering 
       // when the Page was marked disabled
-      elem.classList.remove('watermark');
-      elem.classList.add('staticWatermark');
+      e.target.classList.remove('watermark');
+      e.target.classList.add('staticWatermark');
     });
   }
 

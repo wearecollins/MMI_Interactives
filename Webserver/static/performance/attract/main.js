@@ -17,6 +17,5 @@ var attract = function( data, configHandler ){
 
   this.exit = function(/*evt*/){
     videoDiv.pause();
-    videoDiv.currentTime = 0;
   };
 };
