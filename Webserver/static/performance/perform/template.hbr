@@ -20,7 +20,7 @@
 
   <!-- Voiceover: Perform -->
   <audio src="{{audio.perform}}" id="vo_perform"></audio>
-
+<!--
   <div id="hiddenVideos">
     {{#each videos}}
     <video id="perf_{{name}}">
@@ -28,7 +28,7 @@
     </video>
     {{/each}}
   </div>
-
+-->
   <!-- Countdown -->
   <div id="countdownContainer" class="fillAbs">
     <div class="container fillAbs centeredContainer">

@@ -10,8 +10,11 @@ var attract = function( data, configHandler ){
 
     currentAttractVideo = 
       configHandler.get('attractVideo', 'video/fpo_performance.mp4');
-    sourceElement.setAttribute('src', currentAttractVideo);
-    videoDiv.load();
+    //only load the video if it is different from the existing one
+    if (sourceElement.getAttribute('src') !== currentAttractVideo){
+      sourceElement.setAttribute('src', currentAttractVideo);
+      videoDiv.load();
+    }
     videoDiv.play();
   };
 

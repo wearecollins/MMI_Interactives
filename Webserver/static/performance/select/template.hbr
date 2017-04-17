@@ -27,9 +27,10 @@
     <div style="height:25%; justify-content:center; background-color:black; display:inline-block;">
       {{#each videos}}
       <div class="videoContainer disabled" ondragstart='return false;' onclick="window.events.dispatchEvent(new CustomEvent('previewClip', {'detail':'{{{name}}}'}));">
-          <video class="selectVideo" style="height:100%;" id="{{name}}" autoplay loop muted>
+        <img src="video/{{name}}.gif" alt="{{name}}"></img>
+          <!--<video class="selectVideo" style="height:100%;" id="{{name}}" autoplay loop muted>
               <source src="{{src}}" type="video/mp4">
-          </video>
+          </video>-->
           <div id="{{name}}_overlay" class="selectOverlay disabled"></div>
       </div>
         {{#unless @last}}

@@ -84,10 +84,12 @@ var perform = function(data, configHandler){
     // -----------------------------------------------
     // Kickoff build / events
     
-    // build VOs
-    soundPractice.setup('vo_practice');
-    soundPerform.setup('vo_perform');
-    soundCountdown.setup('snd_countdown');
+    // build VOs first time
+    if (!soundPractice.exists()){
+      soundPractice.setup('vo_practice');
+      soundPerform.setup('vo_perform');
+      soundCountdown.setup('snd_countdown');
+    }
 
     MMI.hide( 'performPerform' );
     MMI.show( 'performPractice', 'block' );
@@ -137,11 +139,17 @@ var perform = function(data, configHandler){
     // -----------------------------------------------
     // Setup Videoplayer: once it ends, go to next state
 
-    var videoDiv = document.getElementById('perf_'+currentClip.name);
+    var videoDiv = getVideoDiv();//document.getElementById('perf_'+currentClip.name);
 
     videoDiv.onended = videoEnded.bind(this);
 
   };
+
+  function getVideoDiv(){
+    //we are going to try re-using the video clips already in the preview screen
+    // instead of loading our own set of videos
+    return document.getElementById(/*'perf_'*/'preview_'+currentClip.name);
+  }
 
   /**
    * Called when the audio-source video finishes playing.
@@ -275,7 +283,7 @@ var perform = function(data, configHandler){
    */ 
   function finishCountdown(){
 
-    var videoDiv = document.getElementById('perf_'+currentClip.name);
+    var videoDiv = getVideoDiv();//document.getElementById('perf_'+currentClip.name);
     // hide self, then either setup 'practice' or 'perform'
 
     MMI.hide(('countdownContainer'), 'flex');
@@ -312,7 +320,7 @@ var perform = function(data, configHandler){
   this.exit = function performExit(/*evt*/){
     manager.getStreamHandler().hideStream();
     try {
-      var videoDiv = document.getElementById('perf_'+currentClip.name);
+      var videoDiv = getVideoDiv();//document.getElementById('perf_'+currentClip.name);
       videoDiv.pause();
 
       // just in case, cancel any untriggered timeouts
