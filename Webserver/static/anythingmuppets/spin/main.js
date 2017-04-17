@@ -28,7 +28,7 @@ var spin = function(data, configHandler){
       //display a spin animation with alpha layer
       // This video file doesn't have a separate alpha layer
       // since we just want to show a white graphic
-      // However, we do want to add runtime dropshadow
+      // However, we do want to add runtime dropshadow.
       spin.setup('spinInput', 'spinOutput', 'spinVideo', 600, 600, true, 6, 15);
     }
 
