@@ -33,24 +33,11 @@ var adjust = function(data, configHandler){
    *                  The default timeout to use if nothing is configured
    */
   function getTimeout(time){
-    try {
-      //read timeout from Page's config file
-      // using a fall-back of 1 second
-      var timeout = time;
-      if (data.timeout){
-        if (data.timeout.millis){
-          // if a raw time is configured, then use that
-          timeout = parseInt(data.timeout.millis);
-        } else if (data.timeout.proportional){
-          // if a proportional time is configured,
-          // it is proportional to the global timeout
-          var to = configHandler.get('timeout', 60) * 1000;
-          timeout = to * parseFloat(data.timeout.proportional);
-        }
-      }
-
-      return timeout;
-    } catch(e) {
+    var cTime = configHandler.get('adjustTimeout', 0);
+    if (cTime){
+      //convert from seconds to millis
+      return cTime * 1000;
+    } else {
       return time;
     }
   }

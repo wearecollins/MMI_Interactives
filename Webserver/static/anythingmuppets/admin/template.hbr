@@ -1,42 +1,81 @@
 <div id='{{name}}' class='page'>
   <div class='background'></div>
-  <div class='centeredContainer column container fillAbs noselect' style="z-index:2">
-    <div class="type_lg">Admin</div>
+  <div 
+    class='centeredContainer column container fillAbs noselect' 
+    style="z-index:2">
+    <div class="type_med">
+      Admin
+    </div>
 
     <div class="column">
-      <div class="adminEl">
-          <div class="type_sm padding_sm">Startover timeout (minutes)</div>
-          <form oninput="x.value=parseFloat(config_timeout.value) + 'm'" class="type_sm" id="config_form_timeout">
-            <div id="config_range_wrapper_timeout">
-              .5m
-              <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" type="range" id="config_timeout" name="a" value="0.5" step="0.5" min="0.5" max="15">
-              15m
+      {{#each configs}}
+        {{#switch type}}
+          {{#case 'number'}}
+            <div class="adminEl">
+                <div class="type_tiny">
+                  {{title}}
+                </div>
+                <form 
+                  oninput="x_{{key}}.value=parseFloat(config_{{key}}.value) + '{{suffix}}'" 
+                  class="type_sm range" 
+                  id="config_form_{{key}}">
+                  <div 
+                    id="config_range_wrapper_{{key}}"
+                    class="rangeWrapper">
+                    {{min}}{{suffix}}
+                    <input 
+                      onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" 
+                      type="range"
+                      id="config_{{key}}" 
+                      name="a_{{key}}" 
+                      value="{{min}}" 
+                      step="{{step}}" 
+                      min="{{min}}" 
+                      max="{{max}}">
+                    {{max}}{{suffix}}
+                  </div>
+                  <output 
+                    id="config_output_{{key}}"
+                    name="x_{{key}}" 
+                    for="config_{{key}}">
+                  </output>
+                </form>
             </div>
-            <output id="config_output_timeout" name="x" for="config_timeout"></output>
-          </form>
-      </div>
+          {{/case}}
+          {{#case 'boolean'}}
+            <div class="adminEl centeredContainer">
+              <div class="type_sm" style="padding-right:.5rem">
+                {{title}}
+              </div>
+              <input 
+                onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" 
+                id="config_{{key}}" 
+                class="cmn-toggle cmn-toggle-round" 
+                type="checkbox" 
+                value="false" />
+              <label for="config_{{key}}">
+              </label>
+            </div>
+          {{/case}}
+        {{/switch}}
+      {{/each}}
 
-      <div class="adminEl centeredContainer">
-        <div class="type_sm" style="padding-right:.5rem">Mode (frontend/stream)</div>
-        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_doStream" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />
-         <label for="config_doStream"></label>
-      </div>
 
       <div class="adminEl centeredContainer">
         <div class="type_sm" style="padding-right:.5rem">Shutdown machine</div>
         <button ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('shutdown'))" class="shutdownButton type_sm">Shutdown</button>
       </div>
+    </div>
 
-      <div class="bottomCenteredContainer noselect" id="{{name}}Buttons">
-          <div id="buttonAdminSave" class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('saveAdmin'));">
-              <img src="svg/__select.svg" />
-              <div class="type_sm padding_sm">save</div>
-          </div>
-          <div class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-              <img src="svg/__done.svg" />
-              <div class="type_sm padding_sm">cancel</div>
-          </div>
-      </div>
+    <div class="bottomCenteredContainer noselect" id="{{name}}Buttons">
+        <div id="buttonAdminSave" class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('saveAdmin'));">
+            <img src="svg/__select.svg" />
+            <div class="type_sm padding_sm">save</div>
+        </div>
+        <div class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
+            <img src="svg/__done.svg" />
+            <div class="type_sm padding_sm">cancel</div>
+        </div>
     </div>
 
   </div>

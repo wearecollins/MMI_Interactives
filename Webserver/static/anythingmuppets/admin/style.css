@@ -15,33 +15,10 @@
   opacity: .4;
 }
 
-form#config_form_timeout{
-  display:flex;
-  justify-content: space-between;
-}
-
-div#config_range_wrapper_timeout{
-  flex-grow:1;
-  flex-basis:auto;
-  display:flex;
-}
-
-#config_timeout{
-  flex-basis:auto;
-  flex-grow:1;
-}
-
-#config_output_timeout{
-  color:grey;
-  flex-grow:0;
-  width:3em;
-  text-align:center;
-}
-
 #{{name}}Buttons{
-  z-index:2; 
-  height:30vh; 
-  bottom:0 
+  position:fixed;
+  bottom:0;
+  z-index:2;
   width:50%; 
   justify-content:space-around;
 }
