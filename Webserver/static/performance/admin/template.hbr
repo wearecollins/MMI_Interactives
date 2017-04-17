@@ -1,43 +1,71 @@
 <div id='{{name}}' class='page'>
   <div class='background'></div>
   <div class='centeredContainer column container fillAbs noselect' style="z-index:2">
-    <div class="type_lg">Admin</div>
+    <div class="type_med">Admin</div>
 
     <div id="formContainer" class="centeredContainer column">
-      <div class="adminEl">
-          <div class="type_sm padding_sm">Startover timeout (minutes)</div>
-          <form oninput="x.value=parseFloat(config_timeout.value) + 'm'" class="type_sm" id="config_form_timeout">
-            <div id="config_range_wrapper_timeout">
-              0.5m
-              <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" type="range" id="config_timeout" name="a" value="1" step="0.5" min="0.5" max="15">
-              15m
+      {{#each configs}}
+        {{#switch type}}
+          {{#case 'number'}}
+            <div class="adminEl">
+                <div class="type_tiny">
+                  {{title}}
+                </div>
+                <form 
+                  oninput="x_{{key}}.value=parseFloat(config_{{key}}.value) + '{{suffix}}'" 
+                  class="type_sm range" 
+                  id="config_form_{{key}}">
+                  <div 
+                    id="config_range_wrapper_{{key}}"
+                    class="rangeWrapper">
+                    {{min}}{{suffix}}
+                    <input 
+                      onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" 
+                      type="range"
+                      id="config_{{key}}" 
+                      name="a_{{key}}" 
+                      value="{{min}}" 
+                      step="{{step}}" 
+                      min="{{min}}" 
+                      max="{{max}}">
+                    {{max}}{{suffix}}
+                  </div>
+                  <output 
+                    id="config_output_{{key}}"
+                    name="x_{{key}}" 
+                    for="config_{{key}}">
+                  </output>
+                </form>
             </div>
-            <output id="config_output_timeout" name="x" for="config_timeout"></output>
-          </form>
-      </div>
-
-      <div class="adminEl centeredContainer column" style="">
-        <div class="type_sm padding_sm">Local share screen (off/on)</div>
-        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_showLocalShare" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />
-         <label for="config_showLocalShare"></label>
-      </div>
-
-      <div class="adminEl centeredContainer column" style="">
-        <div class="type_sm padding_sm">Freeplay mode (off/on)</div>
-        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_continuousMode" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />
-         <label for="config_continuousMode"></label>
-      </div>
-
-      <div class="adminEl">
-        <div class="type_sm padding_sm">Share Server Local Address</div>
-        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_shareServer" class="borderInput type_sm" />
-      </div>
-
-      <div class="adminEl centeredContainer column" style="">
-        <div class="type_sm padding_sm">Mode (frontend/stream)</div>
-        <input onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" id="config_doStream" class="cmn-toggle cmn-toggle-round" type="checkbox" value="false" />
-         <label for="config_doStream"></label>
-      </div>
+          {{/case}}
+          {{#case 'boolean'}}
+            <div class="adminEl centeredContainer column">
+              <div class="type_tiny">
+                {{title}}
+              </div>
+              <input 
+                onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" 
+                id="config_{{key}}" 
+                class="cmn-toggle cmn-toggle-round" 
+                type="checkbox" 
+                value="false" />
+              <label for="config_{{key}}">
+              </label>
+            </div>
+          {{/case}}
+          {{#case 'string'}}
+            <div class="adminEl">
+              <div class="type_tiny">
+                {{title}}
+              </div>
+              <input 
+                onchange="window.events.dispatchEvent(new Event('aElementUpdated'))" 
+                id="config_{{key}}" 
+                class="borderInput type_sm" />
+            </div>
+          {{/case}}
+        {{/switch}}
+      {{/each}}
 
       <div class="adminEl centeredContainer column" style="">
         <div class="type_sm padding_sm">Shutdown machine</div>

@@ -1,6 +1,6 @@
 {
 	"name":"thanksshare",
-	"disableTimeout":false,
+	"disableTimeout":true,
 	"breakButton":false,
 	"copy":{
 		"top":"You Will Receive an Email With<br />A Link to Your Performance",

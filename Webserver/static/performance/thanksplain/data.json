@@ -1,6 +1,6 @@
 {
 	"name":"thanksplain",
-	"disableTimeout":false,
+	"disableTimeout":true,
 	"breakButton":false,
 	"copy":"Please Return the<br />Puppets To the Stand"
 }
