@@ -3,7 +3,6 @@
 *.mp4
 */node_modules
 */*/node_modules
-Webserver/static/output
 Webserver/static/vo
 Sharing/config.json
 Sharing/token.json

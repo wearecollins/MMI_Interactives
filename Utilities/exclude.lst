@@ -5,5 +5,7 @@ MMI_Interactives/Sharing/facebookToken.json
 MMI_Interactives/Sharing/tumblrToken.json
 MMI_Interactives/Sharing/media/*
 MMI_Interactives/Sync/node_modules/*
+MMI_Interactives/Webserver/static/output/performance/*.mp4
+MMI_Interactives/Webserver/static/output/performance/*.png
 MMI_Interactives/Webserver/node_modules/*
-MMI_Interactives/Webserver/static/output/*
+MMI_Interactives/Frontend/bin/logs/*
