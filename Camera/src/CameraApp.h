@@ -60,13 +60,16 @@ namespace mmi {
         map<string,ofVideoPlayer> videos;
         ofVideoPlayer * playingVideo;
         bool videoRolling;
+        int seenVideoFrame;
         
         void startRecordingEvt( string & video );
+        void onVideoRecorded( string & file );
         
     protected:
         
         bool bStreaming;
         ofxTextField * recFolder;
+        void checkRecordingStatus();
     };
 }
 

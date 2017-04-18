@@ -59,18 +59,35 @@ namespace mmi {
         messageHdlr.setup();
         
         // listen to events from message parser
-        ofAddListener(messageHdlr.onSwitchCamera, this, &CameraApp::setStreamCamera);
+        ofAddListener(messageHdlr.onSwitchCamera,
+                      this,
+                      &CameraApp::setStreamCamera);
         
-        ofAddListener(messageHdlr.onStartRecording, &recordMgr, &mmi::RecordManager::startRecordingEvt);
+        ofAddListener(messageHdlr.onStartRecording,
+                      &recordMgr,
+                      &mmi::RecordManager::startRecordingEvt);
+        ofAddListener(messageHdlr.onStartRecording,
+                      this,
+                      &mmi::CameraApp::startRecordingEvt);
         
-        ofAddListener(messageHdlr.onStartRecording, this, &mmi::CameraApp::startRecordingEvt);
+        ofAddListener(messageHdlr.onCaptureImage,
+                      &recordMgr,
+                      &mmi::RecordManager::takePhotoEvt);
         
-        ofAddListener(messageHdlr.onCaptureImage, &recordMgr, &mmi::RecordManager::takePhotoEvt);
-        ofAddListener(messageHdlr.onConfirmImage, &recordMgr, &mmi::RecordManager::confirmPhotoEvt);
+        ofAddListener(messageHdlr.onConfirmImage,
+                      &recordMgr,
+                      &mmi::RecordManager::confirmPhotoEvt);
         
-        ofAddListener(recordMgr.onFinishedRecording, &messageHdlr, &mmi::MessageHandler::onVideoRecorded);
+        ofAddListener(recordMgr.onFinishedRecording,
+                      &messageHdlr,
+                      &mmi::MessageHandler::onVideoRecorded);
+        ofAddListener(recordMgr.onFinishedRecording,
+                      this,
+                      &mmi::CameraApp::onVideoRecorded);
         
-        ofAddListener(recordMgr.onFinishedCapture, &messageHdlr, &mmi::MessageHandler::onImageCaptured);
+        ofAddListener(recordMgr.onFinishedCapture,
+                      &messageHdlr,
+                      &mmi::MessageHandler::onImageCaptured);
         
         // complete gui setup
         
@@ -125,27 +142,7 @@ namespace mmi {
         }
         
         //check playback state
-        if (!videoRolling && playingVideo != NULL){
-            playingVideo->update();
-            ofLogNotice("Camera.CameraApp") <<
-                "checking playback - " <<
-                "isFrameNew: " << playingVideo->isFrameNew() <<
-                " currentFrame: " << playingVideo->getCurrentFrame();
-            if (playingVideo->isFrameNew()){
-                ofLogNotice("Camera.CameraApp") << "new frame";
-            }
-            //If we have played this video file before, it will
-            // report the first frame number as
-            // the last frame of the video.
-            // so checking >0 does not work.
-            if (playingVideo->getCurrentFrame() == 1){
-                ofLogNotice("Camera.CameraApp") <<
-                    "frame " <<
-                    playingVideo->getCurrentFrame();
-                videoRolling = true;
-                recordMgr.startRecording();
-            }
-        }
+        checkRecordingStatus();
         
         for ( auto & c : cameraMgr.getCameras()){
             c->update();
@@ -177,11 +174,86 @@ namespace mmi {
             
             auto & img1 = cameraMgr.getCamera(t)->getImage();
             auto & img2 = cameraMgr.getCamera(b)->getImage();
-            if ( !cameraMgr.getCamera(t)->isAllocated() || !cameraMgr.getCamera(b)->isAllocated() ) return;
+            if ( !cameraMgr.getCamera(t)->isAllocated() ||
+                 !cameraMgr.getCamera(b)->isAllocated() ) {
+                return;
+            }
             recordMgr.update(img1.getPixels(), img2.getPixels());
         } else if ( cameraMgr.getNumCameras() > 0 ) {
             auto & img1 = cameraMgr.getCamera(0)->getImage();
             recordMgr.update(img1.getPixels());
+        }
+    }
+    
+    //--------------------------------------------------------------
+    void CameraApp::onVideoRecorded(string & file){
+        ofLogNotice("Camera.CameraApp") <<
+            "Done recording, resetting audio source";
+        //Re-set the audio source so it will begin playing from the
+        // beginning next time.
+        playingVideo->stop();
+        playingVideo->firstFrame();
+        playingVideo = NULL;
+    }
+    
+    //--------------------------------------------------------------
+    void CameraApp::checkRecordingStatus(){
+        if (!videoRolling && playingVideo != NULL){
+            //if we are waiting to record,
+            // but the audio track isn't even playing...
+            if (!playingVideo->isPlaying()){
+                ofLogWarning("Camera.CameraApp") <<
+                    "video is not playing " <<
+                    "and never triggered recording";
+                //At this point it might already be too late.
+                //When I saw this happening, the video would play
+                // all the way through without setting isFrameNew to true.
+                //By the time we got here,
+                // the "perform" screen was already gone.
+                playingVideo->play();
+            } else {
+                //we are waiting to record, and the video is playing
+                // so lets call 'update' on the video to update frame info.
+                //Otherwise isFrameNew will always be false.
+                playingVideo->update();
+                int frameNum = playingVideo->getCurrentFrame();
+                
+                if (playingVideo->isFrameNew()){
+                    //If we have already played this video before,
+                    // then the first frame might be a high number.
+                    //Now that I am resetting the video after recording
+                    // the video seems to start at frame 0 every time.
+                    
+                    // Playback might skip a frame here and there
+                    // so checking for a specific frame number
+                    // (like 0 or 1) is prone to error
+                    
+                    // Here we just look for the second unique new frame
+                    // to make sure the video is indeed playing
+                    if (seenVideoFrame == -1){
+                        ofLogNotice("Camera.CameraApp") <<
+                            "started playback at frame " <<
+                            frameNum;
+                        seenVideoFrame = frameNum;
+                    } else if (seenVideoFrame !=
+                                playingVideo->getCurrentFrame()){
+                        ofLogNotice("Camera.CameraApp") <<
+                            "starting recording at frame " <<
+                            frameNum;
+                        videoRolling = true;
+                        recordMgr.startRecording();
+                    }
+                } else if (seenVideoFrame != -1 && seenVideoFrame != frameNum){
+                    //If we have a new frame number, but isFrameNew is false
+                    // then we have a problem.
+                    //I have not seen this happen.
+                    ofLogWarning("Camera.CameraApp") <<
+                        "New frame number " << frameNum <<
+                        " but not actually a 'new' frame?";
+                    videoRolling = true;
+                    recordMgr.startRecording();
+                }
+            }
         }
     }
 
@@ -257,10 +329,11 @@ namespace mmi {
         // this comes in as video:name
         video = ofSplitString(video, ":")[0];
         if ( videos.count(video) > 0 ){
-            playingVideo = &(videos[video]);
-            videoRolling = false;
-            videos[video].play();
             ofLogNotice("Camera.CameraApp")<<"beginning audio playback from " << video;
+            videoRolling = false;
+            seenVideoFrame = -1;
+            videos[video].play();
+            playingVideo = &(videos[video]);
         }
     }
 }
