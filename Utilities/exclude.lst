@@ -8,4 +8,5 @@ MMI_Interactives/Sync/node_modules/*
 MMI_Interactives/Webserver/static/output/performance/*.mp4
 MMI_Interactives/Webserver/static/output/performance/*.png
 MMI_Interactives/Webserver/node_modules/*
-MMI_Interactives/Frontend/bin/logs/*
+MMI_Interactives/Frontend/bin/logs/debug.*
+MMI_Interactives/Frontend/bin/logs/warn.*
