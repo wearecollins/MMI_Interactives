@@ -1,4 +1,11 @@
+## Table of Contents
+
+1. [Initial Configuration and Install](initial_configuration_and_install)
+2. [Upgrade Guide](upgrade_guide)
+
 Instructions for setting up for production.
+
+## Initial Configuration and Install
 
 0. install OSX, finish setup (setting language and account), and install OS updates
 0. Install [Node.js](https://nodejs.org/en/download/)
@@ -81,3 +88,27 @@ Instructions for setting up for production.
    - This is necessary to load the new PATH into launchd, and launch the Frontend
 
 
+## Upgrade Guide
+
+When a new release is provided, there are a few steps to setting it up.
+
+1. Close the running interactive
+   * If the interactive is running via Launchd:
+     1. In Finder, navigate to _~/Library/LaunchAgents/_
+     2. Move the _com.mmi...plist_ file to the Desktop
+     3. Log out and log back in
+     4. Now the interactive should not be running
+2. Backup your existing MMI_Interactives directory
+   * I suggest moving it to the desktop and labelling it with a date
+3. Download and unzip the new release
+4. Copy the new release so it is in _~/Documents/_
+5. If you made custom camera adjustments in the previous release, copy those settings over
+   * In Terminal you can run `cp ~/Desktop/MMI_BACKUP_DIRECTORY/Frontend/bin/Performance.app/Contents/Resources/*.xml ~/Documents/MMI_Interactives/Frontend/bin/Performance.app/Contents/Resources/`
+     - Replace `~/Desktop/MMI_BACKUP_DIRECTORY/` with the particular path to your backup
+     - for the Build an Anything Muppet interactive, replace `Performance.app` with `AnythingMuppets.app`
+6. Install necessary components for the Webserver
+   1. Open Terminal
+   2. `cd ~/MMI_Interactives/Webserver`
+   3. `npm install`
+7. Move _com.mmi...plist_ from the Desktop back to _~/Library/LaunchAgents/_
+8. Log out and log back in
