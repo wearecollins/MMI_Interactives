@@ -1,7 +1,7 @@
 ## Table of Contents
 
-1. [Initial Configuration and Install](initial_configuration_and_install)
-2. [Upgrade Guide](upgrade_guide)
+1. [Initial Configuration and Install](#initial-configuration-and-install)
+2. [Upgrade Guide](#upgrade-guide)
 
 Instructions for setting up for production.
 
