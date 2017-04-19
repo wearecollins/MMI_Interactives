@@ -2,5 +2,5 @@
 	"name":"share",
 	"disableTimeout":true,
 	"breakButton":false,
-	"copy":"Enter Your Email Address:"
+	"copy":"Enter your email address:"
 }

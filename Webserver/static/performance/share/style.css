@@ -19,10 +19,6 @@
   z-index: 0;
 }
 
-#{{name}} .background {
-  background: rgb(45, 34, 70);
-}
-
 #{{name}}Buttons{
   display: flex;
   flex-direction: row;

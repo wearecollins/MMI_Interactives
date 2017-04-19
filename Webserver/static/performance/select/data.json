@@ -16,9 +16,9 @@
 	],
 	"disableTimeout":false,
 	"breakButton":{
-		"text":"Start Over",
+		"text":"Start over",
 		"event":"cancel"
 	},
 	"audio":"vo/perf_vo_04.m4a",
-	"copy":"Preview &amp;<br />Select a Clip"
+	"copy":"Preview &amp;<br />select a clip"
 }

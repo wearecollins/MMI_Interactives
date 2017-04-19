@@ -18,6 +18,7 @@
   position: relative;
   margin: 7vh;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 #videoReviewContainer.share #videoReview{

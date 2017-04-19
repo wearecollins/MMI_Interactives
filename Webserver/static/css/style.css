@@ -321,6 +321,7 @@ div#performPerform.staticWatermark{
   width: 1.85rem;
   border-radius: .5rem;
   padding: .1rem 0;
+  color: rgb(45, 34, 70);
 }
 
 .button{
@@ -431,6 +432,10 @@ div#performPerform.staticWatermark{
   text-shadow: black 0.02em 0.05em;
 }
 
+.copyContainer{
+  height:4rem;/*6em;*/
+}
+
 .type_micro {
     font-size: .1rem;
     line-height: .13rem;
@@ -495,11 +500,11 @@ div#performPerform.staticWatermark{
 
 /* Performance */
 @media (max-height: 1024px) {
-    .shareCopyBlock {
-        min-height:0vh;
-        width:50%;
-        padding: 1vw;
-    }
+  .shareCopyBlock {
+    min-height:0vh;
+    width:50%;
+    padding: 1vw;
+  }
 }
 
 /*******************************************************
@@ -599,10 +604,7 @@ div#performPerform.staticWatermark{
 
 /* Fills */
 
-.blackBg {
-    background: black;
-    color: white;
-}
+/*
 
 .parchBg {
     background: #FAF7F3;
@@ -646,19 +648,27 @@ div#performPerform.staticWatermark{
 
 .greyBg {
     background: rgb(245, 246, 246);
+}*/
+
+.blackBg {
+    background: black;
+    color: white;
+}
+
+.colorBg{
+  background-color: rgb(45, 34, 70);
+}
+
+#performance .colorBg{
+  background-color: rgb(81, 41, 77);
 }
 
 /* Performance */
 
-#admin {
-    color: black;
-    font-size: .75rem;
-}
 
-#admin .button {
-    color: white;
-    min-width: 20%;
-    margin-bottom: .5rem;
+
+.nextButton{
+  margin-top:1rem;
 }
 
 .fillCrop {
@@ -690,6 +700,17 @@ div#performPerform.staticWatermark{
   ADMIN
 
 *************************************************************/
+
+#admin {
+    color: black;
+    font-size: .75rem;
+}
+
+#admin .button {
+    color: white;
+    min-width: 20%;
+    margin-bottom: .5rem;
+}
 
 .adminButtons {
     height: 80%;

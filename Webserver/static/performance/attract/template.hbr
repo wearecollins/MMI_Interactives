@@ -1,15 +1,17 @@
 <div id='{{name}}' class='page noselect'>
-  <div class='background'>
+  <div class='background colorBg'>
       <video class="fillContainerH attractVideo" autoplay loop muted>
           <source id="attractVideoSource" src="video/fpo_performance.mp4" type="video/mp4">
       </video>
   </div>
-  <div class='container fillAbs centeredContainer column' style="z-index:2 justify-content:space-around;">
-    <div id="{{name}}Text" class="type_lg title over_video">
-      {{{copy}}}
+  <div class='container fillAbs centeredContainer column' style="z-index:2;">
+    <div class="copyContainer type_lg centeredContainer">
+      <div id="{{name}}Text" class="type_lg over_video">
+        {{{copy}}}
+      </div>
     </div>
 
-    <div id="{{name}}NextBtn" class="button" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
+    <div id="{{name}}NextBtn" class="button nextButton" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
         Start
     </div>
   </div>

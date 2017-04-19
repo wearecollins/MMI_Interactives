@@ -1,10 +1,10 @@
 {
 	"name":"intro",
 	"breakButton":{
-		"text":"Skip Intro",
+		"text":"Skip intro",
 		"event":"special"
 	},
 	"audio":"vo/perf_vo_01.m4a",
-	"copy":"Choose a Puppet",
+	"copy":"Choose a puppet",
 	"disableTimeout":false
 }

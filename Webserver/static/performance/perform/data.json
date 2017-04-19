@@ -16,7 +16,7 @@
 		}
 	],
 	"breakButton":{
-		"text":"Start Over",
+		"text":"Start over",
 		"event":"cancel"
 	},
 	"audio":{

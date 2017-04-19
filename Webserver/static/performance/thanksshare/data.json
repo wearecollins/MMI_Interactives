@@ -2,8 +2,5 @@
 	"name":"thanksshare",
 	"disableTimeout":true,
 	"breakButton":false,
-	"copy":{
-		"top":"You Will Receive an Email With<br />A Link to Your Performance",
-		"bottom":"Please Return the Puppets<br />To the Stand"
-	}
+	"copy":"You will receive an email with<br />a link to your performance<br /><br />Please return the puppets<br />to the stand"
 }

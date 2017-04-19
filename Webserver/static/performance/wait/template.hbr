@@ -1,5 +1,5 @@
 <div id='{{name}}' class='page noselect'>
-  <div class='background fill'></div>
+  <div class='background colorBg'></div>
 
   <div class="container fillAbs centeredContainer column" style="z-index:2; justify-content:space-around;">
     <div class="type_lg title">

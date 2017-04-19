@@ -8,10 +8,6 @@
   animation-delay:1s;
 }
 
-#{{name}} .background {
-  background: rgb(45, 34, 70);
-}
-
 #{{name}} .title{
   padding-bottom: 0;
 }
@@ -24,6 +20,5 @@
 }
 
 #{{name}} .container{
-	z-index:2; 
-	justify-content:space-around;
+	z-index:2;
 }

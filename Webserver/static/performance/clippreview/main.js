@@ -66,6 +66,7 @@ var clippreview = function(data/*, configHandler*/){
       previewTitle.classList.add('watermark');
       //and another small delay before starting to play the video
       clipPlayTimeout = setTimeout(function(){
+        videoDiv.volume = 1;
         videoDiv.play();
       }, 500);
     }, 2000);

@@ -2,7 +2,7 @@
 	"name":"overview",
 	"disableTimeout":true,
 	"breakButton":{
-		"text":"Skip Intro",
+		"text":"Skip intro",
 		"event":"next"
 	},
 	"audio":{

@@ -2,8 +2,8 @@
 	"name":"wait",
 	"disableTimeout":false,
 	"breakButton":{
-		"text":"Start Over",
+		"text":"Start over",
 		"event":"cancel"
 	},
-	"copy":"Wait for Playback"
+	"copy":"Wait for playback"
 }

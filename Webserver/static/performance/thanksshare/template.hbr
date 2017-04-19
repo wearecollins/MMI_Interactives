@@ -1,15 +1,15 @@
 <div id='{{name}}' class='page noselect'>
-  <div class='background fill'></div>
+  <div class='background colorBg'></div>
 
-  <div class="container fillAbs centeredContainer column" style="z-index:2; justify-content:space-around;">
-    <div class="type_lg title">
-      {{{copy.top}}}
+  <div class="container fillAbs centeredContainer column" style="z-index:2;">
+    <div class="copyContainer type_lg centeredContainer">
+      <div class="type_lg title">
+        {{{copy}}}
+      </div>
     </div>
-    <div class='type_lg title'>
-      {{{copy.bottom}}}
-    </div>
-    <div id="{{name}}NextBtn" class="button" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-      Start Over
+
+    <div id="{{name}}NextBtn" class="button nextButton" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
+      Start over
     </div>
   </div>
 </div>

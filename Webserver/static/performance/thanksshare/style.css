@@ -13,15 +13,11 @@
   z-index: 0;
 }
 
-#{{name}} .background {
-  background: rgb(45, 34, 70);
-}
-
 #{{name}} .title{
   padding-bottom: 0;
 }
 
 #{{name}} .type_lg{
-    font-size: .70rem;
-    line-height: .84rem;
+    font-size: .65rem;
+    line-height: .80rem;
 }
