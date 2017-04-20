@@ -3,7 +3,10 @@
 	"disableTimeout":true,
 	"showStream":true,
 	"breakButton":{
-		"text":"Start Over",
+		"text":"Start over",
 		"event":"cancel"},
-	"copy":"Spin the Puppet<br />to see your character on screen"
+	"copy":{
+		"large":"Spin the puppet<br />",
+		"small":"to see your character on screen"
+	}
 }

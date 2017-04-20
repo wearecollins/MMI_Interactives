@@ -3,10 +3,10 @@
 	"disableTimeout":false,
 	"showStream":true,
 	"breakButton":{
-		"text":"Start Over",
+		"text":"Start over",
 		"event":"cancel"},
 	"copy":{
-		"large":"Still Designing?<br />",
+		"large":"Still designing?<br />",
 		"small":"If others are waiting please<br />give the next person a turn"
 	}
 }

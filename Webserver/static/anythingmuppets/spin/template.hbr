@@ -1,9 +1,12 @@
 <div id='{{name}}' class='page noselect'>
   <div class='background' id="{{name}}BgContainer"></div>
 
-  <div id="spinContainer" class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
+  <div id="spinContainer" class='container fillAbs centeredContainer column noselect twoPartScreen' style="z-index:2;">
     <div class="type_lg title over_video">
-      {{{copy}}}
+      {{{copy.large}}}
+      <div class="type_med" style="margin-top:.2rem;">
+        {{{copy.small}}}
+      </div>
     </div>
     <div id="spinPlayer">
       <canvas width="600" height="1200" id="spinInput"></canvas>

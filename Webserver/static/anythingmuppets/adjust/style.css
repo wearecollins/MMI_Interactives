@@ -2,13 +2,13 @@
   padding-bottom: 0;
 }
 
-#{{name}}.disabled #{{name}}Text {
+#{{name}}.disabled .twoPartScreen {
   animation-name: animateApart;
   animation-duration:1s;
   animation-fill-mode: forwards;
 }
 
-#{{name}}.enabled #{{name}}Text {
+#{{name}}.enabled .twoPartScreen {
   animation-name: animateTogether;
   animation-duration: 1s;
   animation-delay: 5s;

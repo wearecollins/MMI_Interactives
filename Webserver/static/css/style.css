@@ -191,13 +191,15 @@ form.range output{
 
 @keyframes animateApart{
   to {
-    margin-top: 150vh;
+    height: 200vh;
+    margin-top: -50vh;
   }
 }
 
 @keyframes animateTogether{
-  from{
-    margin-top: 150vh;
+  from {
+    height: 200vh;
+    margin-top: -50vh;
   }
 }
 
@@ -533,6 +535,18 @@ div#performPerform.staticWatermark{
     overflow: hidden;
     position: absolute;
     z-index:1;
+}
+
+#anythingmuppets .twoPartScreen{
+  justify-content: space-between;
+}
+
+#anythingmuppets .twoPartScreen > div:first-child{
+  margin-top:15vh;
+}
+
+#anythingmuppets .twoPartScreen > div:nth-child(2){
+  margin-bottom:10vh;
 }
 
 .fillHalfW {

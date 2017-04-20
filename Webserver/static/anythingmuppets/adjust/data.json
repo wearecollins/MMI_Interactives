@@ -3,10 +3,10 @@
 	"disableTimeout":true,
 	"showStream":true,
 	"breakButton":{
-		"text":"Start Over",
+		"text":"Start over",
 		"event":"cancel"},
 	"copy":{
-		"large":"Keep Adjusting<br />",
+		"large":"Keep adjusting<br />",
 		"small":"the features until your character<br />is camera ready"
 	}
 }

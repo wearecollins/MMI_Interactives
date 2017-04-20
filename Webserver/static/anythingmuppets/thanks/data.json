@@ -2,7 +2,7 @@
 	"name":"thanks",
 	"disableTimeout":true,
 	"breakButton":{
-		"text":"Start Over",
+		"text":"Start over",
 		"event":"cancel"},
-	"copy":"Please Place The Features Back In the Tray"
+	"copy":"Please return<br />the features to<br />the bins"
 }

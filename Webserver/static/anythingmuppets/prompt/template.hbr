@@ -1,7 +1,7 @@
 <div id='{{name}}' class='page noselect'>
   <div class='background' id="{{name}}BgContainer"></div>
 
-  <div id="promptContainer" class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
+  <div id="promptContainer" class='container fillAbs centeredContainer column noselect twoPartScreen' style="z-index:2;">
     <div class="type_lg title over_video">
       {{{copy.large}}}
       <div class="type_med" style="margin-top:.2rem;">
@@ -13,7 +13,7 @@
           Yes
       </div>
       <div id="{{name}}Next" class="type_med button button_wide" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-          I'm Finished
+          No, I'm finished
       </div>
     </div>
   </div>

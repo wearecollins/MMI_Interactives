@@ -3,10 +3,10 @@
 	"disableTimeout":false,
 	"useVideo":false,
 	"breakButton":{
-		"text":"Start Over",
+		"text":"Start over",
 		"event":"cancel"},
 	"copy":{
-		"large":"Choose a Sesame Street script<br />",
-		"small":"for inspiration and use the features to start designing your Anything Muppet character"
+		"large":"Use the<br />facial features<br />",
+		"small":"and accessories to design your Anything Muppet character"
 	}
 }

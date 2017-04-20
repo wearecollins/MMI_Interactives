@@ -2,6 +2,6 @@
 	"name":"intro",
 	"disableTimeout":true,
 	"breakButton":{
-		"text":"Skip Video",
+		"text":"Skip video",
 		"event":"next"}
 }

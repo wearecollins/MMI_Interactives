@@ -4,7 +4,7 @@
           <source src="video/am_attract.mp4" type="video/mp4">
       </video>
   </div>
-  <div class='container fillAbs centeredContainer column noselect' style="z-index:2; justify-content: space-around;">
+  <div class='container fillAbs centeredContainer column noselect twoPartScreen' style="z-index:2;">
 
     <div id="{{name}}Text" class="type_lg title over_video disabled">
       {{{copy}}}
