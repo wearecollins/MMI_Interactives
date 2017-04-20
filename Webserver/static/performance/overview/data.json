@@ -6,7 +6,8 @@
 		"event":"next"
 	},
 	"audio":{
-		"front":"vo/perf_vo_02.m4a",
-		"side":"vo/perf_vo_03.m4a"
+		"front":"vo/perf_vo_02.mp3",
+		"side":"vo/perf_vo_03.mp3",
+		"sideShare":"vo/perf_vo_03s.mp3"
 	}
 }

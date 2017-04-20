@@ -8,4 +8,5 @@
   -->
   <audio src="{{audio.front}}" id="camera_front"></audio>
   <audio src="{{audio.side}}" id="camera_side"></audio>
+  <audio src="{{audio.sideShare}}" id="camera_side_share"></audio>
 </div>

@@ -5,5 +5,6 @@
 		"text":"Start over",
 		"event":"cancel"
 	},
-	"copy":"Email your video?"
+	"copy":"Email your video?",
+	"audio":"vo/perf_vo_07.mp3"
 }

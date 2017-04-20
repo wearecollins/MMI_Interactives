@@ -4,7 +4,7 @@
 		"text":"Skip intro",
 		"event":"special"
 	},
-	"audio":"vo/perf_vo_01.m4a",
+	"audio":"vo/perf_vo_01.mp3",
 	"copy":"Choose a puppet",
 	"disableTimeout":false
 }

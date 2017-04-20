@@ -20,8 +20,8 @@
 		"event":"cancel"
 	},
 	"audio":{
-		"practice":"vo/perf_vo_05.m4a",
-		"perform":"vo/perf_vo_06.m4a",
+		"practice":"vo/perf_vo_05.mp3",
+		"perform":"vo/perf_vo_06.mp3",
 		"countdown":"vo/countdown.mp3"
 	}
 }

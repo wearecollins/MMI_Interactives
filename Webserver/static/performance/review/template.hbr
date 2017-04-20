@@ -1,7 +1,9 @@
 <div id='{{name}}' class='page'>
   <!-- <audio src="vo/countdown.mp3" id="snd_countdown"></audio> -->
 
-  <div id="videoReviewContainer" class="fillAbs centeredContainer column" syle="z-index:0">
+  <audio src="{{audio}}" id="vo_{{name}}"></audio>
+
+  <div id="videoReviewContainer" class="fillAbs centeredContainer column colorBg" syle="z-index:0">
   	<div id='{{name}}Text' class="type_lg">
       {{{copy}}}
     </div>

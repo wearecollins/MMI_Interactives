@@ -284,6 +284,7 @@ var perform = function(data, configHandler){
   function finishCountdown(){
 
     var videoDiv = getVideoDiv();//document.getElementById('perf_'+currentClip.name);
+    videoDiv.currentTime = 0;
     // hide self, then either setup 'practice' or 'perform'
 
     MMI.hide(('countdownContainer'), 'flex');

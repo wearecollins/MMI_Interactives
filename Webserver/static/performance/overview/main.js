@@ -1,7 +1,9 @@
 var overview = function( data, configHandler){
 
   var soundPlayerA = null, 
-      soundPlayerB = null;
+      soundPlayerB = null,
+      soundPlayerBShare = null;
+      soundPlayerBPlain = null;
   var soundTimeout;
 
   this.enter = function(/*evt*/){
@@ -18,10 +20,18 @@ var overview = function( data, configHandler){
     //initialize the VOs if they have not been yet
     if ( soundPlayerA === null ){
       soundPlayerA = new SoundPlayer();
-      soundPlayerB = new SoundPlayer();
+      soundPlayerBPlain = new SoundPlayer();
+      soundPlayerBShare = new SoundPlayer();
 
       soundPlayerA.setup('camera_front');
-      soundPlayerB.setup('camera_side');
+      soundPlayerBPlain.setup('camera_side');
+      soundPlayerBShare.setup('camera_side_share');
+    }
+
+    if (configHandler.get('showLocalShare', false)){
+      soundPlayerB = soundPlayerBShare;
+    } else {
+      soundPlayerB = soundPlayerBPlain;
     }
 
     // trigger the first VO after the screen finished animating in

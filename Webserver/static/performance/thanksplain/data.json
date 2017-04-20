@@ -2,5 +2,6 @@
 	"name":"thanksplain",
 	"disableTimeout":true,
 	"breakButton":false,
+	"audio":"vo/perf_vo_08.mp3",
 	"copy":"Please return the<br />puppets to the stand"
 }

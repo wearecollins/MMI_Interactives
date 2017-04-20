@@ -2,16 +2,16 @@
 	"name":"select",
 	"videos":[
 		{
+			"name":"horse_named_bill",
+			"src":"video/horse_named_bill.mp4"
+		},
+		{
 			"name":"cest_ci_bon",
 			"src":"video/cest_ci_bon.mp4"
 		},
 		{
 			"name":"black_magic",
 			"src":"video/black_magic.mp4"
-		},
-		{
-			"name":"horse_named_bill",
-			"src":"video/horse_named_bill.mp4"
 		}
 	],
 	"disableTimeout":false,
@@ -19,6 +19,6 @@
 		"text":"Start over",
 		"event":"cancel"
 	},
-	"audio":"vo/perf_vo_04.m4a",
+	"audio":"vo/perf_vo_04.mp3",
 	"copy":"Preview &amp;<br />select a clip"
 }

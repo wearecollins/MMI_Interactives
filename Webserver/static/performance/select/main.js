@@ -6,7 +6,7 @@ var select = function( data/*, configHandler */){
    * commented out in template!
    * @type {SoundPlayer}
    */
-  var soundPlayer = null;
+  var soundPlayer;
   var soundPlayTimeout;
 
   var videos = data.videos;
@@ -21,7 +21,7 @@ var select = function( data/*, configHandler */){
     MMI.show('selectText','flex');
 
     // setup VO
-    if ( soundPlayer === null ){
+    if ( soundPlayer === undefined ){
       soundPlayer = new SoundPlayer();
       soundPlayer.setup('vo_select');
     }
@@ -98,9 +98,6 @@ var select = function( data/*, configHandler */){
       clearTimeout(soundPlayTimeout);
       soundPlayer.stop();
     }
-
-    // hide 'select a clip'
-    MMI.hide('selectText');
 
     clearTimeout(buttonTimeout);
     // hide buttons

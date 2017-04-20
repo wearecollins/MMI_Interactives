@@ -2,5 +2,6 @@
 	"name":"thanksshare",
 	"disableTimeout":true,
 	"breakButton":false,
+	"audio":"vo/perf_vo_08.mp3",
 	"copy":"You will receive an email with<br />a link to your performance<br /><br />Please return the puppets<br />to the stand"
 }
