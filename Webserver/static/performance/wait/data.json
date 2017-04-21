@@ -1,9 +1,6 @@
 {
 	"name":"wait",
 	"disableTimeout":false,
-	"breakButton":{
-		"text":"Start over",
-		"event":"cancel"
-	},
+	"breakButton":false,
 	"copy":"Preparing your video<br />for playback"
 }

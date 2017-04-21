@@ -177,6 +177,10 @@ var perform = function(data, configHandler){
           soundPerform.play( function(){
             //after sound plays, animate text to corner
             t.classList.add('watermark');
+            //remove 'start over' button from view for Performance time
+            var btn = document.getElementById('breakButton');
+            btn.classList.remove('enabled');
+            btn.classList.add('disabled');
             //once text is done animating, start countdown
             countdownTimeout = setTimeout(function(){
               startCountdown(true);
@@ -191,6 +195,11 @@ var perform = function(data, configHandler){
           countdownTimeout = setTimeout( 
             function(){ 
               t.classList.add('watermark');
+              //remove 'start over' button from view for Performance time
+              var btn = document.getElementById('breakButton');
+              btn.classList.remove('enabled');
+              btn.classList.add('disabled');
+              //start the countdown after the watermark animates up
               countdownTimeout = setTimeout(function(){
                 startCountdown(true);
               },
@@ -270,7 +279,7 @@ var perform = function(data, configHandler){
    * Start countdown (practice and perform)
    */
   function startCountdown(){
-    MMI.show(('countdownContainer'), 'flex');
+    MMI.show('countdownContainer', 'flex');
 
     //reset video to beginning here, 
     // I was having some issues in Safari playing the video,

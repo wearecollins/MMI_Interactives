@@ -54,14 +54,23 @@ var select = function( data, configHandler ){
           soundPlayer.play( function(){
             // trigger stuff after audio plays, if you'd like
             window.events.dispatchEvent(new Event('finishSelectVO'));
+            //we don't need to pay attention to cancel events any more
+            window.removeEventListener('cancel', cancelHandler);
           });
       }, 1000);
+      //if we start over, then stop the VO
+      window.addEventListener('cancel', cancelHandler);
     }
 
     // listen to buttons
     window.addEventListener('selectClip', selectClip );
-    window.addEventListener('previewClip', previewClip );
-  };
+    window.addEventListener('previewClip', previewClip );  };
+
+  function cancelHandler(){
+    window.removeEventListener('cancel', cancelHandler);
+    clearTimeout(soundPlayTimeout);
+    soundPlayer.stop();
+  }
 
   function videoEnded(e){
     e.target.pause();
@@ -193,6 +202,7 @@ var select = function( data, configHandler ){
 
     // remove listeners
     window.removeEventListener('selectClip', selectClip );
+    window.removeEventListener('previewClip', previewClip );
   };
 
   // cleanup after everything animates off page
