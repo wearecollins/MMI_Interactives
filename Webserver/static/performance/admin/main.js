@@ -123,6 +123,7 @@ var admin = function(data, configHandler){
   function disableButton(){
     var btn = document.getElementById('buttonAdminSave');
     btn.classList.add('disabled');
+    document.getElementById('buttonAdminCancelCopy').innerText = 'exit';
     adminButtonEnabled = false;
   }
 
@@ -133,6 +134,7 @@ var admin = function(data, configHandler){
     var btn = document.getElementById('buttonAdminSave');
     try {
       btn.classList.remove('disabled');
+      document.getElementById('buttonAdminCancelCopy').innerText = 'cancel';
     } catch(e){
       //empty
     }

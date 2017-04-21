@@ -80,7 +80,7 @@
         </div>
         <div id="buttonAdminCancel" class="column" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
             <img src="svg/__done.svg" />
-            <div class="type_sm padding_sm">cancel</div>
+            <div id='buttonAdminCancelCopy' class="type_sm padding_sm">cancel</div>
         </div>
     </div>
   </div>
