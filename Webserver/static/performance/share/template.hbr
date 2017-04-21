@@ -48,7 +48,7 @@
         <li class="symbol"><span class="off">J</span><span class="on">&amp;</span></li>
         <li class="symbol"><span class="off">K</span><span class="on">*</span></li>
         <li class="symbol"><span class="off">L</span><span class="on">=</span></li>
-        <li id='keyboardEnter' class="enter lastitem two_wide">Enter<!-- &#9166; --></li>
+        <li id='keyboardEnter' class="enter lastitem two_wide">Send<!-- &#9166; --></li>
 
         <li id='keyboardShift' class="shift newline">&#11014;</li>
         <li class="symbol"><span class="off">Z</span><span class="on">'</span></li>

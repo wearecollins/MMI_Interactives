@@ -7,7 +7,7 @@
 
   <div id="prevVideoCont" class="fillAbs" syle="z-index:0">
     {{#each videos}}
-      <video id="preview_{{name}}" class="hiddenVideo fillAbs" preload="none">
+      <video id="preview_{{name}}" class="hiddenVideo fillAbs" preload="auto">
           <source src="{{src}}" type="video/mp4">
       </video>
     {{/each}}

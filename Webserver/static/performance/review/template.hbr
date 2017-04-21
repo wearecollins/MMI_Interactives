@@ -22,6 +22,17 @@
         No
     	</div>
     </div>
+    <div id='{{name}}PlayContainer' class="container fillAbs centeredContainer column">
+      <div class="copyContainer type_lg centeredContainer">
+        <div class="type_lg title">
+          &nbsp;
+        </div>
+      </div>
+
+      <div id='{{name}}Play' class='button'>
+        Play
+      </div>
+    </div>
   </div>
 
 </div>

@@ -8,6 +8,7 @@ var select = function( data/*, configHandler */){
    */
   var soundPlayer;
   var soundPlayTimeout;
+  var videoClearTimeout;
 
   var videos = data.videos;
   var videoDivs = [];
@@ -41,6 +42,8 @@ var select = function( data/*, configHandler */){
             'big_video':document.getElementById( n +'_big_video' ),
             'big':document.getElementById( n +'_big' )
           } );
+
+        videoDivs[videoDivs.length - 1].big_video.onended = videoEnded;
       }
     }
 
@@ -57,6 +60,34 @@ var select = function( data/*, configHandler */){
     window.addEventListener('selectClip', selectClip );
     window.addEventListener('previewClip', previewClip );
   };
+
+  function videoEnded(e){
+    e.target.pause();
+    e.target.currentTime = 0;
+    videoClearTimeout = setTimeout(function(){
+      // hide buttons
+      b = document.getElementById('selectButtons');
+      b.classList.remove('enabled');
+      //show prompt text
+      t = document.getElementById('selectClipText');
+      t.classList.remove('disabled');
+      //hide video
+      clearCurrentPreview();
+    }, 3000);
+  }
+
+  function clearCurrentPreview(){
+    if (previewingClip){
+      b = document.getElementById(previewingClip);
+      b.style.opacity = '0';
+      d = document.getElementById(previewingThumb);
+      d.classList.add('disabled');
+      v = document.getElementById(previewingVideo);
+      v.classList.add('disabled');
+      mute( previewingVideo );
+      previewingClip = previewingThumb = previewingVideo = undefined;
+    }
+  }
 
 
   /**************************************************
@@ -99,6 +130,8 @@ var select = function( data/*, configHandler */){
       soundPlayer.stop();
     }
 
+    clearTimeout(videoClearTimeout);
+
     clearTimeout(buttonTimeout);
     // hide buttons
     b = document.getElementById('selectButtons');
@@ -113,22 +146,13 @@ var select = function( data/*, configHandler */){
     var whichVid = e.detail + '_big_video';
 
     //hide the currently showing clip, if any
-    if (previewingClip){
-      b = document.getElementById(previewingClip);
-      b.style.opacity = '0';
-      d = document.getElementById(previewingThumb);
-      d.classList.add('disabled');
-      v = document.getElementById(previewingVideo);
-      v.classList.add('disabled');
-      mute( previewingVideo );
-    }
+    clearCurrentPreview();
     //show the newly selected clip
     b = document.getElementById(whichDiv);
     b.style.opacity = '1';
     d = document.getElementById(smDiv);
     d.classList.remove('disabled');
     v = document.getElementById(whichVid);
-    v.currentTime = 0;
     unmute( whichVid );
 
     previewingThumb = smDiv;
@@ -149,6 +173,7 @@ var select = function( data/*, configHandler */){
   this.exit = function(/*evt*/){
     //clean un-triggered timeouts
     clearTimeout(buttonTimeout);
+    clearTimeout(videoClearTimeout);
     //clean up after page animates off
     setTimeout(cleanup, 1000);
 
@@ -190,13 +215,16 @@ var select = function( data/*, configHandler */){
   function mute( id ){
     var v = document.getElementById(id);
     if (!v) return;
-    v.volume = 0;
+    v.pause();
+    //v.volume = 0;
   }
 
   function unmute( id ){
     var v = document.getElementById(id);
     if (!v) return;
+    v.currentTime = 0;
     v.muted = false;
     v.volume = 1;
+    v.play();
   }
 };

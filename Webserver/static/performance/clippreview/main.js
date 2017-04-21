@@ -54,7 +54,8 @@ var clippreview = function(data/*, configHandler*/){
     // Setup Videoplayer: once it ends, go to next state
 
     var videoDiv = document.getElementById('preview_'+currentClip.name);
-    videoDiv.load();
+    //videoDiv.load();
+    videoDiv.currentTime = 0;
     MMI.show( 'preview_'+currentClip.name, 'block' );
 
     videoDiv.onended = function(){

@@ -157,6 +157,7 @@ var perform = function(data, configHandler){
    * If in state 2, exit screen
    */
   function videoEnded(){
+    log.info("[Performance::Perform::videoEnded] state " + state);
     switch( state ){
       case 1:
         // same as above: see if VO exists, and either
@@ -271,6 +272,11 @@ var perform = function(data, configHandler){
   function startCountdown(){
     MMI.show(('countdownContainer'), 'flex');
 
+    //reset video to beginning here, 
+    // I was having some issues in Safari playing the video,
+    // and though maybe it was related to currentTime/play timing
+    getVideoDiv().currentTime = 0;
+
     cancelCountdown = false;
     //get countdown from touchpoint config.
     // add one because continueCountdown() starts by subtracting one.
@@ -282,14 +288,13 @@ var perform = function(data, configHandler){
    * triggers audio playback, and video recording if appropriate
    */ 
   function finishCountdown(){
-
     var videoDiv = getVideoDiv();//document.getElementById('perf_'+currentClip.name);
-    videoDiv.currentTime = 0;
-    // hide self, then either setup 'practice' or 'perform'
 
+    // hide the countdown, then either setup 'practice' or 'perform'
     MMI.hide(('countdownContainer'), 'flex');
     state++;
     var shootVideo = (state == 2);
+    log.debug("[Performance::Perform::finishCountdown] recording: " + shootVideo);
 
     if ( shootVideo ){
       var detail = {
@@ -312,6 +317,7 @@ var perform = function(data, configHandler){
     // from this.enter() going
     videoDiv.play();
 
+    log.debug("[Performance::Perform::finishCountdown] started video");
   }
 
   /**************************************************

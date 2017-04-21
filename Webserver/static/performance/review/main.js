@@ -56,18 +56,40 @@ var review = function( data, configHandler ){
   }
 
   window.addEventListener('videoRecorded', setVideo);
+  //connect the play button to the play function
+  var playBtnId = data.name+'Play';
+  document.getElementById(playBtnId).onclick = playClicked;
+
+  function playClicked(evt){
+    //play the video
+    var vidElem = document.getElementById('videoReview');
+    vidElem.play();
+    //and hide the button
+    MMI.hide(playBtnId);
+  }
 
   this.enter = function(/*evt*/){
     console.log('playing video');
     var vidElem = document.getElementById('videoReview');
     vidElem.muted = false;
-    vidElem.play();
     vidElem.addEventListener('timeupdate', onTimeupdate);
     haveShownShare = false;
 
     if (soundPlayer === undefined){
       soundPlayer = new SoundPlayer();
       soundPlayer.setup('vo_' + data.name);
+    }
+
+    //If we are sharing
+    if (configHandler.get('showLocalShare')){
+      //hide the play button
+      MMI.hide(playBtnId);
+      //and auto-play the video
+      vidElem.play();
+    } else {
+      //otherwise, if we are not sharing
+      //show the play button
+      MMI.show(playBtnId, 'block');
     }
   };
 
@@ -89,5 +111,9 @@ var review = function( data, configHandler ){
   function cleanup() {
     var container = document.getElementById('videoReviewContainer');
     container.classList.remove('share');
+    //clear out the video
+    // hopefully this allows it to GC the video
+    vidElem.src = "";
+    videoElem.load();
   }
 };
