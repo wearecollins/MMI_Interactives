@@ -155,7 +155,6 @@ var select = function( data, configHandler ){
     d = document.getElementById(smDiv);
     d.classList.remove('disabled');
     v = document.getElementById(whichVid);
-    unmute( whichVid );
 
     previewingThumb = smDiv;
     previewingClip = whichDiv;
@@ -166,6 +165,12 @@ var select = function( data, configHandler ){
       var b = document.getElementById('selectButtons');
       b.classList.add('enabled');
     }, 1000);
+
+    try{
+      unmute( whichVid );
+    } catch(e){
+      log.warn('[Performance::Select::previewClip] error while unmuting: ' + e);
+    }
   }
 
   /**************************************************
@@ -226,7 +231,7 @@ var select = function( data, configHandler ){
     if (!v) return;
     v.currentTime = 0;
     v.muted = false;
-    v.volume = configHandler.get('bgAudioLevel');
+    v.volume = configHandler.get('bgAudioLevel', 0.5);
     v.play();
   }
 };
