@@ -1,4 +1,4 @@
-var select = function( data/*, configHandler */){
+var select = function( data, configHandler ){
 
   /**
    * Voiceover: Will automatically play if it
@@ -48,13 +48,15 @@ var select = function( data/*, configHandler */){
     }
 
     // play voiceover after animate in
-    soundPlayTimeout = setTimeout(function(){
-      if ( soundPlayer.exists() ){
-        soundPlayer.play( function(){
-          // trigger stuff after audio plays, if you'd like
-        });
-      }
-    }, 1000);
+    if (soundPlayer.exists()){
+      window.events.dispatchEvent(new Event('startSelectVO'));
+      soundPlayTimeout = setTimeout(function(){
+          soundPlayer.play( function(){
+            // trigger stuff after audio plays, if you'd like
+            window.events.dispatchEvent(new Event('finishSelectVO'));
+          });
+      }, 1000);
+    }
 
     // listen to buttons
     window.addEventListener('selectClip', selectClip );
@@ -123,12 +125,12 @@ var select = function( data/*, configHandler */){
    */
   function previewClip( e ){
     var b, d, v, t;
-    // stop VO if still playing
-    if ( soundPlayer.exists() ){
-      //cancel starting of clip if it has not started yet
-      clearTimeout(soundPlayTimeout);
-      soundPlayer.stop();
-    }
+    // // stop VO if still playing
+    // if ( soundPlayer.exists() ){
+    //   //cancel starting of clip if it has not started yet
+    //   clearTimeout(soundPlayTimeout);
+    //   soundPlayer.stop();
+    // }
 
     clearTimeout(videoClearTimeout);
 
@@ -177,12 +179,12 @@ var select = function( data/*, configHandler */){
     //clean up after page animates off
     setTimeout(cleanup, 1000);
 
-    // stop VO if still playing
-    if ( soundPlayer.exists() ){
-      //cancel starting of clip if it has not started yet
-      clearTimeout(soundPlayTimeout);
-      soundPlayer.stop();
-    }
+    // // stop VO if still playing
+    // if ( soundPlayer.exists() ){
+    //   //cancel starting of clip if it has not started yet
+    //   clearTimeout(soundPlayTimeout);
+    //   soundPlayer.stop();
+    // }
 
     // remove listeners
     window.removeEventListener('selectClip', selectClip );
@@ -224,7 +226,7 @@ var select = function( data/*, configHandler */){
     if (!v) return;
     v.currentTime = 0;
     v.muted = false;
-    v.volume = 1;
+    v.volume = configHandler.get('bgAudioLevel');
     v.play();
   }
 };

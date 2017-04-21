@@ -8,6 +8,8 @@ var clippreview = function(data/*, configHandler*/){
 
   var currentClip = null;
   var clipPlayTimeout;
+  var voPlaying = false;
+  var pageLoaded = false;
 
   /**
    * Set which clip is the current clip to preview
@@ -24,6 +26,34 @@ var clippreview = function(data/*, configHandler*/){
 
   // this event comes from the 'select' state
   window.addEventListener('clipSelected', setClip);
+  window.addEventListener('startSelectVO', startVO);
+  window.addEventListener('finishSelectVO', finishVO);
+
+  function startVO(){
+    voPlaying = true;
+    log.debug("[Performance::ClipPreview::startVO]");
+  }
+
+  function finishVO(){
+    voPlaying = false;
+    log.debug("[Performance::ClipPreview::finishVO]");
+    checkContinue();
+  }
+
+  function checkContinue(){
+    if (!voPlaying && pageLoaded){
+      log.debug("[Performance::ClipPreview::checkContinue] continuing");
+      previewTitle.classList.add('watermark');
+      //and another small delay before starting to play the video
+      clipPlayTimeout = setTimeout(function(){
+        var videoDiv = document.getElementById('preview_'+currentClip.name);
+        videoDiv.volume = 1;
+        videoDiv.play();
+      }, 500);
+    } else {
+      log.debug("[Performance::ClipPreview::checkContinue] not ready");
+    }
+  }
 
   function firstLoad(){
     setStaticWatermark(document.getElementById('previewTitle'));
@@ -54,7 +84,6 @@ var clippreview = function(data/*, configHandler*/){
     // Setup Videoplayer: once it ends, go to next state
 
     var videoDiv = document.getElementById('preview_'+currentClip.name);
-    //videoDiv.load();
     videoDiv.currentTime = 0;
     MMI.show( 'preview_'+currentClip.name, 'block' );
 
@@ -64,12 +93,8 @@ var clippreview = function(data/*, configHandler*/){
 
     //delay before moving the text out of the way
     clipPlayTimeout = setTimeout(function(){
-      previewTitle.classList.add('watermark');
-      //and another small delay before starting to play the video
-      clipPlayTimeout = setTimeout(function(){
-        videoDiv.volume = 1;
-        videoDiv.play();
-      }, 500);
+      pageLoaded = true;
+      checkContinue();
     }, 2000);
   };
 
@@ -79,6 +104,7 @@ var clippreview = function(data/*, configHandler*/){
 
   this.exit = function(/*evt*/){
     try {
+      pageLoaded = false;
       //don't start the clip if it hasn't already!
       clearTimeout(clipPlayTimeout);
       var videoDiv = document.getElementById('preview_'+currentClip.name);
