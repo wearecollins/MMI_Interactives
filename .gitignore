@@ -4,6 +4,7 @@
 */node_modules
 */*/node_modules
 Webserver/static/vo
+Webserver/static/video
 Sharing/config.json
 Sharing/token.json
 Sharing/media
