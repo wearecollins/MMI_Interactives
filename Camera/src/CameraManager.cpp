@@ -32,9 +32,11 @@ namespace mmi {
     
     //--------------------------------------------------------------
     void CameraManager::discoverCameras(){
-        ofLogVerbose()<<"[CameraManger] discovering cameras";
+        ofLogNotice("Camera.CameraManager")<<"discovering cameras";
 #ifndef DEBUG_CAMERA
         auto v = ofxLibdc::Camera::listDevices();
+        ofLogNotice("Camera.CameraManager") <<
+            "found " << v.size() << " devices";
         
         ofXml xml;
         xml.addChild("settings");
@@ -43,9 +45,9 @@ namespace mmi {
             for ( auto & c : v ){
                 xml.addChild("camera");
                 xml.setTo("camera["+ofToString(idx)+"]");
-#ifndef DEBUG_CAMERA
                 xml.addValue("guid", c.guid);
-#endif
+                ofLogNotice("Camera.CameraManager") <<
+                    "added device " << c.guid << " to xml";
                 idx++;
                 xml.setToParent();
             }
@@ -62,6 +64,7 @@ namespace mmi {
         gui->add(drawMode.set("Mode", (int) MODE_FILL_MAX, (int) MODE_FILL_MAX, (int) MODE_ACTUAL));
         
         ofXml settings;
+        bool loadedCams = false;
         if (settings.load(settingsFile.get() + ".xml" ) ){
             
             settings.setTo("settings");
@@ -76,18 +79,24 @@ namespace mmi {
                 // attempt to load default settings, if they exit
                 camera->setDefaultSettings( settingsFile.get() );
                 
-                auto bOpen = camera->setup(guid, this->lowRes.get() ? 1040 : 2080 );
+                auto bOpen = camera->setup(guid, this->lowRes.get()
+                                                 ? 1040
+                                                 : 2080 );
                 if ( bOpen ){
                     gui->add(camera->params);
                     cameras.push_back(std::move( camera ) );
                 }
                 settings.setToParent();
+                loadedCams = true;
                 
             }
             settings.setToParent();
             
-        } else {
-            ofLogError()<<"[CameraManager] No settings file loaded. Trying to open 1 camera";
+        }
+        
+        if (!loadedCams) {
+            ofLogError("Camera.CameraManager") <<
+                "No (or empty) settings file loaded. Trying to open 1 camera";
             shared_ptr<Camera> camera = make_shared<Camera>();
             
             auto bOpen = camera->setup();
@@ -98,8 +107,10 @@ namespace mmi {
             
             saveSettings();
         }
+        
         gui->loadFromFile(settingsFile.get() + "_camera.xml");
-        ofLogVerbose()<<"[CameraManager] loading settings "<<settingsFile.get() + "_camera.xml";
+        ofLogVerbose("Camera.CameraManager") <<
+            "loading settings " << settingsFile.get() << "_camera.xml";
     }
     
     //--------------------------------------------------------------
@@ -180,7 +191,7 @@ namespace mmi {
         if ( getNumCameras() > which ){
             return cameras[ which ];
         } else {
-            ofLogError()<<"[CameraManager] Asking for camera "<<which<<" which does not exist";
+//            ofLogError()<<"[CameraManager] Asking for camera "<<which<<" which does not exist";
             return nullptr;
         }
     }
