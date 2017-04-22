@@ -104,7 +104,10 @@ function Manager(states, transitions){
       then(initStreamHandler).
       then(initEventHandler).
       then(initAdminSwipe).
-      then( function(){log.info('[Manager::init] done')} );  
+      then( function(){log.info('[Manager::init] done')} ).
+      catch(function(reason){
+        log.error('[Manager::init] error in promise chain: ' + reason);
+      });
       //could also wait to connect to websockets until very end...
   }
   
