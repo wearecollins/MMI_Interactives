@@ -98,21 +98,9 @@ When a new release is provided, there are a few steps to setting it up.
      2. Move the _com.mmi...plist_ file to the Desktop
      3. Log out and log back in
      4. Now the interactive should not be running
-2. Backup your existing MMI_Interactives directory
-   * I suggest moving it to the desktop and labelling it with a date
-3. Download and unzip the new release
-4. Copy the new release so it is in _~/Documents/_
-5. If you made custom camera adjustments in the previous release, copy those settings over
-   * In Terminal you can run `cp ~/Desktop/MMI_BACKUP_DIRECTORY/Frontend/bin/Performance.app/Contents/Resources/*.xml ~/Documents/MMI_Interactives/Frontend/bin/Performance.app/Contents/Resources/`
-     - Replace `~/Desktop/MMI_BACKUP_DIRECTORY/` with the particular path to your backup
-     - for the Build an Anything Muppet interactive, replace both occurrences of `Performance.app` with `AnythingMuppets.app`
-6. If you made adjustment via the Admin screen, copy those settings over
-   * In terminal you can run `cp ~/Desktop/MMI_BACKUP_DIRECTORY/Webserver/static/performance/config.json ~/Documents/MMI_Interactives/Webserver/static/performance/`
-     - Replace `~/Desktop/MMI_BACKUP_DIRECTORY/` with the particular path to your backup
-     - for the Build an Anything Muppet interactive, replace both occurrences `static/performance/` with `static/anythingmuppets`
-7. Install necessary components for the Webserver
-   1. Open Terminal
-   2. `cd ~/MMI_Interactives/Webserver`
-   3. `npm install`
-8. Move _com.mmi...plist_ from the Desktop back to _~/Library/LaunchAgents/_
-9. Log out and log back in
+1. Donwoald and unzip the new release to your Downloads directory
+1. Run _~/Downloads/MMI_Interactives/Utilities/upgrade.command_
+1. Delete _~/Downloads/MMI_Interactives/_
+1. Set up the interactive via Launchd again
+   1. Move _com.mmi...plist_ from the Desktop back to _~/Library/LaunchAgents/_
+   1. Log out and log back in
