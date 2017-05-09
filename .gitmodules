@@ -1,6 +1,6 @@
 [submodule "Camera/addons/ofxLibdc"]
 	path = Camera/addons/ofxLibdc
-	url = https://github.com/robotconscience/ofxLibdc.git
+	url = https://github.com/quinkennedy/ofxLibdc.git
 [submodule "Camera/addons/ofxLibwebsockets"]
 	path = Camera/addons/ofxLibwebsockets
 	url = https://github.com/labatrockwell/ofxLibwebsockets.git
