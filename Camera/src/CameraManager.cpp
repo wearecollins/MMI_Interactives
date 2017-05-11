@@ -65,6 +65,8 @@ namespace mmi {
         
         ofXml settings;
         bool loadedCams = false;
+        ofLogNotice("Camera.CameraManager") <<
+            "loading settings file " << settingsFile.get();
         if (settings.load(settingsFile.get() + ".xml" ) ){
             
             settings.setTo("settings");

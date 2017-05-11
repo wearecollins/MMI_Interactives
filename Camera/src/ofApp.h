@@ -1,5 +1,7 @@
 #pragma once
 
+#define FRONTEND_AM
+
 #include "ofMain.h"
 #include "CameraApp.h"
 

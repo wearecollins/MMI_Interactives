@@ -64,6 +64,7 @@ namespace mmi {
         
         void startRecordingEvt( string & video );
         void onVideoRecorded( string & file );
+        void resetCameras( bool & b );
         
     protected:
         

@@ -26,6 +26,11 @@ namespace mmi {
         ofEvent<int>    onSwitchCamera;
         
         /**
+         Trigger a reset of the cameras to get around any long-run issues
+         */
+        ofEvent<bool>   onResetCameras;
+        
+        /**
          Start recording!
          @string Which backing track to play. Must match a real file!
          */

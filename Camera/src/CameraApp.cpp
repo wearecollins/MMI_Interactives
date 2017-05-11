@@ -14,6 +14,8 @@ namespace mmi {
         this->bStreaming = bDoStream;
         
         gui = new ofxPanel();
+        ofLogNotice("Camera.CameraApp") <<
+            "loading settings file " << settingsFile;
         gui->setup("Settings", settingsFile);
         
         gui->registerMouseEvents();
@@ -27,6 +29,8 @@ namespace mmi {
         string xml = "anythingmuppets";
         if ( settings.load( ofToDataPath( settingsFile ) ) ){
             int mode = settings.getValue(whichSetup.getEscapedName(), 0);
+            ofLogNotice("Camera.CameraApp") <<
+                whichSetup.getEscapedName() << ": " << mode;
             if ( mode == 0 ){
                 xml = "performance";
             } else {
@@ -62,6 +66,10 @@ namespace mmi {
         ofAddListener(messageHdlr.onSwitchCamera,
                       this,
                       &CameraApp::setStreamCamera);
+        
+        ofAddListener(messageHdlr.onResetCameras,
+                      this,
+                      &CameraApp::resetCameras);
         
         ofAddListener(messageHdlr.onStartRecording,
                       &recordMgr,
@@ -183,6 +191,10 @@ namespace mmi {
             auto & img1 = cameraMgr.getCamera(0)->getImage();
             recordMgr.update(img1.getPixels());
         }
+    }
+    
+    void CameraApp::resetCameras(bool & b){
+        reloadCameras.set(true);
     }
     
     //--------------------------------------------------------------
@@ -318,8 +330,10 @@ namespace mmi {
 
     //--------------------------------------------------------------
     void CameraApp::setStreamCamera( int & which ){
-        if (which < cameraMgr.getNumCameras()){
+        if (/*which >= 0 && */which < cameraMgr.getNumCameras()){
             whichStream.set(which);
+        } else {
+            //log?
         }
     }
     

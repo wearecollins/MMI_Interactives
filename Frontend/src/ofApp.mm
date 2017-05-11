@@ -146,7 +146,7 @@ static void setupEventHelper(ofApp *app)
         if (t >= self->nextStateTransition){
             if (self->startupState == 0){
                 ofLogNotice("Frontend")<<"going fullscreen";
-                [self goFullscreen];
+                //[self goFullscreen];
                 self->startupState = 1;
                 self->nextStateTransition = (t + 2000);
             } else if (self->startupState == 1){
@@ -197,6 +197,18 @@ static void setupEventHelper(ofApp *app)
             [webView removeFromSuperview];
             ofShowCursor();
         }
+    } else if (key == 'd'){
+#ifndef DEBUG_CAMERA
+        for(int i = 0; i < cameraApp.cameraMgr.getNumCameras(); i++){
+            cameraApp.cameraMgr.getCamera(i)->logInfo();
+        }
+#endif
+    } else if (key == 'u'){
+#ifndef DEBUG_CAMERA
+        for(int i = 0; i < cameraApp.cameraMgr.getNumCameras(); i++){
+            cameraApp.cameraMgr.getCamera(i)->resetBus();
+        }
+#endif
     }
 }
 

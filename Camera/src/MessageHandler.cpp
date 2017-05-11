@@ -65,8 +65,11 @@ namespace mmi {
                     string v = e.json["event"]["detail"]["clip"].asString();
                     string n = e.json["event"]["detail"]["name"].asString();
                     string s = v +":"+ n;
-                    // pack video and name into : separated streing
+                    // pack video and name into : separated string
                     ofNotifyEvent( onStartRecording, s );
+                } else if (n == "camera_reset"){
+                    bool reset = true;
+                    ofNotifyEvent( onResetCameras, reset );
                 }
             }
             
