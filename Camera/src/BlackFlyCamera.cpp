@@ -21,7 +21,7 @@ namespace mmi {
     
     //--------------------------------------------------------------
     BlackFlyCamera::BlackFlyCamera() :
-    bSetup(false){
+    bSetup(false), configuredColorCoding(0){
         
         static int bfCamIdx = 0;
         bfCamIdx++;
@@ -85,10 +85,10 @@ namespace mmi {
         openCamera();
         
         if ( isSetup() ){
-            ofLogVerbose()<<"[PointGrey Camera] "<<this->guid.get()<<" setup";
+            ofLogVerbose("Camera.BlackFlyCamera")<<this->guid.get()<<" setup";
             return true;
         } else {
-            ofLogVerbose()<<"[PointGrey Camera] "<<this->guid.get()<<" failed to open";
+            ofLogVerbose("Camera.BlackFlyCamera")<<this->guid.get()<<" failed to open";
         }
         
         
@@ -118,21 +118,21 @@ namespace mmi {
              DC1394_BAYER_METHOD_AHD
              */
             camera.setBayerMode(DC1394_COLOR_FILTER_RGGB, DC1394_BAYER_METHOD_NEAREST);
-            ofLogVerbose()<<"[PointGrey Camera] setup with libdc debayering";
+            ofLogVerbose("Camera.BlackFlyCamera")<<"setup with libdc debayering";
             
             //todo: query BAYER_TILE_MAPPING (register 0x1040)
         } else {
             camera.setImageType(OF_IMAGE_GRAYSCALE);
             camera.disableBayer();
             
-            ofLogVerbose()<<"[PointGrey Camera] setup with openCV debayering (or grayscale)";
+            ofLogVerbose("Camera.BlackFlyCamera")<<"setup with openCV debayering (or grayscale)";
         }
         
         camera.setFormat7(true, fmt7Mode);
         this->width = 2080 * (fmt7Mode == 0 ? 1 : .5);
         this->height = 1552 * (fmt7Mode == 0 ? 1 : .5);
         
-        ofLogVerbose()<<"[PointGrey Camera] Setting up at "<<this->width<<","<<this->height;
+        ofLogVerbose("Camera.BlackFlyCamera")<<"Setting up at "<<this->width<<","<<this->height;
         
         camera.setSize(this->width,this->height);
         
@@ -222,7 +222,7 @@ namespace mmi {
             this->aspect_x.set(0);
             this->aspect_y.set(0);
         } else {
-            ofLogWarning()<<"[Point Grey Camera] Trying to load preset that doesn't exist:"<<preset;
+            ofLogWarning("Camera.BlackFlyCamera")<<"Trying to load preset that doesn't exist:"<<preset;
         }
     }
     
@@ -242,14 +242,25 @@ namespace mmi {
             return;
         }
         
+        bool hasError = false;
+//        if (camera.getLibdcCamera()->has_vmode_error_status){
+//            ofLogWarning("Camera.BlackFlyCamera", "vmode error detected");
+//            hasError = true;
+//        }
+//        if (camera.getLibdcCamera()->has_feature_error_status){
+//            ofLogWarning("Camera.BlackFlyCamera", "feature error detected");
+//            hasError = true;
+//        }
         // need to reset camera
         if ( doReset.get() ||
-            ( fmt7Mode == 4 && resMode.get() == 0) ){
+            ( fmt7Mode == 4 && resMode.get() == 0) ||
+            hasError){
+            ofLogNotice("Camera.BlackFlyCamera", "resetting camera");
             camera.close();
             openCamera();
             doReset.set(false);
             
-            ofLogVerbose()<<"[PointGrey Camera] restting camera";
+            //ofLogVerbose()<<"[PointGrey Camera] resetting camera";
         }
         
         // aspect ratio/cropping stuff
@@ -316,10 +327,40 @@ namespace mmi {
             dc1394video_mode_t vm = (dc1394video_mode_t) ((int) DC1394_VIDEO_MODE_FORMAT7_0 + fmt7Mode);
             auto capturePolicy = DC1394_CAPTURE_POLICY_POLL; //non-blocking
             
+            dc1394color_coding_t targetCoding;
             if ( imageColor.get() ){
-                dc1394_format7_set_color_coding(c, vm, DC1394_COLOR_CODING_RAW8);
+                targetCoding = DC1394_COLOR_CODING_RAW8;
             } else {
-                dc1394_format7_set_color_coding(c, vm, DC1394_COLOR_CODING_MONO8);
+                targetCoding = DC1394_COLOR_CODING_MONO8;
+            }
+            
+            if (targetCoding != configuredColorCoding){
+                dc1394color_coding_t reportedCoding;
+                dc1394error_t err = dc1394_format7_get_color_coding(c,vm, &reportedCoding);
+                
+                if (err != DC1394_SUCCESS){
+                    ofLogError("Camera.BlackFlyCamera") <<
+                        "error fetching color coding: " << err;
+                }
+                
+                if (configuredColorCoding == 0){
+                    ofLogNotice("Camera.BlackFlyCamera") <<
+                        "setting color coding first time";
+                } else if (reportedCoding != configuredColorCoding){
+                    ofLogWarning("Camera.BlackFlyCamera") <<
+                        "cached color coding doesn't match actual color coding";
+                }
+                
+                if (reportedCoding != targetCoding){
+                    ofLogNotice("Camera.BlackFlyCamera") <<
+                        "setting color coding to " << targetCoding;
+                    err = dc1394_format7_set_color_coding(c, vm, targetCoding);
+                    if (err != DC1394_SUCCESS){
+                        ofLogError("Camera.BlackFlyCamera") <<
+                            "error setting color coding: " << err;
+                    }
+                    configuredColorCoding = targetCoding;
+                }
             }
             
             if ( isFirstFrame && softwareTrigger ){
@@ -464,6 +505,22 @@ namespace mmi {
     //--------------------------------------------------------------
     int BlackFlyCamera::getHeight() {
         return camera.getHeight();
+    }
+    
+    void BlackFlyCamera::logInfo() {
+        ofLogNotice("Camera.BlackFlyCamera") <<
+            "props" << this->params.toString();
+        ofLogNotice("Camera.BlackFlyCamera") <<
+            "feature error:" <<
+            camera.getLibdcCamera()->has_feature_error_status <<
+            "vmode error:" <<
+            camera.getLibdcCamera()->has_vmode_error_status;
+        ofLogNotice("Camera.BlackFlyCamera") <<
+            "oF framerate: " << ofGetFrameRate();
+    }
+    
+    void BlackFlyCamera::resetBus() {
+        camera.resetBus();
     }
     
 #pragma mark events
@@ -611,7 +668,7 @@ namespace mmi {
             unsigned int minValue = readBits(shutterInq, 8, 12);
             unsigned int maxValue = readBits(shutterInq, 20, 12);
             
-            ofLogVerbose()<<"[PointGrey Camera] - Get shutter values:: isAbs: "<<isAbs<<"; minValue: "<<minValue<<"; maxValue: "<<maxValue;
+            ofLogVerbose("Camera.BlackFlyCamera")<<"Get shutter values:: isAbs: "<<isAbs<<"; minValue: "<<minValue<<"; maxValue: "<<maxValue;
         }
     }
     

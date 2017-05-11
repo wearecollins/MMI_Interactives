@@ -41,6 +41,9 @@ public:
     
     void setDefaultSettings( string preset );
     
+    void logInfo();
+    void resetBus();
+    
     //Stolen from oF 0.10
     /// \brief Compare two floating point types for equality.
     ///
@@ -68,6 +71,7 @@ public:
     
 protected:
     ofxLibdc::Camera camera;
+    int configuredColorCoding;
     bool bSetup;
     
     bool openCamera();
