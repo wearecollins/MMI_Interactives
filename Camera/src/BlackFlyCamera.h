@@ -25,6 +25,7 @@ public:
     void draw( float x, float y, float w = -1, float h=-1);
     void drawDebug( int x, int y, float w, float h );
     void close();
+    bool closeCamera;
     
     bool isSetup() const;
     bool isAllocated();
@@ -71,8 +72,10 @@ public:
     
 protected:
     ofxLibdc::Camera camera;
+    ofFpsCounter trackedCamerafps;
     int configuredColorCoding;
     bool bSetup;
+    bool closedCamera;
     
     bool openCamera();
     

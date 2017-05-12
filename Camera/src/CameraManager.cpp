@@ -65,6 +65,8 @@ namespace mmi {
         
         ofXml settings;
         bool loadedCams = false;
+        ofLogNotice("Camera.CameraManager") <<
+            "loading settings file " << settingsFile.get();
         if (settings.load(settingsFile.get() + ".xml" ) ){
             
             settings.setTo("settings");
@@ -76,7 +78,7 @@ namespace mmi {
                 string guid = settings.getValue("guid");
                 ofLogNotice("Camera.CameraManager")<<"Setting up camera "<<guid;
                 
-                // attempt to load default settings, if they exit
+                // attempt to load default settings, if they exist
                 camera->setDefaultSettings( settingsFile.get() );
                 
                 auto bOpen = camera->setup(guid, this->lowRes.get()
@@ -184,6 +186,22 @@ namespace mmi {
             }
         } xml.setToParent();
         xml.save(settingsFile.get() + ".xml");
+    }
+    
+    void CameraManager::closeCameras(){
+#ifndef DEBUG_CAMERA
+        for ( auto & c : cameras ){
+            c->closeCamera = true;
+        }
+#endif
+    }
+    
+    void CameraManager::openCameras(){
+#ifndef DEBUG_CAMERA
+        for ( auto & c : cameras ){
+            c->closeCamera = false;
+        }
+#endif
     }
     
     //--------------------------------------------------------------

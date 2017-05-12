@@ -21,7 +21,7 @@ namespace mmi {
     
     //--------------------------------------------------------------
     BlackFlyCamera::BlackFlyCamera() :
-    bSetup(false), configuredColorCoding(0){
+    bSetup(false), configuredColorCoding(0), closeCamera(false), closedCamera(false){
         
         static int bfCamIdx = 0;
         bfCamIdx++;
@@ -85,10 +85,10 @@ namespace mmi {
         openCamera();
         
         if ( isSetup() ){
-            ofLogVerbose("Camera.BlackFlyCamera")<<this->guid.get()<<" setup";
+            ofLogNotice("Camera.BlackFlyCamera")<<this->guid.get()<<" setup";
             return true;
         } else {
-            ofLogVerbose("Camera.BlackFlyCamera")<<this->guid.get()<<" failed to open";
+            ofLogWarning("Camera.BlackFlyCamera")<<this->guid.get()<<" failed to open";
         }
         
         
@@ -238,195 +238,83 @@ namespace mmi {
     
     //--------------------------------------------------------------
     void BlackFlyCamera::update(){
-        if (!isSetup()){
-            return;
-        }
-        
-        bool hasError = false;
-//        if (camera.getLibdcCamera()->has_vmode_error_status){
-//            ofLogWarning("Camera.BlackFlyCamera", "vmode error detected");
-//            hasError = true;
-//        }
-//        if (camera.getLibdcCamera()->has_feature_error_status){
-//            ofLogWarning("Camera.BlackFlyCamera", "feature error detected");
-//            hasError = true;
-//        }
-        // need to reset camera
-        if ( doReset.get() ||
-            ( fmt7Mode == 4 && resMode.get() == 0) ||
-            hasError){
-            ofLogNotice("Camera.BlackFlyCamera", "resetting camera");
-            camera.close();
-            openCamera();
-            doReset.set(false);
-            
-            //ofLogVerbose()<<"[PointGrey Camera] resetting camera";
-        }
-        
-        // aspect ratio/cropping stuff
-        
-        float aspect = 1;
-        float tw, th, cx, cy;
-        if ( aspect_x.get() != 0 && aspect_y.get() != 0 ){
-            if ( aspect_x > aspect_y ){
-                aspect = (float) aspect_y.get() / aspect_x.get();
-                tw = this->width;
-                th =  ((float) this->width) * aspect;
+        if (closeCamera != closedCamera){
+            if (closeCamera){
+                ofLogNotice("Camera.BlackFlyCamera", "closing camera");
+                camera.close();
+                configuredColorCoding = 0;
             } else {
-                aspect = (float) aspect_x.get() / aspect_y.get();
-                tw = ((float) this->height) * aspect;
+                ofLogNotice("Camera.BlackFlyCamera", "opening camera");
+                openCamera();
+                doReset.set(false);
+            }
+            closedCamera = closeCamera;
+        }
+        
+        if (!closedCamera){
+            if (!isSetup()){
+                return;
+            }
+            
+            bool hasError = false;
+    //        if (camera.getLibdcCamera()->has_vmode_error_status){
+    //            ofLogWarning("Camera.BlackFlyCamera", "vmode error detected");
+    //            hasError = true;
+    //        }
+    //        if (camera.getLibdcCamera()->has_feature_error_status){
+    //            ofLogWarning("Camera.BlackFlyCamera", "feature error detected");
+    //            hasError = true;
+    //        }
+            // need to reset camera
+            if ( doReset.get() ||
+                ( fmt7Mode == 4 && resMode.get() == 0) ||
+                hasError){
+                ofLogNotice("Camera.BlackFlyCamera", "resetting camera");
+                camera.close();
+                openCamera();
+                doReset.set(false);
+                
+                //ofLogVerbose()<<"[PointGrey Camera] resetting camera";
+            }
+            
+            // aspect ratio/cropping stuff
+            
+            float aspect = 1;
+            float tw, th, cx, cy;
+            if ( aspect_x.get() != 0 && aspect_y.get() != 0 ){
+                if ( aspect_x > aspect_y ){
+                    aspect = (float) aspect_y.get() / aspect_x.get();
+                    tw = this->width;
+                    th =  ((float) this->width) * aspect;
+                } else {
+                    aspect = (float) aspect_x.get() / aspect_y.get();
+                    tw = ((float) this->height) * aspect;
+                    th = this->height;
+                }
+            } else {
+                tw = this->width;
                 th = this->height;
             }
-        } else {
-            tw = this->width;
-            th = this->height;
-        }
-        cx = (float) this->width/2.0 - tw/2.0;
-        cy = (float) this->height/2.0 - th/2.0;
-        
-        
-        if ( gpuBayer == 1){
-            if (imageColor.get() && buffer.getImageType() != OF_IMAGE_COLOR ){
-                buffer.allocate(width, height, OF_IMAGE_COLOR);
-                buffer.getPixels().setColor(ofColor::black);
-                camera.setBayerMode(DC1394_COLOR_FILTER_RGGB, DC1394_BAYER_METHOD_NEAREST);
-                camera.setImageType(OF_IMAGE_COLOR);
-            } else if ( !imageColor.get() && buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
-                buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
-                buffer.getPixels().setColor(ofColor::black);
-                camera.setImageType(OF_IMAGE_GRAYSCALE);
-                camera.disableBayer();
-                buffer.update();
-            }
+            cx = (float) this->width/2.0 - tw/2.0;
+            cy = (float) this->height/2.0 - th/2.0;
             
-            auto v = camera.grabVideo(buffer);
-            if ( v ){
-                if ( aspect != 1.0&&
-                    (!ofIsFloatEqual(buffer.getWidth(), tw) ||
-                     !ofIsFloatEqual(buffer.getHeight(), th)) )
-                {
-                    cropped.clone(buffer);
-                    cropped.crop(cx, cy, tw, th);
-                    if ( mirror.get() ) cropped.mirror(false, true);
-                    cropped.update();
-                } else {
-                    if ( mirror.get() ) buffer.mirror(false, true);
+            
+            if ( gpuBayer == 1){
+                if (imageColor.get() && buffer.getImageType() != OF_IMAGE_COLOR ){
+                    buffer.allocate(width, height, OF_IMAGE_COLOR);
+                    buffer.getPixels().setColor(ofColor::black);
+                    camera.setBayerMode(DC1394_COLOR_FILTER_RGGB, DC1394_BAYER_METHOD_NEAREST);
+                    camera.setImageType(OF_IMAGE_COLOR);
+                } else if ( !imageColor.get() && buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
+                    buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
+                    buffer.getPixels().setColor(ofColor::black);
+                    camera.setImageType(OF_IMAGE_GRAYSCALE);
+                    camera.disableBayer();
                     buffer.update();
                 }
-            }
-        } else {
-            if (buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
-                buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
-                camera.setImageType(OF_IMAGE_GRAYSCALE);
-            }
-            
-            bool remaining;
-            int i = 0;
-            
-            auto * c = camera.getLibdcCamera();
-            dc1394video_mode_t vm = (dc1394video_mode_t) ((int) DC1394_VIDEO_MODE_FORMAT7_0 + fmt7Mode);
-            auto capturePolicy = DC1394_CAPTURE_POLICY_POLL; //non-blocking
-            
-            dc1394color_coding_t targetCoding;
-            if ( imageColor.get() ){
-                targetCoding = DC1394_COLOR_CODING_RAW8;
-            } else {
-                targetCoding = DC1394_COLOR_CODING_MONO8;
-            }
-            
-            if (targetCoding != configuredColorCoding){
-                dc1394color_coding_t reportedCoding;
-                dc1394error_t err = dc1394_format7_get_color_coding(c,vm, &reportedCoding);
                 
-                if (err != DC1394_SUCCESS){
-                    ofLogError("Camera.BlackFlyCamera") <<
-                        "error fetching color coding: " << err;
-                }
-                
-                if (configuredColorCoding == 0){
-                    ofLogNotice("Camera.BlackFlyCamera") <<
-                        "setting color coding first time";
-                } else if (reportedCoding != configuredColorCoding){
-                    ofLogWarning("Camera.BlackFlyCamera") <<
-                        "cached color coding doesn't match actual color coding";
-                }
-                
-                if (reportedCoding != targetCoding){
-                    ofLogNotice("Camera.BlackFlyCamera") <<
-                        "setting color coding to " << targetCoding;
-                    err = dc1394_format7_set_color_coding(c, vm, targetCoding);
-                    if (err != DC1394_SUCCESS){
-                        ofLogError("Camera.BlackFlyCamera") <<
-                            "error setting color coding: " << err;
-                    }
-                    configuredColorCoding = targetCoding;
-                }
-            }
-            
-            if ( isFirstFrame && softwareTrigger ){
-                sendSoftwareTrigger( c );
-            }
-            
-            // start transmit
-            dc1394switch_t cur, target;
-            dc1394_video_get_transmission(c, &cur);
-            target = DC1394_ON;
-            if(cur != target){
-                dc1394_video_set_transmission(c, target);
-            }
-            
-            do {
-                dc1394video_frame_t *frame;
-                dc1394error_t err = dc1394_capture_dequeue(c, capturePolicy, &frame);
-                
-                auto imageType = buffer.getImageType();
-                
-                if(frame != NULL) {
-                    unsigned char* src = frame->image;
-                    unsigned char* dst = buffer.getPixels().getData();
-                    auto width = buffer.getWidth();
-                    auto height = buffer.getHeight();
-                    
-                    memcpy(dst, src, width * height);
-                    
-                    if ( softwareTrigger ){
-                        sendSoftwareTrigger( c );
-                    }
-                    
-                    dc1394_capture_enqueue(c, frame);
-                    remaining = true;
-                    i++;
-                } else {
-                    // silencio
-                    remaining = false;
-                }
-
-            } while (remaining);
-            
-            if ( i > 0 ){
-                if ( gpuBayer.get() == 0 ){
-                    if (!cvBuffer.isAllocated())
-                    {
-                        cvBuffer.allocate(this->width, this->height, OF_IMAGE_COLOR);
-                    }
-                    ofxCv::convertColor(buffer,cvBuffer, CV_BayerRG2BGR);
-                    
-                    // either update crop or buffer
-                    if ( aspect != 1.0 &&
-                        (!ofIsFloatEqual(cvBuffer.getWidth(), tw) ||
-                         !ofIsFloatEqual(cvBuffer.getHeight(), th))
-                        )
-                    {
-                        
-                        cropped.clone(cvBuffer);
-                        cropped.crop(cx, cy, tw, th);
-                        if ( mirror.get() ) cropped.mirror(false, true);
-                        cropped.update();
-                    } else {
-                        if ( mirror.get() ) cvBuffer.mirror(false, true);
-                        cvBuffer.update();
-                    }
-                } else {
+                auto v = camera.grabVideo(buffer);
+                if ( v ){
                     if ( aspect != 1.0&&
                         (!ofIsFloatEqual(buffer.getWidth(), tw) ||
                          !ofIsFloatEqual(buffer.getHeight(), th)) )
@@ -440,24 +328,171 @@ namespace mmi {
                         buffer.update();
                     }
                 }
+            } else {
+                if (buffer.getImageType() != OF_IMAGE_GRAYSCALE ){
+                    buffer.allocate(width, height, OF_IMAGE_GRAYSCALE);
+                    camera.setImageType(OF_IMAGE_GRAYSCALE);
+                }
+                
+                bool remaining;
+                int i = 0;
+                
+                auto * c = camera.getLibdcCamera();
+                dc1394video_mode_t vm = (dc1394video_mode_t) ((int) DC1394_VIDEO_MODE_FORMAT7_0 + fmt7Mode);
+                auto capturePolicy = DC1394_CAPTURE_POLICY_POLL; //non-blocking
+                
+                dc1394color_coding_t targetCoding;
+                if ( imageColor.get() ){
+                    targetCoding = DC1394_COLOR_CODING_RAW8;
+                } else {
+                    targetCoding = DC1394_COLOR_CODING_MONO8;
+                }
+                
+                if (targetCoding != configuredColorCoding){
+                    dc1394color_coding_t reportedCoding;
+                    dc1394error_t err = dc1394_format7_get_color_coding(c,vm, &reportedCoding);
+                    
+                    if (err != DC1394_SUCCESS){
+                        ofLogError("Camera.BlackFlyCamera") <<
+                            "error fetching color coding: " << err;
+                    }
+                    
+                    if (configuredColorCoding == 0){
+                        ofLogNotice("Camera.BlackFlyCamera") <<
+                            "setting color coding first time";
+                    } else if (reportedCoding != configuredColorCoding){
+                        ofLogWarning("Camera.BlackFlyCamera") <<
+                            "cached color coding doesn't match actual color coding";
+                    }
+                    
+                    if (reportedCoding != targetCoding){
+                        ofLogNotice("Camera.BlackFlyCamera") <<
+                            "setting color coding to " << targetCoding;
+                        err = dc1394_format7_set_color_coding(c, vm, targetCoding);
+                        if (err != DC1394_SUCCESS){
+                            ofLogError("Camera.BlackFlyCamera") <<
+                                "error setting color coding: " << err;
+                        }
+                        configuredColorCoding = targetCoding;
+                    }
+                }
+                
+                if ( isFirstFrame && softwareTrigger ){
+                    sendSoftwareTrigger( c );
+                }
+                
+                // start transmit
+                dc1394switch_t cur, target;
+                dc1394error_t err;
+                err = dc1394_video_get_transmission(c, &cur);
+                if (err != DC1394_SUCCESS){
+                    ofLogWarning("Camera.BlackFlyCamera") <<
+                        "error from camera get transmission: " << err;
+                }
+                target = DC1394_ON;
+                if(cur != target){
+                    ofLogVerbose("Camera.BlackFlyCamera", "enabling transmission");
+                    err = dc1394_video_set_transmission(c, target);
+                    if (err != DC1394_SUCCESS){
+                        ofLogWarning("Camera.BlackFlyCamera") <<
+                            "error from camera set transmission: " << err;
+                    }
+                }
+                
+                do {
+                    dc1394video_frame_t *frame;
+                    err = dc1394_capture_dequeue(c, capturePolicy, &frame);
+                    
+                    auto imageType = buffer.getImageType();
+                    if (err != DC1394_SUCCESS){
+                        ofLogWarning("Camera.BlackFlyCamera") <<
+                            "error from camera dequeue: " << err;
+                    }
+                    if(frame != NULL) {
+                        unsigned char* src = frame->image;
+                        unsigned char* dst = buffer.getPixels().getData();
+                        auto width = buffer.getWidth();
+                        auto height = buffer.getHeight();
+                        
+                        memcpy(dst, src, width * height);
+                        
+                        if ( softwareTrigger ){
+                            sendSoftwareTrigger( c );
+                        }
+                        
+                        err = dc1394_capture_enqueue(c, frame);
+                        if (err != DC1394_SUCCESS){
+                            ofLogWarning("Camera.BlackFlyCamera") <<
+                                "error from camera enqueue: " << err;
+                        }
+                        remaining = true;
+                        i++;
+                        trackedCamerafps.newFrame();
+                    } else {
+                        // silencio
+                        remaining = false;
+                    }
+
+                } while (remaining);
+                
+                if ( i > 0 ){
+                    if ( gpuBayer.get() == 0 ){
+                        if (!cvBuffer.isAllocated())
+                        {
+                            cvBuffer.allocate(this->width, this->height, OF_IMAGE_COLOR);
+                        }
+                        ofxCv::convertColor(buffer,cvBuffer, CV_BayerRG2BGR);
+                        
+                        // either update crop or buffer
+                        if ( aspect != 1.0 &&
+                            (!ofIsFloatEqual(cvBuffer.getWidth(), tw) ||
+                             !ofIsFloatEqual(cvBuffer.getHeight(), th))
+                            )
+                        {
+                            
+                            cropped.clone(cvBuffer);
+                            cropped.crop(cx, cy, tw, th);
+                            if ( mirror.get() ) cropped.mirror(false, true);
+                            cropped.update();
+                        } else {
+                            if ( mirror.get() ) cvBuffer.mirror(false, true);
+                            cvBuffer.update();
+                        }
+                    } else {
+                        if ( aspect != 1.0&&
+                            (!ofIsFloatEqual(buffer.getWidth(), tw) ||
+                             !ofIsFloatEqual(buffer.getHeight(), th)) )
+                        {
+                            cropped.clone(buffer);
+                            cropped.crop(cx, cy, tw, th);
+                            if ( mirror.get() ) cropped.mirror(false, true);
+                            cropped.update();
+                        } else {
+                            if ( mirror.get() ) buffer.mirror(false, true);
+                            buffer.update();
+                        }
+                    }
+                } else {
+                    trackedCamerafps.update();
+                }
             }
-        }
-        
-        if ( isFirstFrame ){
-            auto sh = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_SHUTTER);
-            auto em = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_GAIN);
-            auto br = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_BRIGHTNESS);
-            auto ex = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_EXPOSURE);
-            auto wb = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_WHITE_BALANCE);
-            auto sp = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_STROBE_PATTERN);
             
-            // this could be useful to print out,
-            // but assumes you've done some stuff
-            // in their separate software app.
-            // So we don't do anything here!
+            if ( isFirstFrame ){
+                auto sh = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_SHUTTER);
+                auto em = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_GAIN);
+                auto br = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_BRIGHTNESS);
+                auto ex = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_EXPOSURE);
+                auto wb = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_WHITE_BALANCE);
+                auto sp = getEmbeddedInfo(buffer.getPixels().getData(), ofxLibdc::PTGREY_EMBED_STROBE_PATTERN);
+                
+                // this could be useful to print out,
+                // but assumes you've done some stuff
+                // in their separate software app.
+                // So we don't do anything here!
+            }
+            
+            isFirstFrame = false;
         }
-        
-        isFirstFrame = false;
     }
 
     //--------------------------------------------------------------
@@ -495,6 +530,8 @@ namespace mmi {
         this->exposure.removeListener(this, &BlackFlyCamera::onExposureUpdated);
         this->shutter.removeListener(this, &BlackFlyCamera::onShutterUpdated);
 //        this->roi.removeListener(this, &BlackFlyCamera::onRoiUpdated);
+        
+        camera.close();
     }
     
     //--------------------------------------------------------------

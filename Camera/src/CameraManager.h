@@ -54,6 +54,9 @@ namespace mmi {
         
         ofParameter<string> settingsFile;
         
+        void closeCameras();
+        void openCameras();
+        
     protected:
         ofxPanel * gui;
         ofParameter<bool> lowRes;

@@ -34,8 +34,12 @@ rpath=Webserver/static/video/perf_attract.mp4
 cp $BackupDir/$rpath $InstallDir/$rpath
 
 echo "initialize Webserver"
-cd "$InstallDir/Webserver/"
-npm install
+# no internet on install computers, so just copy node_modules over
+#cd "$InstallDir/Webserver/"
+#npm install
+echo "copy over old node_modules"
+rpath=Webserver/node_modules
+cp -R $BackupDir/$rpath $InstallDir/$rpath
 
 echo ""
 echo "*************************************************"

@@ -8,5 +8,10 @@ MMI_Interactives/Sync/node_modules/*
 MMI_Interactives/Webserver/static/output/performance/*.mp4
 MMI_Interactives/Webserver/static/output/performance/*.png
 MMI_Interactives/Webserver/node_modules/*
+MMI_Interactives/Frontend/addons/*
+MMI_Interactives/Frontend/src/*
+MMI_Interactives/Frontend/Resources/*
+MMI_Interactives/Camera/*
+MMI_Interactives/AM_Input/*
 MMI_Interactives/Frontend/bin/logs/debug.*
 MMI_Interactives/Frontend/bin/logs/warn.*

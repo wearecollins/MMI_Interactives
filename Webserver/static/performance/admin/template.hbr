@@ -67,9 +67,16 @@
         {{/switch}}
       {{/each}}
 
+      {{!-- 
+      TODO: if we want the shutdown button, we need to figure out 
+      how to stop the app so it restarts correctly on reboot.
       <div class="adminEl centeredContainer column" style="">
         <div class="type_sm padding_sm">Shutdown machine</div>
         <button ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('shutdown'))" class="shutdownButton type_sm">Shutdown</button>
+      </div> --}}
+      <div class="adminEl centeredContainer column">
+        <div class="type_sm padding_sm">Restart program</div>
+        <button ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('restart_app'))" class="shutdownButton type_sm">Restart</button>
       </div>
     </div>
 

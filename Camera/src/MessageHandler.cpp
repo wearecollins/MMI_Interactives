@@ -65,8 +65,29 @@ namespace mmi {
                     string v = e.json["event"]["detail"]["clip"].asString();
                     string n = e.json["event"]["detail"]["name"].asString();
                     string s = v +":"+ n;
-                    // pack video and name into : separated streing
+                    // pack video and name into : separated string
                     ofNotifyEvent( onStartRecording, s );
+                } else if (n == "camera_reset"){
+                    bool reset = true;
+                    ofNotifyEvent( onResetCameras, reset );
+                } else if (n == "camera_stop"){
+                    bool stop = true;
+                    ofNotifyEvent( onStopCameras, stop );
+                } else if (n == "camera_start"){
+                    bool start = true;
+                    ofNotifyEvent( onStartCameras, start );
+                } else if (n == "restart_app"){
+                    ofLogWarning("Camera.MessageHandler",
+                                 "received restart command");
+                    bool shutdown = true;
+                    ofNotifyEvent( onShutdownApp, shutdown );
+                    
+                    //this is a little harsh, stopping everything mid-frame
+                    //exit(0);
+                    
+                    //this doesn't work because it only stops the oF app
+                    // and not the WebView
+                    //ofExit();
                 }
             }
             

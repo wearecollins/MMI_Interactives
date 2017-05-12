@@ -12,8 +12,11 @@ namespace mmi {
     //--------------------------------------------------------------
     void CameraApp::setup( bool bDoStream, string settingsFile ){
         this->bStreaming = bDoStream;
+        shutdown = false;
         
         gui = new ofxPanel();
+        ofLogNotice("Camera.CameraApp") <<
+            "loading settings file " << settingsFile;
         gui->setup("Settings", settingsFile);
         
         gui->registerMouseEvents();
@@ -27,6 +30,8 @@ namespace mmi {
         string xml = "anythingmuppets";
         if ( settings.load( ofToDataPath( settingsFile ) ) ){
             int mode = settings.getValue(whichSetup.getEscapedName(), 0);
+            ofLogNotice("Camera.CameraApp") <<
+                whichSetup.getEscapedName() << ": " << mode;
             if ( mode == 0 ){
                 xml = "performance";
             } else {
@@ -63,6 +68,18 @@ namespace mmi {
                       this,
                       &CameraApp::setStreamCamera);
         
+        ofAddListener(messageHdlr.onResetCameras,
+                      this,
+                      &CameraApp::resetCameras);
+        
+        ofAddListener(messageHdlr.onStopCameras,
+                      this,
+                      &CameraApp::stopCameras);
+        
+        ofAddListener(messageHdlr.onStartCameras,
+                      this,
+                      &CameraApp::startCameras);
+        
         ofAddListener(messageHdlr.onStartRecording,
                       &recordMgr,
                       &mmi::RecordManager::startRecordingEvt);
@@ -88,6 +105,10 @@ namespace mmi {
         ofAddListener(recordMgr.onFinishedCapture,
                       &messageHdlr,
                       &mmi::MessageHandler::onImageCaptured);
+        
+        ofAddListener(messageHdlr.onShutdownApp,
+                      this,
+                      &CameraApp::shutdownApp);
         
         // complete gui setup
         
@@ -182,6 +203,26 @@ namespace mmi {
         } else if ( cameraMgr.getNumCameras() > 0 ) {
             auto & img1 = cameraMgr.getCamera(0)->getImage();
             recordMgr.update(img1.getPixels());
+        }
+    }
+    
+    void CameraApp::shutdownApp(bool & b){
+        shutdown = true;
+    }
+    
+    void CameraApp::resetCameras(bool & b){
+        reloadCameras.set(true);
+    }
+    
+    void CameraApp::stopCameras(bool & b){
+        if (currentMode == MODE_NONE){
+            cameraMgr.closeCameras();
+        }
+    }
+    
+    void CameraApp::startCameras(bool & b){
+        if (currentMode == MODE_NONE){
+            cameraMgr.openCameras();
         }
     }
     
@@ -291,6 +332,7 @@ namespace mmi {
     //--------------------------------------------------------------
     void CameraApp::keyPressed(ofKeyEventArgs & e ){
         if ( e.key == 'm' ){
+            cameraMgr.openCameras();
             currentMode = (Mode)((int) currentMode + 1);
             if ( currentMode > MODE_NONE ){
                 currentMode = MODE_GENERAL;
@@ -318,8 +360,10 @@ namespace mmi {
 
     //--------------------------------------------------------------
     void CameraApp::setStreamCamera( int & which ){
-        if (which < cameraMgr.getNumCameras()){
+        if (/*which >= 0 && */which < cameraMgr.getNumCameras()){
             whichStream.set(which);
+        } else {
+            //log?
         }
     }
     

@@ -14,6 +14,9 @@ var script = function(/*data, configHandler*/){
   **************************************************/
   
   this.enter = function(/*evt*/){
+    //reset the camera to work around any long-run issues
+    //window.events.dispatchEvent(new Event('camera_reset'));
+    window.events.dispatchEvent(new Event('camera_start'));
   };
   
   /**************************************************

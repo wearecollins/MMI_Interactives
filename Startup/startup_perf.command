@@ -12,7 +12,7 @@ trap '
   if ! "$gotsigchld"; then
     gotsigchld=true
     ((${#pids[@]})) && kill "${pids[@]}" 2> /dev/null
-	killall Terminal
+    killall Terminal
   fi
 ' CHLD
 

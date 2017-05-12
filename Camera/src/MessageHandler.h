@@ -26,6 +26,21 @@ namespace mmi {
         ofEvent<int>    onSwitchCamera;
         
         /**
+         Trigger a reset of the cameras to get around any long-run issues
+         */
+        ofEvent<bool>   onResetCameras;
+        
+        /**
+         Close all camera streams to get around any long-run issues
+         */
+        ofEvent<bool>   onStopCameras;
+        
+        /**
+         Start all camera streams
+         */
+        ofEvent<bool>   onStartCameras;
+        
+        /**
          Start recording!
          @string Which backing track to play. Must match a real file!
          */
@@ -41,6 +56,12 @@ namespace mmi {
          move into place!
          */
         ofEvent<string>    onConfirmImage;
+        
+        /**
+         Trigger app shutdown. This event should bubble up to ofApp,
+         but I don't know how to do that...
+         */
+        ofEvent<bool>   onShutdownApp;
         
         /**
          Incoming events: finished recording a video,

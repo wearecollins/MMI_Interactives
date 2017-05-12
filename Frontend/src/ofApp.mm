@@ -166,6 +166,11 @@ static void setupEventHelper(ofApp *app)
     }
     
     cameraApp.update();
+    
+    if (cameraApp.shutdown){
+        ofLogWarning("Frontend") << "shutting down app";
+        [NSApp performSelector:@selector(terminate:) withObject:nil afterDelay:0.0];
+    }
 }
 
 - (void)draw
@@ -176,6 +181,7 @@ static void setupEventHelper(ofApp *app)
 
 - (void)exit
 {
+    
 }
 
 - (void)keyPressed:(int)key
