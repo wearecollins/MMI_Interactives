@@ -1,30 +1,32 @@
 
-#Development
+# Development
 
 1. [Overview](#overview)
 2. [Setting up](#setting-up)
-   0. [Setup codebase](#Setup-codebase)
-   1. [Setup scripts](#Setup-scripts)
+   1. [Setup codebase](#Setup-codebase)
+   2. [Setup scripts](#Setup-scripts)
 3. [Running](#running)
 4. [Contributing](#contributing)
 
 * * *
 
-##Overview
+## Overview
 
 These instructions assume you are testing everything on one computer. It should be relatively straight-forward to adapt to a multiple-computer setup.
 
-There are usually 7 processes which should be run:
+There are 2-3 core processes which should be run:
+
+1. A [Webserver](Webserver/) instance to host whichever frontend you are testing
+1. The [Frontend](Frontend/) app for interfacing with cameras and displaying the Performance or Anything Muppet frontend
+   - Or [Camera](Camera/) app and separate web browser directed at [http://localhost:8080/?stream=true]()
+
+There are an additional 4 services to run if you are testing e-mail sharing:
 
 1. A simple webserver to serve media files for sharing
 2. A service to setup a publicly-accessible web address 
    - If your development machine has a publicly-accessible web address already, ignore this
    - We use [ngrok](https://ngrok.com/) to make our dev machine(s) accessible via the internet (see setup guide below)
-3. A [Sync](Sync/) service to sync Anything Muppet images to your _media/_ directory
 4. A [Sync](Sync/) service to sync Performance videos to your _media/_ directory
-5. A [Webserver](Webserver/) instance to host whichever frontend you are testing
-6. The [Frontend](Frontend/) app for interfacing with cameras and displaying the Performance or Anything Muppet frontend
-   - Or [Camera](Camera/) app and separate web browser directed at [http://localhost:8080/?stream=true]() if not on OSX
 7. The [Sharing](Sharing/) webservice to enable posting to social media
 
 * * *
@@ -64,7 +66,12 @@ There are usually 7 processes which should be run:
    - Build the Anthing Muppets and Performance interactives by selecting Product/Build (or pressing command + b)
 
 ### Setup individual scripts
-Follow these steps for setting up everything:
+
+1. [Setup and configure your Webserver](Webserver/README.md#configure)
+1. If testing the Performance or Anything Muppet stations, configure/compile/run the [Frontend app](Frontend/)
+   - or [Camera app](Camera/) if you are not on OSX or want to debug the frontend in a browser
+
+Follow these steps for setting up e-mail sharing:
 
 1. Create a _media/_ directory to serve media files for sharing.
    - This directory should have two subdirectories: _performance/_ and _anythingmuppets/_
@@ -80,9 +87,6 @@ Follow these steps for setting up everything:
      - `./ngrok http 8012`
 4. [Setup and configure your Sync services](Sync/README.md#configure)
    - TODO: call out that there is a separate sync service (and separate config file) for Performance vs. Anything Muppets
-5. [Setup and configure your Webserver](Webserver/README.md#configure)
-6. If testing the Performance or Anything Muppet stations, configure/compile/run the [Frontend app](Frontend/)
-   - or [Camera app](Camera/) if you are not on OSX
 
 ### using [ngrok](https://ngrok.com/)
 
@@ -109,14 +113,18 @@ Every time you run ngrok it will provide you with a new randomized
 
 ## Running
 
-0. This assumes you have a _media_ directory setup as above (steps 1-3)
+1. Run the webserver
+   - `npm start -- --station [STATION]` where _[STATION]_ is one of `performance`, `anythingmuppets`, or `share`
+1. If testing the Performance or Anything Muppet stations, run the corresponding app in [Frontend/bin]
+   - You may run the corresponding [Startup](Startup/) script (e.g. startup_am.command) in lieu of steps 2 and 3.
+
+### With e-mail sharing
+
+0. This assumes you have a _media_ directory setup as above (Setup Individual Scripts -> setting up e-mail sharing -> steps 1-3)
 1. Run sync services
    1. `node loop.js anythingmuppet.json`
    2. `node loop.js performance.json`
-2. Run the webserver
-   - `npm start -- --station [STATION]` where _[STATION]_ is one of `performance`, `anythingmuppets`, or `share`
-3. If testing the Performance or Anything Muppet stations, run the corresponding app in [Frontend/bin]
-   - You may run the corresponding [Startup](Startup/) script (e.g. startup_am.command) in lieu of steps 2 and 3.
+
 
 * * *
 
