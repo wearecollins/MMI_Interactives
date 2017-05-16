@@ -2,7 +2,7 @@ An openFrameworks app which interfaces with cameras and provides a Websocket API
 
 This application is used in production as a sub-project of the [Frontend](../Frontend/). You can use this app stand-alone during development and run the user interface in Chrome. See the [development instructions](../Development.md) for details.
 
-When using this application standalone, it loads relevant settings from _bin/data/_. If [`FRONTEND_AM` is defined](src/CameraApp.h#L21) then [settings_am.xml](bin/data/settings_am.xml) will be used, otherwise [settings_perf.xml](bin/data/settings_perf.xml) will be loaded.
+When using this application standalone, it loads relevant settings from _bin/data/_. If [`FRONTEND_AM` is defined](src/CameraApp.h#L23) then [settings_am.xml](bin/data/settings_am.xml) will be used, otherwise [settings_perf.xml](bin/data/settings_perf.xml) will be loaded.
 
 # Setup
 

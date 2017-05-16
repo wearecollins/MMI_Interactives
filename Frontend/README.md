@@ -1,11 +1,11 @@
-#Frontend
-* _Brief_: This application wraps a WebKit frontend, a light webserver, and native code (via openFrameworks) to merge a web-based GUI with advanced functionality such as speaking to industrial cameras and creating videos.
-* The application will automatically connect to a webpage hosted at http://localhost:8080, which the [Webserver](../Webserver/Readme.md) provides. 
+# Frontend
+_Brief_: This application wraps a WebKit frontend, a light webserver, and native code (via openFrameworks) to merge a web-based GUI with advanced functionality such as speaking to industrial cameras and creating videos.
+
+The application will automatically go fullscreen, and then connect to a webpage hosted at http://localhost:8080, which the [Webserver](../Webserver) provides. 
   * If it does not load the page, it will automatically try to reload every three seconds.
-  * Once the page loads, the app will enter fullscreen mode (if it hasn't already)
   
 ## Setup Development
-* Please see the [Development](Development.md) document for details on setting up a development environment. 
+* Please see the [Development](../Development.md) document for details on setting up a development environment. 
 
 ### Projects and files
 * This application shares code with the [Camera app](../Camera/Readme.md). If you are looking for a particular file, it most likely lives there!

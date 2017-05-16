@@ -1,12 +1,12 @@
-0. [Instructions](#instructions)
-0. [Structure](#structure)
-0. [Configuration](#configuration)
-0. [Modules](#modules)
-   0. [Log4Javascript to Log4js](#log4javascript-to-log4js)
-   0. [Configer](#configer)
-   0. [Dirlister](#dirlister)
-   0. [Computer Control](#computer-control)
-0. [Endpoints](#endpoints)
+1. [Instructions](#instructions)
+1. [Structure](#structure)
+1. [Configuration](#configuration)
+1. [Modules](#modules)
+   1. [Log4Javascript to Log4js](#log4javascript-to-log4js)
+   1. [Configer](#configer)
+   1. [Dirlister](#dirlister)
+   1. [Computer Control](#computer-control)
+1. [Endpoints](#endpoints)
 
 ## Instructions
 
@@ -118,8 +118,7 @@ without providing a password. You can do this by either:
   - `sudo /PATH/TO/npm start` where _/PATH/TO/npm_ can be determined using `which npm` 
 * allowing the user that runs the server to run that command.
   - run `sudo -E visudo` to edit the permission file and add `[USER] ALL=NOPASSWD:/sbin/shutdown` to the end of the file.
-    * where _[USER]_ is the username of the user that is running the server. 
-You can access this via the command `whoami`.
+    * where _[USER]_ is the username of the user that is running the server. You can access this via the command `whoami`.
 
 ```
 var Express = require('express');

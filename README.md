@@ -5,7 +5,6 @@
 1. [Introduction](#Introduction)
    1. [Performance](#performance)
    2. [Anything Muppet](#anything-muppet)
-   3. [Sharing Station - Deprecated](#sharing-station---deprecated)
 2. [Setup](#setup)
    1. [Overview](#hardware-overview)
    1. [Production](#production)
@@ -18,7 +17,7 @@
 
 This repository contains digital portions of a Jim Henson Exhibition for the [Museum of the Moving Image](http://www.movingimage.us/). There are two touchpoints in this repo. They both share a lot of elements.
 
-This document will guide you through the overall [setup](#Setup) for the installation, and a general guide to [running](#running) the installation. 
+This document will guide you through the overall [setup](#setup) for the installation, and a general guide to [running](#running) the installation. 
 
 Please see ["This folder"](#this-folder) below for a further guide to other files in this folder.
 
@@ -82,7 +81,7 @@ In the bootstrapping steps, you may setup each interactive to run automatically 
 * This will launch a Terminal window (running the [Webserver](Webserver)) and an instance of the [Anything Muppets Frontend](Frontend)
 * You can close the app by quitting the Frontend (command + q OR selecting File/Quit from top menu)
 
-## Peformance
+## Performance
 * Double-click the [startup command](Startup/startup_perf.command) in Startup/startup_perf.command
 * This will launch a Terminal window (running the [Webserver](Webserver)) and an instance of the [Performance Frontend](Frontend)
 * You can close the app by quitting the Frontend (command + q OR selecting File/Quit from top menu)
