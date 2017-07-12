@@ -23,7 +23,7 @@
       'performance/intro',
       'performance/overview',
       'performance/select',
-      'performance/clippreview', // comment this out to take out the full-clip 'preview'
+      'performance/clippreview',
       'performance/perform',
       'performance/wait',
       'performance/review',
@@ -47,6 +47,8 @@
     defaultMode.addTransition('performance/review', 'special', 'performance/thanksplain');
     //cancelling on the share screen prompts you to return the puppets
     defaultMode.addTransition('performance/share', 'cancel', 'performance/thanksplain');
+    //we no longer want to see the Clip Preview screen, but we still rely on it's video elements
+    defaultMode.addTransition('performance/select', 'next', 'performance/perform');
 
     var continuousMode = customTransitions.createMode('continuous');
     continuousMode.addGlobalTransition('cancel', 'performance/freeplay');

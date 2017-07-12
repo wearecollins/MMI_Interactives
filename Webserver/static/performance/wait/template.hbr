@@ -3,7 +3,7 @@
 
   <div class="container fillAbs centeredContainer column" style="z-index:2; justify-content:space-around;">
     <div class="type_lg title">
-      {{{copy}}}
+      {{{copy}}}...
     </div>
   </div>
 </div>

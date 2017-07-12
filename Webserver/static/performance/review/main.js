@@ -81,15 +81,16 @@ var review = function( data, configHandler ){
     }
 
     //If we are sharing
+    var playBtnContainerId = data.name + 'PlayContainer';
     if (configHandler.get('showLocalShare')){
       //hide the play button
-      MMI.hide(playBtnId);
+      MMI.hide(playBtnContainerId);
       //and auto-play the video
       vidElem.play();
     } else {
       //otherwise, if we are not sharing
       //show the play button
-      MMI.show(playBtnId, 'block');
+      MMI.show(playBtnContainerId, 'flex');
     }
   };
 
@@ -113,7 +114,8 @@ var review = function( data, configHandler ){
     container.classList.remove('share');
     //clear out the video
     // hopefully this allows it to GC the video
+    var vidElem = document.getElementById('videoReview');
     vidElem.src = "";
-    videoElem.load();
+    vidElem.load();
   }
 };

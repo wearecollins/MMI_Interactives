@@ -7,8 +7,11 @@ var perform = function(data, configHandler){
   **************************************************/
 
   var countdownTimeout = null;
+  var transitionTimeout = null;
   var cancelCountdown = false;
   var currentClip = null;
+  var voPlaying = false;
+  var pageLoaded = false;
 
   /**
    * Set the active clip to play for audio feedback
@@ -23,8 +26,58 @@ var perform = function(data, configHandler){
     }
   }
 
+  function startVO(){
+    voPlaying = true;
+    log.debug("[Performance::Perform::startVO]");
+  }
+
+  function finishVO(){
+    voPlaying = false;
+    log.debug("[Performance::Perform::finishVO]");
+    checkContinue();
+  }
+
+  function checkContinue(){
+    if (!voPlaying && pageLoaded){
+      log.debug("[Performance::Perform::checkContinue] continuing");
+      var t = document.getElementById('performPractice');
+
+      //If there is a Practice VO, 
+      // then start the countdown after the VO plays
+      if ( soundPractice.exists() ){
+        soundPractice.play( function(){
+          //once the VO finishes, animate the text to the corner
+          t.classList.add('watermark');
+          //and after the text animation finishes, start the countdown
+          countdownTimeout = setTimeout(function(){
+            startCountdown(false);
+          },
+          1000);
+        });
+      }
+
+      //Otherwise, if there is no Practice VO,
+      // start countdown after a short delay
+      else {
+        
+        //animate text to corner
+        t.classList.add('watermark');
+        //start countdown after text animates away
+        countdownTimeout = setTimeout(function(){
+          startCountdown(false);
+        },
+        1000);
+
+      }
+    } else {
+      log.debug("[Performance::Perform::checkContinue] not ready");
+    }
+  }
+
   // this event comes from the 'select' state
   window.addEventListener('clipSelected', setClip);
+  window.addEventListener('startSelectVO', startVO);
+  window.addEventListener('finishSelectVO', finishVO);
 
   function firstLoad(){
     setStaticWatermark(document.getElementById('performPractice'));
@@ -56,8 +109,7 @@ var perform = function(data, configHandler){
   // voiceovers
   var soundPractice = new SoundPlayer(),
       soundPerform = new SoundPlayer(),
-      soundCountdown = new SoundPlayer(),
-      soundTimeout;
+      soundCountdown = new SoundPlayer();
 
   var cdDiv = document.getElementById('countdownNumber');
   cdDiv.addEventListener( 'animationend', continueCountdown);
@@ -97,44 +149,10 @@ var perform = function(data, configHandler){
     t.classList.remove('watermark');
     t.classList.remove('staticWatermark');
 
-    //If there is a Practice VO, 
-    // then start the countdown after the VO plays
-    if ( soundPractice.exists() ){
-      // wait for animate in
-      soundTimeout = setTimeout(function(){
-        // play takes a 'onComplete' parameter,
-        // so countdown will automatically occurr after VO
-        soundPractice.play( function(){
-          //once the VO finishes, animate the text to the corner
-          t.classList.add('watermark');
-          //and after the text animation finishes, start the countdown
-          countdownTimeout = setTimeout(function(){
-            startCountdown(false);
-          },
-          1000);
-        });
-      }, 1000);
-    }
-
-    //Otherwise, if there is no Practice VO,
-    // start countdown after a short delay
-    else {
-      //wait for the screen to animate in, plus a short dwell time
-      countdownTimeout = setTimeout( 
-        function(){
-          //animate text to corner
-          t.classList.add('watermark');
-          //start countdown after text animates away
-          countdownTimeout = setTimeout(function(){
-            startCountdown(false);
-          },
-          1000);
-        }, 
-        1500
-      );
-      // ^ extra 1000 = global transition duration 
-
-    }
+    transitionTimeout = setTimeout(function(){
+      pageLoaded = true;
+      checkContinue();
+    }, 2000);
 
     // -----------------------------------------------
     // Setup Videoplayer: once it ends, go to next state
@@ -341,7 +359,7 @@ var perform = function(data, configHandler){
 
       // just in case, cancel any untriggered timeouts
       clearTimeout(countdownTimeout);
-      clearTimeout(soundTimeout);
+      clearTimeout(transitionTimeout);
       cancelCountdown = true;
       // stop any audio that might still be playing
       soundPractice.stop();
