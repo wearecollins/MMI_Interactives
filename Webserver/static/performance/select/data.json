@@ -20,5 +20,8 @@
 		"event":"cancel"
 	},
 	"audio":"vo/perf_vo_04.mp3",
-	"copy":"Preview &amp;<br />select a clip"
+	"copy":{
+		"large":"Preview &amp;<br />select a clip",
+		"next":"Select"
+	}
 }

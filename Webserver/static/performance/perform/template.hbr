@@ -7,7 +7,7 @@
 
   <!-- State I -->
   <div id="performPractice" class="type_lg over_video" style='z-index:2'>
-    Practice
+    {{{copy.watermark.practice}}}
   </div>
 
   <!-- Voiceover: Practice -->
@@ -15,7 +15,7 @@
 
   <!-- State III -->
   <div id="performPerform" class="type_lg over_video" style="z-index:2">
-    Perform
+    {{{copy.watermark.perform}}}
   </div>
 
   <!-- Voiceover: Perform -->

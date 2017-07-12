@@ -5,7 +5,7 @@
 
   <div id="videoReviewContainer" class="fillAbs centeredContainer column colorBg" syle="z-index:0">
   	<div id='{{name}}Text' class="type_lg">
-      {{{copy}}}
+      {{{copy.email}}}
     </div>
     <video id="videoReview" class="fillAbs" preload="none">
         <source src="" type="video/mp4">
@@ -13,13 +13,13 @@
     <div id='{{name}}Buttons'>
 
 	    <div id="{{name}}NextBtn" class="button" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-        Yes
+        {{{copy.yes}}}
     	</div>
     	<div class='buttonSpacer type_lg'>
         &nbsp;
       </div>
 	    <div id="{{name}}CancelBtn" class="button" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('special'));">
-        No
+        {{{copy.no}}}
     	</div>
     </div>
     <div id='{{name}}PlayContainer' class="container fillAbs centeredContainer column">
@@ -30,7 +30,7 @@
       </div>
 
       <div id='{{name}}Play' class='button'>
-        Play
+        {{{copy.play}}}
       </div>
     </div>
   </div>

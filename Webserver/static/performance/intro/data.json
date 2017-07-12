@@ -5,6 +5,9 @@
 		"event":"special"
 	},
 	"audio":"vo/perf_vo_01.mp3",
-	"copy":"Choose a puppet",
+	"copy":{
+		"large":"Choose a puppet",
+		"next":"Continue"
+	},
 	"disableTimeout":false
 }

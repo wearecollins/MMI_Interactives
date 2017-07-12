@@ -7,12 +7,12 @@
   <div class='container fillAbs centeredContainer column' style="z-index:2;">
     <div class="copyContainer type_lg centeredContainer">
       <div id="{{name}}Text" class="type_lg over_video">
-        {{{copy}}}
+        {{{copy.large}}}
       </div>
     </div>
 
     <div id="{{name}}NextBtn" class="button nextButton" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-        Start
+        {{{copy.next}}}
     </div>
   </div>
 </div>

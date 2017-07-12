@@ -4,22 +4,22 @@
 
   <div id='textContainer' class='container centeredContainer column' style='z-index:2;'>
     <div class='type_med'>
-      {{{copy}}}
+      {{{copy.large}}}
     </div>
     <div id='emailDisplay' class='type_med'>
       &nbsp;
     </div>
     <div id='emailInvalidNotice' class='type_sm'>
-      Please Make Sure Your E-mail Address is Correct
+      {{{copy.warn}}}
     </div>
     <div id='{{name}}Buttons'>
 
       <div id="{{name}}NextBtn" class="button" ondragstart='return false;'>
-          Send
+          {{{copy.send}}}
       </div>
       <div class='buttonSpacer'></div>
       <div id="{{name}}CancelBtn" class="button" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('cancel'));">
-          Cancel
+          {{{copy.cancel}}}
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
         <li class="symbol"><span class="off">J</span><span class="on">&amp;</span></li>
         <li class="symbol"><span class="off">K</span><span class="on">*</span></li>
         <li class="symbol"><span class="off">L</span><span class="on">=</span></li>
-        <li id='keyboardEnter' class="enter lastitem two_wide">Send<!-- &#9166; --></li>
+        <li id='keyboardEnter' class="enter lastitem two_wide">{{{copy.enter_key}}}</li>
 
         <li id='keyboardShift' class="shift newline">&#11014;</li>
         <li class="symbol"><span class="off">Z</span><span class="on">'</span></li>
@@ -67,7 +67,7 @@
         <li>@</li>
         <li class="space four_wide">&nbsp;</li>
         <li>.</li>
-        <li class="lastitem three_wide symbols">.?123</li>
+        <li class="lastitem three_wide symbols">{{{copy.symbol_key}}}</li>
       </ul>
     </div>
   </div>

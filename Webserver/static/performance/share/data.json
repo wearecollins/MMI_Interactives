@@ -2,5 +2,12 @@
 	"name":"share",
 	"disableTimeout":true,
 	"breakButton":false,
-	"copy":"Enter your email address:"
+	"copy":{
+		"large":"Enter your email address:",
+		"warn":"Please Make Sure Your E-mail Address is Correct",
+		"send":"Send",
+		"cancel":"Cancel",
+		"enter_key":"Send",
+		"symbol_key":".?123"
+	}
 }

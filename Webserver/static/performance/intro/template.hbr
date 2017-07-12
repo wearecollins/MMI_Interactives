@@ -6,12 +6,12 @@
   <div class="container fillAbs centeredContainer column">
     <div class="copyContainer type_lg centeredContainer">
       <div class="type_lg title">
-        {{{copy}}}
+        {{{copy.large}}}
       </div>
     </div>
 
     <div id="{{name}}NextBtn" class="button nextButton" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-      Continue
+      {{{copy.next}}}
     </div>
   </div>
 </div>

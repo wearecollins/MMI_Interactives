@@ -18,5 +18,8 @@
 	"breakButton":{
 		"text":"Start over",
 		"event":"cancel"
+	},
+	"copy":{
+		"watermark":"Preview"
 	}
 }

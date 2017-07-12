@@ -352,6 +352,7 @@ var perform = function(data, configHandler){
   **************************************************/
 
   this.exit = function performExit(/*evt*/){
+    pageLoaded = false;
     manager.getStreamHandler().hideStream();
     try {
       var videoDiv = getVideoDiv();//document.getElementById('perf_'+currentClip.name);

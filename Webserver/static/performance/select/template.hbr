@@ -8,7 +8,7 @@
   <div class="fillAbs"><!-- style='height:1024px;'>-->
     <div style="height:75%; width:100%; background-color: rgb(30, 30, 30);">
       <div id='selectClipText' class='type_lg' style="position:absolute; height:65%; width:100%; padding:5% 0; display:flex; flex-direction:column; justify-content:center; ">
-        {{{copy}}}
+        {{{copy.large}}}
       </div>
       {{#each videos}}
       <div id="{{name}}_big" class="bigVideoCont fillAbs centeredContainer column" style="height:65%; padding:5% 0;">
@@ -20,7 +20,7 @@
       <div class='fillAbs' style="position:absolute; height:65%; width:100%; padding:5% 0; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
         <div></div>
         <div id='selectButtons' class="button" onclick="window.events.dispatchEvent(new Event('selectClip'));">
-          Select
+          {{{copy.next}}}
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
   <!-- <audio src="vo/countdown.mp3" id="snd_countdown"></audio> -->
   
   <div id="previewTitle" class="type_lg over_video" style='z-index:2'>
-    Preview
+    {{{copy.watermark}}}
   </div>
 
   <div id="prevVideoCont" class="fillAbs" syle="z-index:0">

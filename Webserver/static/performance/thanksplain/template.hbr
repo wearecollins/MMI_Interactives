@@ -5,13 +5,13 @@
 
   <div class="container fillAbs centeredContainer column" style="z-index:2;">
     <div class="copyContainer type_lg centeredContainer">
-	  <div class='type_lg title'>
-	    {{{copy}}}
-	  </div>
-	</div>
+      <div class='type_lg title'>
+        {{{copy.large}}}
+      </div>
+    </div>
 
     <div id="{{name}}NextBtn" class="button nextButton" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-      Start over
+      {{{copy.next}}}
     </div>
   </div>
 </div>
