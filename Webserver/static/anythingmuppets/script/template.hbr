@@ -11,7 +11,7 @@
       </div>
     </div>
     <div id="sbContInternal" class="type_med button button_lg" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-        Screen test your character
+        {{{copy.next}}}
     </div>
   </div>
 

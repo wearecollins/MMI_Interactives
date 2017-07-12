@@ -3,5 +3,8 @@
 	"disableTimeout":true,
 	"buttons":[{"type":"next","text":"Start"}],
 	"breakButton":false,
-	"copy":"Design an<br />Anything Muppet<br />Character"
+	"copy":{
+		"large":"Design an<br />Anything Muppet<br />Character",
+		"next":"Start"
+	}
 }

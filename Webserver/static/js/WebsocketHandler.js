@@ -87,7 +87,7 @@ function WebsocketHandler(){
         wsI--){
       if (websockets[wsI].name === name){
         var ws = websockets[wsI].ws;
-        removeWs( ws );
+        removeWS( ws );
         ws.onclose = function(){return false;};
         ws.close();
         ws = undefined;

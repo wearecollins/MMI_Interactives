@@ -7,11 +7,11 @@
   <div class='container fillAbs centeredContainer column noselect twoPartScreen' style="z-index:2;">
 
     <div id="{{name}}Text" class="type_lg title over_video disabled">
-      {{{copy}}}
+      {{{copy.large}}}
     </div>
 
     <div id="{{name}}NextBtn" class="type_med button button_lg" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-        Start
+        {{{copy.next}}}
     </div>
   </div>
 </div>

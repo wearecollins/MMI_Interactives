@@ -10,10 +10,10 @@
     </div>
     <div id="{{name}}Buttons">
       <div id="{{name}}Prev" class="type_med button button_wide" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('prev'));">
-          Yes
+          {{{copy.yes}}}
       </div>
       <div id="{{name}}Next" class="type_med button button_wide" ondragstart='return false;' onclick="window.events.dispatchEvent(new Event('next'));">
-          No, I'm finished
+          {{{copy.no}}}
       </div>
     </div>
   </div>

@@ -7,6 +7,8 @@
 		"event":"cancel"},
 	"copy":{
 		"large":"Still designing?<br />",
-		"small":"If others are waiting please<br />give the next person a turn"
+		"small":"If others are waiting please<br />give the next person a turn",
+		"yes":"Yes, I'd like more time",
+		"no":"No, I'm finished"
 	}
 }
