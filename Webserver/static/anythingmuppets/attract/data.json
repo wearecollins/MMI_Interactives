@@ -1,7 +1,6 @@
 {
 	"name":"attract",
 	"disableTimeout":true,
-	"buttons":[{"type":"next","text":"Start"}],
 	"breakButton":false,
 	"copy":{
 		"large":"Design an<br />Anything Muppet<br />Character",
