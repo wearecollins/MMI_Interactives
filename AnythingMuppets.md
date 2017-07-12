@@ -1,4 +1,4 @@
-#Anything Muppets
+# Anything Muppets
 
 1. [Overview](#overview)
 1. [Setting Up](#setting-up)

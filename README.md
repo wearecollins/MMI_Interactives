@@ -1,5 +1,10 @@
 # MMI - The Jim Henson Exhibition
 
+I want to...
+
+* [Edit Copy](copy.md)
+* [Change Audio or Video](media.md)
+
 ## Table of Contents
 
 1. [Introduction](#Introduction)

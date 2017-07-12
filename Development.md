@@ -31,13 +31,13 @@ There are an additional 4 services to run if you are testing e-mail sharing:
 
 * * *
 
-##Prerequisites
+## Prerequisites
 
 * [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) 
 * [Xcode command line tools](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/)
 * [Node.js](https://nodejs.org/en/)
 
-##Setting Up
+## Setting Up
 
 ### Setup codebase
 1. Download and install FFMPEG
