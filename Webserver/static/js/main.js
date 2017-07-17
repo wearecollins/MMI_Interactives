@@ -19,6 +19,10 @@ MMI.getQueryString = function(key, default_)
 
 
 MMI.show = function( divId, displayType ){
+  //NOTE: undefined !== null
+  // which means if you don't pass a second argument
+  // then this function will not change 'display' style.
+  // I don't know if this is intentional behaviour!
   var t = displayType === null ? "block" : displayType;
   var d = document.getElementById( divId );
   if ( d ){

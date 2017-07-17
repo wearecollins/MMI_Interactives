@@ -117,5 +117,6 @@ var review = function( data, configHandler ){
     var vidElem = document.getElementById('videoReview');
     vidElem.src = "";
     vidElem.load();
+    MMI.show(playBtnId, 'block');
   }
 };
